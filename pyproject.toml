@@ -44,3 +44,6 @@ nbsphinx = ">0.9"
 
 [tool.poetry.group.tests.dependencies]
 pytest = "^7.4.3"
+
+[tool.poetry.urls]
+homepage = "https://github.com/rmj3197/QuadratiK"

@@ -1,0 +1,680 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PKBC &#8212; QuadratiK 1.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=3181d424bc0d3cce17c7b026e09d78c270cea3e2" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=5ce21ab0" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script src="../../_static/documentation_options.js?v=f9c1cefe"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api_reference/generated/QuadratiK.spherical_clustering.PKBC';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PKBD" href="QuadratiK.spherical_clustering.PKBD.html" />
+    <link rel="prev" title="PoissonKernelTest" href="QuadratiK.poisson_kernel_test.PoissonKernelTest.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">QuadratiK 1.0.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html">Installation</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.kernel_test.KernelTest.html">KernelTest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.kernel_test.select_h.html">select_h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.poisson_kernel_test.PoissonKernelTest.html">PoissonKernelTest</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">PKBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.spherical_clustering.PKBD.html">PKBD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.ui.UI.html">UI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.datasets.load_wireless_data.html">load_wireless_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.tools.sample_hypersphere.html">sample_hypersphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.tools.stats.html">stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.tools.qq_plot.html">qq_plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.tools.sphere3d.html">sphere3d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="QuadratiK.tools.plot_clusters_2d.html">plot_clusters_2d</a></li>
+</ul>
+</li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../user_guide/index.html">User Guide</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/datasets.html">Wireless Indoor Localization Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/basic_usage.html">QuadratiK Usage Examples</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/api_reference/generated/QuadratiK.spherical_clustering.PKBC.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PKBC</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC"><code class="docutils literal notranslate"><span class="pre">PKBC</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.fit"><code class="docutils literal notranslate"><span class="pre">PKBC.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.stats"><code class="docutils literal notranslate"><span class="pre">PKBC.stats()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.validation"><code class="docutils literal notranslate"><span class="pre">PKBC.validation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="pkbc">
+<h1>PKBC<a class="headerlink" href="#pkbc" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="QuadratiK.spherical_clustering.PKBC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QuadratiK.spherical_clustering.</span></span><span class="sig-name descname"><span class="pre">PKBC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_clust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stopping_rule</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'loglik'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sampledata'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.spherical_clustering.PKBC" title="Link to this definition">#</a></dt>
+<dd><p>Poisson kernel-based clustering on the sphere. 
+The class performs the Poisson kernel-based clustering algorithm 
+on the sphere based on the Poisson kernel-based densities. It estimates
+the parameter of a mixture of Poisson kernel-based densities. The obtained
+estimates are used for assigning final memberships, identifying the data points.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>num_clust<span class="classifier">int</span></dt><dd><p>Number of clusters.</p>
+</dd>
+<dt>max_iter<span class="classifier">int</span></dt><dd><p>Maximum number of iterations before a run is terminated.</p>
+</dd>
+<dt>stopping_rule<span class="classifier">str, optional</span></dt><dd><p>String describing the stopping rule to be used within each run. 
+Currently must be either ‘max’, ‘membership’, or ‘loglik’.</p>
+</dd>
+<dt>init_method<span class="classifier">str, optional</span></dt><dd><p>String describing the initialization method to be used. 
+Currently must be ‘sampleData’.</p>
+</dd>
+<dt>num_init<span class="classifier">int, optional</span></dt><dd><p>Number of initializations.</p>
+</dd>
+<dt>tol<span class="classifier">float.</span></dt><dd><p>Constant defining threshold by which log 
+likelihood must change to continue iterations, if applicable.
+Defaults to 1e-7.</p>
+</dd>
+<dt>random_state<span class="classifier">int, None, optional. </span></dt><dd><p>Seed for random number generation. Defaults to None</p>
+</dd>
+<dt>n_jobs<span class="classifier">int</span></dt><dd><p>Used only for computing the WCSS efficiently.
+n_jobs specifies the maximum number of concurrently running workers. 
+If 1 is given, no joblib parallelism is used at all, which is useful for debugging.
+For more information on joblib n_jobs refer to - 
+<a class="reference external" href="https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html">https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html</a>.
+Defaults to 4.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>alpha_<span class="classifier">numpy.ndarray of shape (n_clusters,)</span></dt><dd><p>Estimated mixing proportions</p>
+</dd>
+<dt>labels_<span class="classifier">numpy.ndarray of shape (n_samples,)</span></dt><dd><p>Final cluster membership assigned by the algorithm to each observation</p>
+</dd>
+<dt>log_lik_vec<span class="classifier">numpy.ndarray of shape (num_init, )</span></dt><dd><p>Array of log-likelihood values for each initialization</p>
+</dd>
+<dt>loklik_<span class="classifier">float</span></dt><dd><p>Maximum value of the log-likelihood function</p>
+</dd>
+<dt>mu_<span class="classifier">numpy.ndarray of shape (n_clusters, n_features)</span></dt><dd><p>Estimated centroids</p>
+</dd>
+<dt>num_iter_per_run<span class="classifier">numpy.ndarray of shape (num_init, )</span></dt><dd><p>Number of E-M iterations per run</p>
+</dd>
+<dt>post_probs_<span class="classifier">numpy.ndarray of shape (n_samples, n_features)</span></dt><dd><p>Posterior probabilities of each observation for the indicated clusters</p>
+</dd>
+<dt>rho_<span class="classifier">numpy.ndarray of shape (n_clusters,)</span></dt><dd><p>Estimated concentration parameters rho</p>
+</dd>
+<dt>euclidean_wcss_<span class="classifier">float</span></dt><dd><p>Values of within-cluster sum of squares computed with 
+Euclidean distance.</p>
+</dd>
+<dt>cosine_wcss_<span class="classifier">float</span></dt><dd><p>Values of within-cluster sum of squares computed with 
+cosine similarity.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Golzy M. &amp; Markatou M. (2020) Poisson Kernel-Based 
+Clustering on the Sphere: Convergence Properties, Identifiability, 
+and a Method of Sampling, Journal of Computational and Graphical Statistics, 
+29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.</p>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">QuadratiK.datasets</span> <span class="kn">import</span> <span class="n">load_wireless_data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">QuadratiK.spherical_clustering</span> <span class="kn">import</span> <span class="n">PKBC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_wireless_data</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">le</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cluster_fit</span> <span class="o">=</span> <span class="n">PKBC</span><span class="p">(</span><span class="n">num_clust</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ari</span><span class="p">,</span> <span class="n">macro_precision</span><span class="p">,</span> <span class="n">macro_recall</span><span class="p">,</span> <span class="n">avg_silhouette_Score</span> <span class="o">=</span> <span class="n">cluster_fit</span><span class="o">.</span><span class="n">validation</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated mixing proportions :&quot;</span><span class="p">,</span> <span class="n">cluster_fit</span><span class="o">.</span><span class="n">alpha_</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated concentration parameters: &quot;</span><span class="p">,</span> <span class="n">cluster_fit</span><span class="o">.</span><span class="n">rho_</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Adjusted Rand Index:&quot;</span><span class="p">,</span> <span class="n">ari</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Macro Precision:&quot;</span><span class="p">,</span> <span class="n">macro_precision</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Macro Recall:&quot;</span><span class="p">,</span> <span class="n">macro_recall</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Silhouette Score:&quot;</span><span class="p">,</span> <span class="n">avg_silhouette_Score</span><span class="p">)</span>
+<span class="gp">... </span><span class="n">Estimated</span> <span class="n">mixing</span> <span class="n">proportions</span> <span class="p">:</span> <span class="p">[</span><span class="mf">0.23590339</span> <span class="mf">0.24977919</span> <span class="mf">0.25777522</span> <span class="mf">0.25654219</span><span class="p">]</span>
+<span class="gp">... </span><span class="n">Estimated</span> <span class="n">concentration</span> <span class="n">parameters</span><span class="p">:</span>  <span class="p">[</span><span class="mf">0.97773265</span> <span class="mf">0.98348976</span> <span class="mf">0.98226901</span> <span class="mf">0.98572597</span><span class="p">]</span>
+<span class="gp">... </span><span class="n">Adjusted</span> <span class="n">Rand</span> <span class="n">Index</span><span class="p">:</span> <span class="mf">0.9403086353805835</span>
+<span class="gp">... </span><span class="n">Macro</span> <span class="n">Precision</span><span class="p">:</span> <span class="mf">0.9771870612442508</span>
+<span class="gp">... </span><span class="n">Macro</span> <span class="n">Recall</span><span class="p">:</span> <span class="mf">0.9769999999999999</span>
+<span class="gp">... </span><span class="n">Average</span> <span class="n">Silhouette</span> <span class="n">Score</span><span class="p">:</span> <span class="mf">0.3803089203572107</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#QuadratiK.spherical_clustering.PKBC.fit" title="QuadratiK.spherical_clustering.PKBC.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PKBC.fit</span></code></a>(dat)</p></td>
+<td><p>Performs Poisson Kernel-based Clustering.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#QuadratiK.spherical_clustering.PKBC.stats" title="QuadratiK.spherical_clustering.PKBC.stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PKBC.stats</span></code></a>()</p></td>
+<td><p>Function to generate descriptive statistics per variable (and per group if available).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#QuadratiK.spherical_clustering.PKBC.validation" title="QuadratiK.spherical_clustering.PKBC.validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PKBC.validation</span></code></a>([y_true])</p></td>
+<td><p>Computes validation metrics such as ARI, Macro Precision  and Macro Recall when true labels are provided.</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<dl class="py method">
+<dt class="sig sig-object py" id="QuadratiK.spherical_clustering.PKBC.fit">
+<span class="sig-prename descclassname"><span class="pre">PKBC.</span></span><span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.spherical_clustering.PKBC.fit" title="Link to this definition">#</a></dt>
+<dd><p>Performs Poisson Kernel-based Clustering.</p>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>dat<span class="classifier">numpy.ndarray, pandas.DataFrame</span></dt><dd><p>A numeric array of data values.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>self<span class="classifier">object</span></dt><dd><p>Fitted estimator</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="QuadratiK.spherical_clustering.PKBC.stats">
+<span class="sig-prename descclassname"><span class="pre">PKBC.</span></span><span class="sig-name descname"><span class="pre">stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.spherical_clustering.PKBC.stats" title="Link to this definition">#</a></dt>
+<dd><p>Function to generate descriptive statistics per variable (and per group if available).</p>
+<section id="id2">
+<h2>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>summary_stats_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe of descriptive statistics</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="QuadratiK.spherical_clustering.PKBC.validation">
+<span class="sig-prename descclassname"><span class="pre">PKBC.</span></span><span class="sig-name descname"><span class="pre">validation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.spherical_clustering.PKBC.validation" title="Link to this definition">#</a></dt>
+<dd><p>Computes validation metrics such as ARI, Macro Precision 
+and Macro Recall when true labels are provided.</p>
+<section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>y_true<span class="classifier">numpy.ndarray. </span></dt><dd><p>Array of true memberships to clusters,
+Defaults to None.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>validation metrics<span class="classifier">tuple</span></dt><dd><p>The tuple consists of the following:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Adjusted Rand Index<span class="classifier">float (returned only when y_true is provided)</span></dt><dd><p>Adjusted Rand Index computed between the true and predicted cluster memberships.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Macro Precision<span class="classifier">float (returned only when y_true is provided)</span></dt><dd><p>Macro Precision computed between the true and predicted cluster memberships.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Macro Recall<span class="classifier">float (returned only when y_true is provided)</span></dt><dd><p>Macro Recall computed between the true and predicted cluster memberships.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Average Silhouette Score<span class="classifier">float</span></dt><dd><p>Mean Silhouette Coefficient of all samples.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id5">
+<h2>References<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Rousseeuw, P.J. (1987) Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. 
+Journal of Computational and Applied Mathematics, 20, 53–65.</p>
+</div></blockquote>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>We have taken a naive approach to map the predicted cluster labels 
+to the true class labels (if provided). This might not work in cases where <cite>num_clust</cite> is large.
+Please use <cite>sklearn.metrics</cite> for computing metrics in such cases, and provide the correctly
+matched labels.</p>
+</div></blockquote>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p><cite>sklearn.metrics</cite> : Scikit-learn metrics functionality support a wide range of metrics.</p>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<div style='clear:both'></div></section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="QuadratiK.poisson_kernel_test.PoissonKernelTest.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PoissonKernelTest</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="QuadratiK.spherical_clustering.PKBD.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PKBD</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC"><code class="docutils literal notranslate"><span class="pre">PKBC</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.fit"><code class="docutils literal notranslate"><span class="pre">PKBC.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.stats"><code class="docutils literal notranslate"><span class="pre">PKBC.stats()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.validation"><code class="docutils literal notranslate"><span class="pre">PKBC.validation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Giovanni Saraceno, Marianthi Markatou, Raktim Mukhopadhyay, Mojgan Golzy
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023, Giovanni Saraceno, Marianthi Markatou, Raktim Mukhopadhyay, Mojgan Golzy.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
