@@ -1,0 +1,25 @@
+name: Publish to Test PyPI
+on:
+  release:
+    types: [published]
+
+jobs:
+  pypi_release:
+    if: (!github.event.release.prerelease) == true
+    name: Builds Using Poetry and Publishes to Test PyPI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+            lfs: true
+      - uses: actions/setup-python@v4
+      - name: Install Poetry
+        run: pip install poetry
+      - name: Add Poetry to path
+        run: echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
+      - run: poetry lock
+      - run: poetry install
+      - run: poetry config repositories.test-pypi https://test.pypi.org/legacy/
+      - run: poetry config pypi-token.test-pypi "${{ secrets.TEST_PYPI_ACCESS_TOKEN }}"
+      - name: Publish package
+        run: poetry publish -r test-pypi --build
