@@ -5,7 +5,6 @@ on:
 
 jobs:
   pypi_release:
-    if: (!github.event.release.prerelease) == true
     name: Builds Using Poetry and Publishes to Test PyPI
     runs-on: ubuntu-latest
     steps:
