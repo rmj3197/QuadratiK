@@ -1,4 +1,6 @@
-[![Publish to PyPI](https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg)](https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml)
+.. code:: rst
+    .. |Publish to PyPI| image:: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg
+       :target: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
 
 QuadratiK
 =========
