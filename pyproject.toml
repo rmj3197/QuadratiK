@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "QuadratiK"
+version = "1.0.0"
+description = "QuadratiK includes test for multivariate normality, test for uniformity on the Sphere, non-parametric two- and k-sample tests, random generation of points from the Poisson kernel-based density and clustering algorithm for spherical data."
+license = "GPL-3.0-only"
+authors = [
+    "Giovanni Saraceno, Marianthi Markatou, Raktim Mukhopadhyay, Mojgan Golzy <gsaracen@buffalo.edu, markatou@buffalo.edu, raktimmu@buffalo.edu, golzym@health.missouri.edu>",
+]
+maintainers = ["Raktim Mukhopadhyay <raktimmu@buffalo.edu>"]
+readme = "README.rst"
+packages = [
+    { include = "QuadratiK" },
+    { include = "tests" },
+    { include = "doc" },
+]
+include = [{ path = "QuadratiK/ui/.streamlit", format = ["sdist", "wheel"] }]
+
+[tool.poetry.dependencies]
+python = "^3.9, !=3.9.7"
+scikit-learn = "^1.3"
+scipy = "^1.11"
+asyncio = "^3.4"
+streamlit = "^1.29.0"
+matplotlib = "^3.8.2"
+nest-asyncio = "^1.5"
+plotly = "^5.15.0"
+tabulate = "^0.8"
+pandas = "^2.1.3"
+numpy = "^1.26.2"
+
+[build-system]
+requires = ["poetry-core", "setuptools"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.doc]
+optional = true
+
+[tool.poetry.group.doc.dependencies]
+myst-parser = ">=0.16"
+sphinx = ">=4.0"
+sphinx-autobuild = ">=2021.0"
+sphinx-book-theme = ">=1.0"
+nbsphinx = ">0.9"
+
+[tool.poetry.group.tests.dependencies]
+pytest = "^7.4.3"
