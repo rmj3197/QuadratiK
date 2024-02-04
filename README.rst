@@ -1,3 +1,5 @@
+[![Publish to PyPI](https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg)](https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml)
+
 QuadratiK
 =========
 
