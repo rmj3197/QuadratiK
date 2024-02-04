@@ -12,7 +12,7 @@ The QuadratiK package is implemented in both **R** and **Python**, providing a c
 
 * **Additional Features**: Alongside these functionalities, the software includes additional graphical functions, aiding users in validating cluster results as well as visualizing and representing clustering results. This enhances the interpretability and usability of the analysis.
 
-The documentation can be found at: :download:`Documentation <../doc/build/latex/quadratik.pdf>`
+The documentation can be found at: :download:`Documentation <doc/build/latex/quadratik.pdf>`_.
 
 Funding Information
 ++++++++++++++++++++
