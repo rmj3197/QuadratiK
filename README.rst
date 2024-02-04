@@ -1,7 +1,7 @@
-.. code:: rst
-    |Publish to PyPI|
-    .. |Publish to PyPI| image:: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg
-       :target: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
+.. image:: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg
+   :target: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
+   :alt: Publish to PyPI
+
 
 QuadratiK
 =========
