@@ -5,20 +5,11 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Run pytest with cov
+    name: Codecov Workflow
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Install poetry
-      run: pip install poetry
-    - name: Install all dependencies along with test dependencies with poetry
-      run: poetry install --with tests
-    - name: Run tests and collect coverage
-      run: poetry run pytest --cov .
     - name: Upload coverage reports to Codecov
-      run: |
-        # Replace `linux` below with the appropriate OS
-        # Options are `alpine`, `linux`, `macos`, `windows`
-        pwd
-        curl -Os https://uploader.codecov.io/latest/linux/codecov
-        chmod +x codecov
-        ./codecov -t ${CODECOV_TOKEN}
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: rmj3197/QuadratiK
