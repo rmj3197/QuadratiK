@@ -8,68 +8,68 @@ msgstr ""
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Edit this page"
-msgstr "Редактирайте тази страница"
-
-msgid "Fullscreen mode"
-msgstr "Режим на цял екран"
-
-msgid "previous page"
-msgstr "предишна страница"
-
-msgid "Last updated on"
-msgstr "Последна актуализация на"
-
-msgid "Download notebook file"
-msgstr "Изтеглете файла на бележника"
-
-msgid "repository"
-msgstr "хранилище"
-
-msgid "Download this page"
-msgstr "Изтеглете тази страница"
-
-msgid "Sphinx Book Theme"
-msgstr "Тема на книгата Sphinx"
-
-msgid "Print to PDF"
-msgstr "Печат в PDF"
-
-msgid "Toggle navigation"
-msgstr "Превключване на навигацията"
+msgid "Theme by the"
+msgstr "Тема от"
 
 msgid "Open an issue"
 msgstr "Отворете проблем"
 
-msgid "By the"
-msgstr "По"
-
-msgid "Launch"
-msgstr "Стартиране"
-
-msgid "Download source file"
-msgstr "Изтеглете изходния файл"
-
-msgid "Copyright"
-msgstr "Авторско право"
-
-msgid "Theme by the"
-msgstr "Тема от"
-
 msgid "Contents"
 msgstr "Съдържание"
 
-msgid "Source repository"
-msgstr "Хранилище на източника"
+msgid "Download notebook file"
+msgstr "Изтеглете файла на бележника"
 
-msgid "next page"
-msgstr "Следваща страница"
+msgid "Sphinx Book Theme"
+msgstr "Тема на книгата Sphinx"
 
-msgid "suggest edit"
-msgstr "предложи редактиране"
+msgid "Fullscreen mode"
+msgstr "Режим на цял екран"
+
+msgid "Edit this page"
+msgstr "Редактирайте тази страница"
 
 msgid "By"
 msgstr "От"
 
+msgid "Copyright"
+msgstr "Авторско право"
+
+msgid "Source repository"
+msgstr "Хранилище на източника"
+
+msgid "previous page"
+msgstr "предишна страница"
+
+msgid "next page"
+msgstr "Следваща страница"
+
+msgid "Toggle navigation"
+msgstr "Превключване на навигацията"
+
+msgid "repository"
+msgstr "хранилище"
+
+msgid "suggest edit"
+msgstr "предложи редактиране"
+
 msgid "open issue"
 msgstr "отворен брой"
+
+msgid "Launch"
+msgstr "Стартиране"
+
+msgid "Print to PDF"
+msgstr "Печат в PDF"
+
+msgid "By the"
+msgstr "По"
+
+msgid "Last updated on"
+msgstr "Последна актуализация на"
+
+msgid "Download source file"
+msgstr "Изтеглете изходния файл"
+
+msgid "Download this page"
+msgstr "Изтеглете тази страница"

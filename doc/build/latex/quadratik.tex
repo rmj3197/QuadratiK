@@ -64,7 +64,7 @@
 
 
 \title{QuadratiK}
-\date{Jan 31, 2024}
+\date{Mar 08, 2024}
 \release{1.0.0}
 \author{Giovanni Saraceno, Marianthi Markatou, \and Raktim Mukhopadhyay, Mojgan Golzy}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -83,6 +83,8 @@
 \sphinxtableofcontents
 \pagestyle{normal}
 \phantomsection\label{\detokenize{index::doc}}
+\sphinxhref{https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml}{\sphinxincludegraphics[width=159\sphinxpxdimen,height=20\sphinxpxdimen]{{/Users/raktimmukhopadhyay/Library/CloudStorage/Box-Box/GitHub/QuadratiK/doc/build/doctrees/images/59331cbeba077f06500cbbab38103625744b01c5/badge}.svg}}
+
 
 
 
@@ -125,12 +127,11 @@ Mantainer: Raktim Mukhopadhyay \textless{}\sphinxhref{mailto:raktimmu@buffalo.ed
 \label{\detokenize{index:references}}
 \sphinxAtStartPar
 Saraceno G., Markatou M., Mukhopadhyay R., Golzy M. (2023). Goodness of\sphinxhyphen{}
-fit and clustering of spherical data: The QuadratiK package in R and Python. Technical Report,
-Department of Biostatistics, University at Buffalo.
+fit and clustering of spherical data: The QuadratiK package in R and Python. Technical Report, Department of Biostatistics, University at Buffalo.
 
 \sphinxAtStartPar
 Ding Y., Markatou M., Saraceno G. (2023). “Poisson Kernel\sphinxhyphen{}Based Tests for
-Uniformity on the d\sphinxhyphen{}Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/ss.202022.0347.
+Uniformity on the d\sphinxhyphen{}Dimensional Sphere.” Statistica Sinica. DOI: 10.5705/ss.202022.0347.
 
 \sphinxAtStartPar
 Golzy M. \& Markatou M. (2020) Poisson Kernel\sphinxhyphen{}Based Clustering on the Sphere:
@@ -141,41 +142,34 @@ Graphical Statistics, 29:4, 758\sphinxhyphen{}770, DOI: 10.1080/10618600.2020.17
 Markatou M, Saraceno G, Chen Y (2023). “Two\sphinxhyphen{} and k\sphinxhyphen{}Sample Tests Based on Quadratic Distances.”
 Manuscript, (Department of Biostatistics, University at Buffalo).
 
-
-\chapter{Getting started}
-\label{\detokenize{index:id1}}
 \sphinxstepscope
 
 
-\section{Getting Started}
+\subsection{Getting Started}
 \label{\detokenize{getting_started/index:getting-started}}\label{\detokenize{getting_started/index::doc}}
 \sphinxstepscope
 
 
-\subsection{Installation}
+\subsubsection{Installation}
 \label{\detokenize{getting_started/installation:installation}}\label{\detokenize{getting_started/installation::doc}}
 
-\subsubsection{Which Python?}
+\paragraph{Which Python?}
 \label{\detokenize{getting_started/installation:which-python}}\label{\detokenize{getting_started/installation:id1}}
 \sphinxAtStartPar
 You’ll need \sphinxstylestrong{Python 3.9 (except 3.9.7) or greater}.
 
 
-\subsubsection{Install using \sphinxstyleliteralintitle{\sphinxupquote{pip}}}
+\paragraph{Install using \sphinxstyleliteralintitle{\sphinxupquote{pip}}}
 \label{\detokenize{getting_started/installation:install-using-pip}}
 \sphinxAtStartPar
-\sphinxcode{\sphinxupquote{pip install /path/to/package}}
+\sphinxcode{\sphinxupquote{pip install QuadratiK}}
 
 
-\subsubsection{Dependencies}
+\paragraph{Dependencies}
 \label{\detokenize{getting_started/installation:dependencies}}
 \sphinxAtStartPar
 QuadratiK requires the following (arranged alphabetically):
 \begin{itemize}
-\item {} 
-\sphinxAtStartPar
-\sphinxhref{https://peps.python.org/pep-3156/}{asyncio} (\textgreater{}=3.4)
-
 \item {} 
 \sphinxAtStartPar
 \sphinxhref{https://matplotlib.org/}{matplotlib} (\textgreater{}=3.8.2)
@@ -206,7 +200,7 @@ QuadratiK requires the following (arranged alphabetically):
 
 \item {} 
 \sphinxAtStartPar
-\sphinxhref{https://streamlit.io/}{streamlit} (\textgreater{}=1.29.0)
+\sphinxhref{https://streamlit.io/}{streamlit} (\textgreater{}=1.30.0)
 
 \item {} 
 \sphinxAtStartPar
@@ -215,7 +209,7 @@ QuadratiK requires the following (arranged alphabetically):
 \end{itemize}
 
 
-\subsubsection{Testing}
+\paragraph{Testing}
 \label{\detokenize{getting_started/installation:testing}}
 \sphinxAtStartPar
 QuadratiK uses the Python \sphinxcode{\sphinxupquote{pytest}} package.
@@ -223,16 +217,13 @@ To install \sphinxcode{\sphinxupquote{pytest}}, please go \sphinxhref{https://do
 To run the tests using \sphinxcode{\sphinxupquote{pytest}}, please follow these \sphinxhref{https://docs.pytest.org/en/latest/how-to/usage.html}{instructions}.
 Navigate to the tests folder to run the tests.
 
-
-\chapter{API Reference}
-\label{\detokenize{index:id2}}
 \sphinxstepscope
 
 
-\section{API Reference}
+\subsection{API Reference}
 \label{\detokenize{api_reference/index:module-QuadratiK.kernel_test}}\label{\detokenize{api_reference/index:id1}}\label{\detokenize{api_reference/index:api-reference}}\label{\detokenize{api_reference/index::doc}}\index{module@\spxentry{module}!QuadratiK.kernel\_test@\spxentry{QuadratiK.kernel\_test}}\index{QuadratiK.kernel\_test@\spxentry{QuadratiK.kernel\_test}!module@\spxentry{module}}
 
-\subsection{Kernel Test}
+\subsubsection{Kernel Test}
 \label{\detokenize{api_reference/index:kernel-test}}
 
 \begin{savenotes}\sphinxattablestart
@@ -246,14 +237,14 @@ Navigate to the tests folder to run the tests.
 {\hyperref[\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:QuadratiK.kernel_test.KernelTest}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{KernelTest}}}}}({[}h, method, num\_iter, b, ...{]})
 &
 \sphinxAtStartPar
-Class for performing the kernel\sphinxhyphen{}based quadratic distance Goodness\sphinxhyphen{}of\sphinxhyphen{}fit tests using  the Gaussian kernel with tuning parameter h.
+Class for performing the kernel\sphinxhyphen{}based quadratic distance goodness\sphinxhyphen{}of\sphinxhyphen{}fit tests using  the Gaussian kernel with tuning parameter h.
 \\
 \sphinxhline
 \sphinxAtStartPar
 {\hyperref[\detokenize{api_reference/generated/QuadratiK.kernel_test.select_h:QuadratiK.kernel_test.select_h}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{select\_h}}}}}(x{[}, y, alternative, method, b, ...{]})
 &
 \sphinxAtStartPar
-This function computes the kernel bandwidth of the Gaussian kernel for the  one sample, two\sphinxhyphen{}sample and ksample kernel\sphinxhyphen{}based quadratic distance (KBQD) tests.
+This function computes the kernel bandwidth of the Gaussian kernel  for the one sample, two\sphinxhyphen{}sample and k\sphinxhyphen{}sample kernel\sphinxhyphen{}based quadratic  distance (KBQD) tests.
 \\
 \sphinxbottomrule
 \end{tabulary}
@@ -263,7 +254,7 @@ This function computes the kernel bandwidth of the Gaussian kernel for the  one 
 \sphinxstepscope
 
 
-\subsubsection{KernelTest}
+\paragraph{KernelTest}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:kerneltest}}\label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest::doc}}\index{KernelTest (class in QuadratiK.kernel\_test)@\spxentry{KernelTest}\spxextra{class in QuadratiK.kernel\_test}}
 
 \begin{fulllineitems}
@@ -277,7 +268,7 @@ the Gaussian kernel with tuning parameter h. Depending on the input \sphinxtitle
 the test of multivariate normality, the non\sphinxhyphen{}parametric two\sphinxhyphen{}sample tests or the k\sphinxhyphen{}sample tests.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{h}{[}float, optional{]}
@@ -336,7 +327,7 @@ Defaults to 8.
 \end{quote}
 
 
-\paragraph{Attributes}
+\subparagraph{Attributes}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:attributes}}\begin{quote}
 \begin{description}
 \sphinxlineitem{test\_type\_}{[}str{]}
@@ -367,7 +358,7 @@ Critical value method used for performing the test
 \end{quote}
 
 
-\paragraph{References}
+\subparagraph{References}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:references}}\begin{quote}
 
 \sphinxAtStartPar
@@ -381,7 +372,7 @@ Association, 109:505, 395\sphinxhyphen{}410, DOI: 10.1080/01621459.2013.836972
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{c+c1}{\PYGZsh{} Example for normality test}
@@ -482,7 +473,7 @@ Function to perform the kernel\sphinxhyphen{}based quadratic distance tests usin
 Function to generate descriptive statistics per variable (and per group if available).
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:returns}}\begin{quote}
 \begin{description}
 \sphinxlineitem{summary\_stats\_df}{[}pandas.DataFrame{]}
@@ -505,7 +496,7 @@ Dataframe of descriptive statistics
 Summary function generates a table for the kernel test results and the summary statistics.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:id1}}\begin{quote}
 \begin{description}
 \sphinxlineitem{print\_fmt}{[}str, optional.{]}
@@ -517,7 +508,7 @@ Supports all available options in tabulate, see here: \sphinxurl{https://pypi.or
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:id2}}\begin{quote}
 \begin{description}
 \sphinxlineitem{summary}{[}str{]}
@@ -544,7 +535,7 @@ Depending on the shape of the \sphinxtitleref{y}, the function performs the test
 multivariate normality, the non\sphinxhyphen{}parametric two\sphinxhyphen{}sample tests or the k\sphinxhyphen{}sample tests.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:id3}}\begin{quote}
 \begin{description}
 \sphinxlineitem{x}{[}numpy.ndarray or pandas.DataFrame.{]}
@@ -560,7 +551,7 @@ A numeric array data values (for two\sphinxhyphen{}sample test) and a 1D array o
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.KernelTest:id4}}\begin{quote}
 \begin{description}
 \sphinxlineitem{self}{[}object{]}
@@ -578,7 +569,7 @@ Fitted estimator
 \sphinxstepscope
 
 
-\subsubsection{select\_h}
+\paragraph{select\_h}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.select_h:select-h}}\label{\detokenize{api_reference/generated/QuadratiK.kernel_test.select_h::doc}}\index{select\_h() (in module QuadratiK.kernel\_test)@\spxentry{select\_h()}\spxextra{in module QuadratiK.kernel\_test}}
 
 \begin{fulllineitems}
@@ -587,17 +578,19 @@ Fitted estimator
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{QuadratiK.kernel\_test.}}\sphinxbfcode{\sphinxupquote{select\_h}}}{\sphinxparam{\DUrole{n}{x}}\sphinxparamcomma \sphinxparam{\DUrole{n}{y}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{alternative}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}location\textquotesingle{}}}\sphinxparamcomma \sphinxparam{\DUrole{n}{method}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}subsampling\textquotesingle{}}}\sphinxparamcomma \sphinxparam{\DUrole{n}{b}\DUrole{o}{=}\DUrole{default_value}{0.8}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num\_iter}\DUrole{o}{=}\DUrole{default_value}{150}}\sphinxparamcomma \sphinxparam{\DUrole{n}{delta\_dim}\DUrole{o}{=}\DUrole{default_value}{1}}\sphinxparamcomma \sphinxparam{\DUrole{n}{delta}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{h\_values}\DUrole{o}{=}\DUrole{default_value}{None}}\sphinxparamcomma \sphinxparam{\DUrole{n}{n\_rep}\DUrole{o}{=}\DUrole{default_value}{50}}\sphinxparamcomma \sphinxparam{\DUrole{n}{n\_jobs}\DUrole{o}{=}\DUrole{default_value}{8}}\sphinxparamcomma \sphinxparam{\DUrole{n}{quantile}\DUrole{o}{=}\DUrole{default_value}{0.95}}\sphinxparamcomma \sphinxparam{\DUrole{n}{k\_threshold}\DUrole{o}{=}\DUrole{default_value}{10}}\sphinxparamcomma \sphinxparam{\DUrole{n}{power\_plot}\DUrole{o}{=}\DUrole{default_value}{False}}\sphinxparamcomma \sphinxparam{\DUrole{n}{random\_state}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
-This function computes the kernel bandwidth of the Gaussian kernel for the 
-one sample, two\sphinxhyphen{}sample and k\sphinxhyphen{}sample kernel\sphinxhyphen{}based quadratic distance (KBQD) tests.
+This function computes the kernel bandwidth of the Gaussian kernel 
+for the one sample, two\sphinxhyphen{}sample and k\sphinxhyphen{}sample kernel\sphinxhyphen{}based quadratic 
+distance (KBQD) tests.
 
 \sphinxAtStartPar
-The function performs the selection of the optimal value for the tuning parameter h of the normal
-kernel function, for the two\sphinxhyphen{}sample and k\sphinxhyphen{}sample KBQD tests. It performs a small simulation
-study, generating samples according to the family of alternative specified, for the chosen values
+The function performs the selection of the optimal value for the tuning 
+parameter h of the normal kernel function, for the two\sphinxhyphen{}sample and k\sphinxhyphen{}sample 
+KBQD tests. It performs a small simulation study, generating samples according 
+to the family of alternative specified, for the chosen values
 of h\_values and delta.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.select_h:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{x}{[}numpy.ndarray or pandas.DataFrame{]}
@@ -679,7 +672,7 @@ Seed for random number generation. Defaults to None
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.select_h:returns}}\begin{quote}
 \begin{description}
 \sphinxlineitem{h}{[}float{]}
@@ -694,16 +687,17 @@ A table containing the h, delta and corresponding powers
 \end{quote}
 
 
-\paragraph{References}
+\subparagraph{References}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.select_h:references}}\begin{quote}
 
 \sphinxAtStartPar
-Markatou M., Saraceno G., Chen Y. (2023). “Two\sphinxhyphen{} and k\sphinxhyphen{}Sample Tests Based on Quadratic Distances.
-”Manuscript, (Department of Biostatistics, University at Buffalo)
+Markatou M., Saraceno G., Chen Y. (2023). “Two\sphinxhyphen{} and k\sphinxhyphen{}Sample Tests 
+Based on Quadratic Distances. ”Manuscript, (Department of Biostatistics, 
+University at Buffalo)
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.kernel_test.select_h:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -724,7 +718,7 @@ Markatou M., Saraceno G., Chen Y. (2023). “Two\sphinxhyphen{} and k\sphinxhyph
 
 \index{module@\spxentry{module}!QuadratiK.poisson\_kernel\_test@\spxentry{QuadratiK.poisson\_kernel\_test}}\index{QuadratiK.poisson\_kernel\_test@\spxentry{QuadratiK.poisson\_kernel\_test}!module@\spxentry{module}}
 
-\subsection{Poisson Kernel Test}
+\subsubsection{Poisson Kernel Test}
 \label{\detokenize{api_reference/index:poisson-kernel-test}}\label{\detokenize{api_reference/index:module-QuadratiK.poisson_kernel_test}}
 
 \begin{savenotes}\sphinxattablestart
@@ -735,7 +729,7 @@ Markatou M., Saraceno G., Chen Y. (2023). “Two\sphinxhyphen{} and k\sphinxhyph
 \sphinxtoprule
 \sphinxtableatstartofbodyhook
 \sphinxAtStartPar
-{\hyperref[\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:QuadratiK.poisson_kernel_test.PoissonKernelTest}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PoissonKernelTest}}}}}({[}rho, num\_iter, quantile, ...{]})
+{\hyperref[\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:QuadratiK.poisson_kernel_test.PoissonKernelTest}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PoissonKernelTest}}}}}(rho{[}, num\_iter, quantile, ...{]})
 &
 \sphinxAtStartPar
 Class for Poisson kernel\sphinxhyphen{}based quadratic distance  test of Uniformity on the Sphere
@@ -748,7 +742,7 @@ Class for Poisson kernel\sphinxhyphen{}based quadratic distance  test of Uniform
 \sphinxstepscope
 
 
-\subsubsection{PoissonKernelTest}
+\paragraph{PoissonKernelTest}
 \label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:poissonkerneltest}}\label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest::doc}}\index{PoissonKernelTest (class in QuadratiK.poisson\_kernel\_test)@\spxentry{PoissonKernelTest}\spxextra{class in QuadratiK.poisson\_kernel\_test}}
 
 \begin{fulllineitems}
@@ -761,7 +755,7 @@ Class for Poisson kernel\sphinxhyphen{}based quadratic distance
 test of Uniformity on the Sphere
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{rho}{[}float{]}
@@ -793,7 +787,7 @@ Defaults to 8.
 \end{quote}
 
 
-\paragraph{Attributes}
+\subparagraph{Attributes}
 \label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:attributes}}\begin{quote}
 \begin{description}
 \sphinxlineitem{test\_type\_}{[}str{]}
@@ -834,7 +828,7 @@ The critical value for Vn computed following the asymptotic distribution.
 \end{quote}
 
 
-\paragraph{References}
+\subparagraph{References}
 \label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:references}}\begin{quote}
 
 \sphinxAtStartPar
@@ -843,7 +837,7 @@ Uniformity on the d\sphinxhyphen{}Dimensional Sphere.” Statistica Sinica. doi:
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{tools} \PYG{k+kn}{import} \PYG{n}{sample\PYGZus{}hypersphere}
@@ -922,7 +916,7 @@ Performs the Poisson kernel\sphinxhyphen{}based quadratic distance Goodness\sphi
 Function to generate descriptive statistics.
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:returns}}\begin{quote}
 \begin{description}
 \sphinxlineitem{summary\_stats\_df}{[}pandas.DataFrame{]}
@@ -946,7 +940,7 @@ Summary function generates a table for
 the poisson kernel test results and the summary statistics.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:id1}}\begin{quote}
 \begin{description}
 \sphinxlineitem{print\_fmt}{[}str, optional. {]}
@@ -960,7 +954,7 @@ Defaults to “simple\_grid”.
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:id2}}\begin{quote}
 \begin{description}
 \sphinxlineitem{summary}{[}str{]}
@@ -985,7 +979,7 @@ Performs the Poisson kernel\sphinxhyphen{}based quadratic distance Goodness\sphi
 Uniformity for spherical data using the Poisson kernel with concentration parameter \(rho\)
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:id3}}\begin{quote}
 \begin{description}
 \sphinxlineitem{x}{[}numpy.ndarray, pandas.DataFrame{]}
@@ -996,7 +990,7 @@ a numeric d\sphinxhyphen{}dim matrix of data points on the Sphere \(S^{(d-1)}\).
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.poisson_kernel_test.PoissonKernelTest:id4}}\begin{quote}
 \begin{description}
 \sphinxlineitem{self}{[}object{]}
@@ -1012,7 +1006,7 @@ Fitted estimator
 
 \index{module@\spxentry{module}!QuadratiK.spherical\_clustering@\spxentry{QuadratiK.spherical\_clustering}}\index{QuadratiK.spherical\_clustering@\spxentry{QuadratiK.spherical\_clustering}!module@\spxentry{module}}
 
-\subsection{Spherical Clustering}
+\subsubsection{Spherical Clustering}
 \label{\detokenize{api_reference/index:spherical-clustering}}\label{\detokenize{api_reference/index:module-QuadratiK.spherical_clustering}}
 
 \begin{savenotes}\sphinxattablestart
@@ -1023,10 +1017,10 @@ Fitted estimator
 \sphinxtoprule
 \sphinxtableatstartofbodyhook
 \sphinxAtStartPar
-{\hyperref[\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:QuadratiK.spherical_clustering.PKBC}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PKBC}}}}}({[}num\_clust, max\_iter, stopping\_rule, ...{]})
+{\hyperref[\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:QuadratiK.spherical_clustering.PKBC}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PKBC}}}}}(num\_clust{[}, max\_iter, stopping\_rule, ...{]})
 &
 \sphinxAtStartPar
-Poisson kernel\sphinxhyphen{}based clustering on the Sphere.
+Poisson kernel\sphinxhyphen{}based clustering on the sphere.
 \\
 \sphinxhline
 \sphinxAtStartPar
@@ -1043,7 +1037,7 @@ Class for estimating density and generating samples of Poisson\sphinxhyphen{}ker
 \sphinxstepscope
 
 
-\subsubsection{PKBC}
+\paragraph{PKBC}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:pkbc}}\label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC::doc}}\index{PKBC (class in QuadratiK.spherical\_clustering)@\spxentry{PKBC}\spxextra{class in QuadratiK.spherical\_clustering}}
 
 \begin{fulllineitems}
@@ -1059,7 +1053,7 @@ the parameter of a mixture of Poisson kernel\sphinxhyphen{}based densities. The 
 estimates are used for assigning final memberships, identifying the data points.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{num\_clust}{[}int{]}
@@ -1107,7 +1101,7 @@ Defaults to 4.
 \end{quote}
 
 
-\paragraph{Attributes}
+\subparagraph{Attributes}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:attributes}}\begin{quote}
 \begin{description}
 \sphinxlineitem{alpha\_}{[}numpy.ndarray of shape (n\_clusters,){]}
@@ -1156,7 +1150,7 @@ cosine similarity.
 \end{quote}
 
 
-\paragraph{References}
+\subparagraph{References}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:references}}\begin{quote}
 
 \sphinxAtStartPar
@@ -1167,7 +1161,7 @@ and a Method of Sampling, Journal of Computational and Graphical Statistics,
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}wireless\PYGZus{}data}
@@ -1244,7 +1238,7 @@ Computes validation metrics such as ARI, Macro Precision  and Macro Recall when 
 Performs Poisson Kernel\sphinxhyphen{}based Clustering.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:id1}}\begin{quote}
 \begin{description}
 \sphinxlineitem{dat}{[}numpy.ndarray, pandas.DataFrame{]}
@@ -1255,7 +1249,7 @@ A numeric array of data values.
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:returns}}\begin{quote}
 \begin{description}
 \sphinxlineitem{self}{[}object{]}
@@ -1278,7 +1272,7 @@ Fitted estimator
 Function to generate descriptive statistics per variable (and per group if available).
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:id2}}\begin{quote}
 \begin{description}
 \sphinxlineitem{summary\_stats\_df}{[}pandas.DataFrame{]}
@@ -1302,7 +1296,7 @@ Computes validation metrics such as ARI, Macro Precision
 and Macro Recall when true labels are provided.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:id3}}\begin{quote}
 \begin{description}
 \sphinxlineitem{y\_true}{[}numpy.ndarray. {]}
@@ -1314,7 +1308,7 @@ Defaults to None.
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:id4}}\begin{quote}
 \begin{description}
 \sphinxlineitem{validation metrics}{[}tuple{]}
@@ -1355,7 +1349,7 @@ Mean Silhouette Coefficient of all samples.
 \end{quote}
 
 
-\paragraph{References}
+\subparagraph{References}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:id5}}\begin{quote}
 
 \sphinxAtStartPar
@@ -1364,7 +1358,7 @@ Journal of Computational and Applied Mathematics, 20, 53\textendash{}65.
 \end{quote}
 
 
-\paragraph{Notes}
+\subparagraph{Notes}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:notes}}\begin{quote}
 
 \sphinxAtStartPar
@@ -1375,7 +1369,7 @@ matched labels.
 \end{quote}
 
 
-\paragraph{See also}
+\subparagraph{See also}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBC:see-also}}\begin{quote}
 
 \sphinxAtStartPar
@@ -1390,7 +1384,7 @@ matched labels.
 \sphinxstepscope
 
 
-\subsubsection{PKBD}
+\paragraph{PKBD}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBD:pkbd}}\label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBD::doc}}\index{PKBD (class in QuadratiK.spherical\_clustering)@\spxentry{PKBD}\spxextra{class in QuadratiK.spherical\_clustering}}
 
 \begin{fulllineitems}
@@ -1445,7 +1439,7 @@ Function for generating a random sample from PKBD.
 Function for estimating the density function of the PKB distribution.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBD:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{x}{[}numpy.ndarray, pandas.DataFrame{]}
@@ -1468,7 +1462,7 @@ If True, densities d are given as \(\log(d)\). Defaults to False.
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBD:returns}}\begin{quote}
 \begin{description}
 \sphinxlineitem{density}{[}numpy.ndarray{]}
@@ -1492,7 +1486,7 @@ Function for generating a random sample from PKBD.
 The number of observation generated is determined by \sphinxtitleref{n}.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBD:id1}}\begin{quote}
 \begin{description}
 \sphinxlineitem{n}{[}int{]}
@@ -1539,7 +1533,7 @@ Seed for random number generation. Defaults to None
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBD:id2}}\begin{quote}
 \begin{description}
 \sphinxlineitem{samples}{[}numpy.ndarray{]}
@@ -1552,7 +1546,7 @@ number of tries and the number of acceptance.
 \end{quote}
 
 
-\paragraph{References}
+\subparagraph{References}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBD:references}}\begin{quote}
 
 \sphinxAtStartPar
@@ -1567,7 +1561,7 @@ distribution,” Electronic Journal of Statistics, 17(2), 2180\sphinxhyphen{}220
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.spherical_clustering.PKBD:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{spherical\PYGZus{}clustering} \PYG{k+kn}{import} \PYG{n}{PKBD}
@@ -1584,7 +1578,7 @@ distribution,” Electronic Journal of Statistics, 17(2), 2180\sphinxhyphen{}220
 
 \index{module@\spxentry{module}!QuadratiK.ui@\spxentry{QuadratiK.ui}}\index{QuadratiK.ui@\spxentry{QuadratiK.ui}!module@\spxentry{module}}
 
-\subsection{User Interface}
+\subsubsection{User Interface}
 \label{\detokenize{api_reference/index:user-interface}}\label{\detokenize{api_reference/index:module-QuadratiK.ui}}
 
 \begin{savenotes}\sphinxattablestart
@@ -1608,7 +1602,7 @@ The UI class is a user interface class that runs a Streamlit dashboard using asy
 \sphinxstepscope
 
 
-\subsubsection{UI}
+\paragraph{UI}
 \label{\detokenize{api_reference/generated/QuadratiK.ui.UI:ui}}\label{\detokenize{api_reference/generated/QuadratiK.ui.UI::doc}}\index{UI (class in QuadratiK.ui)@\spxentry{UI}\spxextra{class in QuadratiK.ui}}
 
 \begin{fulllineitems}
@@ -1620,7 +1614,7 @@ The UI class is a user interface class that runs a Streamlit dashboard using asy
 The UI class is a user interface class that runs a Streamlit dashboard using asyncio.
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.ui.UI:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{ui} \PYG{k+kn}{import} \PYG{n}{UI}
@@ -1688,7 +1682,7 @@ The function runs the main function asynchronously using the asyncio library in 
 
 \index{module@\spxentry{module}!QuadratiK.datasets@\spxentry{QuadratiK.datasets}}\index{QuadratiK.datasets@\spxentry{QuadratiK.datasets}!module@\spxentry{module}}
 
-\subsection{Datasets}
+\subsubsection{Datasets}
 \label{\detokenize{api_reference/index:datasets}}\label{\detokenize{api_reference/index:module-QuadratiK.datasets}}
 
 \begin{savenotes}\sphinxattablestart
@@ -1712,7 +1706,7 @@ The wireless data frame has 2000 rows and 8 columns.
 \sphinxstepscope
 
 
-\subsubsection{load\_wireless\_data}
+\paragraph{load\_wireless\_data}
 \label{\detokenize{api_reference/generated/QuadratiK.datasets.load_wireless_data:load-wireless-data}}\label{\detokenize{api_reference/generated/QuadratiK.datasets.load_wireless_data::doc}}\index{load\_wireless\_data() (in module QuadratiK.datasets)@\spxentry{load\_wireless\_data()}\spxextra{in module QuadratiK.datasets}}
 
 \begin{fulllineitems}
@@ -1732,7 +1726,7 @@ The function load\_wireless\_data loads a wireless localization dataset.
 Read more in the {\hyperref[\detokenize{user_guide/datasets:datasets}]{\sphinxcrossref{\DUrole{std,std-ref}{User Guide}}}}.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.datasets.load_wireless_data:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{desc}{[}boolean, optional {]}
@@ -1759,7 +1753,7 @@ divided by its Euclidean norm along each row. Defaults to False.
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.datasets.load_wireless_data:returns}}\begin{quote}
 \begin{description}
 \sphinxlineitem{(data, target)}{[}tuple, if return\_X\_y is True{]}
@@ -1789,7 +1783,7 @@ Dataframe of the data with shape (n\_samples, n\_features + class)
 \end{quote}
 
 
-\paragraph{References}
+\subparagraph{References}
 \label{\detokenize{api_reference/generated/QuadratiK.datasets.load_wireless_data:references}}\begin{quote}
 
 \sphinxAtStartPar
@@ -1801,7 +1795,7 @@ Systems and Computing, vol 546. Springer, Singapore. \sphinxurl{https://doi.org/
 \end{quote}
 
 
-\paragraph{Source}
+\subparagraph{Source}
 \label{\detokenize{api_reference/generated/QuadratiK.datasets.load_wireless_data:source}}\begin{quote}
 
 \sphinxAtStartPar
@@ -1810,7 +1804,7 @@ Bhatt,Rajen. (2017). Wireless Indoor Localization. UCI Machine Learning Reposito
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.datasets.load_wireless_data:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}wireless\PYGZus{}data}
@@ -1823,7 +1817,7 @@ Bhatt,Rajen. (2017). Wireless Indoor Localization. UCI Machine Learning Reposito
 
 \index{module@\spxentry{module}!QuadratiK.tools@\spxentry{QuadratiK.tools}}\index{QuadratiK.tools@\spxentry{QuadratiK.tools}!module@\spxentry{module}}
 
-\subsection{Tools}
+\subsubsection{Tools}
 \label{\detokenize{api_reference/index:tools}}\label{\detokenize{api_reference/index:module-QuadratiK.tools}}
 
 \begin{savenotes}\sphinxattablestart
@@ -1875,7 +1869,7 @@ This function plots a 2D scatter plot of data points,  with an optional argument
 \sphinxstepscope
 
 
-\subsubsection{sample\_hypersphere}
+\paragraph{sample\_hypersphere}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.sample_hypersphere:sample-hypersphere}}\label{\detokenize{api_reference/generated/QuadratiK.tools.sample_hypersphere::doc}}\index{sample\_hypersphere() (in module QuadratiK.tools)@\spxentry{sample\_hypersphere()}\spxextra{in module QuadratiK.tools}}
 
 \begin{fulllineitems}
@@ -1887,7 +1881,7 @@ This function plots a 2D scatter plot of data points,  with an optional argument
 Generate random samples from the hypersphere
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.sample_hypersphere:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{npoints}{[}int, optional.{]}
@@ -1908,7 +1902,7 @@ Seed for random number generation. Defaults to None
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.sample_hypersphere:returns}}\begin{quote}
 \begin{description}
 \sphinxlineitem{data on sphere}{[}numpy.ndarray{]}
@@ -1920,7 +1914,7 @@ from the surface of the hypersphere.
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.sample_hypersphere:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{tools} \PYG{k+kn}{import} \PYG{n}{sample\PYGZus{}hypersphere}
@@ -1937,7 +1931,7 @@ from the surface of the hypersphere.
 \sphinxstepscope
 
 
-\subsubsection{stats}
+\paragraph{stats}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.stats:stats}}\label{\detokenize{api_reference/generated/QuadratiK.tools.stats::doc}}\index{stats() (in module QuadratiK.tools)@\spxentry{stats()}\spxextra{in module QuadratiK.tools}}
 
 \begin{fulllineitems}
@@ -1949,7 +1943,7 @@ from the surface of the hypersphere.
 The stats function calculates statistics for one or multiple groups of data.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.stats:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{x}{[}numpy.ndarray, pandas.DataFrame{]}
@@ -1965,7 +1959,7 @@ or the associated labels for observations (data points).
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.stats:returns}}\begin{quote}
 \begin{description}
 \sphinxlineitem{summary statistics}{[}pandas.DataFrame{]}
@@ -1976,7 +1970,7 @@ Summary statistics of the input data.
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.stats:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -2001,7 +1995,7 @@ Summary statistics of the input data.
 \sphinxstepscope
 
 
-\subsubsection{qq\_plot}
+\paragraph{qq\_plot}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.qq_plot:qq-plot}}\label{\detokenize{api_reference/generated/QuadratiK.tools.qq_plot::doc}}\index{qq\_plot() (in module QuadratiK.tools)@\spxentry{qq\_plot()}\spxextra{in module QuadratiK.tools}}
 
 \begin{fulllineitems}
@@ -2014,7 +2008,7 @@ The function qq\_plot is used to create a quantile\sphinxhyphen{}quantile plot,
 either for a single sample or for two samples.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.qq_plot:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{x}{[}numpy.ndarray{]}
@@ -2041,7 +2035,7 @@ a different distribution. Defaults to “norm”.
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.qq_plot:returns}}\begin{quote}
 
 \sphinxAtStartPar
@@ -2049,7 +2043,7 @@ Returns QQ plots.
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.qq_plot:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -2067,7 +2061,7 @@ Returns QQ plots.
 \sphinxstepscope
 
 
-\subsubsection{sphere3d}
+\paragraph{sphere3d}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.sphere3d:sphere3d}}\label{\detokenize{api_reference/generated/QuadratiK.tools.sphere3d::doc}}\index{sphere3d() (in module QuadratiK.tools)@\spxentry{sphere3d()}\spxextra{in module QuadratiK.tools}}
 
 \begin{fulllineitems}
@@ -2080,7 +2074,7 @@ The function sphere3d creates a 3D scatter plot with a sphere
 as the surface and data points plotted on it.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.sphere3d:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{x}{[}numpy.ndarray, pandas.DataFrame {]}
@@ -2100,7 +2094,7 @@ scatter plot will have the default marker symbol and color.
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.sphere3d:returns}}\begin{quote}
 
 \sphinxAtStartPar
@@ -2108,7 +2102,7 @@ Returns a 3D plot of a sphere with data points plotted on it.
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.sphere3d:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{tools} \PYG{k+kn}{import} \PYG{n}{sphere3d}
@@ -2125,7 +2119,7 @@ Returns a 3D plot of a sphere with data points plotted on it.
 \sphinxstepscope
 
 
-\subsubsection{plot\_clusters\_2d}
+\paragraph{plot\_clusters\_2d}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.plot_clusters_2d:plot-clusters-2d}}\label{\detokenize{api_reference/generated/QuadratiK.tools.plot_clusters_2d::doc}}\index{plot\_clusters\_2d() (in module QuadratiK.tools)@\spxentry{plot\_clusters\_2d()}\spxextra{in module QuadratiK.tools}}
 
 \begin{fulllineitems}
@@ -2139,7 +2133,7 @@ with an optional argument to color the points based on
 a cluster label, and also plots a unit circle.
 
 
-\paragraph{Parameters}
+\subparagraph{Parameters}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.plot_clusters_2d:parameters}}\begin{quote}
 \begin{description}
 \sphinxlineitem{x}{[}numpy.ndarray, pandas.DataFrame{]}
@@ -2160,7 +2154,7 @@ labels or cluster assignments.
 \end{quote}
 
 
-\paragraph{Returns}
+\subparagraph{Returns}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.plot_clusters_2d:returns}}\begin{quote}
 
 \sphinxAtStartPar
@@ -2168,7 +2162,7 @@ A matplotlib figure object.
 \end{quote}
 
 
-\paragraph{Examples}
+\subparagraph{Examples}
 \label{\detokenize{api_reference/generated/QuadratiK.tools.plot_clusters_2d:examples}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
@@ -2184,21 +2178,18 @@ A matplotlib figure object.
 
 
 
-
-\chapter{User Guide}
-\label{\detokenize{index:id3}}
 \sphinxstepscope
 
 
-\section{User Guide}
+\subsection{User Guide}
 \label{\detokenize{user_guide/index:user-guide}}\label{\detokenize{user_guide/index::doc}}
 
-\subsection{Dataset}
+\subsubsection{Dataset}
 \label{\detokenize{user_guide/index:dataset}}
 \sphinxstepscope
 
 
-\subsubsection{Wireless Indoor Localization Dataset}
+\paragraph{Wireless Indoor Localization Dataset}
 \label{\detokenize{user_guide/datasets:wireless-indoor-localization-dataset}}\label{\detokenize{user_guide/datasets:datasets}}\label{\detokenize{user_guide/datasets:id1}}\label{\detokenize{user_guide/datasets::doc}}
 \sphinxAtStartPar
 The \sphinxtitleref{wireless} data frame has 2000 rows and 8 columns. The first 7 variables
@@ -2206,7 +2197,7 @@ report the measurements of the Wi\sphinxhyphen{}Fi signal strength received from
 office location in Pittsburgh (USA). The last column indicates the class labels.
 
 
-\paragraph{Format}
+\subparagraph{Format}
 \label{\detokenize{user_guide/datasets:format}}
 \sphinxAtStartPar
 A data frame containing the following columns:
@@ -2246,7 +2237,7 @@ A data frame containing the following columns:
 \end{itemize}
 
 
-\paragraph{Details}
+\subparagraph{Details}
 \label{\detokenize{user_guide/datasets:details}}
 \sphinxAtStartPar
 The Wi\sphinxhyphen{}Fi signal strength is measured in dBm, decibel milliwatts, which is expressed
@@ -2254,27 +2245,41 @@ as a negative value ranging from \sphinxhyphen{}100 to 0. The labels correspond 
 ‘kitchen’, ‘indoor sports room’, and ‘other’. In total, we have 4 groups with 500 observations each.
 
 
-\paragraph{Source}
+\subparagraph{Source}
 \label{\detokenize{user_guide/datasets:source}}
 \sphinxAtStartPar
 Bhatt,Rajen. (2017). Wireless Indoor Localization. UCI Machine Learning Repository. \sphinxurl{https://doi.org/10.24432/C51880}.
 
 
-\paragraph{References}
+\subparagraph{References}
 \label{\detokenize{user_guide/datasets:references}}
 \sphinxAtStartPar
 Rohra, J.G., Perumal, B., Narayanan, S.J., Thakur, P., Bhatt, R.B. (2017). User Localization in an Indoor Environment Using Fuzzy Hybrid of Particle Swarm Optimization \& Gravitational Search Algorithm with Neural Networks. In: Deep, K., et al. Proceedings of Sixth International Conference on Soft Computing for Problem Solving. Advances in Intelligent Systems and Computing, vol 546. Springer, Singapore. \sphinxurl{https://doi.org/10.1007/978-981-10-3322-3\_27}
 
 
-\subsection{Usage Examples}
+\subsubsection{Usage Examples}
 \label{\detokenize{user_guide/index:usage-examples}}
 \sphinxstepscope
 
 
-\subsubsection{QuadratiK Usage Examples}
+\paragraph{QuadratiK Usage Examples}
 \label{\detokenize{user_guide/basic_usage:QuadratiK-Usage-Examples}}\label{\detokenize{user_guide/basic_usage::doc}}
+\begin{sphinxuseclass}{nbinput}
+\begin{sphinxuseclass}{nblast}
+{
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\end{sphinxVerbatim}
+}
 
-\paragraph{Normality Test}
+\end{sphinxuseclass}
+\end{sphinxuseclass}
+
+\subparagraph{Normality Test}
 \label{\detokenize{user_guide/basic_usage:Normality-Test}}
 \sphinxAtStartPar
 This section contains example for the Parametric and Non\sphinxhyphen{}parametric Normality Test based on kernel\sphinxhyphen{}based quadratic distances
@@ -2285,9 +2290,8 @@ This section contains example for the Parametric and Non\sphinxhyphen{}parametri
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
-\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{kernel\PYGZus{}test} \PYG{k+kn}{import} \PYG{n}{KernelTest}
-\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
+\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{kernel\PYGZus{}test} \PYG{k+kn}{import} \PYG{n}{KernelTest}
+
 \PYG{n}{data} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}
 
 \PYG{n}{normality\PYGZus{}test} \PYG{o}{=} \PYG{n}{KernelTest}\PYG{p}{(}\PYG{n}{h}\PYG{o}{=}\PYG{l+m+mf}{0.4}\PYG{p}{,} \PYG{n}{centering\PYGZus{}type}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{param}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}\PYG{o}{.}\PYG{n}{test}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}
@@ -2317,7 +2321,7 @@ This section contains example for the Parametric and Non\sphinxhyphen{}parametri
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 Test : Kernel-based quadratic distance Normality test
-Execution time: 1.578
+Execution time: 1.776
 H0 is Rejected : False
 Test Statistic : -0.004422397826208057
 Critical Value (CV) : 0.00495159345113745
@@ -2336,7 +2340,7 @@ Selected tuning parameter : 0.4
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{normality\PYGZus{}test}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{normality\PYGZus{}test}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2355,7 +2359,7 @@ Selected tuning parameter : 0.4
 
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Time taken for execution: 1.578 seconds
+Time taken for execution: 1.776 seconds
 Test Results
 --------------  ----------------------------------------------
 Test Type       Kernel-based quadratic distance Normality test
@@ -2388,7 +2392,7 @@ Max           1.8862       2.7202
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{normality\PYGZus{}test} \PYG{o}{=} \PYG{n}{KernelTest}\PYG{p}{(}\PYG{n}{h}\PYG{o}{=}\PYG{l+m+mf}{0.4}\PYG{p}{,} \PYG{n}{centering\PYGZus{}type}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{nonparam}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{test}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}
+\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{normality\PYGZus{}test} \PYG{o}{=} \PYG{n}{KernelTest}\PYG{p}{(}\PYG{n}{h}\PYG{o}{=}\PYG{l+m+mf}{0.4}\PYG{p}{,} \PYG{n}{centering\PYGZus{}type}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{nonparam}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{test}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Test : }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{normality\PYGZus{}test}\PYG{o}{.}\PYG{n}{test\PYGZus{}type\PYGZus{}}\PYG{p}{)}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Execution time: }\PYG{l+s+si}{\PYGZob{}:.3f\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{normality\PYGZus{}test}\PYG{o}{.}\PYG{n}{execution\PYGZus{}time}\PYG{p}{)}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{H0 is Rejected : }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{normality\PYGZus{}test}\PYG{o}{.}\PYG{n}{h0\PYGZus{}rejected\PYGZus{}}\PYG{p}{)}\PYG{p}{)}
@@ -2415,10 +2419,10 @@ Max           1.8862       2.7202
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 Test : Kernel-based quadratic distance Normality test
-Execution time: 0.131
+Execution time: 0.118
 H0 is Rejected : False
 Test Statistic : 0.0015387891795935942
-Critical Value (CV) : 0.0020181255711485594
+Critical Value (CV) : 0.002029405786586928
 CV Method : Empirical
 Selected tuning parameter : 0.4
 \end{sphinxVerbatim}
@@ -2434,7 +2438,7 @@ Selected tuning parameter : 0.4
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{normality\PYGZus{}test}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{normality\PYGZus{}test}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2453,12 +2457,12 @@ Selected tuning parameter : 0.4
 
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Time taken for execution: 0.131 seconds
+Time taken for execution: 0.118 seconds
 Test Results
 --------------  ----------------------------------------------
 Test Type       Kernel-based quadratic distance Normality test
 Test Statistic  0.0015387891795935942
-Critical Value  0.0020181255711485594
+Critical Value  0.002029405786586928
 Reject H0       False
 --------------  ----------------------------------------------
 Summary Statistics
@@ -2486,7 +2490,7 @@ Max           1.8862       2.7202
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{tools} \PYG{k+kn}{import} \PYG{n}{qq\PYGZus{}plot}
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{tools} \PYG{k+kn}{import} \PYG{n}{qq\PYGZus{}plot}
 \PYG{n}{qq\PYGZus{}plot}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -2497,13 +2501,13 @@ Max           1.8862       2.7202
 \hrule height -\fboxrule\relax
 \vspace{\nbsphinxcodecellspacing}
 
-\savebox\nbsphinxpromptbox[0pt][r]{\color{nbsphinxout}\Verb|\strut{[5]:}\,|}
+\savebox\nbsphinxpromptbox[0pt][r]{\color{nbsphinxout}\Verb|\strut{[6]:}\,|}
 
 \begin{nbsphinxfancyoutput}
 
 \begin{sphinxuseclass}{output_area}
 \begin{sphinxuseclass}{}
-\noindent\sphinxincludegraphics[width=534\sphinxpxdimen,height=585\sphinxpxdimen]{{user_guide_basic_usage_10_0}.png}
+\noindent\sphinxincludegraphics[width=534\sphinxpxdimen,height=585\sphinxpxdimen]{{user_guide_basic_usage_11_0}.png}
 
 \end{sphinxuseclass}
 \end{sphinxuseclass}
@@ -2512,7 +2516,7 @@ Max           1.8862       2.7202
 \end{sphinxuseclass}
 \end{sphinxuseclass}
 
-\paragraph{Two Sample Test}
+\subparagraph{Two Sample Test}
 \label{\detokenize{user_guide/basic_usage:Two-Sample-Test}}
 \sphinxAtStartPar
 This sections shows example for the two\sphinxhyphen{}sample test using normal kernel\sphinxhyphen{}based quadratic distance
@@ -2520,11 +2524,9 @@ This sections shows example for the two\sphinxhyphen{}sample test using normal k
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
-\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{kernel\PYGZus{}test} \PYG{k+kn}{import} \PYG{n}{KernelTest}
-\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{kernel\PYGZus{}test} \PYG{k+kn}{import} \PYG{n}{KernelTest}
+
 \PYG{n}{X} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}
-\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
 \PYG{n}{Y} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}
 
 \PYG{n}{two\PYGZus{}sample\PYGZus{}test} \PYG{o}{=} \PYG{n}{KernelTest}\PYG{p}{(}\PYG{n}{h}\PYG{o}{=}\PYG{l+m+mf}{0.4}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}\PYG{o}{.}\PYG{n}{test}\PYG{p}{(}\PYG{n}{X}\PYG{p}{,}\PYG{n}{Y}\PYG{p}{)}
@@ -2554,10 +2556,10 @@ This sections shows example for the two\sphinxhyphen{}sample test using normal k
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 Test : Kernel-based quadratic distance two-sample test
-Execution time: 0.041
+Execution time: 0.048
 H0 is Rejected : False
-Test Statistic : -0.018355578706893333
-Critical Value (CV) : 0.011282236253872464
+Test Statistic : 0.0029175386660962063
+Critical Value (CV) : 0.00931651659981921
 CV Method : subsampling
 Selected tuning parameter : 0.4
 \end{sphinxVerbatim}
@@ -2573,7 +2575,7 @@ Selected tuning parameter : 0.4
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{two\PYGZus{}sample\PYGZus{}test}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{two\PYGZus{}sample\PYGZus{}test}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2592,29 +2594,29 @@ Selected tuning parameter : 0.4
 
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Time taken for execution: 0.041 seconds
+Time taken for execution: 0.048 seconds
 Test Results
 --------------  -----------------------------------------------
 Test Type       Kernel-based quadratic distance two-sample test
-Test Statistic  -0.018355578706893333
-Critical Value  0.011282236253872464
+Test Statistic  0.0029175386660962063
+Critical Value  0.00931651659981921
 Reject H0       False
 --------------  -----------------------------------------------
 Summary Statistics
                             Group 1    Group 2    Overall
 ------------------------  ---------  ---------  ---------
-('Feature 0', 'Mean')       -0.1156    -0.1156    -0.1156
-('Feature 0', 'Std Dev')     0.8563     0.8563     0.8542
-('Feature 0', 'Median')     -0.0353    -0.0353    -0.0353
-('Feature 0', 'IQR')         1.0704     1.0704     1.0704
-('Feature 0', 'Min')        -2.6197    -2.6197    -2.6197
-('Feature 0', 'Max')         1.8862     1.8862     1.8862
-('Feature 1', 'Mean')        0.034      0.034      0.034
-('Feature 1', 'Std Dev')     0.9989     0.9989     0.9963
-('Feature 1', 'Median')      0.1323     0.1323     0.1323
-('Feature 1', 'IQR')         1.3333     1.3333     1.3333
-('Feature 1', 'Min')        -1.9876    -1.9876    -1.9876
-('Feature 1', 'Max')         2.7202     2.7202     2.7202
+('Feature 0', 'Mean')        0.1282    -0.045      0.0416
+('Feature 0', 'Std Dev')     1.0396     1.025      1.0334
+('Feature 0', 'Median')      0.1056     0.0118     0.0737
+('Feature 0', 'IQR')         1.4912     1.2409     1.345
+('Feature 0', 'Min')        -3.2413    -2.4716    -3.2413
+('Feature 0', 'Max')         2.3147     3.0789     3.0789
+('Feature 1', 'Mean')        0.0435    -0.1263    -0.0414
+('Feature 1', 'Std Dev')     0.9348     0.9656     0.9517
+('Feature 1', 'Median')      0.0114    -0.1967    -0.1224
+('Feature 1', 'IQR')         1.2379     1.4056     1.3208
+('Feature 1', 'Min')        -1.9521    -2.3019    -2.3019
+('Feature 1', 'Max')         3.8527     2.2707     3.8527
 \end{sphinxVerbatim}
 
 
@@ -2626,7 +2628,7 @@ Summary Statistics
 \end{sphinxuseclass}
 \end{sphinxuseclass}
 
-\paragraph{K\sphinxhyphen{}Sample Test}
+\subparagraph{K\sphinxhyphen{}Sample Test}
 \label{\detokenize{user_guide/basic_usage:K-Sample-Test}}
 \sphinxAtStartPar
 Shows examples for the kernel\sphinxhyphen{}based quadratic distance k\sphinxhyphen{}sample tests with the Normal kernel and bandwidth parameter h.
@@ -2634,11 +2636,10 @@ Shows examples for the kernel\sphinxhyphen{}based quadratic distance k\sphinxhyp
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{kernel\PYGZus{}test} \PYG{k+kn}{import} \PYG{n}{KernelTest}
-\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{kernel\PYGZus{}test} \PYG{k+kn}{import} \PYG{n}{KernelTest}
 \PYG{n}{X} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}
-\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
 \PYG{n}{y} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{l+m+mi}{500}\PYG{p}{)}
+
 \PYG{n}{k\PYGZus{}sample\PYGZus{}test} \PYG{o}{=} \PYG{n}{KernelTest}\PYG{p}{(}\PYG{n}{h} \PYG{o}{=} \PYG{l+m+mf}{1.5}\PYG{p}{,} \PYG{n}{method} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{permutation}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{test}\PYG{p}{(}\PYG{n}{X}\PYG{p}{,}\PYG{n}{y}\PYG{p}{)}
 
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Test : }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{k\PYGZus{}sample\PYGZus{}test}\PYG{o}{.}\PYG{n}{test\PYGZus{}type\PYGZus{}}\PYG{p}{)}\PYG{p}{)}
@@ -2667,10 +2668,10 @@ Shows examples for the kernel\sphinxhyphen{}based quadratic distance k\sphinxhyp
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 Test : Kernel-based quadratic distance K-sample test
-Execution time: 0.248 seconds
+Execution time: 0.343 seconds
 H0 is Rejected : False
-Test Statistic : [0.00140789 0.00035197]
-Critical Value (CV) : [0.00431479 0.0010787 ]
+Test Statistic : [0.00154197 0.00038549]
+Critical Value (CV) : [0.00367584 0.00091896]
 CV Method : permutation
 Selected tuning parameter : 1.5
 \end{sphinxVerbatim}
@@ -2686,7 +2687,7 @@ Selected tuning parameter : 1.5
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{k\PYGZus{}sample\PYGZus{}test}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{k\PYGZus{}sample\PYGZus{}test}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2705,29 +2706,29 @@ Selected tuning parameter : 1.5
 
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Time taken for execution: 0.248 seconds
+Time taken for execution: 0.343 seconds
 Test Results
 --------------  ---------------------------------------------
 Test Type       Kernel-based quadratic distance K-sample test
-Test Statistic  [0.00140789 0.00035197]
-Critical Value  [0.00431479 0.0010787 ]
+Test Statistic  [0.00154197 0.00038549]
+Critical Value  [0.00367584 0.00091896]
 Reject H0       False
 --------------  ---------------------------------------------
 Summary Statistics
                             Group 0    Group 1    Group 2    Group 3    Group 4    Overall
 ------------------------  ---------  ---------  ---------  ---------  ---------  ---------
-('Feature 0', 'Mean')        0.033     -0.1227     0.0547    -0.0554     0.1192     0.0036
-('Feature 0', 'Std Dev')     1.0563     0.874      0.8279     0.9351     1.1038     0.967
-('Feature 0', 'Median')      0.0485    -0.0347     0.0675    -0.0349     0.1958     0.0184
-('Feature 0', 'IQR')         1.4214     1.0371     0.9924     1.1388     1.3338     1.239
-('Feature 0', 'Min')        -2.6969    -2.0819    -1.7787    -2.651     -3.2413    -3.2413
-('Feature 0', 'Max')         2.5269     2.2989     2.1898     2.4458     3.0789     3.0789
-('Feature 1', 'Mean')        0.0501     0.072     -0.0934    -0.0257     0.1786     0.0351
-('Feature 1', 'Std Dev')     1.0116     1.0488     0.9651     0.9411     0.9945     0.992
-('Feature 1', 'Median')      0.0481     0.1714    -0.1857    -0.1872     0.2239     0.0283
-('Feature 1', 'IQR')         1.2537     1.3063     1.2909     1.3971     1.4369     1.3616
-('Feature 1', 'Min')        -2.0417    -2.3019    -2.0392    -2.4239    -2.2111    -2.4239
-('Feature 1', 'Max')         3.8527     2.6324     2.7202     2.4632     2.1905     3.8527
+('Feature 0', 'Mean')       -0.0309    -0.0533     0.1141     0.3318    -0.0612     0.0721
+('Feature 0', 'Std Dev')     0.8923     0.8846     1.0046     0.9959     0.8949     0.9497
+('Feature 0', 'Median')     -0.035      0.0282     0.0386     0.3026     0.0104     0.0463
+('Feature 0', 'IQR')         1.2255     1.1546     1.336      1.3052     1.1691     1.2548
+('Feature 0', 'Min')        -2.4994    -2.3629    -2.6969    -2.4242    -2.5539    -2.6969
+('Feature 0', 'Max')         1.849      1.8846     2.5601     2.5734     1.882      2.5734
+('Feature 1', 'Mean')        0.2104     0.1435     0.1877    -0.0868    -0.0808     0.0715
+('Feature 1', 'Std Dev')     0.9641     1.0551     1.0554     1.0276     1.1685     1.0591
+('Feature 1', 'Median')      0.279      0.0861     0.1893    -0.1258    -0.1441     0.1132
+('Feature 1', 'IQR')         1.3873     1.2558     1.323      1.3384     1.5526     1.4146
+('Feature 1', 'Min')        -1.9664    -2.591     -2.8723    -2.8485    -2.9214    -2.9214
+('Feature 1', 'Max')         2.2909     2.6017     2.5797     2.6324     2.5582     2.6324
 \end{sphinxVerbatim}
 
 
@@ -2739,7 +2740,7 @@ Summary Statistics
 \end{sphinxuseclass}
 \end{sphinxuseclass}
 
-\paragraph{Poisson Kernel Test}
+\subparagraph{Poisson Kernel Test}
 \label{\detokenize{user_guide/basic_usage:Poisson-Kernel-Test}}
 \sphinxAtStartPar
 Shows example for perforing the the kernel\sphinxhyphen{}based quadratic distance Goodness\sphinxhyphen{}of\sphinxhyphen{}fit tests for Uniformity for spherical data using the Poisson kernel with concentration parameter rho.
@@ -2747,10 +2748,11 @@ Shows example for perforing the the kernel\sphinxhyphen{}based quadratic distanc
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{tools} \PYG{k+kn}{import} \PYG{n}{sample\PYGZus{}hypersphere}
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{tools} \PYG{k+kn}{import} \PYG{n}{sample\PYGZus{}hypersphere}
 \PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{poisson\PYGZus{}kernel\PYGZus{}test} \PYG{k+kn}{import} \PYG{n}{PoissonKernelTest}
-\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
+
 \PYG{n}{X} \PYG{o}{=} \PYG{n}{sample\PYGZus{}hypersphere}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}
+
 \PYG{n}{unif\PYGZus{}test} \PYG{o}{=} \PYG{n}{PoissonKernelTest}\PYG{p}{(}\PYG{n}{rho} \PYG{o}{=} \PYG{l+m+mf}{0.7}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}\PYG{o}{.}\PYG{n}{test}\PYG{p}{(}\PYG{n}{X}\PYG{p}{)}
 
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Execution time: }\PYG{l+s+si}{\PYGZob{}:.3f\PYGZcb{}}\PYG{l+s+s2}{ seconds}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{unif\PYGZus{}test}\PYG{o}{.}\PYG{n}{execution\PYGZus{}time}\PYG{p}{)}\PYG{p}{)}
@@ -2782,7 +2784,7 @@ Shows example for perforing the the kernel\sphinxhyphen{}based quadratic distanc
 
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Execution time: 0.041 seconds
+Execution time: 0.068 seconds
 U Statistic Results
 H0 is rejected : False
 Un Statistic : 1.6156682048968174
@@ -2804,7 +2806,7 @@ Critical Value : 23.229486935225513
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{unif\PYGZus{}test}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+\llap{\color{nbsphinxin}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{unif\PYGZus{}test}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2823,7 +2825,7 @@ Critical Value : 23.229486935225513
 
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Time taken for execution: 0.041 seconds
+Time taken for execution: 0.068 seconds
 Test Results
 --------------------------  -------------------
 Test Type                   Poisson Kernel-based quadratic
@@ -2860,7 +2862,7 @@ Max           0.9772       0.9738       0.9996
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{tools} \PYG{k+kn}{import} \PYG{n}{qq\PYGZus{}plot}
+\llap{\color{nbsphinxin}[13]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{tools} \PYG{k+kn}{import} \PYG{n}{qq\PYGZus{}plot}
 
 \PYG{n}{qq\PYGZus{}plot}\PYG{p}{(}\PYG{n}{X}\PYG{p}{,}\PYG{n}{dist} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{uniform}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -2872,13 +2874,13 @@ Max           0.9772       0.9738       0.9996
 \hrule height -\fboxrule\relax
 \vspace{\nbsphinxcodecellspacing}
 
-\savebox\nbsphinxpromptbox[0pt][r]{\color{nbsphinxout}\Verb|\strut{[12]:}\,|}
+\savebox\nbsphinxpromptbox[0pt][r]{\color{nbsphinxout}\Verb|\strut{[13]:}\,|}
 
 \begin{nbsphinxfancyoutput}
 
 \begin{sphinxuseclass}{output_area}
 \begin{sphinxuseclass}{}
-\noindent\sphinxincludegraphics[width=547\sphinxpxdimen,height=846\sphinxpxdimen]{{user_guide_basic_usage_24_0}.png}
+\noindent\sphinxincludegraphics[width=547\sphinxpxdimen,height=846\sphinxpxdimen]{{user_guide_basic_usage_25_0}.png}
 
 \end{sphinxuseclass}
 \end{sphinxuseclass}
@@ -2887,7 +2889,7 @@ Max           0.9772       0.9738       0.9996
 \end{sphinxuseclass}
 \end{sphinxuseclass}
 
-\paragraph{Poisson Kernel based Clustering}
+\subparagraph{Poisson Kernel based Clustering}
 \label{\detokenize{user_guide/basic_usage:Poisson-Kernel-based-Clustering}}
 \sphinxAtStartPar
 Shows example for performing the Poisson kernel\sphinxhyphen{}based clustering algorithm on the Sphere based on the Poisson kernel\sphinxhyphen{}based densities.
@@ -2895,7 +2897,7 @@ Shows example for performing the Poisson kernel\sphinxhyphen{}based clustering a
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[13]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}wireless\PYGZus{}data}
+\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{datasets} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}wireless\PYGZus{}data}
 \PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{spherical\PYGZus{}clustering} \PYG{k+kn}{import} \PYG{n}{PKBC}
 \PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{preprocessing} \PYG{k+kn}{import} \PYG{n}{LabelEncoder}
 
@@ -2955,9 +2957,7 @@ Average Silhouette Score: 0.3803089203572107
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-
-\PYG{n}{wcss\PYGZus{}euc} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
+\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{wcss\PYGZus{}euc} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
 \PYG{n}{wcss\PYGZus{}cos} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
 
 \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{:}
@@ -2992,7 +2992,7 @@ Average Silhouette Score: 0.3803089203572107
 
 \begin{sphinxuseclass}{output_area}
 \begin{sphinxuseclass}{}
-\noindent\sphinxincludegraphics[width=532\sphinxpxdimen,height=393\sphinxpxdimen]{{user_guide_basic_usage_29_0}.png}
+\noindent\sphinxincludegraphics[width=532\sphinxpxdimen,height=393\sphinxpxdimen]{{user_guide_basic_usage_30_0}.png}
 
 \end{sphinxuseclass}
 \end{sphinxuseclass}
@@ -3010,7 +3010,7 @@ Average Silhouette Score: 0.3803089203572107
 
 \begin{sphinxuseclass}{output_area}
 \begin{sphinxuseclass}{}
-\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=393\sphinxpxdimen]{{user_guide_basic_usage_29_1}.png}
+\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=393\sphinxpxdimen]{{user_guide_basic_usage_30_1}.png}
 
 \end{sphinxuseclass}
 \end{sphinxuseclass}
@@ -3019,12 +3019,12 @@ Average Silhouette Score: 0.3803089203572107
 \end{sphinxuseclass}
 \end{sphinxuseclass}
 
-\paragraph{Density Estimation and Sample Generation from PKBD}
+\subparagraph{Density Estimation and Sample Generation from PKBD}
 \label{\detokenize{user_guide/basic_usage:Density-Estimation-and-Sample-Generation-from-PKBD}}
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{spherical\PYGZus{}clustering} \PYG{k+kn}{import} \PYG{n}{PKBD}
+\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{spherical\PYGZus{}clustering} \PYG{k+kn}{import} \PYG{n}{PKBD}
 \PYG{n}{pkbd\PYGZus{}data} \PYG{o}{=} \PYG{n}{PKBD}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{rpkb}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{p}{[}\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mf}{0.5}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{rejvmf}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=} \PYG{l+m+mi}{42}\PYG{p}{)}
 \PYG{n}{dens\PYGZus{}val}  \PYG{o}{=} \PYG{n}{PKBD}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{dpkb}\PYG{p}{(}\PYG{n}{pkbd\PYGZus{}data}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mf}{0.5}\PYG{p}{,}\PYG{l+m+mf}{0.5}\PYG{p}{]}\PYG{p}{,}\PYG{l+m+mf}{0.5}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{dens\PYGZus{}val}\PYG{p}{)}
@@ -3059,7 +3059,7 @@ Average Silhouette Score: 0.3803089203572107
 \end{sphinxuseclass}
 \end{sphinxuseclass}
 
-\paragraph{Tuning Parameter \protect\(h\protect\) selection}
+\subparagraph{Tuning Parameter \protect\(h\protect\) selection}
 \label{\detokenize{user_guide/basic_usage:Tuning-Parameter-h-selection}}
 \sphinxAtStartPar
 Computes the kernel bandwidth of the Gaussian kernel for the two\sphinxhyphen{}sample and ksample kernel\sphinxhyphen{}based quadratic distance (KBQD) tests.
@@ -3067,12 +3067,11 @@ Computes the kernel bandwidth of the Gaussian kernel for the two\sphinxhyphen{}s
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
-\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{kernel\PYGZus{}test} \PYG{k+kn}{import} \PYG{n}{select\PYGZus{}h}
-\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
+\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{QuadratiK}\PYG{n+nn}{.}\PYG{n+nn}{kernel\PYGZus{}test} \PYG{k+kn}{import} \PYG{n}{select\PYGZus{}h}
+
 \PYG{n}{X} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{l+m+mi}{200}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}
-\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{42}\PYG{p}{)}
 \PYG{n}{y} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{200}\PYG{p}{)}
+
 \PYG{n}{h\PYGZus{}selected}\PYG{p}{,} \PYG{n}{all\PYGZus{}values}\PYG{p}{,} \PYG{n}{power\PYGZus{}plot} \PYG{o}{=} \PYG{n}{select\PYGZus{}h}\PYG{p}{(}
     \PYG{n}{X}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{alternative}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{location}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{power\PYGZus{}plot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}  \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Selected h is: }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{h\PYGZus{}selected}\PYG{p}{)}
@@ -3094,7 +3093,7 @@ Computes the kernel bandwidth of the Gaussian kernel for the two\sphinxhyphen{}s
 
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-Selected h is:  2.8
+Selected h is:  1.6
 \end{sphinxVerbatim}
 
 
@@ -3108,7 +3107,7 @@ Selected h is:  2.8
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}shows the detailed power vs h table}
+\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}shows the detailed power vs h table}
 \PYG{n}{all\PYGZus{}values}
 \end{sphinxVerbatim}
 }
@@ -3128,15 +3127,23 @@ Selected h is:  2.8
 
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}     h  delta  power
-0  0.4    0.2   0.20
-1  0.8    0.2   0.26
-2  1.2    0.2   0.42
-3  1.6    0.2   0.34
-4  2.0    0.2   0.38
-5  2.4    0.2   0.36
-6  2.8    0.2   0.56
-7  3.2    0.2   0.38
+\llap{\color{nbsphinxout}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}     h  delta  power
+0  0.4    0.2   0.14
+1  0.8    0.2   0.14
+2  1.2    0.2   0.16
+3  1.6    0.2   0.30
+4  2.0    0.2   0.16
+5  2.4    0.2   0.30
+6  2.8    0.2   0.30
+7  3.2    0.2   0.28
+0  0.4    0.3   0.18
+1  0.8    0.3   0.28
+2  1.2    0.3   0.48
+3  1.6    0.3   0.52
+4  2.0    0.3   0.46
+5  2.4    0.3   0.50
+6  2.8    0.3   0.52
+7  3.2    0.3   0.74
 \end{sphinxVerbatim}
 
 
@@ -3150,7 +3157,7 @@ Selected h is:  2.8
 \begin{sphinxuseclass}{nbinput}
 {
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}shows the power plot}
+\llap{\color{nbsphinxin}[19]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}shows the power plot}
 \PYG{n}{power\PYGZus{}plot}
 \end{sphinxVerbatim}
 }
@@ -3161,13 +3168,13 @@ Selected h is:  2.8
 \hrule height -\fboxrule\relax
 \vspace{\nbsphinxcodecellspacing}
 
-\savebox\nbsphinxpromptbox[0pt][r]{\color{nbsphinxout}\Verb|\strut{[18]:}\,|}
+\savebox\nbsphinxpromptbox[0pt][r]{\color{nbsphinxout}\Verb|\strut{[19]:}\,|}
 
 \begin{nbsphinxfancyoutput}
 
 \begin{sphinxuseclass}{output_area}
 \begin{sphinxuseclass}{}
-\noindent\sphinxincludegraphics[width=699\sphinxpxdimen,height=393\sphinxpxdimen]{{user_guide_basic_usage_36_0}.png}
+\noindent\sphinxincludegraphics[width=691\sphinxpxdimen,height=393\sphinxpxdimen]{{user_guide_basic_usage_37_0}.png}
 
 \end{sphinxuseclass}
 \end{sphinxuseclass}
@@ -3175,6 +3182,11 @@ Selected h is:  2.8
 
 \end{sphinxuseclass}
 \end{sphinxuseclass}
+\sphinxstepscope
+
+
+\subsection{Development}
+\label{\detokenize{development/index:development}}\label{\detokenize{development/index::doc}}
 
 \renewcommand{\indexname}{Python Module Index}
 \begin{sphinxtheindex}

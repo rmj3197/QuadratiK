@@ -9,7 +9,7 @@
 import os
 import sys
 basedir = os.path.abspath(os.path.join(
-    os.path.dirname(__file__), '..', '..', 'quadratik'))
+    os.path.dirname(__file__), '..', '..'))
 sys.path.insert(0, basedir)
 
 project = 'QuadratiK'
@@ -48,5 +48,5 @@ strip_signature_backslash = True
 latex_elements = {
     'extraclassoptions': 'openany,oneside'
 }
-latex_documents = [('index','quadratik.tex','QuadratiK', author.replace(
-    'Raktim', '\\and Raktim'),'manual')]
+latex_documents = [('index', 'QuadratiK.tex', 'QuadratiK', author.replace(
+    'Raktim', '\\and Raktim'), 'manual')]

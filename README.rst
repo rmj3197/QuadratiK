@@ -17,10 +17,6 @@ The QuadratiK package is implemented in both **R** and **Python**, providing a c
 
 * **Additional Features**: Alongside these functionalities, the software includes additional graphical functions, aiding users in validating cluster results as well as visualizing and representing clustering results. This enhances the interpretability and usability of the analysis.
 
-The documentation can be found at: `Documentation`_.
-
-.. _Documentation: doc/build/latex/quadratik.pdf
-
 Funding Information
 ++++++++++++++++++++
 The work has been supported by Kaleida Health Foundation, Food and Drug Administration, and Department of Biostatistics, University at Buffalo. 
@@ -34,10 +30,10 @@ Mantainer: Raktim Mukhopadhyay <raktimmu@buffalo.edu>
 References
 +++++++++++
 Saraceno G., Markatou M., Mukhopadhyay R., Golzy M. (2023). Goodness of-
-fit and clustering of spherical data: The QuadratiK package in R and Python. Technical Report,Department of Biostatistics, University at Buffalo.
+fit and clustering of spherical data: The QuadratiK package in R and Python. Technical Report, Department of Biostatistics, University at Buffalo.
 
 Ding Y., Markatou M., Saraceno G. (2023). “Poisson Kernel-Based Tests for
-Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/ss.202022.0347.
+Uniformity on the d-Dimensional Sphere.” Statistica Sinica. DOI: 10.5705/ss.202022.0347.
 
 Golzy M. & Markatou M. (2020) Poisson Kernel-Based Clustering on the Sphere:
 Convergence Properties, Identifiability, and a Method of Sampling, Journal of Computational and

@@ -1,117 +1,114 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Funding Information}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Authors}{1}{section.1.2}%
-\contentsline {section}{\numberline {1.3}References}{1}{section.1.3}%
-\contentsline {chapter}{\numberline {2}Getting started}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Getting Started}{3}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Installation}{3}{subsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.1.1}Which Python?}{3}{subsubsection.2.1.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.1.2}Install using \sphinxstyleliteralintitle {\sphinxupquote {pip}}}{3}{subsubsection.2.1.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.1.3}Dependencies}{3}{subsubsection.2.1.1.3}%
-\contentsline {subsubsection}{\numberline {2.1.1.4}Testing}{4}{subsubsection.2.1.1.4}%
-\contentsline {chapter}{\numberline {3}API Reference}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}API Reference}{5}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Kernel Test}{5}{subsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.1.1}KernelTest}{5}{subsubsection.3.1.1.1}%
-\contentsline {paragraph}{Parameters}{5}{paragraph*.4}%
-\contentsline {paragraph}{Attributes}{6}{paragraph*.5}%
-\contentsline {paragraph}{References}{6}{paragraph*.6}%
-\contentsline {paragraph}{Examples}{7}{paragraph*.7}%
-\contentsline {paragraph}{Returns}{8}{paragraph*.9}%
-\contentsline {paragraph}{Parameters}{8}{paragraph*.11}%
-\contentsline {paragraph}{Returns}{8}{paragraph*.12}%
-\contentsline {paragraph}{Parameters}{9}{paragraph*.14}%
-\contentsline {paragraph}{Returns}{9}{paragraph*.15}%
-\contentsline {subsubsection}{\numberline {3.1.1.2}select\_h}{9}{subsubsection.3.1.1.2}%
-\contentsline {paragraph}{Parameters}{9}{paragraph*.17}%
-\contentsline {paragraph}{Returns}{10}{paragraph*.18}%
-\contentsline {paragraph}{References}{10}{paragraph*.19}%
-\contentsline {paragraph}{Examples}{10}{paragraph*.20}%
-\contentsline {subsection}{\numberline {3.1.2}Poisson Kernel Test}{11}{subsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.2.1}PoissonKernelTest}{11}{subsubsection.3.1.2.1}%
-\contentsline {paragraph}{Parameters}{11}{paragraph*.22}%
-\contentsline {paragraph}{Attributes}{11}{paragraph*.23}%
-\contentsline {paragraph}{References}{12}{paragraph*.24}%
-\contentsline {paragraph}{Examples}{12}{paragraph*.25}%
-\contentsline {paragraph}{Returns}{13}{paragraph*.27}%
-\contentsline {paragraph}{Parameters}{13}{paragraph*.29}%
-\contentsline {paragraph}{Returns}{13}{paragraph*.30}%
-\contentsline {paragraph}{Parameters}{13}{paragraph*.32}%
-\contentsline {paragraph}{Returns}{13}{paragraph*.33}%
-\contentsline {subsection}{\numberline {3.1.3}Spherical Clustering}{14}{subsection.3.1.3}%
-\contentsline {subsubsection}{\numberline {3.1.3.1}PKBC}{14}{subsubsection.3.1.3.1}%
-\contentsline {paragraph}{Parameters}{14}{paragraph*.35}%
-\contentsline {paragraph}{Attributes}{15}{paragraph*.36}%
-\contentsline {paragraph}{References}{15}{paragraph*.37}%
-\contentsline {paragraph}{Examples}{15}{paragraph*.38}%
-\contentsline {paragraph}{Parameters}{16}{paragraph*.40}%
-\contentsline {paragraph}{Returns}{16}{paragraph*.41}%
-\contentsline {paragraph}{Returns}{16}{paragraph*.43}%
-\contentsline {paragraph}{Parameters}{17}{paragraph*.45}%
-\contentsline {paragraph}{Returns}{17}{paragraph*.46}%
-\contentsline {paragraph}{References}{17}{paragraph*.47}%
-\contentsline {paragraph}{Notes}{17}{paragraph*.48}%
-\contentsline {paragraph}{See also}{17}{paragraph*.49}%
-\contentsline {subsubsection}{\numberline {3.1.3.2}PKBD}{17}{subsubsection.3.1.3.2}%
-\contentsline {paragraph}{Parameters}{18}{paragraph*.52}%
-\contentsline {paragraph}{Returns}{18}{paragraph*.53}%
-\contentsline {paragraph}{Parameters}{18}{paragraph*.55}%
-\contentsline {paragraph}{Returns}{19}{paragraph*.56}%
-\contentsline {paragraph}{References}{19}{paragraph*.57}%
-\contentsline {paragraph}{Examples}{19}{paragraph*.58}%
-\contentsline {subsection}{\numberline {3.1.4}User Interface}{19}{subsection.3.1.4}%
-\contentsline {subsubsection}{\numberline {3.1.4.1}UI}{19}{subsubsection.3.1.4.1}%
-\contentsline {paragraph}{Examples}{20}{paragraph*.60}%
-\contentsline {subsection}{\numberline {3.1.5}Datasets}{20}{subsection.3.1.5}%
-\contentsline {subsubsection}{\numberline {3.1.5.1}load\_wireless\_data}{20}{subsubsection.3.1.5.1}%
-\contentsline {paragraph}{Parameters}{20}{paragraph*.64}%
-\contentsline {paragraph}{Returns}{21}{paragraph*.65}%
-\contentsline {paragraph}{References}{21}{paragraph*.66}%
-\contentsline {paragraph}{Source}{21}{paragraph*.67}%
-\contentsline {paragraph}{Examples}{21}{paragraph*.68}%
-\contentsline {subsection}{\numberline {3.1.6}Tools}{22}{subsection.3.1.6}%
-\contentsline {subsubsection}{\numberline {3.1.6.1}sample\_hypersphere}{22}{subsubsection.3.1.6.1}%
-\contentsline {paragraph}{Parameters}{22}{paragraph*.70}%
-\contentsline {paragraph}{Returns}{22}{paragraph*.71}%
-\contentsline {paragraph}{Examples}{22}{paragraph*.72}%
-\contentsline {subsubsection}{\numberline {3.1.6.2}stats}{23}{subsubsection.3.1.6.2}%
-\contentsline {paragraph}{Parameters}{23}{paragraph*.74}%
-\contentsline {paragraph}{Returns}{23}{paragraph*.75}%
-\contentsline {paragraph}{Examples}{23}{paragraph*.76}%
-\contentsline {subsubsection}{\numberline {3.1.6.3}qq\_plot}{23}{subsubsection.3.1.6.3}%
-\contentsline {paragraph}{Parameters}{23}{paragraph*.78}%
-\contentsline {paragraph}{Returns}{24}{paragraph*.79}%
-\contentsline {paragraph}{Examples}{24}{paragraph*.80}%
-\contentsline {subsubsection}{\numberline {3.1.6.4}sphere3d}{24}{subsubsection.3.1.6.4}%
-\contentsline {paragraph}{Parameters}{24}{paragraph*.82}%
-\contentsline {paragraph}{Returns}{24}{paragraph*.83}%
-\contentsline {paragraph}{Examples}{25}{paragraph*.84}%
-\contentsline {subsubsection}{\numberline {3.1.6.5}plot\_clusters\_2d}{25}{subsubsection.3.1.6.5}%
-\contentsline {paragraph}{Parameters}{25}{paragraph*.86}%
-\contentsline {paragraph}{Returns}{25}{paragraph*.87}%
-\contentsline {paragraph}{Examples}{25}{paragraph*.88}%
-\contentsline {chapter}{\numberline {4}User Guide}{26}{chapter.4}%
-\contentsline {section}{\numberline {4.1}User Guide}{26}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Dataset}{26}{subsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.1.1}Wireless Indoor Localization Dataset}{26}{subsubsection.4.1.1.1}%
-\contentsline {paragraph}{Format}{26}{paragraph*.89}%
-\contentsline {paragraph}{Details}{26}{paragraph*.90}%
-\contentsline {paragraph}{Source}{27}{paragraph*.91}%
-\contentsline {paragraph}{References}{27}{paragraph*.92}%
-\contentsline {subsection}{\numberline {4.1.2}Usage Examples}{27}{subsection.4.1.2}%
-\contentsline {subsubsection}{\numberline {4.1.2.1}QuadratiK Usage Examples}{27}{subsubsection.4.1.2.1}%
-\contentsline {paragraph}{Normality Test}{27}{paragraph*.93}%
-\contentsline {subparagraph}{Parametric}{27}{subparagraph*.94}%
-\contentsline {subparagraph}{Non\sphinxhyphen {}parametric}{28}{subparagraph*.95}%
-\contentsline {subparagraph}{QQ Plot}{29}{subparagraph*.96}%
-\contentsline {paragraph}{Two Sample Test}{30}{paragraph*.97}%
-\contentsline {paragraph}{K\sphinxhyphen {}Sample Test}{31}{paragraph*.98}%
-\contentsline {paragraph}{Poisson Kernel Test}{32}{paragraph*.99}%
-\contentsline {subparagraph}{QQ Plot}{33}{subparagraph*.100}%
-\contentsline {paragraph}{Poisson Kernel based Clustering}{35}{paragraph*.101}%
-\contentsline {subparagraph}{Elbow Plot using Euclidean Distance and Cosine Similarity based WCSS}{35}{subparagraph*.102}%
-\contentsline {paragraph}{Density Estimation and Sample Generation from PKBD}{37}{paragraph*.103}%
-\contentsline {paragraph}{Tuning Parameter \(h\) selection}{37}{paragraph*.104}%
-\contentsline {chapter}{Python Module Index}{39}{section*.105}%
-\contentsline {chapter}{Index}{40}{section*.106}%
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Funding Information}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Authors}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}References}{2}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Getting Started}{3}{subsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.1.1}Installation}{3}{subsubsection.1.3.1.1}%
+\contentsline {paragraph}{Which Python?}{3}{paragraph*.3}%
+\contentsline {paragraph}{Install using \sphinxstyleliteralintitle {\sphinxupquote {pip}}}{3}{paragraph*.4}%
+\contentsline {paragraph}{Dependencies}{3}{paragraph*.5}%
+\contentsline {paragraph}{Testing}{3}{paragraph*.6}%
+\contentsline {subsection}{\numberline {1.3.2}API Reference}{4}{subsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.2.1}Kernel Test}{4}{subsubsection.1.3.2.1}%
+\contentsline {paragraph}{KernelTest}{4}{paragraph*.7}%
+\contentsline {subparagraph}{Parameters}{4}{subparagraph*.9}%
+\contentsline {subparagraph}{Attributes}{5}{subparagraph*.10}%
+\contentsline {subparagraph}{References}{5}{subparagraph*.11}%
+\contentsline {subparagraph}{Examples}{5}{subparagraph*.12}%
+\contentsline {subparagraph}{Returns}{7}{subparagraph*.14}%
+\contentsline {subparagraph}{Parameters}{7}{subparagraph*.16}%
+\contentsline {subparagraph}{Returns}{7}{subparagraph*.17}%
+\contentsline {subparagraph}{Parameters}{7}{subparagraph*.19}%
+\contentsline {subparagraph}{Returns}{7}{subparagraph*.20}%
+\contentsline {paragraph}{select\_h}{7}{paragraph*.21}%
+\contentsline {subparagraph}{Parameters}{8}{subparagraph*.23}%
+\contentsline {subparagraph}{Returns}{9}{subparagraph*.24}%
+\contentsline {subparagraph}{References}{9}{subparagraph*.25}%
+\contentsline {subparagraph}{Examples}{9}{subparagraph*.26}%
+\contentsline {subsubsection}{\numberline {1.3.2.2}Poisson Kernel Test}{9}{subsubsection.1.3.2.2}%
+\contentsline {paragraph}{PoissonKernelTest}{9}{paragraph*.27}%
+\contentsline {subparagraph}{Parameters}{9}{subparagraph*.29}%
+\contentsline {subparagraph}{Attributes}{10}{subparagraph*.30}%
+\contentsline {subparagraph}{References}{10}{subparagraph*.31}%
+\contentsline {subparagraph}{Examples}{10}{subparagraph*.32}%
+\contentsline {subparagraph}{Returns}{11}{subparagraph*.34}%
+\contentsline {subparagraph}{Parameters}{11}{subparagraph*.36}%
+\contentsline {subparagraph}{Returns}{12}{subparagraph*.37}%
+\contentsline {subparagraph}{Parameters}{12}{subparagraph*.39}%
+\contentsline {subparagraph}{Returns}{12}{subparagraph*.40}%
+\contentsline {subsubsection}{\numberline {1.3.2.3}Spherical Clustering}{12}{subsubsection.1.3.2.3}%
+\contentsline {paragraph}{PKBC}{12}{paragraph*.41}%
+\contentsline {subparagraph}{Parameters}{12}{subparagraph*.43}%
+\contentsline {subparagraph}{Attributes}{13}{subparagraph*.44}%
+\contentsline {subparagraph}{References}{14}{subparagraph*.45}%
+\contentsline {subparagraph}{Examples}{14}{subparagraph*.46}%
+\contentsline {subparagraph}{Parameters}{15}{subparagraph*.48}%
+\contentsline {subparagraph}{Returns}{15}{subparagraph*.49}%
+\contentsline {subparagraph}{Returns}{15}{subparagraph*.51}%
+\contentsline {subparagraph}{Parameters}{15}{subparagraph*.53}%
+\contentsline {subparagraph}{Returns}{15}{subparagraph*.54}%
+\contentsline {subparagraph}{References}{16}{subparagraph*.55}%
+\contentsline {subparagraph}{Notes}{16}{subparagraph*.56}%
+\contentsline {subparagraph}{See also}{16}{subparagraph*.57}%
+\contentsline {paragraph}{PKBD}{16}{paragraph*.58}%
+\contentsline {subparagraph}{Parameters}{16}{subparagraph*.61}%
+\contentsline {subparagraph}{Returns}{17}{subparagraph*.62}%
+\contentsline {subparagraph}{Parameters}{17}{subparagraph*.64}%
+\contentsline {subparagraph}{Returns}{17}{subparagraph*.65}%
+\contentsline {subparagraph}{References}{17}{subparagraph*.66}%
+\contentsline {subparagraph}{Examples}{18}{subparagraph*.67}%
+\contentsline {subsubsection}{\numberline {1.3.2.4}User Interface}{18}{subsubsection.1.3.2.4}%
+\contentsline {paragraph}{UI}{18}{paragraph*.68}%
+\contentsline {subparagraph}{Examples}{18}{subparagraph*.70}%
+\contentsline {subsubsection}{\numberline {1.3.2.5}Datasets}{19}{subsubsection.1.3.2.5}%
+\contentsline {paragraph}{load\_wireless\_data}{19}{paragraph*.73}%
+\contentsline {subparagraph}{Parameters}{19}{subparagraph*.75}%
+\contentsline {subparagraph}{Returns}{19}{subparagraph*.76}%
+\contentsline {subparagraph}{References}{20}{subparagraph*.77}%
+\contentsline {subparagraph}{Source}{20}{subparagraph*.78}%
+\contentsline {subparagraph}{Examples}{20}{subparagraph*.79}%
+\contentsline {subsubsection}{\numberline {1.3.2.6}Tools}{20}{subsubsection.1.3.2.6}%
+\contentsline {paragraph}{sample\_hypersphere}{20}{paragraph*.80}%
+\contentsline {subparagraph}{Parameters}{21}{subparagraph*.82}%
+\contentsline {subparagraph}{Returns}{21}{subparagraph*.83}%
+\contentsline {subparagraph}{Examples}{21}{subparagraph*.84}%
+\contentsline {paragraph}{stats}{21}{paragraph*.85}%
+\contentsline {subparagraph}{Parameters}{21}{subparagraph*.87}%
+\contentsline {subparagraph}{Returns}{21}{subparagraph*.88}%
+\contentsline {subparagraph}{Examples}{22}{subparagraph*.89}%
+\contentsline {paragraph}{qq\_plot}{22}{paragraph*.90}%
+\contentsline {subparagraph}{Parameters}{22}{subparagraph*.92}%
+\contentsline {subparagraph}{Returns}{22}{subparagraph*.93}%
+\contentsline {subparagraph}{Examples}{23}{subparagraph*.94}%
+\contentsline {paragraph}{sphere3d}{23}{paragraph*.95}%
+\contentsline {subparagraph}{Parameters}{23}{subparagraph*.97}%
+\contentsline {subparagraph}{Returns}{23}{subparagraph*.98}%
+\contentsline {subparagraph}{Examples}{23}{subparagraph*.99}%
+\contentsline {paragraph}{plot\_clusters\_2d}{23}{paragraph*.100}%
+\contentsline {subparagraph}{Parameters}{24}{subparagraph*.102}%
+\contentsline {subparagraph}{Returns}{24}{subparagraph*.103}%
+\contentsline {subparagraph}{Examples}{24}{subparagraph*.104}%
+\contentsline {subsection}{\numberline {1.3.3}User Guide}{24}{subsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.3.1}Dataset}{24}{subsubsection.1.3.3.1}%
+\contentsline {paragraph}{Wireless Indoor Localization Dataset}{24}{paragraph*.105}%
+\contentsline {subparagraph}{Format}{24}{subparagraph*.106}%
+\contentsline {subparagraph}{Details}{25}{subparagraph*.107}%
+\contentsline {subparagraph}{Source}{25}{subparagraph*.108}%
+\contentsline {subparagraph}{References}{25}{subparagraph*.109}%
+\contentsline {subsubsection}{\numberline {1.3.3.2}Usage Examples}{25}{subsubsection.1.3.3.2}%
+\contentsline {paragraph}{QuadratiK Usage Examples}{25}{paragraph*.110}%
+\contentsline {subparagraph}{Normality Test}{25}{subparagraph*.111}%
+\contentsline {subparagraph}{Parametric}{25}{subparagraph*.112}%
+\contentsline {subparagraph}{Non\sphinxhyphen {}parametric}{26}{subparagraph*.113}%
+\contentsline {subparagraph}{QQ Plot}{27}{subparagraph*.114}%
+\contentsline {subparagraph}{Two Sample Test}{28}{subparagraph*.115}%
+\contentsline {subparagraph}{K\sphinxhyphen {}Sample Test}{29}{subparagraph*.116}%
+\contentsline {subparagraph}{Poisson Kernel Test}{31}{subparagraph*.117}%
+\contentsline {subparagraph}{QQ Plot}{32}{subparagraph*.118}%
+\contentsline {subparagraph}{Poisson Kernel based Clustering}{34}{subparagraph*.119}%
+\contentsline {subparagraph}{Elbow Plot using Euclidean Distance and Cosine Similarity based WCSS}{34}{subparagraph*.120}%
+\contentsline {subparagraph}{Density Estimation and Sample Generation from PKBD}{36}{subparagraph*.121}%
+\contentsline {subparagraph}{Tuning Parameter \(h\) selection}{36}{subparagraph*.122}%
+\contentsline {subsection}{\numberline {1.3.4}Development}{38}{subsection.1.3.4}%
+\contentsline {chapter}{Python Module Index}{39}{section*.123}%
