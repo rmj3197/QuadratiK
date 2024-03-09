@@ -19,5 +19,6 @@ jobs:
         # Replace `linux` below with the appropriate OS
         # Options are `alpine`, `linux`, `macos`, `windows`
         curl -Os https://uploader.codecov.io/latest/linux/codecov
-        chmod +x codecov
+        chmod +x 
+        cd tests
         ./codecov -t ${CODECOV_TOKEN}
