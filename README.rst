@@ -2,9 +2,9 @@
    :target: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
    :alt: Publish to PyPI
 
-.. image:: https://codecov.io/gh/rmj3197/QuadratiK/graph/badge.svg?token=PPFZDNLJ1N 
+.. image:: https://codecov.io/gh/rmj3197/QuadratiK/graph/badge.svg?token=PPFZDNLJ1N
    :target: https://codecov.io/gh/rmj3197/QuadratiK
-   :alt: Codecov 
+   :alt: Codecov
 
 .. image:: https://img.shields.io/pypi/v/QuadratiK
    :alt: PyPI - Version
@@ -16,11 +16,13 @@
    :alt: PyPI Total Downloads
 
 .. image:: https://img.shields.io/github/search/rmj3197/QuadratiK/QuadratiK?logo=github
+   :target: https://github.com/rmj3197/QuadratiK
    :alt: GitHub search hit counter
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
    :alt: Black Code Formatter
+
 
 QuadratiK
 =========
