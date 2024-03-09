@@ -13,7 +13,7 @@ jobs:
     - name: Install all dependencies along with test dependencies
       run: poetry install --with tests
     - name: Run tests and collect coverage
-      run: python -m pytest --cov .
+      run: poetry run pytest --cov .
     - name: Upload coverage reports to Codecov
       run: |
         # Replace `linux` below with the appropriate OS
