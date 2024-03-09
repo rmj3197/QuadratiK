@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Install poetry
       run: pip install poetry
-    - name: Install all dependencies along with test dependencies
+    - name: Install all dependencies along with test dependencies with poetry
       run: poetry install --with tests
     - name: Run tests and collect coverage
       run: poetry run pytest --cov .
