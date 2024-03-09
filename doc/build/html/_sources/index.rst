@@ -32,3 +32,10 @@
    :titlesonly:
 
    development/index.rst
+
+.. toctree::
+   :hidden:
+   :maxdepth: 4
+   :titlesonly:
+
+   changelog/index.rst
