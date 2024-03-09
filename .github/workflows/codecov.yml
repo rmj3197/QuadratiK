@@ -13,12 +13,10 @@ jobs:
     - name: Install all dependencies along with test dependencies with poetry
       run: poetry install --with tests
     - name: Run tests and collect coverage
-      run: poetry run pytest --cov .
+      run: poetry run pytest --cov-report=xml --cov . 
     - name: list all files
-      run: ls
-    - name: list all files prev dir
       run: |
-        cd ..
+        cd tests
         ls
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3.1.6
