@@ -3,9 +3,14 @@ description: Create a report to help us improve the documentation. Alternatively
 labels: [Documentation, 'Needs Triage']
 
 body:
+- type: markdown
+  attributes:
+    value: >
+      #### 
+      This template has been inspired from [scikit-learn](https://github.com/scikit-learn/scikit-learn/tree/main/.github/ISSUE_TEMPLATE). 
 - type: textarea
   attributes:
-    label: Describe the issue linked to the documentation. This template is taken from [scikit-learn](https://github.com/scikit-learn/scikit-learn/tree/main/.github/ISSUE_TEMPLATE). 
+    label: Describe the issue linked to the documentation.
     description: >
       Tell us about the confusion introduced in the documentation.
   validations:
