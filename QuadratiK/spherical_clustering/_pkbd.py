@@ -3,7 +3,6 @@ The PKBD class provides methods for estimating the density and generating sample
 Poisson-kernel based distribution (PKBD).
 """
 
-
 import numpy as np
 import pandas as pd
 import scipy.special as sp
@@ -14,9 +13,9 @@ from sklearn.utils.validation import check_random_state
 from ._utils import c_d_lambda
 
 
-class PKBD():
+class PKBD:
     """
-    Class for estimating density and generating samples of Poisson-kernel based distribution (PKBD). 
+    Class for estimating density and generating samples of Poisson-kernel based distribution (PKBD).
     """
 
     def __init__(self):
@@ -56,11 +55,16 @@ class PKBD():
         if np.linalg.norm(mu, ord=1) == 0:
             raise ValueError("Input argument mu cannot be a vector of zeros")
 
-        mu = mu/np.linalg.norm(mu)
-        x = x/np.linalg.norm(x, axis=1, keepdims=True)
+        mu = mu / np.linalg.norm(mu)
+        x = x / np.linalg.norm(x, axis=1, keepdims=True)
 
-        logretval = np.log(1-rho**2) - np.log(2) - p/2*np.log(np.pi) + \
-            sp.gammaln(p/2) - p/2*np.log(1 + rho**2 - 2*rho * (x@mu))
+        logretval = (
+            np.log(1 - rho**2)
+            - np.log(2)
+            - p / 2 * np.log(np.pi)
+            + sp.gammaln(p / 2)
+            - p / 2 * np.log(1 + rho**2 - 2 * rho * (x @ mu))
+        )
 
         if logdens:
             density = logretval
@@ -69,9 +73,9 @@ class PKBD():
 
         return density
 
-    def rpkb(self, n, mu, rho, method='rejvmf', random_state=None):
+    def rpkb(self, n, mu, rho, method="rejvmf", random_state=None):
         """
-        Function for generating a random sample from PKBD. 
+        Function for generating a random sample from PKBD.
         The number of observation generated is determined by `n`.
 
         Parameters
@@ -86,33 +90,33 @@ class PKBD():
                 Concentration parameter. :math:`\\rho \\in (0,1]`.
 
             method : str, optional
-                String that indicates the method used for sampling observations. 
+                String that indicates the method used for sampling observations.
                 The available methods are :\n
                 - 'rejvmf': acceptance-rejection algorithm using von Mises-Fisher envelops.
                     (Algorithm in Table 2 of Golzy and Markatou 2020);
-                - 'rejacg': using angular central Gaussian envelops. 
+                - 'rejacg': using angular central Gaussian envelops.
                     (Algorithm in Table 1 of Sablica et al. 2023);
 
                 Defaults to 'rejvmf'.
 
-            random_state : int, None, optional. 
+            random_state : int, None, optional.
                 Seed for random number generation. Defaults to None
 
         Returns
         -------
             samples : numpy.ndarray
                 Generated observations from a poisson kernel-based density.
-                This function returns a list with the matrix of generated observations, the 
+                This function returns a list with the matrix of generated observations, the
                 number of tries and the number of acceptance.
 
         References
         -----------
-            Golzy M. & Markatou M. (2020) Poisson Kernel-Based 
-            Clustering on the Sphere: Convergence Properties, Identifiability, 
-            and a Method of Sampling, Journal of Computational and Graphical Statistics, 
+            Golzy M. & Markatou M. (2020) Poisson Kernel-Based
+            Clustering on the Sphere: Convergence Properties, Identifiability,
+            and a Method of Sampling, Journal of Computational and Graphical Statistics,
             29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.
 
-            Sablica L., Hornik K., Leydold J. "Efficient sampling from the PKBD 
+            Sablica L., Hornik K., Leydold J. "Efficient sampling from the PKBD
             distribution," Electronic Journal of Statistics, 17(2), 2180-2209, (2023)
 
         Examples
@@ -125,33 +129,33 @@ class PKBD():
         ...     0.26561508 0.36791766 0.09324676 0.46847274]
         """
 
-        if ((rho >= 1) or (rho < 0)):
-            raise ValueError('Input argument rho must be within [0, 1)')
+        if (rho >= 1) or (rho < 0):
+            raise ValueError("Input argument rho must be within [0, 1)")
 
         if isinstance(mu, list):
             mu = np.array(mu)
 
         if np.sum(abs(mu)) == 0:
-            raise ValueError('Input argument mu cannot be a vector of zeros')
+            raise ValueError("Input argument mu cannot be a vector of zeros")
 
         if not isinstance(n, int) or n < 0:
-            raise ValueError('n must be a positive integer')
+            raise ValueError("n must be a positive integer")
 
-        allowed_methods = ['rejvmf', 'rejacg', 'rejpsaw']
+        allowed_methods = ["rejvmf", "rejacg", "rejpsaw"]
         if method not in allowed_methods:
-            raise ValueError('Unknown method')
+            raise ValueError("Unknown method")
 
         if not isinstance(random_state, (int, type(None))):
             raise ValueError("Please specify a integer or None random_state")
 
-        mu = mu/np.linalg.norm(mu)
+        mu = mu / np.linalg.norm(mu)
         p = len(mu)
 
         generator = check_random_state(random_state)
 
-        if method == 'rejvmf':
-            kappa = p*rho/(1+rho**2)
-            m1 = (1+rho)/((1-rho)**(p-1)*np.exp(kappa))
+        if method == "rejvmf":
+            kappa = p * rho / (1 + rho**2)
+            m1 = (1 + rho) / ((1 - rho) ** (p - 1) * np.exp(kappa))
             retvals = np.zeros((n, p))
             num_accepted = 0
             num_tries = 0
@@ -161,22 +165,22 @@ class PKBD():
                 if isinstance(random_state, int):
                     random_state = random_state + num_accepted
 
-                yx = vonmises_fisher(mu, kappa).rvs(
-                    random_state=random_state).ravel()
-                v = mu@yx
-                f1 = (1-rho**2)/((1+rho**2 - 2*rho*v) ** (p/2))
+                yx = vonmises_fisher(mu, kappa).rvs(random_state=random_state).ravel()
+                v = mu @ yx
+                f1 = (1 - rho**2) / ((1 + rho**2 - 2 * rho * v) ** (p / 2))
                 u = generator.uniform(0, 1)
                 if u <= f1 / (m1 * np.exp(kappa * v)):
                     num_accepted += 1
                     retvals[num_accepted - 1, :] = yx
 
-        elif method == 'rejacg':
-            lamda = 2*rho/(1+rho**2)
-            beta_lambda = lamda/(2-lamda)
-            beta_star = root_scalar(c_d_lambda, args=(p, lamda), bracket=[
-                                    beta_lambda, 1], xtol=0.001).root
-            b1 = beta_star/(1-beta_star)
-            b2 = -1 + 1/np.sqrt(1-beta_star)
+        elif method == "rejacg":
+            lamda = 2 * rho / (1 + rho**2)
+            beta_lambda = lamda / (2 - lamda)
+            beta_star = root_scalar(
+                c_d_lambda, args=(p, lamda), bracket=[beta_lambda, 1], xtol=0.001
+            ).root
+            b1 = beta_star / (1 - beta_star)
+            b2 = -1 + 1 / np.sqrt(1 - beta_star)
             retvals = np.zeros((n, p))
             num_accepted = 0
             num_tries = 0
@@ -184,18 +188,23 @@ class PKBD():
                 num_tries = num_tries + 1
                 u = generator.uniform(0, 1)
                 z = generator.normal(size=p)
-                q = (np.dot(mu.T, z) + b2 * np.dot(mu.T, z)) / \
-                    (np.sqrt(np.dot(z.T, z) + b1 * (np.dot(mu.T, z) ** 2)))
-                m1 = p/2 * (-np.log(1-lamda*q)) + np.log(1 - beta_star*q ** 2) \
-                    - np.log(2/(1 + np.sqrt(1 - lamda**2/beta_star)))
-                yx = (z + b2 * np.dot(mu.T, np.dot(z, mu))) / \
+                q = (np.dot(mu.T, z) + b2 * np.dot(mu.T, z)) / (
                     np.sqrt(np.dot(z.T, z) + b1 * (np.dot(mu.T, z) ** 2))
+                )
+                m1 = (
+                    p / 2 * (-np.log(1 - lamda * q))
+                    + np.log(1 - beta_star * q**2)
+                    - np.log(2 / (1 + np.sqrt(1 - lamda**2 / beta_star)))
+                )
+                yx = (z + b2 * np.dot(mu.T, np.dot(z, mu))) / np.sqrt(
+                    np.dot(z.T, z) + b1 * (np.dot(mu.T, z) ** 2)
+                )
 
                 if np.log(u) <= m1:
                     num_accepted = num_accepted + 1
                     retvals[num_accepted - 1, :] = yx
 
-        elif method == 'rejpsaw':
+        elif method == "rejpsaw":
             raise NotImplementedError("Not implemented at the moment")
 
         return retvals
