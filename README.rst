@@ -13,13 +13,13 @@
    :alt: PyPI - Python Version
 
 .. image:: https://img.shields.io/pepy/dt/QuadratiK
-   :alt: PyPI Total Downlods
+   :alt: PyPI Total Downloads
 
 .. image:: https://img.shields.io/github/search/rmj3197/QuadratiK/QuadratiK?logo=github
    :alt: GitHub search hit counter
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :target: https://github.com/psf/black
+   :target: https://github.com/psf/black
 
 QuadratiK
 =========

@@ -182,6 +182,12 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
 </ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../changelog/index.html">Changelog</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog/v1.0.0.html">QuadratiK Version 1.0.0</a></li>
+</ul>
+</li>
+</ul>
 
     </div>
 </nav></div>
@@ -398,7 +404,7 @@ document.write(`
 <dl class="py method">
 <dt class="sig sig-object py" id="QuadratiK.spherical_clustering.PKBD.rpkb">
 <span class="sig-prename descclassname"><span class="pre">PKBD.</span></span><span class="sig-name descname"><span class="pre">rpkb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rejvmf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.spherical_clustering.PKBD.rpkb" title="Link to this definition">#</a></dt>
-<dd><p>Function for generating a random sample from PKBD. 
+<dd><p>Function for generating a random sample from PKBD.
 The number of observation generated is determined by <cite>n</cite>.</p>
 <section id="id1">
 <h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
@@ -410,7 +416,7 @@ The number of observation generated is determined by <cite>n</cite>.</p>
 </dd>
 <dt>rho<span class="classifier">float</span></dt><dd><p>Concentration parameter. <span class="math notranslate nohighlight">\(\rho \in (0,1]\)</span>.</p>
 </dd>
-<dt>method<span class="classifier">str, optional</span></dt><dd><p>String that indicates the method used for sampling observations. 
+<dt>method<span class="classifier">str, optional</span></dt><dd><p>String that indicates the method used for sampling observations.
 The available methods are :</p>
 <ul class="simple">
 <li><dl class="simple">
@@ -419,14 +425,14 @@ The available methods are :</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>‘rejacg’: using angular central Gaussian envelops. </dt><dd><p>(Algorithm in Table 1 of Sablica et al. 2023);</p>
+<dt>‘rejacg’: using angular central Gaussian envelops.</dt><dd><p>(Algorithm in Table 1 of Sablica et al. 2023);</p>
 </dd>
 </dl>
 </li>
 </ul>
 <p>Defaults to ‘rejvmf’.</p>
 </dd>
-<dt>random_state<span class="classifier">int, None, optional. </span></dt><dd><p>Seed for random number generation. Defaults to None</p>
+<dt>random_state<span class="classifier">int, None, optional.</span></dt><dd><p>Seed for random number generation. Defaults to None</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -436,7 +442,7 @@ The available methods are :</p>
 <blockquote>
 <div><dl class="simple">
 <dt>samples<span class="classifier">numpy.ndarray</span></dt><dd><p>Generated observations from a poisson kernel-based density.
-This function returns a list with the matrix of generated observations, the 
+This function returns a list with the matrix of generated observations, the
 number of tries and the number of acceptance.</p>
 </dd>
 </dl>
@@ -445,11 +451,11 @@ number of tries and the number of acceptance.</p>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <blockquote>
-<div><p>Golzy M. &amp; Markatou M. (2020) Poisson Kernel-Based 
-Clustering on the Sphere: Convergence Properties, Identifiability, 
-and a Method of Sampling, Journal of Computational and Graphical Statistics, 
+<div><p>Golzy M. &amp; Markatou M. (2020) Poisson Kernel-Based
+Clustering on the Sphere: Convergence Properties, Identifiability,
+and a Method of Sampling, Journal of Computational and Graphical Statistics,
 29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.</p>
-<p>Sablica L., Hornik K., Leydold J. “Efficient sampling from the PKBD 
+<p>Sablica L., Hornik K., Leydold J. “Efficient sampling from the PKBD
 distribution,” Electronic Journal of Statistics, 17(2), 2180-2209, (2023)</p>
 </div></blockquote>
 </section>

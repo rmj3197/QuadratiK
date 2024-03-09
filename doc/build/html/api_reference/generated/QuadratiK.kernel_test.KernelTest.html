@@ -180,6 +180,12 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
 </ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../changelog/index.html">Changelog</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog/v1.0.0.html">QuadratiK Version 1.0.0</a></li>
+</ul>
+</li>
+</ul>
 
     </div>
 </nav></div>
@@ -349,7 +355,7 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="QuadratiK.kernel_test.KernelTest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QuadratiK.kernel_test.</span></span><span class="sig-name descname"><span class="pre">KernelTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'subsampling'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">150</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu_hat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_hat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">centering_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nonparam'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alternative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.kernel_test.KernelTest" title="Link to this definition">#</a></dt>
-<dd><p>Class for performing the kernel-based quadratic distance goodness-of-fit tests using 
+<dd><p>Class for performing the kernel-based quadratic distance goodness-of-fit tests using
 the Gaussian kernel with tuning parameter h. Depending on the input <cite>y</cite> the function performs
 the test of multivariate normality, the non-parametric two-sample tests or the k-sample tests.</p>
 <section id="parameters">
@@ -358,7 +364,7 @@ the test of multivariate normality, the non-parametric two-sample tests or the k
 <div><dl class="simple">
 <dt>h<span class="classifier">float, optional</span></dt><dd><p>Bandwidth for the kernel function.</p>
 </dd>
-<dt>method<span class="classifier">str, optional</span></dt><dd><p>The method used for critical value estimation (“subsampling”, “bootstrap”, 
+<dt>method<span class="classifier">str, optional</span></dt><dd><p>The method used for critical value estimation (“subsampling”, “bootstrap”,
 or “permutation”).</p>
 </dd>
 <dt>num_iter<span class="classifier">int, optional</span></dt><dd><p>The number of iterations to use for critical value estimation. Defaults to 150.</p>
@@ -371,18 +377,18 @@ or “permutation”).</p>
 </dd>
 <dt>sigma_hat<span class="classifier">numpy.ndarray, optional</span></dt><dd><p>Covariance matrix of the reference distribution. Defaults to None.</p>
 </dd>
-<dt>alternative<span class="classifier">str, optional</span></dt><dd><p>String indicating the type of alternative to be used for calculating “h” 
+<dt>alternative<span class="classifier">str, optional</span></dt><dd><p>String indicating the type of alternative to be used for calculating “h”
 by the tuning parameter selection algorithm when h is not provided.
 Defaults to ‘None’</p>
 </dd>
 <dt>k_threshold<span class="classifier">int, optional</span></dt><dd><p>Maximum number of groups allowed. Defaults to 10. Change in case of more than 10 groups.</p>
 </dd>
-<dt>random_state<span class="classifier">int, None, optional. </span></dt><dd><p>Seed for random number generation. Defaults to None</p>
+<dt>random_state<span class="classifier">int, None, optional.</span></dt><dd><p>Seed for random number generation. Defaults to None</p>
 </dd>
-<dt>n_jobs<span class="classifier">int, optional. </span></dt><dd><p>n_jobs specifies the maximum number of concurrently 
-running workers. If 1 is given, no joblib parallelism 
-is used at all, which is useful for debugging. For more 
-information on joblib n_jobs refer to - 
+<dt>n_jobs<span class="classifier">int, optional.</span></dt><dd><p>n_jobs specifies the maximum number of concurrently
+running workers. If 1 is given, no joblib parallelism
+is used at all, which is useful for debugging. For more
+information on joblib n_jobs refer to -
 <a class="reference external" href="https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html">https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html</a>.
 Defaults to 8.</p>
 </dd>
@@ -413,7 +419,7 @@ Defaults to 8.</p>
 <blockquote>
 <div><p>Markatou M., Saraceno G., Chen Y (2023). “Two- and k-Sample Tests Based on Quadratic Distances.
 ”Manuscript, (Department of Biostatistics, University at Buffalo)</p>
-<p>Lindsay BG, Markatou M. &amp; Ray S. (2014) Kernels, Degrees of Freedom, and 
+<p>Lindsay BG, Markatou M. &amp; Ray S. (2014) Kernels, Degrees of Freedom, and
 Power Properties of Quadratic Distance Goodness-of-Fit Tests, Journal of the American Statistical
 Association, 109:505, 395-410, DOI: 10.1080/01621459.2013.836972</p>
 </div></blockquote>
@@ -479,7 +485,7 @@ Association, 109:505, 395-410, DOI: 10.1080/01621459.2013.836972</p>
 <td><p>Summary function generates a table for the kernel test results and the summary statistics.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#QuadratiK.kernel_test.KernelTest.test" title="QuadratiK.kernel_test.KernelTest.test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KernelTest.test</span></code></a>(x[, y])</p></td>
-<td><p>Function to perform the kernel-based quadratic distance tests using  the Gaussian kernel with bandwidth parameter h.</p></td>
+<td><p>Function to perform the kernel-based quadratic distance tests using the Gaussian kernel with bandwidth parameter h.</p></td>
 </tr>
 </tbody>
 </table>
@@ -517,7 +523,7 @@ Supports all available options in tabulate, see here: <a class="reference extern
 <h2>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><dl class="simple">
-<dt>summary<span class="classifier">str</span></dt><dd><p>A string formatted in the desired output 
+<dt>summary<span class="classifier">str</span></dt><dd><p>A string formatted in the desired output
 format with the kernel test results and summary statistics.</p>
 </dd>
 </dl>
@@ -528,9 +534,9 @@ format with the kernel test results and summary statistics.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="QuadratiK.kernel_test.KernelTest.test">
 <span class="sig-prename descclassname"><span class="pre">KernelTest.</span></span><span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.kernel_test.KernelTest.test" title="Link to this definition">#</a></dt>
-<dd><p>Function to perform the kernel-based quadratic distance tests using 
-the Gaussian kernel with bandwidth parameter h. 
-Depending on the shape of the <cite>y</cite>, the function performs the tests of 
+<dd><p>Function to perform the kernel-based quadratic distance tests using
+the Gaussian kernel with bandwidth parameter h.
+Depending on the shape of the <cite>y</cite>, the function performs the tests of
 multivariate normality, the non-parametric two-sample tests or the k-sample tests.</p>
 <section id="id3">
 <h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
@@ -538,7 +544,7 @@ multivariate normality, the non-parametric two-sample tests or the k-sample test
 <div><dl class="simple">
 <dt>x<span class="classifier">numpy.ndarray or pandas.DataFrame.</span></dt><dd><p>A numeric array of data values.</p>
 </dd>
-<dt>y<span class="classifier">numpy.ndarray or pandas.DataFrame, optional</span></dt><dd><p>A numeric array data values (for two-sample test) and a 1D array of class labels 
+<dt>y<span class="classifier">numpy.ndarray or pandas.DataFrame, optional</span></dt><dd><p>A numeric array data values (for two-sample test) and a 1D array of class labels
 (for k-sample test). Defaults to None.</p>
 </dd>
 </dl>
