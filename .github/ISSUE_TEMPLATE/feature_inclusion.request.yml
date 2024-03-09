@@ -1,0 +1,22 @@
+name: Feature Request
+description: Suggest a new algorithm, enhancement to an existing algorithm, etc.
+labels: ['New Feature', 'Needs Triage']
+
+body:
+- type: markdown
+  attributes:
+    value: >
+      #### If you want to propose a new algorithm or feature, please refer first email to raktimmu at buffalo.edu.
+- type: textarea
+  attributes:
+    label: Describe the feature you want to enable
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Describe your proposed idea
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Additional context
