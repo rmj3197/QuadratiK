@@ -5,9 +5,15 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Codecov Workflow
-
+    name: Run pytest with cov
     steps:
+    - uses: actions/checkout@v4
+    - name: Install poetry
+      run: pip install poetry
+    - name: Install all dependencies along with test dependencies with poetry
+      run: poetry install --with tests
+    - name: Run tests and collect coverage
+      run: poetry run pytest --cov .
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.1
       with:
