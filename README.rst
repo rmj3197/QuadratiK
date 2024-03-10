@@ -6,6 +6,9 @@ QuadratiK
 .. image:: https://codecov.io/gh/rmj3197/QuadratiK/graph/badge.svg?token=PPFZDNLJ1N
    :target: https://codecov.io/gh/rmj3197/QuadratiK
    :alt: Codecov
+.. image:: https://readthedocs.org/projects/quadratik/badge/?version=latest
+   :target: https://quadratik.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 .. image:: https://img.shields.io/pypi/v/QuadratiK
    :alt: PyPI - Version
 .. image:: https://img.shields.io/pypi/pyversions/QuadratiK
