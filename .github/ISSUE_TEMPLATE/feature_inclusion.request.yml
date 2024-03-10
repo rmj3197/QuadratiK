@@ -6,7 +6,9 @@ body:
 - type: markdown
   attributes:
     value: >
-      #### If you want to propose a new algorithm or feature, please refer first email to raktimmu at buffalo.edu.
+      #### 
+      This template has been taken from [scikit-learn](https://github.com/scikit-learn/scikit-learn/tree/main/.github/ISSUE_TEMPLATE).
+      If you want to propose a new algorithm or feature, please refer first email to raktimmu at buffalo.edu.
 - type: textarea
   attributes:
     label: Describe the feature you want to enable

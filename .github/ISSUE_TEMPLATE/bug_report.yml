@@ -7,7 +7,7 @@ body:
   attributes:
     value: >
       #### 
-      This template has been inspired from [scikit-learn](https://github.com/scikit-learn/scikit-learn/tree/main/.github/ISSUE_TEMPLATE). 
+      This template has been taken from [scikit-learn](https://github.com/scikit-learn/scikit-learn/tree/main/.github/ISSUE_TEMPLATE). 
       Before submitting a bug, please make sure the issue hasn't been already
       addressed by searching through [the past issues](https://github.com/rmj3197/QuadratiK/issues).
 - type: textarea
