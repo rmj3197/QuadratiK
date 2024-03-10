@@ -3,24 +3,18 @@ QuadratiK
 .. image:: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg
    :target: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
    :alt: Publish to PyPI
-
 .. image:: https://codecov.io/gh/rmj3197/QuadratiK/graph/badge.svg?token=PPFZDNLJ1N
    :target: https://codecov.io/gh/rmj3197/QuadratiK
    :alt: Codecov
-
 .. image:: https://img.shields.io/pypi/v/QuadratiK
    :alt: PyPI - Version
-
 .. image:: https://img.shields.io/pypi/pyversions/QuadratiK
    :alt: PyPI - Python Version
-
 .. image:: https://img.shields.io/pepy/dt/QuadratiK
    :alt: PyPI Total Downloads
-
 .. image:: https://img.shields.io/github/search/rmj3197/QuadratiK/QuadratiK?logo=github
    :target: https://github.com/rmj3197/QuadratiK
    :alt: GitHub search hit counter
-
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
    :alt: Black Code Formatter
@@ -65,32 +59,28 @@ Development Version Installation
 
 For installing the development version, please download the code files from the master branch of the Github repository. 
 Please note that installation from Github might be buggy, for latest stable release please download using ``pip``.
-We recommend poetry for quick installation post rapid changes to the code. More information on using poetry can
-be found at `Poetry <https://python-poetry.org/>`_. For downloading from Github and installing using ``poetry`` use 
-the following instructions, 
+For downloading from Github use the following instructions, 
 
 .. code-block:: bash
 
    git clone https://github.com/rmj3197/QuadratiK.git
-   cd navigate/to/QuadratiK
-   pip install poetry
-   poetry install
-
+   cd QuadratiK
+   pip install -e .
 
 Contributing Guide
 ~~~~~~~~~~~~~~~~~~~~
 
-Please refer to the Contributing guide at : 
+Please refer to the Contributing guide `here <>`_.
 
 Code of Conduct
 ~~~~~~~~~~~~~~~~
 
-The code of conduct can be found at '<>`. 
+The code of conduct can be found at `Code of Conduct <>`_. 
 
 License
 ~~~~~~~~
 
-This project uses the GPL-3.0 license, with a full version of the license included in the repository on Github.
+This project uses the GPL-3.0 license, with a full version of the license included in the repository `here <https://github.com/rmj3197/QuadratiK/blob/master/LICENSE>`_.
 
 Funding Information
 ++++++++++++++++++++

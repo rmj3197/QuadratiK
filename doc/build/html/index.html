@@ -181,10 +181,14 @@
 </li>
 </ul>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="development/index.html">Development</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="development/index.html">Development</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="development/CODE_OF_CONDUCT.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development/CONTRIBUTING.html">Contributing to QuadratiK</a></li>
+</ul>
+</li>
 </ul>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="changelog/index.html">Changelog</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="changelog/index.html">Changelog</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="changelog/v1.0.0.html">QuadratiK Version 1.0.0</a></li>
 </ul>
 </li>
@@ -341,7 +345,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-using-pip">Installation using <code class="docutils literal notranslate"><span class="pre">pip</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-guide">Contributing Guide</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#community">Community</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#development-version-installation">Development Version Installation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-guide">Contributing Guide</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-of-conduct">Code of Conduct</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funding-information">Funding Information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a><ul class="nav section-nav flex-column">
 </ul>
@@ -393,9 +403,31 @@ document.write(`
 <h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
 <p>Find basic examples at <a class="reference external" href="https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html">QuadratiK Examples</a></p>
 </section>
+<section id="community">
+<h3>Community<a class="headerlink" href="#community" title="Link to this heading">#</a></h3>
+<section id="development-version-installation">
+<h4>Development Version Installation<a class="headerlink" href="#development-version-installation" title="Link to this heading">#</a></h4>
+<p>For installing the development version, please download the code files from the master branch of the Github repository.
+Please note that installation from Github might be buggy, for latest stable release please download using <code class="docutils literal notranslate"><span class="pre">pip</span></code>.
+For downloading from Github use the following instructions,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rmj3197/QuadratiK.git
+<span class="nb">cd</span><span class="w"> </span>QuadratiK
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
 <section id="contributing-guide">
-<h3>Contributing Guide<a class="headerlink" href="#contributing-guide" title="Link to this heading">#</a></h3>
-<p>Please refer to the Contributing guide at :</p>
+<h4>Contributing Guide<a class="headerlink" href="#contributing-guide" title="Link to this heading">#</a></h4>
+<p>Please refer to the Contributing guide <a class="reference external" href="https://github.com/rmj3197/QuadratiK/blob/master/CONTRIBUTING.rst">here</a>.</p>
+</section>
+<section id="code-of-conduct">
+<h4>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Link to this heading">#</a></h4>
+<p>The code of conduct can be found at <a class="reference external" href="https://github.com/rmj3197/QuadratiK/blob/master/CODE_OF_CONDUCT.rst">Code of Conduct</a>.</p>
+</section>
+<section id="license">
+<h4>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h4>
+<p>This project uses the GPL-3.0 license, with a full version of the license included in the repository <a class="reference external" href="https://github.com/rmj3197/QuadratiK/blob/master/LICENSE">here</a>.</p>
+</section>
 </section>
 <section id="funding-information">
 <h3>Funding Information<a class="headerlink" href="#funding-information" title="Link to this heading">#</a></h3>
@@ -467,7 +499,13 @@ Manuscript, (Department of Biostatistics, University at Buffalo).</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-using-pip">Installation using <code class="docutils literal notranslate"><span class="pre">pip</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-guide">Contributing Guide</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#community">Community</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#development-version-installation">Development Version Installation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-guide">Contributing Guide</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-of-conduct">Code of Conduct</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funding-information">Funding Information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a><ul class="nav section-nav flex-column">
 </ul>
