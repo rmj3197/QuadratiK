@@ -1,26 +1,44 @@
 QuadratiK
 =========
-.. image:: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg
+|GitHub Actions|_ |Codecov|_ |Documentation Status|_ |PyPI Version|_ |PyPI Python Version|_ |PyPI Downloads|_ |GitHub Search|_ |Black|_
+
+.. |GitHub Actions| image:: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg
    :target: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
    :alt: Publish to PyPI
-.. image:: https://codecov.io/gh/rmj3197/QuadratiK/graph/badge.svg?token=PPFZDNLJ1N
+
+.. |Codecov| image:: https://codecov.io/gh/rmj3197/QuadratiK/graph/badge.svg?token=PPFZDNLJ1N
    :target: https://codecov.io/gh/rmj3197/QuadratiK
    :alt: Codecov
-.. image:: https://readthedocs.org/projects/quadratik/badge/?version=latest
+
+.. |Documentation Status| image:: https://readthedocs.org/projects/quadratik/badge/?version=latest
    :target: https://quadratik.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
-.. image:: https://img.shields.io/pypi/v/QuadratiK
+
+.. |PyPI Version| image:: https://img.shields.io/pypi/v/QuadratiK
    :alt: PyPI - Version
-.. image:: https://img.shields.io/pypi/pyversions/QuadratiK
+
+.. |PyPI Python Version| image:: https://img.shields.io/pypi/pyversions/QuadratiK
    :alt: PyPI - Python Version
-.. image:: https://img.shields.io/pepy/dt/QuadratiK
+
+.. |PyPI Downloads| image:: https://img.shields.io/pepy/dt/QuadratiK
    :alt: PyPI Total Downloads
-.. image:: https://img.shields.io/github/search/rmj3197/QuadratiK/QuadratiK?logo=github
+
+.. |GitHub Search| image:: https://img.shields.io/github/search/rmj3197/QuadratiK/QuadratiK?logo=github
    :target: https://github.com/rmj3197/QuadratiK
    :alt: GitHub search hit counter
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+
+.. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
    :alt: Black Code Formatter
+
+.. _GitHub Actions: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
+.. _Codecov: https://codecov.io/gh/rmj3197/QuadratiK
+.. _Documentation Status: https://quadratik.readthedocs.io/en/latest/?badge=latest
+.. _PyPI Version: https://pypi.org/project/QuadratiK/
+.. _PyPI Python Version: https://pypi.org/project/QuadratiK/
+.. _PyPI Downloads: https://pepy.tech/project/quadratik
+.. _GitHub Search: https://github.com/rmj3197/QuadratiK
+.. _Black: https://github.com/psf/black
 
 Introduction
 -------------
