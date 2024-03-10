@@ -70,12 +70,12 @@ For downloading from Github use the following instructions,
 Contributing Guide
 ~~~~~~~~~~~~~~~~~~~~
 
-Please refer to the Contributing guide `here <>`_.
+Please refer to the `Contributing Guide <https://quadratik.readthedocs.io/en/latest/development/CONTRIBUTING.html>`_.
 
 Code of Conduct
 ~~~~~~~~~~~~~~~~
 
-The code of conduct can be found at `Code of Conduct <>`_. 
+The code of conduct can be found at `Code of Conduct <https://quadratik.readthedocs.io/en/latest/development/CODE_OF_CONDUCT.html>`_. 
 
 License
 ~~~~~~~~
