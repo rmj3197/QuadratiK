@@ -2,15 +2,16 @@
 Critical value for the uniformity test on the sphere based 
 on the centered poisson kernel tests
 """
+
 import numpy as np
 from sklearn.utils.parallel import Parallel, delayed
 
 from ._utils import poisson_cv_helper
 
 
-def poisson_cv(d, size, rho, num_iter, quantile, random_state = None, n_jobs=8):
+def poisson_cv(d, size, rho, num_iter, quantile, random_state=None, n_jobs=8):
     """
-    Perform a Poisson kernel-based test for uniformity multiple 
+    Perform a Poisson kernel-based test for uniformity multiple
     times and return the quantile of the results.
 
     Parameters
@@ -29,15 +30,15 @@ def poisson_cv(d, size, rho, num_iter, quantile, random_state = None, n_jobs=8):
 
     quantile : float
         The quantile value to be calculated from the results.
-    
-    random_state : int, None, optional. 
+
+    random_state : int, None, optional.
             Seed for random number generation. Defaults to None
 
     n_jobs : int, optional
-        n_jobs specifies the maximum number of concurrently 
-        running workers. If 1 is given, no joblib parallelism 
-        is used at all, which is useful for debugging. For more 
-        information on joblib n_jobs refer to - 
+        n_jobs specifies the maximum number of concurrently
+        running workers. If 1 is given, no joblib parallelism
+        is used at all, which is useful for debugging. For more
+        information on joblib n_jobs refer to -
         https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
 
     Returns
@@ -51,6 +52,8 @@ def poisson_cv(d, size, rho, num_iter, quantile, random_state = None, n_jobs=8):
         Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/ss.202022.0347
     """
 
-    results = Parallel(n_jobs=n_jobs)(delayed(poisson_cv_helper)
-                                      (size, d, rho, i, random_state) for i in range(num_iter))
+    results = Parallel(n_jobs=n_jobs)(
+        delayed(poisson_cv_helper)(size, d, rho, i, random_state)
+        for i in range(num_iter)
+    )
     return np.quantile(results, quantile)

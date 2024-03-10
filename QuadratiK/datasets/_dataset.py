@@ -16,20 +16,20 @@ def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=F
     Parameters
     ----------
 
-        desc : boolean, optional 
-            If set to `True`, the function will return the description along with the data. 
+        desc : boolean, optional
+            If set to `True`, the function will return the description along with the data.
             If set to `False`, the description will not be included. Defaults to False.
 
         return_X_y : boolean, optional
-            Determines whether the function should return the data as separate arrays (`X` and `y`). 
+            Determines whether the function should return the data as separate arrays (`X` and `y`).
             Defaults to False.
 
         as_dataframe : boolean, optional
-            Determines whether the function should return the data as a pandas DataFrame (Trues) 
-            or as a numpy array (False). Defaults to True. 
+            Determines whether the function should return the data as a pandas DataFrame (Trues)
+            or as a numpy array (False). Defaults to True.
 
         scaled : boolean, optional
-            Determines whether or not the data should be scaled. If set to True, the data will be 
+            Determines whether or not the data should be scaled. If set to True, the data will be
             divided by its Euclidean norm along each row. Defaults to False.
 
     Returns
@@ -45,9 +45,9 @@ def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=F
             Dataframe of the data with shape (n_samples, n_features + class)
 
         (desc, data, target) : tuple, if desc is True and return_X_y is True
-            A tuple of description and two numpy.ndarray. The first containing a 2D 
-            array of shape (n_samples, n_features) with each row representing 
-            one sample and each column representing the features. The second 
+            A tuple of description and two numpy.ndarray. The first containing a 2D
+            array of shape (n_samples, n_features) with each row representing
+            one sample and each column representing the features. The second
             ndarray of shape (n_samples,) containing the target samples.
 
         (desc, data) : tuple, if desc is True and as_dataframe is True
@@ -56,10 +56,10 @@ def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=F
 
     References
     ----------
-        Rohra, J.G., Perumal, B., Narayanan, S.J., Thakur, P., Bhatt, R.B. (2017). 
-        User Localization in an Indoor Environment Using Fuzzy Hybrid of Particle Swarm Optimization 
-        & Gravitational Search Algorithm with Neural Networks. In: Deep, K., et al. Proceedings of 
-        Sixth International Conference on Soft Computing for Problem Solving. Advances in Intelligent 
+        Rohra, J.G., Perumal, B., Narayanan, S.J., Thakur, P., Bhatt, R.B. (2017).
+        User Localization in an Indoor Environment Using Fuzzy Hybrid of Particle Swarm Optimization
+        & Gravitational Search Algorithm with Neural Networks. In: Deep, K., et al. Proceedings of
+        Sixth International Conference on Soft Computing for Problem Solving. Advances in Intelligent
         Systems and Computing, vol 546. Springer, Singapore. https://doi.org/10.1007/978-981-10-3322-3_27
 
     Source
@@ -73,17 +73,21 @@ def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=F
     >>> X, y = load_wireless_data(return_X_y=True)
     """
 
-    data = np.loadtxt(str(resources.files(
-        "QuadratiK.datasets").joinpath("data/wifi_localization.txt")))
+    data = np.loadtxt(
+        str(
+            resources.files("QuadratiK.datasets").joinpath("data/wifi_localization.txt")
+        )
+    )
 
     if scaled:
-        data = data/np.linalg.norm(data, axis=1, keepdims=True)
+        data = data / np.linalg.norm(data, axis=1, keepdims=True)
 
     feature_names = ["WS1", "WS2", "WS3", "WS4", "WS5", "WS6", "WS7", "Class"]
 
     if desc:
         desc_file = resources.files("QuadratiK.datasets").joinpath(
-            "data/wireless_localization_dataset.rst")
+            "data/wireless_localization_dataset.rst"
+        )
         fdescr = desc_file.read_text()
 
     if return_X_y:

@@ -182,6 +182,12 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
 </ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../changelog/index.html">Changelog</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog/v1.0.0.html">QuadratiK Version 1.0.0</a></li>
+</ul>
+</li>
+</ul>
 
     </div>
 </nav></div>
@@ -351,25 +357,25 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="QuadratiK.poisson_kernel_test.PoissonKernelTest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QuadratiK.poisson_kernel_test.</span></span><span class="sig-name descname"><span class="pre">PoissonKernelTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.poisson_kernel_test.PoissonKernelTest" title="Link to this definition">#</a></dt>
-<dd><p>Class for Poisson kernel-based quadratic distance 
+<dd><p>Class for Poisson kernel-based quadratic distance
 test of Uniformity on the Sphere</p>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><dl class="simple">
-<dt>rho<span class="classifier">float</span></dt><dd><p>The value of concentration parameter used for the 
+<dt>rho<span class="classifier">float</span></dt><dd><p>The value of concentration parameter used for the
 Poisson kernel function.</p>
 </dd>
 <dt>num_iter<span class="classifier">int, optional</span></dt><dd><p>Number of iterations for critical value estimation of U-statistic.</p>
 </dd>
 <dt>quantile<span class="classifier">float, optional</span></dt><dd><p>The quantile to use for critical value estimation</p>
 </dd>
-<dt>random_state<span class="classifier">int, None, optional. </span></dt><dd><p>Seed for random number generation. Defaults to None</p>
+<dt>random_state<span class="classifier">int, None, optional.</span></dt><dd><p>Seed for random number generation. Defaults to None</p>
 </dd>
-<dt>n_jobs<span class="classifier">int, optional.</span></dt><dd><p>n_jobs specifies the maximum number of concurrently running workers. 
+<dt>n_jobs<span class="classifier">int, optional.</span></dt><dd><p>n_jobs specifies the maximum number of concurrently running workers.
 If 1 is given, no joblib parallelism is used at all, which is useful for debugging.
-For more information on joblib n_jobs refer 
-to - <a class="reference external" href="https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html">https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html</a>. 
+For more information on joblib n_jobs refer
+to - <a class="reference external" href="https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html">https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html</a>.
 Defaults to 8.</p>
 </dd>
 </dl>
@@ -383,14 +389,14 @@ Defaults to 8.</p>
 </dd>
 <dt>execution_time<span class="classifier">float</span></dt><dd><p>Time taken for the test method to execute</p>
 </dd>
-<dt>u_statistic_h0_<span class="classifier">boolean</span></dt><dd><p>A logical value indicating whether or not the null hypothesis 
+<dt>u_statistic_h0_<span class="classifier">boolean</span></dt><dd><p>A logical value indicating whether or not the null hypothesis
 is rejected according to Un</p>
 </dd>
 <dt>u_statistic_un_<span class="classifier">float</span></dt><dd><p>The value of the U-statistic.</p>
 </dd>
 <dt>u_statistic_cv_<span class="classifier">float</span></dt><dd><p>The empirical critical value for Un</p>
 </dd>
-<dt>v_statistic_h0_<span class="classifier">boolean</span></dt><dd><p>A logical value indicating whether or not the null hypothesis is 
+<dt>v_statistic_h0_<span class="classifier">boolean</span></dt><dd><p>A logical value indicating whether or not the null hypothesis is
 rejected according to Vn.</p>
 </dd>
 <dt>v_statistic_vn_<span class="classifier">float</span></dt><dd><p>The value of the V-statistic.</p>
@@ -444,7 +450,7 @@ Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/s
 <td><p>Function to generate descriptive statistics.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#QuadratiK.poisson_kernel_test.PoissonKernelTest.summary" title="QuadratiK.poisson_kernel_test.PoissonKernelTest.summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoissonKernelTest.summary</span></code></a>([print_fmt])</p></td>
-<td><p>Summary function generates a table for  the poisson kernel test results and the summary statistics.</p></td>
+<td><p>Summary function generates a table for the poisson kernel test results and the summary statistics.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#QuadratiK.poisson_kernel_test.PoissonKernelTest.test" title="QuadratiK.poisson_kernel_test.PoissonKernelTest.test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoissonKernelTest.test</span></code></a>(x)</p></td>
 <td><p>Performs the Poisson kernel-based quadratic distance Goodness-of-fit tests for Uniformity for spherical data using the Poisson kernel with concentration parameter <span class="math notranslate nohighlight">\(rho\)</span></p></td>
@@ -470,15 +476,15 @@ Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/s
 <dl class="py method">
 <dt class="sig sig-object py" id="QuadratiK.poisson_kernel_test.PoissonKernelTest.summary">
 <span class="sig-prename descclassname"><span class="pre">PoissonKernelTest.</span></span><span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">print_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'simple_grid'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.poisson_kernel_test.PoissonKernelTest.summary" title="Link to this definition">#</a></dt>
-<dd><p>Summary function generates a table for 
+<dd><p>Summary function generates a table for
 the poisson kernel test results and the summary statistics.</p>
 <section id="id1">
 <h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><dl class="simple">
-<dt>print_fmt<span class="classifier">str, optional. </span></dt><dd><p>Used for printing the output in the desired format. 
-Supports all available options in tabulate, 
-see here: <a class="reference external" href="https://pypi.org/project/tabulate/">https://pypi.org/project/tabulate/</a>. 
+<dt>print_fmt<span class="classifier">str, optional.</span></dt><dd><p>Used for printing the output in the desired format.
+Supports all available options in tabulate,
+see here: <a class="reference external" href="https://pypi.org/project/tabulate/">https://pypi.org/project/tabulate/</a>.
 Defaults to “simple_grid”.</p>
 </dd>
 </dl>
@@ -488,7 +494,7 @@ Defaults to “simple_grid”.</p>
 <h2>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><dl class="simple">
-<dt>summary<span class="classifier">str</span></dt><dd><p>A string formatted in the desired output 
+<dt>summary<span class="classifier">str</span></dt><dd><p>A string formatted in the desired output
 format with the kernel test results and summary statistics.</p>
 </dd>
 </dl>

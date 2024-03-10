@@ -12,13 +12,14 @@ from ._cv_functions import cv_twosample, cv_normality, cv_ksample
 from ._h_selection import select_h
 
 time_decorator = importlib.import_module(
-    'QuadratiK.tools._utils').class_method_call_timing
-stats = importlib.import_module('QuadratiK.tools').stats
+    "QuadratiK.tools._utils"
+).class_method_call_timing
+stats = importlib.import_module("QuadratiK.tools").stats
 
 
-class KernelTest():
+class KernelTest:
     """
-    Class for performing the kernel-based quadratic distance goodness-of-fit tests using 
+    Class for performing the kernel-based quadratic distance goodness-of-fit tests using
     the Gaussian kernel with tuning parameter h. Depending on the input `y` the function performs
     the test of multivariate normality, the non-parametric two-sample tests or the k-sample tests.
 
@@ -28,7 +29,7 @@ class KernelTest():
             Bandwidth for the kernel function.
 
         method : str, optional
-            The method used for critical value estimation ("subsampling", "bootstrap", 
+            The method used for critical value estimation ("subsampling", "bootstrap",
             or "permutation").
 
         num_iter : int, optional
@@ -47,21 +48,21 @@ class KernelTest():
             Covariance matrix of the reference distribution. Defaults to None.
 
         alternative : str, optional
-            String indicating the type of alternative to be used for calculating "h" 
+            String indicating the type of alternative to be used for calculating "h"
             by the tuning parameter selection algorithm when h is not provided.
             Defaults to 'None'
 
         k_threshold : int, optional
             Maximum number of groups allowed. Defaults to 10. Change in case of more than 10 groups.
 
-        random_state : int, None, optional. 
+        random_state : int, None, optional.
             Seed for random number generation. Defaults to None
 
-        n_jobs : int, optional. 
-            n_jobs specifies the maximum number of concurrently 
-            running workers. If 1 is given, no joblib parallelism 
-            is used at all, which is useful for debugging. For more 
-            information on joblib n_jobs refer to - 
+        n_jobs : int, optional.
+            n_jobs specifies the maximum number of concurrently
+            running workers. If 1 is given, no joblib parallelism
+            is used at all, which is useful for debugging. For more
+            information on joblib n_jobs refer to -
             https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
             Defaults to 8.
 
@@ -90,7 +91,7 @@ class KernelTest():
         Markatou M., Saraceno G., Chen Y (2023). “Two- and k-Sample Tests Based on Quadratic Distances.
         ”Manuscript, (Department of Biostatistics, University at Buffalo)
 
-        Lindsay BG, Markatou M. & Ray S. (2014) Kernels, Degrees of Freedom, and 
+        Lindsay BG, Markatou M. & Ray S. (2014) Kernels, Degrees of Freedom, and
         Power Properties of Quadratic Distance Goodness-of-Fit Tests, Journal of the American Statistical
         Association, 109:505, 395-410, DOI: 10.1080/01621459.2013.836972
 
@@ -116,7 +117,7 @@ class KernelTest():
     ... Critical Value (CV) : 0.0004464111809800183
     ... CV Method : Empirical
     ... Selected tuning parameter : 0.4
-    
+
     >>> # Example for two sample test
     >>> import numpy as np
     >>> from QuadratiK.kernel_test import KernelTest
@@ -141,9 +142,21 @@ class KernelTest():
     ... Selected tuning parameter : 0.4
     """
 
-    def __init__(self, h=None, method="subsampling", num_iter=150,
-                 b=0.9, quantile=0.95, mu_hat=None, sigma_hat=None, centering_type="nonparam",
-                 alternative=None, k_threshold=10, random_state=None, n_jobs=8):
+    def __init__(
+        self,
+        h=None,
+        method="subsampling",
+        num_iter=150,
+        b=0.9,
+        quantile=0.95,
+        mu_hat=None,
+        sigma_hat=None,
+        centering_type="nonparam",
+        alternative=None,
+        k_threshold=10,
+        random_state=None,
+        n_jobs=8,
+    ):
         self.h = h
         self.method = method
         self.num_iter = num_iter
@@ -160,9 +173,9 @@ class KernelTest():
     @time_decorator
     def test(self, x, y=None):
         """
-        Function to perform the kernel-based quadratic distance tests using 
-        the Gaussian kernel with bandwidth parameter h. 
-        Depending on the shape of the `y`, the function performs the tests of 
+        Function to perform the kernel-based quadratic distance tests using
+        the Gaussian kernel with bandwidth parameter h.
+        Depending on the shape of the `y`, the function performs the tests of
         multivariate normality, the non-parametric two-sample tests or the k-sample tests.
 
         Parameters
@@ -170,7 +183,7 @@ class KernelTest():
             x : numpy.ndarray or pandas.DataFrame.
                 A numeric array of data values.
             y : numpy.ndarray or pandas.DataFrame, optional
-                A numeric array data values (for two-sample test) and a 1D array of class labels 
+                A numeric array data values (for two-sample test) and a 1D array of class labels
                 (for k-sample test). Defaults to None.
 
         Returns
@@ -188,8 +201,7 @@ class KernelTest():
         elif isinstance(self.x, pd.DataFrame):
             self.x = self.x.to_numpy()
         else:
-            raise TypeError(
-                "x must be a numpy array or a pandas dataframe")
+            raise TypeError("x must be a numpy array or a pandas dataframe")
 
         if self.y is not None:
             if isinstance(self.y, np.ndarray):
@@ -198,42 +210,48 @@ class KernelTest():
             elif isinstance(y, pd.DataFrame):
                 self.y = self.y.to_numpy()
             else:
-                raise TypeError(
-                    "y must be a numpy array or a pandas dataframe")
+                raise TypeError("y must be a numpy array or a pandas dataframe")
 
         valid_methods = ["bootstrap", "permutation", "subsampling"]
         if self.method not in valid_methods:
             raise ValueError(
-                "method must be one of 'bootstrap', 'permutation', or 'subsampling'")
+                "method must be one of 'bootstrap', 'permutation', or 'subsampling'"
+            )
 
         if self.b is not None:
             if not 0 < self.b <= 1:
                 raise ValueError(
                     "b indicates the proportion used for the \
-                        subsamples in the subsampling algorithm. It must be in (0, 1].")
+                        subsamples in the subsampling algorithm. It must be in (0, 1]."
+                )
 
         valid_centering_type = ["param", "nonparam"]
         if self.centering_type not in valid_centering_type:
-            raise ValueError(
-                "centering must be chosen between 'param' and 'nonparam'")
+            raise ValueError("centering must be chosen between 'param' and 'nonparam'")
 
         if self.h is None:
             if self.alternative is None:
                 raise ValueError(
                     "You have not specified a value of h. "
                     "Please specify a alternative from 'location', 'scale' or 'skewness' "
-                    "for the tuning parameter selection algorithm to run")
-        
-        if not isinstance(self.random_state,(int,type(None))):
-            raise ValueError("Please specify a integer or None random_state") 
+                    "for the tuning parameter selection algorithm to run"
+                )
+
+        if not isinstance(self.random_state, (int, type(None))):
+            raise ValueError("Please specify a integer or None random_state")
 
         size_x, k = self.x.shape
 
         if self.y is None:
             if self.h is None:
                 self.h = select_h(
-                    self.x, y=None, alternative=self.alternative, num_iter=self.num_iter,
-                    quantile=self.quantile, n_jobs=self.n_jobs)[0]
+                    self.x,
+                    y=None,
+                    alternative=self.alternative,
+                    num_iter=self.num_iter,
+                    quantile=self.quantile,
+                    n_jobs=self.n_jobs,
+                )[0]
 
             # Compute the estimates of mean and covariance from the data
             if self.mu_hat is None:
@@ -244,9 +262,19 @@ class KernelTest():
                     self.sigma_hat = np.array([[np.take(self.sigma_hat, 0)]])
 
             statistic = stat_normality_test(
-                self.x, self.h, self.mu_hat, self.sigma_hat, self.centering_type)
-            cv = cv_normality(size_x, self.h, self.mu_hat, self.sigma_hat,
-                              self.num_iter, self.quantile, self.centering_type, self.random_state, self.n_jobs)
+                self.x, self.h, self.mu_hat, self.sigma_hat, self.centering_type
+            )
+            cv = cv_normality(
+                size_x,
+                self.h,
+                self.mu_hat,
+                self.sigma_hat,
+                self.num_iter,
+                self.quantile,
+                self.centering_type,
+                self.random_state,
+                self.n_jobs,
+            )
             h0 = statistic > cv
 
             self.test_type_ = "Kernel-based quadratic distance Normality test"
@@ -261,15 +289,22 @@ class KernelTest():
             if k > self.k_threshold:
                 if (self.y is not None) and (self.x.shape[1] != self.y.shape[1]):
                     raise ValueError(
-                        "'x' and 'y' must have the same number of columns.")
+                        "'x' and 'y' must have the same number of columns."
+                    )
 
                 size_y = self.y.shape[0]
                 data_pool = np.vstack((self.x, self.y))
 
                 if self.h is None:
-                    self.h = select_h(self.x, self.y, alternative=self.alternative,
-                                      quantile=self.quantile, method=self.method,
-                                      num_iter=self.num_iter, n_jobs=self.n_jobs)[0]
+                    self.h = select_h(
+                        self.x,
+                        self.y,
+                        alternative=self.alternative,
+                        quantile=self.quantile,
+                        method=self.method,
+                        num_iter=self.num_iter,
+                        n_jobs=self.n_jobs,
+                    )[0]
 
                 if self.centering_type == "param":
                     # Compute the estimates of mean and covariance from the data
@@ -279,14 +314,31 @@ class KernelTest():
                         self.sigma_hat = np.cov(data_pool, rowvar=False)
 
                     statistic = stat_two_sample(
-                        self.x, self.y, self.h, self.mu_hat, self.sigma_hat, "param")
+                        self.x, self.y, self.h, self.mu_hat, self.sigma_hat, "param"
+                    )
 
                 elif self.centering_type == "nonparam":
-                    statistic = stat_two_sample(self.x, self.y, self.h, np.array(
-                        [[0]]), np.array([[1]]), "nonparam")
+                    statistic = stat_two_sample(
+                        self.x,
+                        self.y,
+                        self.h,
+                        np.array([[0]]),
+                        np.array([[1]]),
+                        "nonparam",
+                    )
 
-                cv = cv_twosample(self.num_iter, self.quantile, data_pool, size_x,
-                                  size_y, self.h, self.method, self.b, self.random_state, self.n_jobs)
+                cv = cv_twosample(
+                    self.num_iter,
+                    self.quantile,
+                    data_pool,
+                    size_x,
+                    size_y,
+                    self.h,
+                    self.method,
+                    self.b,
+                    self.random_state,
+                    self.n_jobs,
+                )
                 h0 = statistic > cv
 
                 self.test_type_ = "Kernel-based quadratic distance two-sample test"
@@ -298,17 +350,31 @@ class KernelTest():
 
             else:
                 if (self.y is not None) and (self.x.shape[0] != self.y.shape[0]):
-                    raise ValueError(
-                        "'x' and 'y' must have the same number of rows.")
+                    raise ValueError("'x' and 'y' must have the same number of rows.")
 
                 if self.h is None:
-                    self.h = select_h(self.x, y=None, alternative=self.alternative,
-                                      method=self.method, num_iter=self.num_iter,
-                                      quantile=self.quantile, n_jobs=self.n_jobs)[0]
+                    self.h = select_h(
+                        self.x,
+                        y=None,
+                        alternative=self.alternative,
+                        method=self.method,
+                        num_iter=self.num_iter,
+                        quantile=self.quantile,
+                        n_jobs=self.n_jobs,
+                    )[0]
 
                 statistic = stat_ksample(self.x, self.y, self.h)
-                cv = cv_ksample(self.x, self.y, self.h, self.num_iter, self.b,
-                                self.quantile, self.method, self.random_state, self.n_jobs)
+                cv = cv_ksample(
+                    self.x,
+                    self.y,
+                    self.h,
+                    self.num_iter,
+                    self.b,
+                    self.quantile,
+                    self.method,
+                    self.random_state,
+                    self.n_jobs,
+                )
                 h0 = statistic[0] > cv[0]
 
                 self.test_type_ = "Kernel-based quadratic distance K-sample test"
@@ -338,26 +404,25 @@ class KernelTest():
         ----------
             print_fmt : str, optional.
                 Used for printing the output in the desired format. Defaults to "simple_grid".
-                Supports all available options in tabulate, see here: https://pypi.org/project/tabulate/ 
+                Supports all available options in tabulate, see here: https://pypi.org/project/tabulate/
 
         Returns
         --------
             summary : str
-                A string formatted in the desired output 
+                A string formatted in the desired output
                 format with the kernel test results and summary statistics.
         """
         res = pd.DataFrame()
-        res[''] = [self.test_type_, self.test_statistic_,
-                   self.cv_, self.h0_rejected_]
-        res = res.set_axis(["Test Type", "Test Statistic",
-                           "Critical Value", "Reject H0"])
+        res[""] = [self.test_type_, self.test_statistic_, self.cv_, self.h0_rejected_]
+        res = res.set_axis(
+            ["Test Type", "Test Statistic", "Critical Value", "Reject H0"]
+        )
 
         summary_stats_df = self.stats()
 
         if print_fmt == "html":
             summary_string = (
-                "Time taken for execution: {} seconds".format(
-                    self.execution_time)
+                "Time taken for execution: {} seconds".format(self.execution_time)
                 + "<br>Test Results <br>"
                 + tabulate(res, tablefmt=print_fmt)
                 + "<br>Summary Statistics <br>"
@@ -370,8 +435,7 @@ class KernelTest():
             )
         else:
             summary_string = (
-                "Time taken for execution: {:.3f} seconds".format(
-                    self.execution_time)
+                "Time taken for execution: {:.3f} seconds".format(self.execution_time)
                 + "\nTest Results \n"
                 + tabulate(res, tablefmt=print_fmt)
                 + "\nSummary Statistics \n"

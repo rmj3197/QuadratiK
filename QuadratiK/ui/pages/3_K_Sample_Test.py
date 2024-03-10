@@ -6,26 +6,27 @@ import importlib
 import streamlit as st
 import pandas as pd
 
-kt = importlib.import_module('QuadratiK.kernel_test').KernelTest
-qq_plot = importlib.import_module('QuadratiK.tools').qq_plot
-stats = importlib.import_module('QuadratiK.tools').stats
+kt = importlib.import_module("QuadratiK.kernel_test").KernelTest
+qq_plot = importlib.import_module("QuadratiK.tools").qq_plot
+stats = importlib.import_module("QuadratiK.tools").stats
 
-@st.cache_data(ttl=30,show_spinner=False)
-def run_ksample_test(h_val,num_iter,b,X,y):
-    return kt(h=h_val, num_iter=num_iter, b=b,
-                    centering_type="nonparam").test(x=X, y=y)
 
-st.title('K Sample Test')
+@st.cache_data(ttl=30, show_spinner=False)
+def run_ksample_test(h_val, num_iter, b, X, y):
+    return kt(h=h_val, num_iter=num_iter, b=b, centering_type="nonparam").test(x=X, y=y)
+
+
+st.title("K Sample Test")
 st.write("Performs the Nonparametric K-Sample Test")
 
 with st.expander("Click to view code"):
 
-    code_python = '''
+    code_python = """
     from QuadratiK.kernel_test import KernelTest
     X,y = Read your data file here
     k_sample_test = KernelTest(h = 0.5).kb_test(X,y)
     k_sample_test.summary()
-    '''
+    """
     st.code(code_python, language="python")
 
     code_R = """
@@ -36,17 +37,19 @@ with st.expander("Click to view code"):
     """
     st.code(code_R, language="r")
 
-delim = st.text_input('**Enter the delimiter**', " ")
+delim = st.text_input("**Enter the delimiter**", " ")
 header_exist = st.checkbox(
-    "**Select, if the header is present in the data file.**", value=True)
+    "**Select, if the header is present in the data file.**", value=True
+)
 
 if header_exist == False:
     header = None
 else:
     header = "infer"
 
-data = st.file_uploader("Please Upload the data file",
-                        accept_multiple_files=False, type=['.csv', ".txt"])
+data = st.file_uploader(
+    "Please Upload the data file", accept_multiple_files=False, type=[".csv", ".txt"]
+)
 
 if data is not None:
     st.success(data.name + " Uploaded Successfully")
@@ -54,24 +57,33 @@ if data is not None:
         data = pd.read_csv(data, sep=delim, header=header)
     except:
         st.error(
-            "Unable to read the data file. Please make sure that the delimiter is correct.")
+            "Unable to read the data file. Please make sure that the delimiter is correct."
+        )
 
     data = data.values
     label_col = data.shape[1] - 1
 
 if data is not None:
-    col_number = int(st.number_input(
-        'Enter the column in the datafile that \
-            contains the label (start from 0)', value=label_col, step=1))
+    col_number = int(
+        st.number_input(
+            "Enter the column in the datafile that \
+            contains the label (start from 0)",
+            value=label_col,
+            step=1,
+        )
+    )
 
 if data is not None:
     num_iter = st.number_input(
-        'Enter a value of number of iterations to be used for critical value estimation', value=500)
-    h = st.number_input('Enter a value of tuning parameter h', value=1)
+        "Enter a value of number of iterations to be used for critical value estimation",
+        value=500,
+    )
+    h = st.number_input("Enter a value of tuning parameter h", value=1)
     b = st.number_input(
-        'Enter a value for the proportion of subsampling samples to be used', value=0.9)
+        "Enter a value for the proportion of subsampling samples to be used", value=0.9
+    )
 
-    with st.spinner('getting results ready...'):
+    with st.spinner("getting results ready..."):
         num_iter = int(num_iter)
         h_val = float(h)
         b = float(b)
@@ -81,33 +93,49 @@ if data is not None:
 
         h = 0.5
         try:
-            k_samp_test = run_ksample_test(h_val,num_iter,b,X,y)
+            k_samp_test = run_ksample_test(h_val, num_iter, b, X, y)
 
             # st.write(k_samp_test.summary(print_fmt = "html"),unsafe_allow_html=True)
             # st.write("\n")
 
             res = pd.DataFrame()
-            res['Value'] = [k_samp_test.test_type_, k_samp_test.test_statistic_,
-                            k_samp_test.cv_, k_samp_test.h0_rejected_]
-            res = res.set_axis(["Test Type", "Test Statistic",
-                                "Critical Value", "Reject H0"])
+            res["Value"] = [
+                k_samp_test.test_type_,
+                k_samp_test.test_statistic_,
+                k_samp_test.cv_,
+                k_samp_test.h0_rejected_,
+            ]
+            res = res.set_axis(
+                ["Test Type", "Test Statistic", "Critical Value", "Reject H0"]
+            )
             st.table(res)
             csv_res = res.to_csv().encode()
-            st.download_button("Click to Download the test results", csv_res,
-                               "K_Sample_Test_results.csv", "text/csv", key='download-txt')
+            st.download_button(
+                "Click to Download the test results",
+                csv_res,
+                "K_Sample_Test_results.csv",
+                "text/csv",
+                key="download-txt",
+            )
 
-            st.subheader('Summary Statistics', divider="grey")
+            st.subheader("Summary Statistics", divider="grey")
             summary_stats_df = k_samp_test.stats()
             st.dataframe(summary_stats_df)
             # summary_stats_df = pd.concat(statistics.values(), keys=statistics.keys(), axis=0)
             csv_stats = summary_stats_df.to_csv(index=True).encode()
-            st.download_button("Click to Download the summary statistics",
-                               csv_stats, "Statistics.csv", "text/csv", key='download-csv')
-            st.success('Done!')
+            st.download_button(
+                "Click to Download the summary statistics",
+                csv_stats,
+                "Statistics.csv",
+                "text/csv",
+                key="download-csv",
+            )
+            st.success("Done!")
         except:
             st.error("Please check user inputs and data file")
 
-st.markdown(r"""
+st.markdown(
+    r"""
     <style>
         .reportview-container {
             margin-top: -2em;
@@ -117,4 +145,6 @@ st.markdown(r"""
         footer {visibility: hidden;}
         #stDecoration {display:none;}
     </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)

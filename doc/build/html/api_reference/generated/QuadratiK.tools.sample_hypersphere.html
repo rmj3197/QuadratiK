@@ -180,6 +180,12 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
 </ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../changelog/index.html">Changelog</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog/v1.0.0.html">QuadratiK Version 1.0.0</a></li>
+</ul>
+</li>
+</ul>
 
     </div>
 </nav></div>
@@ -349,13 +355,13 @@ document.write(`
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><dl class="simple">
-<dt>npoints<span class="classifier">int, optional.</span></dt><dd><p>The number of points to generate. 
+<dt>npoints<span class="classifier">int, optional.</span></dt><dd><p>The number of points to generate.
 Default is 100.</p>
 </dd>
-<dt>ndim<span class="classifier">int, optional. </span></dt><dd><p>The dimensionality of the hypersphere.
+<dt>ndim<span class="classifier">int, optional.</span></dt><dd><p>The dimensionality of the hypersphere.
 Default is 3.</p>
 </dd>
-<dt>random_state<span class="classifier">int, None, optional. </span></dt><dd><p>Seed for random number generation. Defaults to None</p>
+<dt>random_state<span class="classifier">int, None, optional.</span></dt><dd><p>Seed for random number generation. Defaults to None</p>
 </dd>
 </dl>
 </div></blockquote>
@@ -364,7 +370,7 @@ Default is 3.</p>
 <h2>Returns<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><dl class="simple">
-<dt>data on sphere<span class="classifier">numpy.ndarray</span></dt><dd><p>An array containing random vectors sampled uniformly 
+<dt>data on sphere<span class="classifier">numpy.ndarray</span></dt><dd><p>An array containing random vectors sampled uniformly
 from the surface of the hypersphere.</p>
 </dd>
 </dl>
