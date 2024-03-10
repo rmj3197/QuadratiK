@@ -337,8 +337,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funding-information">Funding Information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-using-pip">Installation using <code class="docutils literal notranslate"><span class="pre">pip</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-guide">Contributing Guide</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funding-information">Funding Information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a><ul class="nav section-nav flex-column">
 </ul>
 </li>
@@ -355,15 +359,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <a class="reference external image-reference" href="https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml"><img alt="Publish to PyPI" src="https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg" /></a>
+  <section id="quadratik">
+<h1>QuadratiK<a class="headerlink" href="#quadratik" title="Link to this heading">#</a></h1>
+<a class="reference external image-reference" href="https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml"><img alt="Publish to PyPI" src="https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg" /></a>
 <a class="reference external image-reference" href="https://codecov.io/gh/rmj3197/QuadratiK"><img alt="Codecov" src="https://codecov.io/gh/rmj3197/QuadratiK/graph/badge.svg?token=PPFZDNLJ1N" /></a>
 <img alt="PyPI - Version" src="https://img.shields.io/pypi/v/QuadratiK" />
 <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/QuadratiK" />
 <img alt="PyPI Total Downloads" src="https://img.shields.io/pepy/dt/QuadratiK" />
 <a class="reference external image-reference" href="https://github.com/rmj3197/QuadratiK"><img alt="GitHub search hit counter" src="https://img.shields.io/github/search/rmj3197/QuadratiK/QuadratiK?logo=github" /></a>
 <a class="reference external image-reference" href="https://github.com/psf/black"><img alt="Black Code Formatter" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a>
-<section id="quadratik">
-<h1>QuadratiK<a class="headerlink" href="#quadratik" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>The QuadratiK package is implemented in both <strong>R</strong> and <strong>Python</strong>, providing a comprehensive set of goodness-of-fit tests and a clustering technique using kernel-based quadratic distances. This framework aims to bridge the gap between the statistical and machine learning literatures. It includes:</p>
@@ -372,14 +376,30 @@ document.write(`
 <li><p><strong>Clustering Algorithm for Spherical Data</strong>: the package incorporates a unique clustering algorithm specifically tailored for spherical data. This algorithm leverages a mixture of Poisson-kernel-based densities on the sphere, enabling effective clustering of spherical data or data that has been spherically transformed. This facilitates the uncovering of underlying patterns and relationships in the data.</p></li>
 <li><p><strong>Additional Features</strong>: Alongside these functionalities, the software includes additional graphical functions, aiding users in validating cluster results as well as visualizing and representing clustering results. This enhances the interpretability and usability of the analysis.</p></li>
 </ul>
-<section id="funding-information">
-<h3>Funding Information<a class="headerlink" href="#funding-information" title="Link to this heading">#</a></h3>
-<p>The work has been supported by Kaleida Health Foundation, Food and Drug Administration, and Department of Biostatistics, University at Buffalo.</p>
-</section>
 <section id="authors">
 <h3>Authors<a class="headerlink" href="#authors" title="Link to this heading">#</a></h3>
 <p>Giovanni Saraceno &lt;<a class="reference external" href="mailto:gsaracen&#37;&#52;&#48;buffalo&#46;edu">gsaracen<span>&#64;</span>buffalo<span>&#46;</span>edu</a>&gt;, Marianthi Markatou &lt;<a class="reference external" href="mailto:markatou&#37;&#52;&#48;buffalo&#46;edu">markatou<span>&#64;</span>buffalo<span>&#46;</span>edu</a>&gt;, Raktim Mukhopadhyay &lt;<a class="reference external" href="mailto:raktimmu&#37;&#52;&#48;buffalo&#46;edu">raktimmu<span>&#64;</span>buffalo<span>&#46;</span>edu</a>&gt;, Mojgan Golzy &lt;<a class="reference external" href="mailto:golzym&#37;&#52;&#48;health&#46;missouri&#46;edu">golzym<span>&#64;</span>health<span>&#46;</span>missouri<span>&#46;</span>edu</a>&gt;</p>
 <p>Mantainer: Raktim Mukhopadhyay &lt;<a class="reference external" href="mailto:raktimmu&#37;&#52;&#48;buffalo&#46;edu">raktimmu<span>&#64;</span>buffalo<span>&#46;</span>edu</a>&gt;</p>
+</section>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h3>
+<p>The documentation is hosted on Read the Docs at - <a class="reference external" href="https://quadratik.readthedocs.io/en/latest/">https://quadratik.readthedocs.io/en/latest/</a></p>
+</section>
+<section id="installation-using-pip">
+<h3>Installation using <code class="docutils literal notranslate"><span class="pre">pip</span></code><a class="headerlink" href="#installation-using-pip" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">QuadratiK</span></code></p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p>Find basic examples at <a class="reference external" href="https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html">QuadratiK Examples</a></p>
+</section>
+<section id="contributing-guide">
+<h3>Contributing Guide<a class="headerlink" href="#contributing-guide" title="Link to this heading">#</a></h3>
+<p>Please refer to the Contributing guide at :</p>
+</section>
+<section id="funding-information">
+<h3>Funding Information<a class="headerlink" href="#funding-information" title="Link to this heading">#</a></h3>
+<p>The work has been supported by Kaleida Health Foundation, Food and Drug Administration, and Department of Biostatistics, University at Buffalo.</p>
 </section>
 <section id="references">
 <h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
@@ -443,8 +463,12 @@ Manuscript, (Department of Biostatistics, University at Buffalo).</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funding-information">Funding Information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-using-pip">Installation using <code class="docutils literal notranslate"><span class="pre">pip</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-guide">Contributing Guide</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funding-information">Funding Information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a><ul class="nav section-nav flex-column">
 </ul>
 </li>

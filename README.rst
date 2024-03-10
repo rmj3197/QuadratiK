@@ -1,3 +1,5 @@
+QuadratiK
+=========
 .. image:: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg
    :target: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
    :alt: Publish to PyPI
@@ -23,10 +25,6 @@
    :target: https://github.com/psf/black
    :alt: Black Code Formatter
 
-
-QuadratiK
-=========
-
 Introduction
 -------------
 
@@ -38,15 +36,65 @@ The QuadratiK package is implemented in both **R** and **Python**, providing a c
 
 * **Additional Features**: Alongside these functionalities, the software includes additional graphical functions, aiding users in validating cluster results as well as visualizing and representing clustering results. This enhances the interpretability and usability of the analysis.
 
-Funding Information
-++++++++++++++++++++
-The work has been supported by Kaleida Health Foundation, Food and Drug Administration, and Department of Biostatistics, University at Buffalo. 
-
 Authors
 ++++++++
 Giovanni Saraceno <gsaracen@buffalo.edu>, Marianthi Markatou <markatou@buffalo.edu>, Raktim Mukhopadhyay <raktimmu@buffalo.edu>, Mojgan Golzy <golzym@health.missouri.edu>
 
 Mantainer: Raktim Mukhopadhyay <raktimmu@buffalo.edu>
+
+Documentation
++++++++++++++++
+
+The documentation is hosted on Read the Docs at - https://quadratik.readthedocs.io/en/latest/
+
+Installation using ``pip``
++++++++++++++++++++++++++++
+
+``pip install QuadratiK``
+
+Examples
++++++++++
+
+Find basic examples at `QuadratiK Examples <https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html>`_
+
+Community
++++++++++++
+
+Development Version Installation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For installing the development version, please download the code files from the master branch of the Github repository. 
+Please note that installation from Github might be buggy, for latest stable release please download using ``pip``.
+We recommend poetry for quick installation post rapid changes to the code. More information on using poetry can
+be found at `Poetry <https://python-poetry.org/>`_. For downloading from Github and installing using ``poetry`` use 
+the following instructions, 
+
+.. code-block:: bash
+
+   git clone https://github.com/rmj3197/QuadratiK.git
+   cd navigate/to/QuadratiK
+   pip install poetry
+   poetry install
+
+
+Contributing Guide
+~~~~~~~~~~~~~~~~~~~~
+
+Please refer to the Contributing guide at : 
+
+Code of Conduct
+~~~~~~~~~~~~~~~~
+
+The code of conduct can be found at '<>`. 
+
+License
+~~~~~~~~
+
+This project uses the GPL-3.0 license, with a full version of the license included in the repository on Github.
+
+Funding Information
+++++++++++++++++++++
+The work has been supported by Kaleida Health Foundation, Food and Drug Administration, and Department of Biostatistics, University at Buffalo. 
 
 References
 +++++++++++
