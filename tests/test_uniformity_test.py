@@ -44,8 +44,7 @@ class TestUniformityTest(unittest.TestCase):
     def test_uniformity_no_rndm_state_dataframe(self):
         x_sp = pd.DataFrame(sample_hypersphere(npoints=100, ndim=3))
         uniformity_test = PoissonKernelTest(
-            rho=0.8, random_state=None, num_iter=10, n_jobs=4
-        ).test(x_sp)
+            rho=0.8, random_state=None, num_iter=10).test(x_sp)
         self.assertIsInstance(uniformity_test.u_statistic_un_, (int, float))
         self.assertIsInstance(uniformity_test.u_statistic_cv_ ,(int, float))
         self.assertIsInstance(uniformity_test.u_statistic_h0_, np.bool_)
