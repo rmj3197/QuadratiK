@@ -16,11 +16,11 @@ class TestUniformityTest(unittest.TestCase):
         x_sp = dat / np.linalg.norm(dat)
         uniformity_test = PoissonKernelTest(rho=0.8, random_state=42).test(x_sp)
         self.assertIsInstance(uniformity_test.u_statistic_un_, (int, float))
-        self.assertIsInstance(uniformity_test.u_statistic_cv_ ,(int, float))
+        self.assertIsInstance(uniformity_test.u_statistic_cv_, (int, float))
         self.assertIsInstance(uniformity_test.u_statistic_h0_, np.bool_)
-        
+
         self.assertIsInstance(uniformity_test.v_statistic_vn_, (int, float))
-        self.assertIsInstance(uniformity_test.v_statistic_cv_ ,(int, float))
+        self.assertIsInstance(uniformity_test.v_statistic_cv_, (int, float))
         self.assertIsInstance(uniformity_test.v_statistic_h0_, np.bool_)
 
         self.assertIsInstance(uniformity_test.stats(), pd.DataFrame)
@@ -40,17 +40,15 @@ class TestUniformityTest(unittest.TestCase):
             x = [1, 2, 3, 4, 5]
             PoissonKernelTest(rho=0.8, random_state=42).test(x)
 
-
     def test_uniformity_no_rndm_state_dataframe(self):
         x_sp = pd.DataFrame(sample_hypersphere(npoints=100, ndim=3))
         uniformity_test = PoissonKernelTest(
-            rho=0.8, random_state=None, num_iter=10).test(x_sp)
+            rho=0.8, random_state=None, num_iter=10
+        ).test(x_sp)
         self.assertIsInstance(uniformity_test.u_statistic_un_, (int, float))
-        self.assertIsInstance(uniformity_test.u_statistic_cv_ ,(int, float))
+        self.assertIsInstance(uniformity_test.u_statistic_cv_, (int, float))
         self.assertIsInstance(uniformity_test.u_statistic_h0_, np.bool_)
-        
+
         self.assertIsInstance(uniformity_test.v_statistic_vn_, (int, float))
-        self.assertIsInstance(uniformity_test.v_statistic_cv_ ,(int, float))
+        self.assertIsInstance(uniformity_test.v_statistic_cv_, (int, float))
         self.assertIsInstance(uniformity_test.v_statistic_h0_, np.bool_)
-    
-    

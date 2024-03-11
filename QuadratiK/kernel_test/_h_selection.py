@@ -563,7 +563,7 @@ def select_h(
         elif alternative == "skewness":
             delta = np.array([0.2, 0.3, 0.6])
 
-    if (alternative is None) or (alternative not in ["location","scale","skewness"]):
+    if (alternative is None) or (alternative not in ["location", "scale", "skewness"]):
         raise ValueError(
             "Please specify alternative from 'location', 'scale' or 'skewness'"
         )

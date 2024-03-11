@@ -34,7 +34,7 @@ class TestSelectH(unittest.TestCase):
         self.assertIsInstance(h_sel, (int, float))
         self.assertIsInstance(all_powers, pd.DataFrame)
         self.assertIsNotNone(plot)
-        
+
     def test_select_h_two_sample_skewness(self):
         np.random.seed(42)
         x = np.random.randn(200, 2)
@@ -113,7 +113,7 @@ class TestSelectH(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             x_list = [1, 2, 3, 4]
-            y_list = [1,1,2,2]
+            y_list = [1, 1, 2, 2]
             select_h(
                 x=x_list,
                 y=y_list,
@@ -121,9 +121,9 @@ class TestSelectH(unittest.TestCase):
                 random_state=42,
                 power_plot=True,
             )
-        
+
         with self.assertRaises(TypeError):
-            x_df = pd.DataFrame(np.random.randn(100,2))
+            x_df = pd.DataFrame(np.random.randn(100, 2))
             y_int = -1
             select_h(
                 x=x_df,
@@ -145,9 +145,9 @@ class TestSelectH(unittest.TestCase):
                 power_plot=True,
                 delta_dim=[1, 1],
             )
-        
+
         with self.assertRaises(ValueError):
-            x = (np.random.randn(100 * 3, 1))
+            x = np.random.randn(100 * 3, 1)
             select_h(
                 x=x,
                 y=None,
@@ -176,5 +176,5 @@ class TestSelectH(unittest.TestCase):
                 alternative="scale",
                 random_state=42,
                 power_plot=True,
-                delta_dim=[1,1]
+                delta_dim=[1, 1],
             )
