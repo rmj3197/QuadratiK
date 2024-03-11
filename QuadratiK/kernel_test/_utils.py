@@ -143,8 +143,6 @@ def stat_two_sample(x_mat, y_mat, h, mu_hat, sigma_hat, centering_type="nonparam
         k_center = nonparam_centering(kmat_zz, n_z)
     elif centering_type == "param":
         k_center = param_centering(kmat_zz, z_mat, cov_h, mu_hat, sigma_hat)
-    else:
-        raise ValueError("Unknown centering type.")
     np.fill_diagonal(k_center, 0)
     test_non_par = (
         (np.sum(k_center[:n_x, :n_x]) / (n_x * (n_x - 1)))
@@ -187,8 +185,6 @@ def stat_normality_test(x_mat, h, mu_hat, sigma_hat, centering_type="param"):
         k_center = nonparam_centering(kmat_zz, n_x)
     elif centering_type == "param":
         k_center = param_centering(kmat_zz, x_mat, cov_h, mu_hat, sigma_hat)
-    else:
-        raise ValueError("Unknown centering type.")
     np.fill_diagonal(k_center, 0)
     test_normality = np.sum(k_center) / (n_x * (n_x - 1))
     return test_normality

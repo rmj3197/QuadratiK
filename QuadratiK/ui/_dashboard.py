@@ -44,6 +44,8 @@ class UI:
             "#E5E4E2",
             "--theme.textColor",
             "#0e0e0e",
+            "--browser.gatherUsageStats",
+            "false",
         ]
         sys.exit(stcli.main())
 

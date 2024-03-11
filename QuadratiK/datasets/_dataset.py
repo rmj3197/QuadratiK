@@ -80,7 +80,9 @@ def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=F
     )
 
     if scaled:
-        data = data / np.linalg.norm(data, axis=1, keepdims=True)
+        data[:, :-1] = data[:, :-1] / np.linalg.norm(
+            data[:, :-1], axis=1, keepdims=True
+        )
 
     feature_names = ["WS1", "WS2", "WS3", "WS4", "WS5", "WS6", "WS7", "Class"]
 
@@ -103,3 +105,5 @@ def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=F
             return (fdescr, pd.DataFrame(data, columns=feature_names))
         else:
             return pd.DataFrame(data, columns=feature_names)
+    else:
+        return data

@@ -413,9 +413,5 @@ class PKBC:
                 Dataframe of descriptive statistics
 
         """
-
         summary_stats = stats(self.dat, self.labels_)
-        summary_stats_df = pd.concat(
-            summary_stats.values(), keys=summary_stats.keys(), axis=0
-        )
-        return summary_stats_df
+        return summary_stats

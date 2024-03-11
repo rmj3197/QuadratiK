@@ -204,9 +204,9 @@ class KernelTest:
             raise TypeError("x must be a numpy array or a pandas dataframe")
 
         if self.y is not None:
-            if isinstance(self.y, np.ndarray):
+            if isinstance(self.y, (np.ndarray, pd.Series)):
                 if self.y.ndim == 1:
-                    self.y = self.y.reshape(-1, 1)
+                    self.y = np.array(self.y).reshape(-1, 1)
             elif isinstance(y, pd.DataFrame):
                 self.y = self.y.to_numpy()
             else:
@@ -349,13 +349,14 @@ class KernelTest:
                 return self
 
             else:
+                print("Entered this K Sample Else")
                 if (self.y is not None) and (self.x.shape[0] != self.y.shape[0]):
                     raise ValueError("'x' and 'y' must have the same number of rows.")
 
                 if self.h is None:
                     self.h = select_h(
                         self.x,
-                        y=None,
+                        self.y,
                         alternative=self.alternative,
                         method=self.method,
                         num_iter=self.num_iter,

@@ -45,9 +45,14 @@ class PKBD:
             raise ValueError("mu must have length >= 2")
         if isinstance(x, pd.DataFrame):
             x = x.to_numpy()
-        p = x.shape[1]
-        if p < 2:
+
+        if x.ndim == 1:
             raise ValueError("vectors must have length >= 2")
+        else:
+            p = x.shape[1]
+            if p < 2:
+                raise ValueError("vectors must have length >= 2")
+
         if len(mu) != p:
             raise ValueError("vectors and mu must have the same length")
         if (rho >= 1) or (rho < 0):

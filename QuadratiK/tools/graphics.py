@@ -64,7 +64,7 @@ def sphere3d(x, y=None):
             where each row represents the coordinates of a point in
             3D space
 
-        y : numpy.ndarray, list, optional
+        y : numpy.ndarray, list, pandas.series, optional
             The parameter `y` is an optional input that determines the color and
             shape of each data point in the plot. If `y` is not provided, the
             scatter plot will have the default marker symbol and color.
@@ -85,7 +85,14 @@ def sphere3d(x, y=None):
         x = x.to_numpy()
 
     if isinstance(y, pd.DataFrame):
-        y = y.to_numpy()
+        y = y.to_numpy().flatten()
+    elif isinstance(y, pd.Series):
+        y = y.values
+    elif isinstance(y, np.ndarray):
+        if y.ndim == 1:
+            pass
+        elif y.ndim == 2:
+            y = y.flatten()
 
     r = 1
     pi = np.pi
@@ -187,7 +194,14 @@ def plot_clusters_2d(x, y=None):
         x = x.to_numpy()
 
     if isinstance(y, pd.DataFrame):
-        y = y.to_numpy()
+        y = y.to_numpy().flatten()
+    elif isinstance(y, pd.Series):
+        y = y.values
+    elif isinstance(y, np.ndarray):
+        if y.ndim == 1:
+            pass
+        elif y.ndim == 2:
+            y = y.flatten()
 
     fig = plt.figure()
     if y is not None:

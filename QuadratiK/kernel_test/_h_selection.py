@@ -1,5 +1,5 @@
 """
-Contains the tuning parameter selecrtion algorithm
+Contains the tuning parameter selection algorithm
 """
 
 import numpy as np
