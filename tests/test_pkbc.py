@@ -28,6 +28,10 @@ class TestPKBC(unittest.TestCase):
         self.assertEqual(len(pkbd_cluster_fit_numpy.alpha_), 3)
         self.assertTrue(np.isclose(np.sum(pkbd_cluster_fit_numpy.alpha_), 1))
         self.assertEqual(len(pkbd_cluster_fit_numpy.rho_), 3)
+
+        self.assertIsInstance(pkbd_cluster_fit_numpy.cosine_wcss_, (int, float))
+        self.assertIsInstance(pkbd_cluster_fit_numpy.euclidean_wcss_, (int, float))
+
         self.assertIsInstance(pkbd_cluster_fit_numpy.stats(), pd.DataFrame)
         self.assertIsInstance(pkbd_cluster_fit_numpy.validation(), (int, float))
         self.assertIsInstance(pkbd_cluster_fit_numpy.validation(y_true=y_true), tuple)
@@ -37,6 +41,14 @@ class TestPKBC(unittest.TestCase):
         self.assertTrue(np.isclose(np.sum(pkbd_cluster_fit_numpy_membership.alpha_), 1))
         self.assertEqual(len(pkbd_cluster_fit_numpy_membership.rho_), 3)
         self.assertIsInstance(pkbd_cluster_fit_numpy_membership.stats(), pd.DataFrame)
+
+        self.assertIsInstance(
+            pkbd_cluster_fit_numpy_membership.cosine_wcss_, (int, float)
+        )
+        self.assertIsInstance(
+            pkbd_cluster_fit_numpy_membership.euclidean_wcss_, (int, float)
+        )
+
         self.assertIsInstance(
             pkbd_cluster_fit_numpy_membership.validation(), (int, float)
         )
