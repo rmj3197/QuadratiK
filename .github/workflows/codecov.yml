@@ -14,10 +14,6 @@ jobs:
       run: poetry install --with tests
     - name: Run tests and collect coverage
       run: poetry run pytest --cov-report=xml --cov . 
-    - name: list all files
-      run: |
-        cd tests
-        ls
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3.1.6
       with:
