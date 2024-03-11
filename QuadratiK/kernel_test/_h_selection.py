@@ -545,7 +545,7 @@ def select_h(
         elif isinstance(y, pd.DataFrame):
             y = y.values
         else:
-            raise ValueError(
+            raise TypeError(
                 "y must be a list, numpy.ndarray, \
                     or a pandas DataFrame with one column (for k-sample case) or more"
             )
@@ -563,7 +563,7 @@ def select_h(
         elif alternative == "skewness":
             delta = np.array([0.2, 0.3, 0.6])
 
-    if alternative is None:
+    if (alternative is None) or (alternative not in ["location","scale","skewness"]):
         raise ValueError(
             "Please specify alternative from 'location', 'scale' or 'skewness'"
         )
