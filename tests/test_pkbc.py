@@ -17,10 +17,10 @@ class TestPKBC(unittest.TestCase):
         x2 = pkbd.rpkb(100, np.array([0, 1, 0]), 0.8, "rejacg", random_state=42)
         x3 = pkbd.rpkb(100, np.array([0, 1, 0.2]), 0.8, "rejacg", random_state=42)
         data = np.concatenate((x1, x2, x3), axis=0)
-        pkbd_cluster_fit_numpy = PKBC(num_clust=3).fit(data)
+        pkbd_cluster_fit_numpy = PKBC(num_clust=3,random_state=42).fit(data)
         pkbd_cluster_fit_numpy_membership = PKBC(
-            num_clust=3, stopping_rule="membership"
-        ).fit(data)
+            num_clust=3, stopping_rule="membership",
+        random_state=42,).fit(data)
 
         y_true = pd.DataFrame(np.repeat(np.arange(1, 4), repeats=100))
 
