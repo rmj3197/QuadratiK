@@ -1,0 +1,37 @@
+\indexentry{module@\spxentry{module}!QuadratiK.kernel\_test@\spxentry{QuadratiK.kernel\_test}|hyperpage}{5}
+\indexentry{QuadratiK.kernel\_test@\spxentry{QuadratiK.kernel\_test}!module@\spxentry{module}|hyperpage}{5}
+\indexentry{KernelTest (class in QuadratiK.kernel\_test)@\spxentry{KernelTest}\spxextra{class in QuadratiK.kernel\_test}|hyperpage}{5}
+\indexentry{stats() (QuadratiK.kernel\_test.KernelTest method)@\spxentry{stats()}\spxextra{QuadratiK.kernel\_test.KernelTest method}|hyperpage}{8}
+\indexentry{summary() (QuadratiK.kernel\_test.KernelTest method)@\spxentry{summary()}\spxextra{QuadratiK.kernel\_test.KernelTest method}|hyperpage}{8}
+\indexentry{test() (QuadratiK.kernel\_test.KernelTest method)@\spxentry{test()}\spxextra{QuadratiK.kernel\_test.KernelTest method}|hyperpage}{8}
+\indexentry{select\_h() (in module QuadratiK.kernel\_test)@\spxentry{select\_h()}\spxextra{in module QuadratiK.kernel\_test}|hyperpage}{9}
+\indexentry{module@\spxentry{module}!QuadratiK.poisson\_kernel\_test@\spxentry{QuadratiK.poisson\_kernel\_test}|hyperpage}{11}
+\indexentry{QuadratiK.poisson\_kernel\_test@\spxentry{QuadratiK.poisson\_kernel\_test}!module@\spxentry{module}|hyperpage}{11}
+\indexentry{PoissonKernelTest (class in QuadratiK.poisson\_kernel\_test)@\spxentry{PoissonKernelTest}\spxextra{class in QuadratiK.poisson\_kernel\_test}|hyperpage}{11}
+\indexentry{stats() (QuadratiK.poisson\_kernel\_test.PoissonKernelTest method)@\spxentry{stats()}\spxextra{QuadratiK.poisson\_kernel\_test.PoissonKernelTest method}|hyperpage}{13}
+\indexentry{summary() (QuadratiK.poisson\_kernel\_test.PoissonKernelTest method)@\spxentry{summary()}\spxextra{QuadratiK.poisson\_kernel\_test.PoissonKernelTest method}|hyperpage}{13}
+\indexentry{test() (QuadratiK.poisson\_kernel\_test.PoissonKernelTest method)@\spxentry{test()}\spxextra{QuadratiK.poisson\_kernel\_test.PoissonKernelTest method}|hyperpage}{13}
+\indexentry{module@\spxentry{module}!QuadratiK.spherical\_clustering@\spxentry{QuadratiK.spherical\_clustering}|hyperpage}{13}
+\indexentry{QuadratiK.spherical\_clustering@\spxentry{QuadratiK.spherical\_clustering}!module@\spxentry{module}|hyperpage}{13}
+\indexentry{PKBC (class in QuadratiK.spherical\_clustering)@\spxentry{PKBC}\spxextra{class in QuadratiK.spherical\_clustering}|hyperpage}{14}
+\indexentry{fit() (QuadratiK.spherical\_clustering.PKBC method)@\spxentry{fit()}\spxextra{QuadratiK.spherical\_clustering.PKBC method}|hyperpage}{16}
+\indexentry{stats() (QuadratiK.spherical\_clustering.PKBC method)@\spxentry{stats()}\spxextra{QuadratiK.spherical\_clustering.PKBC method}|hyperpage}{16}
+\indexentry{validation() (QuadratiK.spherical\_clustering.PKBC method)@\spxentry{validation()}\spxextra{QuadratiK.spherical\_clustering.PKBC method}|hyperpage}{16}
+\indexentry{PKBD (class in QuadratiK.spherical\_clustering)@\spxentry{PKBD}\spxextra{class in QuadratiK.spherical\_clustering}|hyperpage}{17}
+\indexentry{dpkb() (QuadratiK.spherical\_clustering.PKBD method)@\spxentry{dpkb()}\spxextra{QuadratiK.spherical\_clustering.PKBD method}|hyperpage}{18}
+\indexentry{rpkb() (QuadratiK.spherical\_clustering.PKBD method)@\spxentry{rpkb()}\spxextra{QuadratiK.spherical\_clustering.PKBD method}|hyperpage}{18}
+\indexentry{module@\spxentry{module}!QuadratiK.ui@\spxentry{QuadratiK.ui}|hyperpage}{19}
+\indexentry{QuadratiK.ui@\spxentry{QuadratiK.ui}!module@\spxentry{module}|hyperpage}{19}
+\indexentry{UI (class in QuadratiK.ui)@\spxentry{UI}\spxextra{class in QuadratiK.ui}|hyperpage}{19}
+\indexentry{main() (QuadratiK.ui.UI method)@\spxentry{main()}\spxextra{QuadratiK.ui.UI method}|hyperpage}{20}
+\indexentry{run() (QuadratiK.ui.UI method)@\spxentry{run()}\spxextra{QuadratiK.ui.UI method}|hyperpage}{20}
+\indexentry{module@\spxentry{module}!QuadratiK.datasets@\spxentry{QuadratiK.datasets}|hyperpage}{20}
+\indexentry{QuadratiK.datasets@\spxentry{QuadratiK.datasets}!module@\spxentry{module}|hyperpage}{20}
+\indexentry{load\_wireless\_data() (in module QuadratiK.datasets)@\spxentry{load\_wireless\_data()}\spxextra{in module QuadratiK.datasets}|hyperpage}{20}
+\indexentry{module@\spxentry{module}!QuadratiK.tools@\spxentry{QuadratiK.tools}|hyperpage}{21}
+\indexentry{QuadratiK.tools@\spxentry{QuadratiK.tools}!module@\spxentry{module}|hyperpage}{21}
+\indexentry{sample\_hypersphere() (in module QuadratiK.tools)@\spxentry{sample\_hypersphere()}\spxextra{in module QuadratiK.tools}|hyperpage}{22}
+\indexentry{stats() (in module QuadratiK.tools)@\spxentry{stats()}\spxextra{in module QuadratiK.tools}|hyperpage}{23}
+\indexentry{qq\_plot() (in module QuadratiK.tools)@\spxentry{qq\_plot()}\spxextra{in module QuadratiK.tools}|hyperpage}{23}
+\indexentry{sphere3d() (in module QuadratiK.tools)@\spxentry{sphere3d()}\spxextra{in module QuadratiK.tools}|hyperpage}{24}
+\indexentry{plot\_clusters\_2d() (in module QuadratiK.tools)@\spxentry{plot\_clusters\_2d()}\spxextra{in module QuadratiK.tools}|hyperpage}{25}

@@ -1,7 +1,6 @@
 """
 Critical value functions for Kernel Test
 """
-
 from sklearn.utils.parallel import Parallel, delayed
 import numpy as np
 from ._utils import (
@@ -11,24 +10,13 @@ from ._utils import (
     subsampling_helper_twosample,
     bootstrap_helper_ksample,
     subsampling_helper_ksample,
-    permutation_helper_ksample,
+    permutation_helper_ksample
 )
 
 
-def cv_twosample(
-    num_iter,
-    quantile,
-    data_pool,
-    size_x,
-    size_y,
-    h,
-    method,
-    b=0.9,
-    random_state=None,
-    n_jobs=8,
-):
+def cv_twosample(num_iter, quantile, data_pool, size_x, size_y, h, method, b=0.9, random_state=None, n_jobs=8):
     """
-    This function computes the critical value for two-sample kernel tests with
+    This function computes the critical value for two-sample kernel tests with 
     centered Gaussian kernel using one of three methods: bootstrap, permutation, or subsampling.
 
     Parameters
@@ -52,22 +40,22 @@ def cv_twosample(
             The tuning parameter for the kernel test
 
         method : str
-            Method to use for computing the critical value
+            Method to use for computing the critical value 
             (one of bootstrap, permutation, or subsampling)
 
         b : float, optional
             Subsampling block size (only used if method is subsampling)
 
-        random_state : int, None, optional.
+        random_state : int, None, optional. 
             Seed for random number generation. Defaults to None
 
         n_jobs : int, optional
-            n_jobs specifies the maximum number of concurrently
-            running workers. If 1 is given, no joblib parallelism
-            is used at all, which is useful for debugging. For more
-            information on joblib n_jobs refer to -
+            n_jobs specifies the maximum number of concurrently 
+            running workers. If 1 is given, no joblib parallelism 
+            is used at all, which is useful for debugging. For more 
+            information on joblib n_jobs refer to - 
             https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
-
+    
     Returns
     -------
         critical value : float
@@ -79,48 +67,33 @@ def cv_twosample(
         Quadratic Distances.” Manuscript, (Department of Biostatistics, University at Buffalo)
 
     """
-    if method == "bootstrap":
-        results = Parallel(n_jobs=n_jobs)(
-            delayed(bootstrap_helper_twosample)(
-                size_x, size_y, h, data_pool, i, random_state
-            )
-            for i in range(num_iter)
-        )
-    elif method == "permutation":
-        results = Parallel(n_jobs=n_jobs)(
-            delayed(permutation_helper_twosample)(
-                size_x, size_y, h, data_pool, i, random_state
-            )
-            for i in range(num_iter)
-        )
-    elif method == "subsampling":
-        results = Parallel(n_jobs=n_jobs)(
-            delayed(subsampling_helper_twosample)(
-                size_x, size_y, b, h, data_pool, i, random_state
-            )
-            for i in range(num_iter)
-        )
+    if method == 'bootstrap':
+        results = Parallel(n_jobs=n_jobs)(delayed(bootstrap_helper_twosample)
+                                          (size_x, size_y, h,
+                                           data_pool, i, random_state)
+                                          for i in range(num_iter))
+    elif method == 'permutation':
+        results = Parallel(n_jobs=n_jobs)(delayed(permutation_helper_twosample)
+                                          (size_x, size_y, h,
+                                           data_pool, i, random_state)
+                                          for i in range(num_iter))
+    elif method == 'subsampling':
+        results = Parallel(n_jobs=n_jobs)(delayed(subsampling_helper_twosample)
+                                          (size_x, size_y, b, h,
+                                           data_pool, i, random_state)
+                                          for i in range(num_iter))
     return np.quantile(results, quantile)
 
 
-def cv_normality(
-    size,
-    h,
-    mu_hat,
-    sigma_hat,
-    num_iter=500,
-    quantile=0.95,
-    centering_type="param",
-    random_state=None,
-    n_jobs=8,
-):
+def cv_normality(size, h, mu_hat, sigma_hat,
+                 num_iter=500, quantile=0.95, centering_type="param", random_state=None, n_jobs=8):
     """
-    This function computes the empirical critical value for the
+    This function computes the empirical critical value for the 
     Normality test based on the KBQD tests using the centered Gaussian kernel.
 
-    For each replication, a sample from the d-dimensional Normal distribution with mean
-    vector mu_hat and covariance matrix sigma_hat is generated and the KBQD test U-statistic
-    for Normality is computed. After num_iter iterations, the critical value is selected as
+    For each replication, a sample from the d-dimensional Normal distribution with mean 
+    vector mu_hat and covariance matrix sigma_hat is generated and the KBQD test U-statistic 
+    for Normality is computed. After num_iter iterations, the critical value is selected as 
     the quantile of the empirical distribution of the computed test statistics.
 
     Parameters
@@ -142,47 +115,35 @@ def cv_normality(
 
         num_iter : int, optional
             The number of replications.
-
+        
         quantile : float, optional
             The quantile of the distribution used to select the critical value.
-
+            
         centering_type : str, optional
 
-        random_state : int, None, optional.
+        random_state : int, None, optional. 
             Seed for random number generation. Defaults to None
-
+        
         n_jobs : int, optional
-            n_jobs specifies the maximum number of concurrently
-            running workers. If 1 is given, no joblib parallelism
-            is used at all, which is useful for debugging. For more
-            information on joblib n_jobs refer to -
+            n_jobs specifies the maximum number of concurrently 
+            running workers. If 1 is given, no joblib parallelism 
+            is used at all, which is useful for debugging. For more 
+            information on joblib n_jobs refer to - 
             https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
-
+            
     Returns
     -------
         critical value : float
             Critical value for the specified dimension, size and quantile.
     """
-    results = Parallel(n_jobs=n_jobs)(
-        delayed(normal_cv_helper)(
-            size, h, mu_hat, sigma_hat, centering_type, i, random_state
-        )
-        for i in range(num_iter)
-    )
+    results = Parallel(n_jobs=n_jobs)(delayed(normal_cv_helper)
+                                      (size, h, mu_hat,
+                                       sigma_hat, centering_type, i, random_state)
+                                      for i in range(num_iter))
     return np.quantile(results, quantile)
 
 
-def cv_ksample(
-    x,
-    y,
-    h,
-    num_iter=150,
-    b=0.9,
-    quantile=0.95,
-    method="subsampling",
-    random_state=None,
-    n_jobs=8,
-):
+def cv_ksample(x, y, h, num_iter=150, b=0.9, quantile=0.95, method="subsampling", random_state=None, n_jobs=8):
     """
     Compute the critical value for k-sample kernel tests
 
@@ -210,15 +171,15 @@ def cv_ksample(
         method : str
             The method to use for computing the critical value
             (one of "bootstrap", "permutation" or "subsampling").
-
-        random_state : int, None, optional.
+        
+        random_state : int, None, optional. 
             Seed for random number generation. Defaults to None
-
+        
         n_jobs : int, optional
-            n_jobs specifies the maximum number of concurrently
-            running workers. If 1 is given, no joblib parallelism
-            is used at all, which is useful for debugging. For more
-            information on joblib n_jobs refer to -
+            n_jobs specifies the maximum number of concurrently 
+            running workers. If 1 is given, no joblib parallelism 
+            is used at all, which is useful for debugging. For more 
+            information on joblib n_jobs refer to - 
             https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
 
     Returns
@@ -238,23 +199,18 @@ def cv_ksample(
     cum_size = np.insert(np.cumsum(sizes), 0, 0)
 
     if method == "bootstrap":
-        results = Parallel(n_jobs=n_jobs)(
-            delayed(bootstrap_helper_ksample)(
-                x, y, k, h, sizes, cum_size, i, random_state
-            )
-            for i in range(num_iter)
-        )
+        results = Parallel(n_jobs=n_jobs)(delayed(bootstrap_helper_ksample)
+                                          (x, y, k, h, sizes,
+                                           cum_size, i, random_state)
+                                          for i in range(num_iter))
     elif method == "subsampling":
-        results = Parallel(n_jobs=n_jobs)(
-            delayed(subsampling_helper_ksample)(
-                x, y, k, h, sizes, b, cum_size, i, random_state
-            )
-            for i in range(num_iter)
-        )
+        results = Parallel(n_jobs=n_jobs)(delayed(subsampling_helper_ksample)
+                                          (x, y, k, h, sizes, b,
+                                           cum_size, i, random_state)
+                                          for i in range(num_iter))
     elif method == "permutation":
-        results = Parallel(n_jobs=n_jobs)(
-            delayed(permutation_helper_ksample)(x, y, n, h, i, random_state)
-            for i in range(num_iter)
-        )
+        results = Parallel(n_jobs=n_jobs)(delayed(permutation_helper_ksample)
+                                          (x, y, n, h, i, random_state)
+                                          for i in range(num_iter))
 
     return np.quantile(results, quantile, axis=0)

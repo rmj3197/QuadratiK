@@ -1,7 +1,6 @@
 import time
 from functools import wraps
 import matplotlib.pyplot as plt
-
 plt.ioff()
 import pandas as pd
 import numpy as np
@@ -33,22 +32,23 @@ def _qq_plot_twosample(sample1, sample2):
         sample2 = sample2.to_numpy()
 
     fig, axes = plt.subplots(
-        nrows=sample1.shape[1], ncols=1, figsize=(6, sample1.shape[1] * 3)
-    )
+        nrows=sample1.shape[1], ncols=1, figsize=(6, sample1.shape[1]*3))
 
     for col in range(sample1.shape[1]):
-        quantiles1 = np.quantile(sample1[:, col], np.arange(0, 1, 1 / sample1.shape[0]))
-        quantiles2 = np.quantile(sample2[:, col], np.arange(0, 1, 1 / sample2.shape[0]))
-        axes[col].plot(quantiles1, quantiles2, color="blue")
+        quantiles1 = np.quantile(
+            sample1[:, col], np.arange(0, 1, 1/sample1.shape[0]))
+        quantiles2 = np.quantile(
+            sample2[:, col], np.arange(0, 1, 1/sample2.shape[0]))
+        axes[col].plot(quantiles1, quantiles2, color='blue')
 
         model = LinearRegression()
         model.fit(quantiles1.reshape(-1, 1), quantiles2.reshape(-1, 1))
         predictions = model.predict(quantiles1.reshape(-1, 1))
 
-        axes[col].plot(quantiles1, predictions, color="red", linestyle="--")
+        axes[col].plot(quantiles1, predictions, color="red", linestyle='--')
         axes[col].set_title("QQ Plot for feature: " + str(col))
-        axes[col].set_xlabel("Q1")
-        axes[col].set_ylabel("Q2")
+        axes[col].set_xlabel('Q1')
+        axes[col].set_ylabel('Q2')
         fig.suptitle("QQ Plots", fontsize=16)
     fig.subplots_adjust(hspace=0.5)
     plt.close()
@@ -84,25 +84,21 @@ def _qq_plot_onesample(sample1, dist="norm"):
         sample1 = sample1.to_numpy()
 
     fig, axes = plt.subplots(
-        nrows=sample1.shape[1], ncols=1, figsize=(6, sample1.shape[1] * 3)
-    )
+        nrows=sample1.shape[1], ncols=1, figsize=(6, sample1.shape[1]*3))
     for col in range(sample1.shape[1]):
         stats_probplot_vals = stats.probplot(sample1[:, col], dist=dist)
         theoretical_quantiles = stats_probplot_vals[0][0]
         quantiles1 = stats_probplot_vals[0][1]
-        axes[col].plot(theoretical_quantiles, quantiles1, color="blue")
-        axes[col].plot(
-            theoretical_quantiles,
-            stats_probplot_vals[1][1]
-            + stats_probplot_vals[1][0] * theoretical_quantiles,
-            color="red",
-            linestyle="--",
-        )
+        axes[col].plot(theoretical_quantiles, quantiles1, color='blue')
+        axes[col].plot(theoretical_quantiles, stats_probplot_vals[1][1] +
+                       stats_probplot_vals[1][0] *
+                       theoretical_quantiles, color="red", linestyle='--')
 
-        axes[col].plot(theoretical_quantiles, quantiles1, color="red", linestyle="--")
+        axes[col].plot(theoretical_quantiles, quantiles1,
+                       color="red", linestyle='--')
         axes[col].set_title(dist + " QQ Plot for feature: " + str(col))
-        axes[col].set_xlabel("Theoretical Quantiles")
-        axes[col].set_ylabel("Sample Quantiles")
+        axes[col].set_xlabel('Theoretical Quantiles')
+        axes[col].set_ylabel('Sample Quantiles')
         fig.suptitle("QQ Plots", fontsize=16)
     fig.subplots_adjust(hspace=0.5)
     plt.close()
@@ -129,7 +125,7 @@ def _extract_3d(data):
     """
     pca = PCA(n_components=3)
     data_pca = pca.fit_transform(data)[:, 0:3]
-    data_pca = data_pca / np.linalg.norm(data_pca, axis=1, keepdims=True)
+    data_pca = data_pca/np.linalg.norm(data_pca, axis=1, keepdims=True)
     return (data_pca[:, 0], data_pca[:, 1], data_pca[:, 2])
 
 
@@ -145,8 +141,8 @@ def _stats_helper(dat):
     Returns
     ---------
     descriptive statistics : pandas.DataFrame
-        A DataFrame containing mean, standard deviation, median,
-        interquartile range (IQR), minimum, and maximum values
+        A DataFrame containing mean, standard deviation, median, 
+        interquartile range (IQR), minimum, and maximum values 
         for each feature.
     """
     dat_mean = np.mean(dat, axis=0)
@@ -155,15 +151,17 @@ def _stats_helper(dat):
     dat_iqr = np.quantile(dat, 0.75, axis=0) - np.quantile(dat, 0.25, axis=0)
     dat_min = np.min(dat, axis=0)
     dat_max = np.max(dat, axis=0)
-    dat_stats = pd.DataFrame([dat_mean, dat_std, dat_median, dat_iqr, dat_min, dat_max])
-    dat_stats.columns = ["Feature " + str(i) for i in range(dat.shape[1])]
-    dat_stats = dat_stats.set_axis(["Mean", "Std Dev", "Median", "IQR", "Min", "Max"])
+    dat_stats = pd.DataFrame(
+        [dat_mean, dat_std, dat_median, dat_iqr, dat_min, dat_max])
+    dat_stats.columns = ['Feature ' + str(i) for i in range(dat.shape[1])]
+    dat_stats = dat_stats.set_axis(
+        ["Mean", "Std Dev", "Median", "IQR", "Min", "Max"])
     return dat_stats
 
 
 def class_method_call_timing(func):
     """
-    Decorator to measure the execution time of a
+    Decorator to measure the execution time of a 
     class method and store it in the instance.
 
     Parameters
@@ -176,7 +174,6 @@ def class_method_call_timing(func):
     callable
         The decorated class method.
     """
-
     @wraps(func)
     def wrapper(*args, **kwargs):
         start_time = time.time()
@@ -186,5 +183,4 @@ def class_method_call_timing(func):
         instance = args[0]
         instance.execution_time = execution_time
         return result
-
     return wrapper

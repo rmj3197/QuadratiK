@@ -5,12 +5,18 @@
 
 .. include:: ../../README.rst
 
+`Getting started <getting_started/index.html>`_
+--------------------------------------------------
+
 .. toctree::
    :hidden:
    :maxdepth: 4
    :titlesonly:
 
    getting_started/index.rst
+
+`API Reference <api_reference/index.html>`_
+---------------------------------------------
 
 .. toctree::
    :hidden:
@@ -19,23 +25,12 @@
 
    api_reference/index.rst
 
+`User Guide <user_guide/index.html>`_
+---------------------------------------------
+
 .. toctree::
    :hidden:
    :maxdepth: 4
    :titlesonly:
 
    user_guide/index.rst
-
-.. toctree::
-   :hidden:
-   :maxdepth: 4
-   :titlesonly:
-
-   development/index.rst
-
-.. toctree::
-   :hidden:
-   :maxdepth: 4
-   :titlesonly:
-
-   changelog/index.rst

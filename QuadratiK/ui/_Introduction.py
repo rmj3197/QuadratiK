@@ -1,14 +1,11 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="QuadratiK User Interface", initial_sidebar_state="expanded"
-)
+st.set_page_config(page_title="QuadratiK User Interface",
+                   initial_sidebar_state="expanded")
 
 st.header("QuadratiK User Interface")
 
-st.write(
-    "***Authors: Giovanni Saraceno, Marianthi Markatou, Raktim Mukhopadhyay, Mojgan Golzy***"
-)
+st.write('***Authors: Giovanni Saraceno, Marianthi Markatou, Raktim Mukhopadhyay, Mojgan Golzy***')
 
 st.sidebar.success("Select a function above")
 st.markdown(
@@ -55,11 +52,10 @@ inference,            and        conduct
 potentially  impactful     analyses  and
 inference   across   a   wide  array  of
 disciplines.</div>""",
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
 
-st.markdown(
-    r"""
+st.markdown(r"""
     <style>
         .reportview-container {
             margin-top: -2em;
@@ -69,6 +65,4 @@ st.markdown(
         footer {visibility: hidden;}
         #stDecoration {display:none;}
     </style>
-""",
-    unsafe_allow_html=True,
-)
+""", unsafe_allow_html=True)

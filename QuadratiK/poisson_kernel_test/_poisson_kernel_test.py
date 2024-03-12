@@ -13,20 +13,19 @@ from ._cv_functions import poisson_cv
 
 
 time_decorator = importlib.import_module(
-    "QuadratiK.tools._utils"
-).class_method_call_timing
-stats = importlib.import_module("QuadratiK.tools").stats
+    'QuadratiK.tools._utils').class_method_call_timing
+stats = importlib.import_module('QuadratiK.tools').stats
 
 
-class PoissonKernelTest:
+class PoissonKernelTest():
     """
-    Class for Poisson kernel-based quadratic distance
+    Class for Poisson kernel-based quadratic distance 
     test of Uniformity on the Sphere
 
     Parameters
     ----------
         rho : float
-            The value of concentration parameter used for the
+            The value of concentration parameter used for the 
             Poisson kernel function.
 
         num_iter : int, optional
@@ -35,14 +34,14 @@ class PoissonKernelTest:
         quantile : float, optional
             The quantile to use for critical value estimation
 
-        random_state : int, None, optional.
+        random_state : int, None, optional. 
             Seed for random number generation. Defaults to None
 
         n_jobs : int, optional.
-            n_jobs specifies the maximum number of concurrently running workers.
+            n_jobs specifies the maximum number of concurrently running workers. 
             If 1 is given, no joblib parallelism is used at all, which is useful for debugging.
-            For more information on joblib n_jobs refer
-            to - https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
+            For more information on joblib n_jobs refer 
+            to - https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html. 
             Defaults to 8.
 
 
@@ -55,7 +54,7 @@ class PoissonKernelTest:
             Time taken for the test method to execute
 
         u_statistic_h0\\_ : boolean
-            A logical value indicating whether or not the null hypothesis
+            A logical value indicating whether or not the null hypothesis 
             is rejected according to Un
 
         u_statistic_un\\_ : float
@@ -65,7 +64,7 @@ class PoissonKernelTest:
             The empirical critical value for Un
 
         v_statistic_h0\\_ : boolean
-            A logical value indicating whether or not the null hypothesis is
+            A logical value indicating whether or not the null hypothesis is 
             rejected according to Vn.
 
         v_statistic_vn\\_ : float
@@ -136,19 +135,18 @@ class PoissonKernelTest:
         elif isinstance(self.x, pd.DataFrame):
             self.x = self.x.to_numpy()
         elif not isinstance(self.x, (np.ndarray, pd.DataFrame)):
-            raise TypeError("x must be a numpy array or a pandas dataframe")
+            raise TypeError(
+                "x must be a numpy array or a pandas dataframe")
 
         if (self.quantile <= 0) or (self.quantile > 1):
             raise ValueError(
                 "Quantile indicates the level used for the critical \
-                    value computation. It must be in (0,1]."
-            )
+                    value computation. It must be in (0,1].")
 
         if not (isinstance(self.rho, (int, float)) and (0 < self.rho <= 1)):
             raise ValueError(
                 "rho indicates the concentration parameter \
-                    of the Poisson kernel, it must be in (0,1)."
-            )
+                    of the Poisson kernel, it must be in (0,1).")
 
         if not isinstance(self.random_state, (int, type(None))):
             raise ValueError("Please specify a integer or None random_state")
@@ -157,26 +155,17 @@ class PoissonKernelTest:
 
         n, d = self.x.shape
         pk = stat_poisson_unif(self.x, self.rho)
-        var_un = (2 / (n * (n - 1))) * (
-            (1 + np.power(self.rho, 2)) / np.power(1 - np.power(self.rho, 2), (d - 1))
-            - 1
-        )
+        var_un = (2 / (n * (n - 1))) * ((1 + np.power(self.rho, 2))
+                                        / np.power(1 - np.power(self.rho, 2), (d - 1)) - 1)
         dof_val = dof(d, self.rho)
-        qu_q = chi2.ppf(0.95, dof_val["DOF"])
-        cv_vn = dof_val["Coefficient"] * qu_q
-        cv_un = poisson_cv(
-            d=d,
-            size=n,
-            rho=self.rho,
-            num_iter=self.num_iter,
-            quantile=self.quantile,
-            random_state=self.random_state,
-            n_jobs=self.n_jobs,
-        )
+        qu_q = chi2.ppf(0.95, dof_val['DOF'])
+        cv_vn = dof_val['Coefficient'] * qu_q
+        cv_un = poisson_cv(d=d, size=n, rho=self.rho,
+                           num_iter=self.num_iter, quantile=self.quantile, random_state=self.random_state, n_jobs=self.n_jobs)
 
         self.test_type_ = method
         self.u_statistic_h0_ = pk[0] > cv_un
-        self.u_statistic_un_ = pk[0] / np.sqrt(var_un)
+        self.u_statistic_un_ = pk[0]/np.sqrt(var_un)
         self.u_statistic_cv_ = cv_un
 
         self.v_statistic_h0_ = pk[1] > cv_vn
@@ -199,70 +188,58 @@ class PoissonKernelTest:
 
     def summary(self, print_fmt="simple_grid"):
         """
-        Summary function generates a table for
+        Summary function generates a table for 
         the poisson kernel test results and the summary statistics.
 
         Parameters
         ----------
-            print_fmt : str, optional.
-                Used for printing the output in the desired format.
-                Supports all available options in tabulate,
-                see here: https://pypi.org/project/tabulate/.
+            print_fmt : str, optional. 
+                Used for printing the output in the desired format. 
+                Supports all available options in tabulate, 
+                see here: https://pypi.org/project/tabulate/. 
                 Defaults to "simple_grid".
 
         Returns
         --------
             summary : str
-                A string formatted in the desired output
+                A string formatted in the desired output 
                 format with the kernel test results and summary statistics.
         """
         res = pd.DataFrame()
-        res[""] = [
-            self.test_type_,
-            self.u_statistic_un_,
-            self.u_statistic_cv_,
-            self.u_statistic_h0_,
-            self.v_statistic_vn_,
-            self.v_statistic_cv_,
-            self.v_statistic_h0_,
-        ]
-        res = res.set_axis(
-            [
-                "Test Type",
-                "U Statistic Un",
-                "U Statistic Critical Value",
-                "U Statistic Reject H0",
-                "V Statistic Vn",
-                "V Statistic Critical Value",
-                "V Statistic Reject H0",
-            ]
-        )
+        res[''] = [self.test_type_, self.u_statistic_un_, self.u_statistic_cv_,
+                   self.u_statistic_h0_, self.v_statistic_vn_,
+                   self.v_statistic_cv_, self.v_statistic_h0_]
+        res = res.set_axis(["Test Type", "U Statistic Un", "U Statistic Critical Value",
+                           "U Statistic Reject H0", "V Statistic Vn",
+                            "V Statistic Critical Value", "V Statistic Reject H0"])
 
         summary_stats_df = self.stats().round(4)
 
         if print_fmt == "html":
             summary_string = (
-                "Time taken for execution: {:.3f} seconds".format(self.execution_time)
+                "Time taken for execution: {:.3f} seconds".format(
+                    self.execution_time)
                 + "<br>Test Results <br>"
                 + tabulate(res, tablefmt=print_fmt)
                 + "<br>Summary Statistics <br>"
                 + tabulate(
                     summary_stats_df,
                     tablefmt=print_fmt,
-                    headers=summary_stats_df.columns,
+                    headers=summary_stats_df.columns
                 )
                 + "<br>"
             )
         else:
             summary_string = (
-                "Time taken for execution: {:.3f} seconds".format(self.execution_time)
+                "Time taken for execution: {:.3f} seconds".format(
+                    self.execution_time)
                 + "\nTest Results \n"
                 + tabulate(res, tablefmt=print_fmt)
                 + "\nSummary Statistics \n"
                 + tabulate(
                     summary_stats_df,
                     tablefmt=print_fmt,
-                    headers=summary_stats_df.columns,
+                    headers=summary_stats_df.columns
                 )
             )
 

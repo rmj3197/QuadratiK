@@ -3,37 +3,36 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
-
 plt.ioff()
 
 
 def qq_plot(x, y=None, dist="norm"):
     """
-    The function qq_plot is used to create a quantile-quantile plot,
+    The function qq_plot is used to create a quantile-quantile plot, 
     either for a single sample or for two samples.
 
     Parameters
     ----------
         x : numpy.ndarray
-            The `x` parameter represents the data for which you want to
-            create a QQ plot. It can be a single variable or an array-like
+            The `x` parameter represents the data for which you want to 
+            create a QQ plot. It can be a single variable or an array-like 
             object containing multiple variables
 
         y : numpy.ndarray, optional
-            The parameter `y` is an optional argument that represents the second
-            sample for a two-sample QQ plot. If provided, the function will generate
+            The parameter `y` is an optional argument that represents the second 
+            sample for a two-sample QQ plot. If provided, the function will generate 
             a QQ plot comparing the two samples
 
         dist : str, optional
             Supports all the scipy.stats.distributions. The `dist` parameter specifies
-            the distribution to compare the data against in the QQ plot. By default,
-            it is set to "norm" which represents the normal distribution. However, you can
+            the distribution to compare the data against in the QQ plot. By default, 
+            it is set to "norm" which represents the normal distribution. However, you can 
             specify a different distribution if you want to compare the data against
-            a different distribution. Defaults to "norm".
+            a different distribution. Defaults to "norm". 
 
-    Returns
+    Returns 
     -------
-        Returns QQ plots.
+        Returns QQ plots. 
 
     Examples
     --------
@@ -53,20 +52,20 @@ def qq_plot(x, y=None, dist="norm"):
 
 def sphere3d(x, y=None):
     """
-    The function sphere3d creates a 3D scatter plot with a sphere
+    The function sphere3d creates a 3D scatter plot with a sphere 
     as the surface and data points plotted on it.
 
     Parameters
     ----------
-        x : numpy.ndarray, pandas.DataFrame
-            The parameter `x` represents the input data for the scatter plot.
-            It should be a 2D array-like object with shape (n_samples, 3),
+        x : numpy.ndarray, pandas.DataFrame 
+            The parameter `x` represents the input data for the scatter plot. 
+            It should be a 2D array-like object with shape (n_samples, 3), 
             where each row represents the coordinates of a point in
             3D space
 
-        y : numpy.ndarray, list, pandas.series, optional
-            The parameter `y` is an optional input that determines the color and
-            shape of each data point in the plot. If `y` is not provided, the
+        y : numpy.ndarray, list, optional
+            The parameter `y` is an optional input that determines the color and 
+            shape of each data point in the plot. If `y` is not provided, the 
             scatter plot will have the default marker symbol and color.
 
 
@@ -85,97 +84,61 @@ def sphere3d(x, y=None):
         x = x.to_numpy()
 
     if isinstance(y, pd.DataFrame):
-        y = y.to_numpy().flatten()
-    elif isinstance(y, pd.Series):
-        y = y.values
-    elif isinstance(y, np.ndarray):
-        if y.ndim == 1:
-            pass
-        elif y.ndim == 2:
-            y = y.flatten()
+        y = y.to_numpy()
 
     r = 1
     pi = np.pi
     cos = np.cos
     sin = np.sin
-    phi, theta = np.mgrid[0.0:pi:100j, 0.0 : 2.0 * pi : 100j]
+    phi, theta = np.mgrid[0.0:pi:100j, 0.0:2.0*pi:100j]
     x1 = r * sin(phi) * cos(theta)
     y1 = r * sin(phi) * sin(theta)
     z1 = r * cos(phi)
     xx, yy, zz = _extract_3d(x)
 
-    raw_symbols = ["circle", "diamond", "cross", "square", "x"]
+    raw_symbols = ['circle', 'diamond', 'cross', 'square', 'x']
 
     fig = go.Figure()
-    fig.add_trace(
-        go.Surface(
-            x=x1,
-            y=y1,
-            z=z1,
-            colorscale=[[0, "#DCDCDC"], [1, "#DCDCDC"]],
-            opacity=0.5,
-            showscale=False,
-        )
-    )
+    fig.add_trace(go.Surface(x=x1, y=y1, z=z1, colorscale=[
+                  [0, '#DCDCDC'], [1, '#DCDCDC']], opacity=0.5, showscale=False))
     if y is None:
-        fig.add_trace(
-            go.Scatter3d(
-                x=xx,
-                y=yy,
-                z=zz,
-                mode="markers",
-                marker=dict(size=5, colorscale="turbo", showscale=False),
-            )
-        )
+        fig.add_trace(go.Scatter3d(x=xx, y=yy, z=zz, mode='markers', marker=dict(
+            size=5, colorscale="turbo", showscale=False)))
     else:
-        fig.add_trace(
-            go.Scatter3d(
-                x=xx,
-                y=yy,
-                z=zz,
-                mode="markers",
-                marker=dict(
-                    size=5,
-                    color=y,
-                    colorscale="turbo",
-                    showscale=False,
-                    symbol=[raw_symbols[value] for value in y],
-                ),
-            )
-        )
+        fig.add_trace(go.Scatter3d(x=xx, y=yy, z=zz, mode='markers', marker=dict(
+            size=5, color=y, colorscale="turbo",
+            showscale=False, symbol=[raw_symbols[value] for value in y])))
 
-    fig.update_layout(
-        title="",
-        scene=dict(
-            xaxis=dict(range=[-1, 1]),
-            yaxis=dict(range=[-1, 1]),
-            zaxis=dict(range=[-1, 1]),
-            aspectmode="data",
-        ),
-    )
+    fig.update_layout(title='',
+                      scene=dict(
+                          xaxis=dict(range=[-1, 1]),
+                          yaxis=dict(range=[-1, 1]),
+                          zaxis=dict(range=[-1, 1]),
+                          aspectmode='data',
+                      ))
     fig.update_layout(showlegend=False)
     return fig
 
 
 def plot_clusters_2d(x, y=None):
     """
-    This function plots a 2D scatter plot of data points,
-    with an optional argument to color the points based on
+    This function plots a 2D scatter plot of data points, 
+    with an optional argument to color the points based on 
     a cluster label, and also plots a unit circle.
 
     Parameters
     ----------
         x : numpy.ndarray, pandas.DataFrame
-            The parameter `x` is a 2-dimensional array or matrix
-            containing the coordinates of the data points to be plotted.
-            Each row of `x` represents the coordinates of a single data point
+            The parameter `x` is a 2-dimensional array or matrix 
+            containing the coordinates of the data points to be plotted. 
+            Each row of `x` represents the coordinates of a single data point 
             in the 2-dimensional space
 
         y : numpy.ndarray, pandas.DataFrame, optional
-            The parameter `y` is an optional array that represents the labels
-            or cluster assignments for each data point in `x`.
+            The parameter `y` is an optional array that represents the labels 
+            or cluster assignments for each data point in `x`. 
             If `y` is provided, the data points will be colored according to their
-            labels or cluster assignments.
+            labels or cluster assignments. 
 
     Returns
     -------
@@ -194,27 +157,20 @@ def plot_clusters_2d(x, y=None):
         x = x.to_numpy()
 
     if isinstance(y, pd.DataFrame):
-        y = y.to_numpy().flatten()
-    elif isinstance(y, pd.Series):
-        y = y.values
-    elif isinstance(y, np.ndarray):
-        if y.ndim == 1:
-            pass
-        elif y.ndim == 2:
-            y = y.flatten()
+        y = y.to_numpy()
 
     fig = plt.figure()
     if y is not None:
-        plt.scatter(x[:, 0], x[:, 1], c=y, cmap="viridis", edgecolors="k")
+        plt.scatter(x[:, 0], x[:, 1], c=y, cmap='viridis', edgecolors='k')
     else:
-        plt.scatter(x[:, 0], x[:, 1], edgecolors="k")
+        plt.scatter(x[:, 0], x[:, 1], edgecolors='k')
 
-    theta = np.linspace(0, 2 * np.pi, 100)
+    theta = np.linspace(0, 2*np.pi, 100)
     unit_circle_x = np.cos(theta)
     unit_circle_y = np.sin(theta)
 
-    plt.plot(unit_circle_x, unit_circle_y, linestyle="dashed", color="red")
-    plt.xlabel("Feature 1")
-    plt.ylabel("Feature 2")
+    plt.plot(unit_circle_x, unit_circle_y, linestyle='dashed', color='red')
+    plt.xlabel('Feature 1')
+    plt.ylabel('Feature 2')
     plt.close()
     return fig
