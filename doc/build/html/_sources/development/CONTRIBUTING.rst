@@ -10,7 +10,7 @@ First of all, thanks for considering contributing to QuadratiK!
 .. _new_issue: https://github.com/rmj3197/QuadratiK/issues/new
 .. _website: https://quadratik.readthedocs.io/en/latest/
 .. _citation: https://arxiv.org/abs/2402.02290
-.. _conduct: https://github.com/rmj3197/QuadratiK/blob/master/CODE_OF_CONDUCT.rst
+.. _conduct: 
 .. _bug_report: https://github.com/rmj3197/QuadratiK/issues/new?assignees=&labels=Bug%2CNeeds+Triage&projects=&template=bug_report.yml
 .. _doc_improvement: https://github.com/rmj3197/QuadratiK/issues/new?assignees=&labels=Documentation%2CNeeds+Triage&projects=&template=documentation_improvement.yml
 .. _email: mailto:raktimmu@buffalo.edu
@@ -90,3 +90,8 @@ We try to follow the `GitHub flow <https://guides.github.com/introduction/flow/>
 
 5. Commit and push your changes.
 6. Submit a `pull request <https://guides.github.com/activities/forking/#making-a-pull-request>`_.
+
+Future Developments
+---------------------
+
+QuadratiK was first released on PyPI on February 03, 2024. Regular updates and bug fixes are planned to continually enhance the package's functionality and user experience. We are actively planning to include additional methods based on the kernel-based quadratic-distance. One of our primary goals is to make QuadratiK increasingly user-friendly, with improvements to the user experience and the layout of the outputs. User feedback is highly valued and will be a key driver of future development. This Life Cycle Statement is subject to periodic review and will be updated to reflect the evolving nature of QuadratiK. 
