@@ -17,10 +17,13 @@ class TestPKBC(unittest.TestCase):
         x2 = pkbd.rpkb(100, np.array([0, 1, 0]), 0.8, "rejacg", random_state=42)
         x3 = pkbd.rpkb(100, np.array([0, 1, 0.2]), 0.8, "rejacg", random_state=42)
         data = np.concatenate((x1, x2, x3), axis=0)
-        pkbd_cluster_fit_numpy = PKBC(num_clust=3,random_state=42).fit(data)
+        prediction_data = data[:50]
+        pkbd_cluster_fit_numpy = PKBC(num_clust=3, random_state=42).fit(data)
         pkbd_cluster_fit_numpy_membership = PKBC(
-            num_clust=3, stopping_rule="membership",
-        random_state=42,).fit(data)
+            num_clust=3,
+            stopping_rule="membership",
+            random_state=42,
+        ).fit(data)
 
         y_true = pd.DataFrame(np.repeat(np.arange(1, 4), repeats=100))
 
@@ -35,12 +38,14 @@ class TestPKBC(unittest.TestCase):
         self.assertIsInstance(pkbd_cluster_fit_numpy.stats(), pd.DataFrame)
         self.assertIsInstance(pkbd_cluster_fit_numpy.validation(), (int, float))
         self.assertIsInstance(pkbd_cluster_fit_numpy.validation(y_true=y_true), tuple)
+        self.assertIsInstance(pkbd_cluster_fit_numpy.predict(prediction_data), tuple)
 
         self.assertEqual(len(pkbd_cluster_fit_numpy_membership.labels_), 300)
         self.assertEqual(len(pkbd_cluster_fit_numpy_membership.alpha_), 3)
         self.assertTrue(np.isclose(np.sum(pkbd_cluster_fit_numpy_membership.alpha_), 1))
         self.assertEqual(len(pkbd_cluster_fit_numpy_membership.rho_), 3)
         self.assertIsInstance(pkbd_cluster_fit_numpy_membership.stats(), pd.DataFrame)
+        self.assertIsInstance(pkbd_cluster_fit_numpy_membership.predict(prediction_data), tuple)
 
         self.assertIsInstance(
             pkbd_cluster_fit_numpy_membership.cosine_wcss_, (int, float)
@@ -76,3 +81,7 @@ class TestPKBC(unittest.TestCase):
 
         with self.assertRaises(Exception):
             PKBC(num_clust=3, stopping_rule="some").fit(data)
+
+        with self.assertRaises(ValueError):
+            X = np.random.randn(10,2)
+            pkbd_cluster_fit_numpy.predict(X)

@@ -4,7 +4,8 @@ QuadratiK Version 1.0.1
 This version is currently in development (can be found on the master branch v1.0.1.dev0).
 
 This version includes - 
-1. Minor bug fixes
-2. Enforced Opt Out from Telemetry (streamlit) while using UI
-3. Additional test cases to increase coverage
-4. Documentation improvements (hosting on Read the Docs, and included Code of Conduct and Contributing Guide)
+    1. Minor bug fixes
+    2. Enforced Opt Out from Telemetry (streamlit) while using UI
+    3. Additional test cases to increase coverage
+    4. **[NEW]** Added predict method to extract cluster membership of new data. 
+    5. Documentation improvements (hosting on Read the Docs, and included Code of Conduct and Contributing Guide)

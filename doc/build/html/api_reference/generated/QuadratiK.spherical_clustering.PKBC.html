@@ -340,6 +340,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC"><code class="docutils literal notranslate"><span class="pre">PKBC</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.fit"><code class="docutils literal notranslate"><span class="pre">PKBC.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.predict"><code class="docutils literal notranslate"><span class="pre">PKBC.predict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.stats"><code class="docutils literal notranslate"><span class="pre">PKBC.stats()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.validation"><code class="docutils literal notranslate"><span class="pre">PKBC.validation()</span></code></a></li>
 </ul>
@@ -469,10 +470,13 @@ and a Method of Sampling, Journal of Computational and Graphical Statistics,
 <tr class="row-odd"><td><p><a class="reference internal" href="#QuadratiK.spherical_clustering.PKBC.fit" title="QuadratiK.spherical_clustering.PKBC.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PKBC.fit</span></code></a>(dat)</p></td>
 <td><p>Performs Poisson Kernel-based Clustering.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#QuadratiK.spherical_clustering.PKBC.stats" title="QuadratiK.spherical_clustering.PKBC.stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PKBC.stats</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#QuadratiK.spherical_clustering.PKBC.predict" title="QuadratiK.spherical_clustering.PKBC.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PKBC.predict</span></code></a>(X)</p></td>
+<td><p>Predict the cluster membership for each sample in X.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#QuadratiK.spherical_clustering.PKBC.stats" title="QuadratiK.spherical_clustering.PKBC.stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PKBC.stats</span></code></a>()</p></td>
 <td><p>Function to generate descriptive statistics per variable (and per group if available).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#QuadratiK.spherical_clustering.PKBC.validation" title="QuadratiK.spherical_clustering.PKBC.validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PKBC.validation</span></code></a>([y_true])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#QuadratiK.spherical_clustering.PKBC.validation" title="QuadratiK.spherical_clustering.PKBC.validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PKBC.validation</span></code></a>([y_true])</p></td>
 <td><p>Computes validation metrics such as ARI, Macro Precision and Macro Recall when true labels are provided.</p></td>
 </tr>
 </tbody>
@@ -503,11 +507,36 @@ and a Method of Sampling, Journal of Computational and Graphical Statistics,
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="QuadratiK.spherical_clustering.PKBC.predict">
+<span class="sig-prename descclassname"><span class="pre">PKBC.</span></span><span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.spherical_clustering.PKBC.predict" title="Link to this definition">#</a></dt>
+<dd><p>Predict the cluster membership for each sample in X.</p>
+<section id="id2">
+<h2>Parameters<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>X<span class="classifier">numpy.ndarray, pandas.DataFrame</span></dt><dd><p>New data to predict membership</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="id3">
+<h2>Returns<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>(Cluster Probabilities, Membership)<span class="classifier">tuple</span></dt><dd><p>The first element of the tuple is the cluster probabilities of the input samples.
+The second element of the tuple is the predicted cluster membership of the new data.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="QuadratiK.spherical_clustering.PKBC.stats">
 <span class="sig-prename descclassname"><span class="pre">PKBC.</span></span><span class="sig-name descname"><span class="pre">stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.spherical_clustering.PKBC.stats" title="Link to this definition">#</a></dt>
 <dd><p>Function to generate descriptive statistics per variable (and per group if available).</p>
-<section id="id2">
-<h2>Returns<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><dl class="simple">
 <dt>summary_stats_df<span class="classifier">pandas.DataFrame</span></dt><dd><p>Dataframe of descriptive statistics</p>
@@ -522,8 +551,8 @@ and a Method of Sampling, Journal of Computational and Graphical Statistics,
 <span class="sig-prename descclassname"><span class="pre">PKBC.</span></span><span class="sig-name descname"><span class="pre">validation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.spherical_clustering.PKBC.validation" title="Link to this definition">#</a></dt>
 <dd><p>Computes validation metrics such as ARI, Macro Precision
 and Macro Recall when true labels are provided.</p>
-<section id="id3">
-<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h2>Parameters<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><dl class="simple">
 <dt>y_true<span class="classifier">numpy.ndarray.</span></dt><dd><p>Array of true memberships to clusters,
@@ -532,8 +561,8 @@ Defaults to None.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id4">
-<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h2>Returns<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><dl class="simple">
 <dt>validation metrics<span class="classifier">tuple</span></dt><dd><p>The tuple consists of the following:</p>
@@ -563,8 +592,8 @@ Defaults to None.</p>
 </dl>
 </div></blockquote>
 </section>
-<section id="id5">
-<h2>References<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id7">
+<h2>References<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><p>Rousseeuw, P.J. (1987) Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
 Journal of Computational and Applied Mathematics, 20, 53–65.</p>
@@ -636,6 +665,7 @@ matched labels.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC"><code class="docutils literal notranslate"><span class="pre">PKBC</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.fit"><code class="docutils literal notranslate"><span class="pre">PKBC.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.predict"><code class="docutils literal notranslate"><span class="pre">PKBC.predict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.stats"><code class="docutils literal notranslate"><span class="pre">PKBC.stats()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QuadratiK.spherical_clustering.PKBC.validation"><code class="docutils literal notranslate"><span class="pre">PKBC.validation()</span></code></a></li>
 </ul>

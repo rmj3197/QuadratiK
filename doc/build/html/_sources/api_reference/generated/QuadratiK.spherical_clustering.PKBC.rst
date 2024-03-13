@@ -73,7 +73,13 @@
     
     
     
+    
+    
         PKBC.fit
+    
+    
+    
+        PKBC.predict
     
     
     
@@ -92,6 +98,10 @@
 
 
 .. automethod:: PKBC.fit
+
+
+
+.. automethod:: PKBC.predict
 
 
 

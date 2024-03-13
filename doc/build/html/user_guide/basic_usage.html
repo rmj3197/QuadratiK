@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
-    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=5ce21ab0" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -415,7 +415,7 @@ document.write(`
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Test : Kernel-based quadratic distance Normality test
-Execution time: 1.624
+Execution time: 1.900
 H0 is Rejected : False
 Test Statistic : -0.004422397826208057
 Critical Value (CV) : 0.00495159345113745
@@ -436,7 +436,7 @@ Selected tuning parameter : 0.4
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Time taken for execution: 1.624 seconds
+Time taken for execution: 1.900 seconds
 Test Results
 --------------  ----------------------------------------------
 Test Type       Kernel-based quadratic distance Normality test
@@ -479,10 +479,10 @@ Max           1.8862       2.7202
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Test : Kernel-based quadratic distance Normality test
-Execution time: 0.127
+Execution time: 0.158
 H0 is Rejected : False
 Test Statistic : 0.0015387891795935942
-Critical Value (CV) : 0.0020363902726580683
+Critical Value (CV) : 0.0020239838002163724
 CV Method : Empirical
 Selected tuning parameter : 0.4
 </pre></div></div>
@@ -495,17 +495,17 @@ Selected tuning parameter : 0.4
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Time taken for execution: 0.127 seconds
+Time taken for execution: 0.158 seconds
 Test Results
 --------------  ----------------------------------------------
 Test Type       Kernel-based quadratic distance Normality test
 Test Statistic  0.0015387891795935942
-Critical Value  0.0020363902726580683
+Critical Value  0.0020239838002163724
 Reject H0       False
 --------------  ----------------------------------------------
 Summary Statistics
@@ -517,6 +517,14 @@ Median       -0.0353       0.1323
 IQR           1.0704       1.3333
 Min          -2.6197      -1.9876
 Max           1.8862       2.7202
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
 </pre></div></div>
 </div>
 </section>
@@ -571,7 +579,7 @@ Max           1.8862       2.7202
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Test : Kernel-based quadratic distance two-sample test
-Execution time: 0.040
+Execution time: 0.038
 H0 is Rejected : False
 Test Statistic : 0.0029175386660962063
 Critical Value (CV) : 0.00931651659981921
@@ -592,7 +600,7 @@ Selected tuning parameter : 0.4
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Time taken for execution: 0.040 seconds
+Time taken for execution: 0.038 seconds
 Test Results
 --------------  -----------------------------------------------
 Test Type       Kernel-based quadratic distance two-sample test
@@ -656,10 +664,10 @@ Entered this K Sample Else
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Test : Kernel-based quadratic distance K-sample test
-Execution time: 0.273 seconds
+Execution time: 0.288 seconds
 H0 is Rejected : False
 Test Statistic : [0.00154197 0.00038549]
-Critical Value (CV) : [0.00441809 0.00110452]
+Critical Value (CV) : [0.00395911 0.00098978]
 CV Method : permutation
 Selected tuning parameter : 1.5
 </pre></div></div>
@@ -677,12 +685,12 @@ Selected tuning parameter : 1.5
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Time taken for execution: 0.273 seconds
+Time taken for execution: 0.288 seconds
 Test Results
 --------------  ---------------------------------------------
 Test Type       Kernel-based quadratic distance K-sample test
 Test Statistic  [0.00154197 0.00038549]
-Critical Value  [0.00441809 0.00110452]
+Critical Value  [0.00395911 0.00098978]
 Reject H0       False
 --------------  ---------------------------------------------
 Summary Statistics
@@ -987,49 +995,49 @@ Selected h is:  1.2
       <th>0</th>
       <td>0.4</td>
       <td>0.2</td>
-      <td>0.08</td>
+      <td>0.02</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.8</td>
       <td>0.2</td>
-      <td>0.06</td>
+      <td>0.22</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1.2</td>
       <td>0.2</td>
-      <td>0.24</td>
+      <td>0.20</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1.6</td>
       <td>0.2</td>
-      <td>0.20</td>
+      <td>0.28</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2.0</td>
       <td>0.2</td>
-      <td>0.36</td>
+      <td>0.42</td>
     </tr>
     <tr>
       <th>5</th>
       <td>2.4</td>
       <td>0.2</td>
-      <td>0.32</td>
+      <td>0.30</td>
     </tr>
     <tr>
       <th>6</th>
       <td>2.8</td>
       <td>0.2</td>
-      <td>0.38</td>
+      <td>0.36</td>
     </tr>
     <tr>
       <th>7</th>
       <td>3.2</td>
       <td>0.2</td>
-      <td>0.36</td>
+      <td>0.20</td>
     </tr>
     <tr>
       <th>0</th>
@@ -1041,37 +1049,37 @@ Selected h is:  1.2
       <th>1</th>
       <td>0.8</td>
       <td>0.3</td>
-      <td>0.32</td>
+      <td>0.40</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1.2</td>
       <td>0.3</td>
-      <td>0.56</td>
+      <td>0.50</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1.6</td>
       <td>0.3</td>
-      <td>0.60</td>
+      <td>0.44</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2.0</td>
       <td>0.3</td>
-      <td>0.56</td>
+      <td>0.40</td>
     </tr>
     <tr>
       <th>5</th>
       <td>2.4</td>
       <td>0.3</td>
-      <td>0.52</td>
+      <td>0.60</td>
     </tr>
     <tr>
       <th>6</th>
       <td>2.8</td>
       <td>0.3</td>
-      <td>0.64</td>
+      <td>0.56</td>
     </tr>
     <tr>
       <th>7</th>
