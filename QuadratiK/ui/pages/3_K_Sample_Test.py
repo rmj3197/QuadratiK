@@ -109,7 +109,15 @@ if data is not None:
                 k_samp_test.vn_h0_rejected_,
             ]
             res = res.set_axis(
-                ["Test Type", "Un Test Statistic", "Un Critical Value", "Un Reject H0","Vn Test Statistic", "Vn Critical Value", "Vn Reject H0"]
+                [
+                    "Test Type",
+                    "Un Test Statistic",
+                    "Un Critical Value",
+                    "Un Reject H0",
+                    "Vn Test Statistic",
+                    "Vn Critical Value",
+                    "Vn Reject H0",
+                ]
             )
             st.table(res)
             csv_res = res.to_csv().encode()

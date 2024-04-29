@@ -24,13 +24,16 @@ class TestKernelTest(unittest.TestCase):
         normality_test_numpy = KernelTest(h=0.5, random_state=42).test(x)
         normality_test_dataframe = KernelTest(h=0.5, random_state=42).test(dataframe_x)
         self.assertFalse(normality_test_numpy.un_h0_rejected_)
-        self.assertTrue(isinstance(normality_test_numpy.un_test_statistic_, (int, float)))
+        self.assertTrue(
+            isinstance(normality_test_numpy.un_test_statistic_, (int, float))
+        )
         self.assertFalse(normality_test_dataframe.un_h0_rejected_)
         self.assertTrue(
             isinstance(normality_test_dataframe.un_test_statistic_, (int, float))
         )
         self.assertEqual(
-            normality_test_numpy.un_h0_rejected_, normality_test_dataframe.un_h0_rejected_
+            normality_test_numpy.un_h0_rejected_,
+            normality_test_dataframe.un_h0_rejected_,
         )
         self.assertEqual(
             normality_test_numpy.un_test_statistic_,
@@ -95,19 +98,21 @@ class TestKernelTest(unittest.TestCase):
             h=1.5, method="subsampling", b=0.5, random_state=42
         ).test(x, y)
         self.assertFalse(k_sample_test.un_h0_rejected_)
-        self.assertTrue(isinstance(k_sample_test.un_test_statistic_, np.ndarray))
+        self.assertTrue(isinstance(k_sample_test.un_test_statistic_,(int,float)))
 
         k_sample_test_without_h = KernelTest(
             method="subsampling", b=0.5, random_state=42, alternative="location"
         ).test(x, y)
         self.assertFalse(k_sample_test_without_h.un_h0_rejected_)
-        self.assertTrue(isinstance(k_sample_test_without_h.un_test_statistic_, np.ndarray))
+        self.assertTrue(
+            isinstance(k_sample_test_without_h.un_test_statistic_,(int,float))
+        )
 
         k_sample_test_1d = KernelTest(
             h=1.5, method="subsampling", b=0.5, random_state=42
         ).test(x_1d, y_dataframe)
         self.assertFalse(k_sample_test_1d.un_h0_rejected_)
-        self.assertTrue(isinstance(k_sample_test_1d.un_test_statistic_, np.ndarray))
+        self.assertTrue(isinstance(k_sample_test_1d.un_test_statistic_, (int,float)))
 
         with self.assertRaises(ValueError):
             KernelTest(h=1.5, method="subsampling", b=0.5, random_state=42).test(
