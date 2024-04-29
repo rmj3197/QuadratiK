@@ -110,7 +110,6 @@ def cv_normality(
     sigma_hat,
     num_iter=500,
     quantile=0.95,
-    centering_type="param",
     random_state=None,
     n_jobs=8,
 ):
@@ -146,8 +145,6 @@ def cv_normality(
         quantile : float, optional
             The quantile of the distribution used to select the critical value.
 
-        centering_type : str, optional
-
         random_state : int, None, optional.
             Seed for random number generation. Defaults to None
 
@@ -164,12 +161,10 @@ def cv_normality(
             Critical value for the specified dimension, size and quantile.
     """
     results = Parallel(n_jobs=n_jobs)(
-        delayed(normal_cv_helper)(
-            size, h, mu_hat, sigma_hat, centering_type, i, random_state
-        )
+        delayed(normal_cv_helper)(size, h, mu_hat, sigma_hat, i, random_state)
         for i in range(num_iter)
     )
-    return np.quantile(results, quantile)
+    return np.quantile(results, quantile, axis=0)
 
 
 def cv_ksample(

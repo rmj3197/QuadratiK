@@ -53,11 +53,14 @@ def nonparam_centering(kmat_zz, n_z):
     centered kernel matrix : numpy.ndarray
         Matrix of centered kernel.
     """
+    kmat = np.copy(kmat_zz)
+    np.fill_diagonal(kmat, 0)
+
     k_center = (
         kmat_zz
-        - np.sum(kmat_zz, axis=1, keepdims=True) / n_z
-        - np.sum(kmat_zz, axis=0, keepdims=True) / n_z
-        + (np.sum(kmat_zz)) / (n_z * (n_z - 1))
+        - np.sum(kmat, axis=1, keepdims=True) / (n_z - 1)
+        - np.sum(kmat, axis=0, keepdims=True) / (n_z - 1)
+        + (np.sum(kmat)) / (n_z * (n_z - 1))
     )
     return k_center
 
@@ -149,10 +152,10 @@ def stat_two_sample(x_mat, y_mat, h, mu_hat, sigma_hat, centering_type="nonparam
         - 2 * (np.sum(k_center[:n_x, n_x : n_x + n_y]) / (n_x * n_y))
         + (np.sum(k_center[n_x : n_x + n_y, n_x : n_x + n_y]) / (n_y * (n_y - 1)))
     )
-    return test_non_par
+    return n_z * test_non_par
 
 
-def stat_normality_test(x_mat, h, mu_hat, sigma_hat, centering_type="param"):
+def stat_normality_test(x_mat, h, mu_hat, sigma_hat):
     """
     Compute kernel-based quadratic distance test for
     Normality
@@ -179,15 +182,16 @@ def stat_normality_test(x_mat, h, mu_hat, sigma_hat, centering_type="param"):
     k = x_mat.shape[1]
     cov_h = (h**2) * np.identity(k)
     kmat_zz = compute_kernel_matrix(x_mat, x_mat, cov_h)
-    np.fill_diagonal(kmat_zz, 0)
 
-    if centering_type == "nonparam":
-        k_center = nonparam_centering(kmat_zz, n_x)
-    elif centering_type == "param":
-        k_center = param_centering(kmat_zz, x_mat, cov_h, mu_hat, sigma_hat)
-    np.fill_diagonal(k_center, 0)
-    test_normality = np.sum(k_center) / (n_x * (n_x - 1))
-    return test_normality
+    k_center = param_centering(kmat_zz, x_mat, cov_h, mu_hat, sigma_hat)
+
+    # Compute the normality test V-statistic
+    Vn = n_x * np.sum(k_center) / (n_x) ** 2
+
+    # Compute the normality test U-statistic
+    Un = n_x * ((np.sum(k_center) - np.sum(np.diagonal(k_center))) / (n_x * (n_x - 1)))
+
+    return np.array([Un, Vn])
 
 
 def stat_ksample(x, y, h):
@@ -245,12 +249,12 @@ def stat_ksample(x, y, h):
                         cum_size[l] : cum_size[l + 1], cum_size[r] : cum_size[r + 1]
                     ]
                 )
-    stat1 = (k - 1) * trace_k + tn
-    stat2 = trace_k + tn / (k - 1)
+    stat1 = n * ((k - 1) * trace_k + tn)
+    stat2 = n * trace_k
     return np.array([stat1, stat2])
 
 
-def normal_cv_helper(size, h, mu_hat, sigma_hat, centering_type, n_rep, random_state):
+def normal_cv_helper(size, h, mu_hat, sigma_hat, n_rep, random_state):
     """
     Generate a sample from a multivariate normal distribution and perform a
     kernel-based quadratic distance test for normality.
@@ -271,9 +275,6 @@ def normal_cv_helper(size, h, mu_hat, sigma_hat, centering_type, n_rep, random_s
     sigma_hat : numpy.ndarray
         Covariance matrix of the reference distribution.
 
-    centering_type : str
-        String indicating the method used for centering the normal kernel.
-
     n_rep : int
         The number of replication.
 
@@ -292,7 +293,7 @@ def normal_cv_helper(size, h, mu_hat, sigma_hat, centering_type, n_rep, random_s
         generator = check_random_state(random_state + n_rep)
 
     dat = generator.multivariate_normal(mu_hat.ravel(), sigma_hat, size)
-    return stat_normality_test(dat, h, mu_hat, sigma_hat, centering_type)
+    return stat_normality_test(dat, h, mu_hat, sigma_hat)
 
 
 def bootstrap_helper_twosample(size_x, size_y, h, data_pool, n_rep, random_state):

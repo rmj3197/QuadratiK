@@ -6,6 +6,9 @@ import numpy as np
 import pandas as pd
 from scipy.stats import skew, skewnorm
 from sklearn.utils.parallel import Parallel, delayed
+import matplotlib
+
+usetex = matplotlib.checkdep_usetex(True)
 import matplotlib.pyplot as plt
 
 from ._utils import stat_ksample, stat_two_sample, stat_normality_test
@@ -110,9 +113,7 @@ def _objective_one_sample(
         random_state=random_state,
     )
 
-    statistic = stat_normality_test(
-        xnew, h, np.array([mean_dat]), np.diag(s_dat), "param"
-    )
+    statistic = stat_normality_test(xnew, h, np.array([mean_dat]), np.diag(s_dat))
     cv = cv_normality(
         n,
         h,
@@ -120,12 +121,11 @@ def _objective_one_sample(
         np.diag(s_dat),
         num_iter,
         quantile,
-        "param",
         random_state=random_state,
         n_jobs=n_jobs,
     )
     h0 = statistic < cv
-    return [rep_values, delta, h, h0]
+    return [rep_values, delta, h, h0[0]]
 
 
 def _objective_two_sample(
@@ -759,11 +759,11 @@ def select_h(
                 group["power"],
                 marker="o",
                 linestyle="-",
-                label=f"$\\delta$={round(delta, 3)}",
+                label=f"delta={round(delta, 3)}",
             )
         plt.xlabel("h")
         plt.ylabel("Power")
-        plt.title(r"h vs Power for different $\delta$")
+        plt.title("h vs Power for different delta")
         plt.legend()
         plt.close()
         return (min_h, all_results, figure)

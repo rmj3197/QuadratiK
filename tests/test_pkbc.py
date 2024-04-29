@@ -45,7 +45,9 @@ class TestPKBC(unittest.TestCase):
         self.assertTrue(np.isclose(np.sum(pkbd_cluster_fit_numpy_membership.alpha_), 1))
         self.assertEqual(len(pkbd_cluster_fit_numpy_membership.rho_), 3)
         self.assertIsInstance(pkbd_cluster_fit_numpy_membership.stats(), pd.DataFrame)
-        self.assertIsInstance(pkbd_cluster_fit_numpy_membership.predict(prediction_data), tuple)
+        self.assertIsInstance(
+            pkbd_cluster_fit_numpy_membership.predict(prediction_data), tuple
+        )
 
         self.assertIsInstance(
             pkbd_cluster_fit_numpy_membership.cosine_wcss_, (int, float)
@@ -83,5 +85,5 @@ class TestPKBC(unittest.TestCase):
             PKBC(num_clust=3, stopping_rule="some").fit(data)
 
         with self.assertRaises(ValueError):
-            X = np.random.randn(10,2)
+            X = np.random.randn(10, 2)
             pkbd_cluster_fit_numpy.predict(X)

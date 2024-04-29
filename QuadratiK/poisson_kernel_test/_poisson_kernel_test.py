@@ -172,10 +172,10 @@ class PoissonKernelTest:
             quantile=self.quantile,
             random_state=self.random_state,
             n_jobs=self.n_jobs,
-        )
+        ) / np.sqrt(var_un)
 
         self.test_type_ = method
-        self.u_statistic_h0_ = pk[0] > cv_un
+        self.u_statistic_h0_ = (pk[0] / np.sqrt(var_un)) > cv_un
         self.u_statistic_un_ = pk[0] / np.sqrt(var_un)
         self.u_statistic_cv_ = cv_un
 

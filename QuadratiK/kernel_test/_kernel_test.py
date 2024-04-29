@@ -97,49 +97,49 @@ class KernelTest:
 
     Examples
     --------
-    >>> # Example for normality test
     >>> import numpy as np
+    >>> np.random.seed(78990)
     >>> from QuadratiK.kernel_test import KernelTest
-    >>> np.random.seed(42)
-    >>> data = np.random.randn(100,5)
-    >>> normality_test = KernelTest(h=0.4, centering_type="param",random_state=42).test(data)
-    >>> print("Test : {}".format(normality_test.test_type_))
-    >>> print("Execution time: {:.3f}".format(normality_test.execution_time))
-    >>> print("H0 is Rejected : {}".format(normality_test.h0_rejected_))
-    >>> print("Test Statistic : {}".format(normality_test.test_statistic_))
-    >>> print("Critical Value (CV) : {}".format(normality_test.cv_))
-    >>> print("CV Method : {}".format(normality_test.cv_method_))
-    >>> print("Selected tuning parameter : {}".format(normality_test.h))
+    >>> # data generation
+    >>> data_norm = np.random.multivariate_normal(mean = np.zeros(4), cov = np.eye(4),size = 500)
+    >>> # performing the normality test
+    >>> normality_test = KernelTest(h=0.4, num_iter=150, method= "subsampling", random_state=42).test(data_norm)
+    >>> print(f"Test : {normality_test.test_type_}")
+    >>> print(f"Execution time: {normality_test.execution_time:.3f}")
+    >>> print(f"H0 is Rejected : {normality_test.un_h0_rejected_}")
+    >>> print(f"Test Statistic : {normality_test.un_test_statistic_}")
+    >>> print(f"Critical Value (CV) : {normality_test.un_cv_}")
+    >>> print(f"CV Method : {normality_test.cv_method_}")
     ... Test : Kernel-based quadratic distance Normality test
-    ... Execution time: 0.096
+    ... Execution time: 0.356
     ... H0 is Rejected : False
-    ... Test Statistic : -8.588873037044384e-05
-    ... Critical Value (CV) : 0.0004464111809800183
+    ... Test Statistic : 0.01018599246239244
+    ... Critical Value (CV) : 0.07765034009837886
     ... CV Method : Empirical
-    ... Selected tuning parameter : 0.4
 
-    >>> # Example for two sample test
     >>> import numpy as np
+    >>> np.random.seed(0)
+    >>> from scipy.stats import skewnorm
     >>> from QuadratiK.kernel_test import KernelTest
-    >>> np.random.seed(42)
-    >>> X = np.random.randn(100,5)
-    >>> np.random.seed(42)
-    >>> Y = np.random.randn(100,5)
-    >>> two_sample_test = KernelTest(h=0.4, centering_type="param").test(X,Y)
+    >>> # data generation
+    >>> X_2 = np.random.multivariate_normal(mean = np.zeros(4), cov = np.eye(4), size=200)
+    >>> Y_2 = skewnorm.rvs(size=(200, 4),loc=np.zeros(4), scale=np.ones(4),a=np.repeat(0.5,4), random_state=0)
+    >>> # performing the two sample test
+    >>> two_sample_test = KernelTest(h = 2,num_iter = 150, random_state=42).test(X_2,Y_2)
     >>> print("Test : {}".format(two_sample_test.test_type_))
-    >>> print("Execution time: {:.3f}".format(two_sample_test.execution_time))
-    >>> print("H0 is Rejected : {}".format(two_sample_test.h0_rejected_))
-    >>> print("Test Statistic : {}".format(two_sample_test.test_statistic_))
-    >>> print("Critical Value (CV) : {}".format(two_sample_test.cv_))
+    >>> print("Execution time: {:.3f} seconds".format(two_sample_test.execution_time))
+    >>> print("H0 is Rejected : {}".format(two_sample_test.un_h0_rejected_))
+    >>> print("Test Statistic : {}".format(two_sample_test.un_test_statistic_))
+    >>> print("Critical Value (CV) : {}".format(two_sample_test.un_cv_))
     >>> print("CV Method : {}".format(two_sample_test.cv_method_))
     >>> print("Selected tuning parameter : {}".format(two_sample_test.h))
     ... Test : Kernel-based quadratic distance two-sample test
-    ... Execution time: 0.092
-    ... H0 is Rejected : False
-    ... Test Statistic : -0.019707895277270022
-    ... Critical Value (CV) : 0.003842482597612725
+    ... Execution time: 0.265 seconds
+    ... H0 is Rejected : True
+    ... Test Statistic : 0.035620906539451845
+    ... Critical Value (CV) : 0.0023528111662230473
     ... CV Method : subsampling
-    ... Selected tuning parameter : 0.4
+    ... Selected tuning parameter : 2
     """
 
     def __init__(
@@ -261,9 +261,7 @@ class KernelTest:
                 if k == 1:
                     self.sigma_hat = np.array([[np.take(self.sigma_hat, 0)]])
 
-            statistic = stat_normality_test(
-                self.x, self.h, self.mu_hat, self.sigma_hat, self.centering_type
-            )
+            statistic = stat_normality_test(self.x, self.h, self.mu_hat, self.sigma_hat)
             cv = cv_normality(
                 size_x,
                 self.h,
@@ -271,16 +269,19 @@ class KernelTest:
                 self.sigma_hat,
                 self.num_iter,
                 self.quantile,
-                self.centering_type,
                 self.random_state,
                 self.n_jobs,
             )
-            h0 = statistic > cv
+            un_h0 = statistic[0] > cv[0]
+            vn_h0 = statistic[1] > cv[1]
 
             self.test_type_ = "Kernel-based quadratic distance Normality test"
-            self.h0_rejected_ = h0
-            self.test_statistic_ = statistic
-            self.cv_ = cv
+            self.un_h0_rejected_ = un_h0
+            self.vn_h0_rejected_ = vn_h0
+            self.un_test_statistic_ = statistic[0]
+            self.vn_test_statistic_ = statistic[1]
+            self.un_cv_ = cv[0]
+            self.vn_cv_ = cv[1]
             self.cv_method_ = "Empirical"
             return self
 
@@ -342,14 +343,16 @@ class KernelTest:
                 h0 = statistic > cv
 
                 self.test_type_ = "Kernel-based quadratic distance two-sample test"
-                self.h0_rejected_ = h0
-                self.test_statistic_ = statistic
-                self.cv_ = cv
+                self.un_h0_rejected_ = h0
+                self.vn_h0_rejected_ = None
+                self.un_test_statistic_ = statistic
+                self.vn_test_statistic_ = None
+                self.un_cv_ = cv
+                self.vn_cv_ = None
                 self.cv_method_ = self.method
                 return self
 
             else:
-                print("Entered this K Sample Else")
                 if (self.y is not None) and (self.x.shape[0] != self.y.shape[0]):
                     raise ValueError("'x' and 'y' must have the same number of rows.")
 
@@ -376,12 +379,16 @@ class KernelTest:
                     self.random_state,
                     self.n_jobs,
                 )
-                h0 = statistic[0] > cv[0]
+                un_h0 = statistic[0] > cv[0]
+                vn_h0 = statistic[1] > cv[1]
 
                 self.test_type_ = "Kernel-based quadratic distance K-sample test"
-                self.h0_rejected_ = h0
-                self.test_statistic_ = statistic
-                self.cv_ = cv
+                self.un_h0_rejected_ = un_h0
+                self.vn_h0_rejected_ = vn_h0
+                self.un_test_statistic_ = statistic[0]
+                self.vn_test_statistic_ = statistic[1]
+                self.un_cv_ = cv[0]
+                self.vn_cv_ = cv[1]
                 self.cv_method_ = self.method
                 return self
 
@@ -414,10 +421,37 @@ class KernelTest:
                 format with the kernel test results and summary statistics.
         """
         res = pd.DataFrame()
-        res[""] = [self.test_type_, self.test_statistic_, self.cv_, self.h0_rejected_]
-        res = res.set_axis(
-            ["Test Type", "Test Statistic", "Critical Value", "Reject H0"]
-        )
+        if self.vn_test_statistic_ is None:
+            res[""] = [
+                self.test_type_,
+                self.un_test_statistic_,
+                self.un_cv_,
+                self.un_h0_rejected_,
+            ]
+            res = res.set_axis(
+                ["Test Type", "Un Test Statistic", "Un Critical Value", "Reject H0"]
+            )
+        else:
+            res[""] = [
+                self.test_type_,
+                self.un_test_statistic_,
+                self.un_cv_,
+                self.un_h0_rejected_,
+                self.vn_test_statistic_,
+                self.vn_cv_,
+                self.vn_h0_rejected_,
+            ]
+            res = res.set_axis(
+                [
+                    "Test Type",
+                    "Un Test Statistic",
+                    "Un Critical Value",
+                    "Un Reject H0",
+                    "Vn Test Statistic",
+                    "Vn Critical Value",
+                    "Vn Reject H0",
+                ]
+            )
 
         summary_stats_df = self.stats()
 
