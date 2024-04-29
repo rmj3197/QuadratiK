@@ -99,12 +99,12 @@ if (y_data) and (x_data) is not None:
             res = pd.DataFrame()
             res["Value"] = [
                 two_sample_test.test_type_,
-                two_sample_test.test_statistic_,
-                two_sample_test.cv_,
-                two_sample_test.h0_rejected_,
+                two_sample_test.un_test_statistic_,
+                two_sample_test.un_cv_,
+                two_sample_test.un_h0_rejected_,
             ]
             res = res.set_axis(
-                ["Test Type", "Test Statistic", "Critical Value", "Reject H0"]
+                ["Test Type", "Un Test Statistic", "Un Critical Value", "Un Reject H0"]
             )
 
             st.table(res)

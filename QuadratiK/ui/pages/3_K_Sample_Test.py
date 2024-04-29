@@ -101,17 +101,20 @@ if data is not None:
             res = pd.DataFrame()
             res["Value"] = [
                 k_samp_test.test_type_,
-                k_samp_test.test_statistic_,
-                k_samp_test.cv_,
-                k_samp_test.h0_rejected_,
+                k_samp_test.un_test_statistic_,
+                k_samp_test.un_cv_,
+                k_samp_test.un_h0_rejected_,
+                k_samp_test.vn_test_statistic_,
+                k_samp_test.vn_cv_,
+                k_samp_test.vn_h0_rejected_,
             ]
             res = res.set_axis(
-                ["Test Type", "Test Statistic", "Critical Value", "Reject H0"]
+                ["Test Type", "Un Test Statistic", "Un Critical Value", "Un Reject H0","Vn Test Statistic", "Vn Critical Value", "Vn Reject H0"]
             )
             st.table(res)
             csv_res = res.to_csv().encode()
             st.download_button(
-                "Click to Download the test results",
+                "Click to download the test results",
                 csv_res,
                 "K_Sample_Test_results.csv",
                 "text/csv",

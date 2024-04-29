@@ -6,9 +6,6 @@ import numpy as np
 import pandas as pd
 from scipy.stats import skew, skewnorm
 from sklearn.utils.parallel import Parallel, delayed
-import matplotlib
-
-usetex = matplotlib.checkdep_usetex(True)
 import matplotlib.pyplot as plt
 
 from ._utils import stat_ksample, stat_two_sample, stat_normality_test

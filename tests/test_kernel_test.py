@@ -23,18 +23,18 @@ class TestKernelTest(unittest.TestCase):
         dataframe_x = pd.DataFrame(x)
         normality_test_numpy = KernelTest(h=0.5, random_state=42).test(x)
         normality_test_dataframe = KernelTest(h=0.5, random_state=42).test(dataframe_x)
-        self.assertFalse(normality_test_numpy.h0_rejected_)
-        self.assertTrue(isinstance(normality_test_numpy.test_statistic_, (int, float)))
-        self.assertFalse(normality_test_dataframe.h0_rejected_)
+        self.assertFalse(normality_test_numpy.un_h0_rejected_)
+        self.assertTrue(isinstance(normality_test_numpy.un_test_statistic_, (int, float)))
+        self.assertFalse(normality_test_dataframe.un_h0_rejected_)
         self.assertTrue(
-            isinstance(normality_test_dataframe.test_statistic_, (int, float))
+            isinstance(normality_test_dataframe.un_test_statistic_, (int, float))
         )
         self.assertEqual(
-            normality_test_numpy.h0_rejected_, normality_test_dataframe.h0_rejected_
+            normality_test_numpy.un_h0_rejected_, normality_test_dataframe.un_h0_rejected_
         )
         self.assertEqual(
-            normality_test_numpy.test_statistic_,
-            normality_test_dataframe.test_statistic_,
+            normality_test_numpy.un_test_statistic_,
+            normality_test_dataframe.un_test_statistic_,
         )
 
         with self.assertRaises(ValueError):
@@ -44,8 +44,8 @@ class TestKernelTest(unittest.TestCase):
         normality_test_1d = KernelTest(
             method="subsampling", b=0.5, random_state=42, alternative="scale"
         ).test(x_1d)
-        self.assertFalse(normality_test_1d.h0_rejected_)
-        self.assertTrue(isinstance(normality_test_1d.test_statistic_, (int, float)))
+        self.assertFalse(normality_test_1d.un_h0_rejected_)
+        self.assertTrue(isinstance(normality_test_1d.un_test_statistic_, (int, float)))
 
     def test_twosample(self):
         x = np.random.randn(100, 2)
@@ -55,9 +55,9 @@ class TestKernelTest(unittest.TestCase):
         two_sample_test_subsampling = KernelTest(
             h=1.5, method="subsampling", b=0.5, random_state=42
         ).test(x, y)
-        self.assertTrue(two_sample_test_subsampling.h0_rejected_)
+        self.assertTrue(two_sample_test_subsampling.un_h0_rejected_)
         self.assertTrue(
-            isinstance(two_sample_test_subsampling.test_statistic_, (int, float))
+            isinstance(two_sample_test_subsampling.un_test_statistic_, (int, float))
         )
 
         with self.assertRaises(ValueError):
@@ -79,9 +79,9 @@ class TestKernelTest(unittest.TestCase):
             centering_type="param",
             random_state=42,
         ).test(x, y)
-        self.assertTrue(two_sample_test_h_selection.h0_rejected_)
+        self.assertTrue(two_sample_test_h_selection.un_h0_rejected_)
         self.assertTrue(
-            isinstance(two_sample_test_h_selection.test_statistic_, (int, float))
+            isinstance(two_sample_test_h_selection.un_test_statistic_, (int, float))
         )
 
     def test_ksample(self):
@@ -94,20 +94,20 @@ class TestKernelTest(unittest.TestCase):
         k_sample_test = KernelTest(
             h=1.5, method="subsampling", b=0.5, random_state=42
         ).test(x, y)
-        self.assertFalse(k_sample_test.h0_rejected_)
-        self.assertTrue(isinstance(k_sample_test.test_statistic_, np.ndarray))
+        self.assertFalse(k_sample_test.un_h0_rejected_)
+        self.assertTrue(isinstance(k_sample_test.un_test_statistic_, np.ndarray))
 
         k_sample_test_without_h = KernelTest(
             method="subsampling", b=0.5, random_state=42, alternative="location"
         ).test(x, y)
-        self.assertFalse(k_sample_test_without_h.h0_rejected_)
-        self.assertTrue(isinstance(k_sample_test_without_h.test_statistic_, np.ndarray))
+        self.assertFalse(k_sample_test_without_h.un_h0_rejected_)
+        self.assertTrue(isinstance(k_sample_test_without_h.un_test_statistic_, np.ndarray))
 
         k_sample_test_1d = KernelTest(
             h=1.5, method="subsampling", b=0.5, random_state=42
         ).test(x_1d, y_dataframe)
-        self.assertFalse(k_sample_test_1d.h0_rejected_)
-        self.assertTrue(isinstance(k_sample_test_1d.test_statistic_, np.ndarray))
+        self.assertFalse(k_sample_test_1d.un_h0_rejected_)
+        self.assertTrue(isinstance(k_sample_test_1d.un_test_statistic_, np.ndarray))
 
         with self.assertRaises(ValueError):
             KernelTest(h=1.5, method="subsampling", b=0.5, random_state=42).test(

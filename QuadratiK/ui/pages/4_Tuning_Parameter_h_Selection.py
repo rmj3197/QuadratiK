@@ -10,8 +10,6 @@ import json
 import importlib
 import matplotlib.pyplot as plt
 
-plt.rcParams["text.usetex"] = True
-
 select_h = importlib.import_module("QuadratiK.kernel_test").select_h
 
 st.title("Tuning Parameter h selection")
