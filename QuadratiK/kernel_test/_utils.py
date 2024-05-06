@@ -600,10 +600,9 @@ def subsampling_helper_twosample(size_x, size_y, b, h, data_pool, n_rep, random_
         The result of the two-sample test using subsampling
         resampling for the randomly generated data.
     """
-    print(random_state)
     if random_state is None:
         generator = check_random_state(random_state)
-    elif isinstance(random_state, (int, np.int_)):
+    elif isinstance(random_state, (int,np.int_)):
         generator = check_random_state(random_state + n_rep)
 
     ind_x = generator.choice(np.arange(size_x), size=round(size_x * b), replace=False)

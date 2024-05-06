@@ -377,6 +377,8 @@ class KernelTest:
                 self.un_cv_ = cv / np.sqrt(statistic[2:])
                 self.cv_method_ = self.method
                 self.var_un_ = statistic[2:]
+                self.vn_test_statistic_ = None
+                self.vn_cv_ = None
                 return self
 
             else:
@@ -417,7 +419,8 @@ class KernelTest:
                 self.un_cv_ = cv / np.sqrt(statistic[2:])
                 self.cv_method_ = self.method
                 self.var_un_ = statistic[2:]
-
+                self.vn_test_statistic_ = None
+                self.vn_cv_ = None
                 return self
 
     def stats(self):
@@ -455,9 +458,10 @@ class KernelTest:
                 self.un_test_statistic_,
                 self.un_cv_,
                 self.un_h0_rejected_,
+                self.var_un_
             ]
             res = res.set_axis(
-                ["Test Type", "Un Test Statistic", "Un Critical Value", "Reject H0"]
+                ["Test Type", "Un Test Statistic", "Un Critical Value", "Reject H0", "Var Un"]
             )
         else:
             res[""] = [
@@ -468,6 +472,7 @@ class KernelTest:
                 self.vn_test_statistic_,
                 self.vn_cv_,
                 self.vn_h0_rejected_,
+                self.var_un_
             ]
             res = res.set_axis(
                 [
@@ -478,6 +483,7 @@ class KernelTest:
                     "Vn Test Statistic",
                     "Vn Critical Value",
                     "Vn Reject H0",
+                    "Var Un"
                 ]
             )
 

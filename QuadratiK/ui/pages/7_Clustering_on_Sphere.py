@@ -179,12 +179,19 @@ if data is not None:
             res = pd.DataFrame()
             res["Value"] = [
                 k_samp_test.test_type_,
-                tuple(k_samp_test.test_statistic_),
-                tuple(k_samp_test.cv_),
-                k_samp_test.h0_rejected_,
+                k_samp_test.un_test_statistic_,
+                k_samp_test.un_cv_,
+                k_samp_test.un_h0_rejected_,
+                k_samp_test.var_un_
             ]
             res = res.set_axis(
-                ["Test Type", "Test Statistic", "Critical Value", "Reject H0"]
+                [
+                    "Test Type",
+                    "Un Test Statistic",
+                    "Un Critical Value",
+                    "Un Reject H0",
+                    "Var Un"
+                ]
             )
 
             st.dataframe(res)
