@@ -82,7 +82,7 @@ if data is not None:
                 norm_test.vn_test_statistic_,
                 norm_test.vn_cv_,
                 norm_test.vn_h0_rejected_,
-                norm_test.var_un_
+                norm_test.var_un_,
             ]
             res = res.set_axis(
                 [
@@ -93,7 +93,7 @@ if data is not None:
                     "Vn Test Statistic",
                     "Vn Critical Value",
                     "Vn Reject H0",
-                    "Var Un"
+                    "Var Un",
                 ]
             )
             st.table(res)

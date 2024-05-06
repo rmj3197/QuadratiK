@@ -225,7 +225,6 @@ def variance_k_sample_test(k_cen, sizes, cum_size):
                 cum_size[i] : cum_size[i] + sizes[i],
                 cum_size[j] : cum_size[j] + sizes[j],
             ]
-
             if j > i:
                 C2 += 8 * n_ij_factor * n_ij_factor * (k_ij**2).sum()
                 C3 -= 8 * n_ij_factor * ni_factor * (k_ii @ k_ij.T).sum()
@@ -602,7 +601,7 @@ def subsampling_helper_twosample(size_x, size_y, b, h, data_pool, n_rep, random_
     """
     if random_state is None:
         generator = check_random_state(random_state)
-    elif isinstance(random_state, (int,np.int_)):
+    elif isinstance(random_state, (int, np.int_)):
         generator = check_random_state(random_state + n_rep)
 
     ind_x = generator.choice(np.arange(size_x), size=round(size_x * b), replace=False)

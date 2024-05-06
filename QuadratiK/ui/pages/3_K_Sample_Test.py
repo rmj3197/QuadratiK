@@ -104,7 +104,7 @@ if data is not None:
                 k_samp_test.un_test_statistic_,
                 k_samp_test.un_cv_,
                 k_samp_test.un_h0_rejected_,
-                k_samp_test.var_un_
+                k_samp_test.var_un_,
             ]
             res = res.set_axis(
                 [
@@ -112,7 +112,7 @@ if data is not None:
                     "Un Test Statistic",
                     "Un Critical Value",
                     "Un Reject H0",
-                    "Var Un"
+                    "Var Un",
                 ]
             )
             st.table(res)

@@ -102,10 +102,16 @@ if (y_data) and (x_data) is not None:
                 two_sample_test.un_test_statistic_,
                 two_sample_test.un_cv_,
                 two_sample_test.un_h0_rejected_,
-                two_sample_test.var_un_
+                two_sample_test.var_un_,
             ]
             res = res.set_axis(
-                ["Test Type", "Un Test Statistic", "Un Critical Value", "Un Reject H0","Var Un"]
+                [
+                    "Test Type",
+                    "Un Test Statistic",
+                    "Un Critical Value",
+                    "Un Reject H0",
+                    "Var Un",
+                ]
             )
 
             st.table(res)

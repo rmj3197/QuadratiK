@@ -458,10 +458,16 @@ class KernelTest:
                 self.un_test_statistic_,
                 self.un_cv_,
                 self.un_h0_rejected_,
-                self.var_un_
+                self.var_un_,
             ]
             res = res.set_axis(
-                ["Test Type", "Un Test Statistic", "Un Critical Value", "Reject H0", "Var Un"]
+                [
+                    "Test Type",
+                    "Un Test Statistic",
+                    "Un Critical Value",
+                    "Reject H0",
+                    "Var Un",
+                ]
             )
         else:
             res[""] = [
@@ -472,7 +478,7 @@ class KernelTest:
                 self.vn_test_statistic_,
                 self.vn_cv_,
                 self.vn_h0_rejected_,
-                self.var_un_
+                self.var_un_,
             ]
             res = res.set_axis(
                 [
@@ -483,7 +489,7 @@ class KernelTest:
                     "Vn Test Statistic",
                     "Vn Critical Value",
                     "Vn Reject H0",
-                    "Var Un"
+                    "Var Un",
                 ]
             )
 

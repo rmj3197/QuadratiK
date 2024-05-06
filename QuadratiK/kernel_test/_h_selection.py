@@ -110,8 +110,7 @@ def _objective_one_sample(
         random_state=random_state,
     )
 
-    statistic = stat_normality_test(
-        xnew, h, np.array([mean_dat]), np.diag(s_dat))
+    statistic = stat_normality_test(xnew, h, np.array([mean_dat]), np.diag(s_dat))
     cv = cv_normality(
         n,
         h,
@@ -233,7 +232,7 @@ def _objective_two_sample(
         skew_tilde = skew_data + dk
         s_tilde = s_dat
 
-    if isinstance(random_state, (int,np.int_)):
+    if isinstance(random_state, (int, np.int_)):
         random_state = random_state + int(rep_values)
 
     xnew = skewnorm.rvs(
@@ -251,8 +250,7 @@ def _objective_two_sample(
         random_state=np.random.default_rng(random_state),
     )
 
-    statistic = stat_two_sample(
-        xnew, ynew, h, np.array([[0]]), np.array([[1]]))
+    statistic = stat_two_sample(xnew, ynew, h, np.array([[0]]), np.array([[1]]))
     cv = cv_twosample(
         num_iter,
         quantile,
@@ -370,7 +368,7 @@ def _objective_k_sample(
         skew_tilde = skew_data + dk
         s_tilde = s_dat
 
-    if isinstance(random_state, (int,np.int_)):
+    if isinstance(random_state, (int, np.int_)):
         random_state = random_state + int(rep_values)
 
     nk = round(n / k)
@@ -587,8 +585,7 @@ def select_h(
                 )
 
         mean_dat = np.mean(x, axis=0)
-        s_dat = np.diag(np.cov(x, rowvar=False).reshape(
-            x.shape[1], x.shape[1]))
+        s_dat = np.diag(np.cov(x, rowvar=False).reshape(x.shape[1], x.shape[1]))
         skew_data = skew(x)
         all_parameters = np.array(np.meshgrid(h_values, delta, rep_values)).T.reshape(
             -1, 3
@@ -614,26 +611,22 @@ def select_h(
                 )
                 for param in parameters
             )
-            results = pd.DataFrame(
-                results, columns=["rep", "delta", "h", "score"])
+            results = pd.DataFrame(results, columns=["rep", "delta", "h", "score"])
             results["score"] = 1 - results["score"]
             results_mean = (
-                results.groupby(["h", "delta"]).agg(
-                    {"score": "mean"}).reset_index()
+                results.groupby(["h", "delta"]).agg({"score": "mean"}).reset_index()
             )
             results_mean.columns = ["h", "delta", "power"]
             results_mean = results_mean.sort_values(by=["delta", "h"])
             all_results[delta_val] = results_mean
             min_h_power_gt_05 = results_mean[results_mean["power"] >= 0.5]
             if not min_h_power_gt_05.empty:
-                min_h = results_mean[results_mean["power"]
-                                     >= 0.50].iloc[0]["h"]
+                min_h = results_mean[results_mean["power"] >= 0.50].iloc[0]["h"]
                 break
 
     elif k > k_threshold:
         if x.shape[1] != y.shape[1]:
-            raise ValueError(
-                "'x' and 'y' must have the same number of columns")
+            raise ValueError("'x' and 'y' must have the same number of columns")
 
         n = x.shape[0]
         m = y.shape[0]
@@ -651,8 +644,7 @@ def select_h(
 
         mean_dat = np.mean(pooled, axis=0)
         s_dat = np.diag(
-            np.cov(pooled, rowvar=False).reshape(
-                pooled.shape[1], pooled.shape[1])
+            np.cov(pooled, rowvar=False).reshape(pooled.shape[1], pooled.shape[1])
         )
         skew_data = skew(pooled)
         all_parameters = np.array(np.meshgrid(h_values, delta, rep_values)).T.reshape(
@@ -683,20 +675,17 @@ def select_h(
                 )
                 for param in parameters
             )
-            results = pd.DataFrame(
-                results, columns=["rep", "delta", "h", "score"])
+            results = pd.DataFrame(results, columns=["rep", "delta", "h", "score"])
             results["score"] = 1 - results["score"]
             results_mean = (
-                results.groupby(["h", "delta"]).agg(
-                    {"score": "mean"}).reset_index()
+                results.groupby(["h", "delta"]).agg({"score": "mean"}).reset_index()
             )
             results_mean.columns = ["h", "delta", "power"]
             results_mean = results_mean.sort_values(by=["delta", "h"])
             all_results[delta_val] = results_mean
             min_h_power_gt_05 = results_mean[results_mean["power"] >= 0.5]
             if not min_h_power_gt_05.empty:
-                min_h = results_mean[results_mean["power"]
-                                     >= 0.50].iloc[0]["h"]
+                min_h = results_mean[results_mean["power"] >= 0.50].iloc[0]["h"]
                 break
     else:
         n, d = x.shape
@@ -710,8 +699,7 @@ def select_h(
                 )
 
         mean_dat = np.mean(x, axis=0)
-        s_dat = np.diag(np.cov(x, rowvar=False).reshape(
-            x.shape[1], x.shape[1]))
+        s_dat = np.diag(np.cov(x, rowvar=False).reshape(x.shape[1], x.shape[1]))
         skew_data = skew(x)
 
         all_parameters = np.array(np.meshgrid(h_values, delta, rep_values)).T.reshape(
@@ -742,20 +730,17 @@ def select_h(
                 for param in parameters
             )
 
-            results_df = pd.DataFrame(
-                results, columns=["rep", "delta", "h", "score"])
+            results_df = pd.DataFrame(results, columns=["rep", "delta", "h", "score"])
             results_df["score"] = 1 - results_df["score"]
             results_mean = (
-                results_df.groupby(["h", "delta"]).agg(
-                    {"score": "mean"}).reset_index()
+                results_df.groupby(["h", "delta"]).agg({"score": "mean"}).reset_index()
             )
             results_mean.columns = ["h", "delta", "power"]
             results_mean = results_mean.sort_values(by=["delta", "h"])
             all_results[delta_val] = results_mean
             min_h_power_gt_05 = results_mean[results_mean["power"] >= 0.5]
             if not min_h_power_gt_05.empty:
-                min_h = results_mean[results_mean["power"]
-                                     >= 0.50].iloc[0]["h"]
+                min_h = results_mean[results_mean["power"] >= 0.50].iloc[0]["h"]
                 break
 
     all_results = pd.concat(all_results.values())
