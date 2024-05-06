@@ -263,8 +263,8 @@ def _objective_two_sample(
         random_state=random_state,
         n_jobs=n_jobs,
     )
-    h0 = statistic < cv
-    return [rep_values, delta, h, h0]
+    h0 = statistic[:2] < cv
+    return [rep_values, delta, h, h0[0]]
 
 
 def _objective_k_sample(
@@ -401,7 +401,7 @@ def _objective_k_sample(
         random_state=random_state,
         n_jobs=n_jobs,
     )
-    h0 = statistic < cv
+    h0 = statistic[:2] < cv
     return [rep_values, delta, h, h0[0]]
 
 

@@ -104,6 +104,141 @@ def param_centering(kmat_zz, z_mat, cov_h, mu_hat, sigma_hat):
     return k_center
 
 
+# def dof_normality_test(d, h):
+#     numerator = 1 - (h**2 / (h**2 + 2)) ** (d / 2)
+#     denominator = (
+#         (h**2 + 2) / (h**2 + 4) ** (d / 2)
+#         - 2 * (h**2 / (h**2 + 1)) ** (d / 2) * (h**2 / (h**2 + 3)) ** (d / 2)
+#         + (h**2 / (h**2 + 2)) ** d
+#     )
+#     dof = numerator**2 / denominator
+#     const = (
+#         ((h**2 + 2) / (h**2 * (h**2 + 4))) ** (d / 2)
+#         - 2 * (h**2 / (h**2 + 1)) ** (d / 2) * (1 / (h**2 + 3)) ** (d / 2)
+#         + (h / (h**2 + 2)) ** (d)
+#     ) / numerator
+
+#     return (dof, const)
+
+
+def dof_normality_test(sigma_h, v):
+    num_dof = np.linalg.det(sigma_h) ** (-1 / 2) - np.linalg.det(sigma_h + 2 * v) ** (
+        -1 / 2
+    )
+    den_dof = (
+        np.linalg.det(sigma_h) ** (-1 / 2) * np.linalg.det(sigma_h + 4 * v) ** (-1 / 2)
+        - 2
+        * np.linalg.det(sigma_h + v) ** (-1 / 2)
+        * np.linalg.det(sigma_h + 3 * v) ** (-1 / 2)
+        + np.linalg.det(sigma_h + 2 * v) ** (-1 / 2)
+    )
+
+    dof = num_dof**2 / den_dof
+    const = den_dof / num_dof
+
+    return (dof, const)
+
+
+# def variance_normality_test(d, h, n):
+#     var = (
+#         2
+#         / (n * (n - 1))
+#         * 1
+#         / (2 * np.pi) ** d
+#         * ((h**2 + 2) / (h**2**2 * (h**2 + 4))) ** (d / 2)
+#         - 2 / ((h**2 + 1) * (h**2 + 3)) ** (d / 2)
+#         + (h**2 + 2) ** (-d)
+#     )
+#     return var
+
+
+def variance_normality_test(sigma_h, v, n):
+    d = sigma_h.shape[0]
+    var = (
+        2
+        / (n * (n - 1))
+        * (1 / ((2 * np.pi) ** d))
+        * (
+            np.linalg.det(sigma_h) ** (-1 / 2)
+            * np.linalg.det(sigma_h + 4 * v) ** (-1 / 2)
+            - 2
+            * np.linalg.det(sigma_h + v) ** (-1 / 2)
+            * np.linalg.det(sigma_h + 3 * v) ** (-1 / 2)
+            + np.linalg.det(sigma_h + 2 * v) ** (-1)
+        )
+    )
+    return var
+
+
+def variance_two_sample_test(k_cen, n, m):
+    np.fill_diagonal(k_cen, 0)
+
+    K_xx = k_cen[:n, :n]
+    K_yy = k_cen[n : n + m, n : n + m]
+    K_xy = k_cen[:n, n : n + m]
+
+    # Factors
+    n_factor = 1.0 / (n * (n - 1))
+    m_factor = 1.0 / (m * (m - 1))
+    cross_factor = 1.0 / (n * m)
+
+    # Variance estimate calculation
+    est_var_D = (
+        2 * n_factor**2 * (K_xx**2).sum()
+        + 8 * cross_factor**2 * (K_xy**2).sum()
+        + 2 * m_factor**2 * (K_yy**2).sum()
+    )
+
+    delta1 = (K_xx @ K_xy.T).sum()
+    delta2 = (K_xy @ K_yy.T).sum()
+
+    est_var_D -= 8 * n_factor * cross_factor * delta1
+    est_var_D -= 8 * m_factor * cross_factor * delta2
+
+    est_var_Tr = (
+        2 * (n_factor**2) * (K_xx**2).sum() + 2 * (m_factor**2) * (K_yy**2).sum()
+    )
+
+    return (est_var_D, est_var_Tr)
+
+
+def variance_k_sample_test(k_cen, sizes, cum_size):
+
+    k = len(sizes)
+
+    np.fill_diagonal(k_cen, 0)
+
+    C1 = 0
+    C2 = 0
+    C3 = 0
+
+    for i in range(k):
+        ni_factor = 1 / (sizes[i] * (sizes[i] - 1))
+        k_ii = k_cen[
+            cum_size[i] : cum_size[i] + sizes[i], cum_size[i] : cum_size[i] + sizes[i]
+        ]
+        C1 += 2 * ni_factor * ni_factor * (k_ii**2).sum()
+
+        for j in range(k):
+            n_ij_factor = 1 / (sizes[i] * sizes[j])
+            k_ij = k_cen[
+                cum_size[i] : cum_size[i] + sizes[i],
+                cum_size[j] : cum_size[j] + sizes[j],
+            ]
+
+            if j > i:
+                C2 += 8 * n_ij_factor * n_ij_factor * (k_ij**2).sum()
+                C3 -= 8 * n_ij_factor * ni_factor * (k_ii @ k_ij.T).sum()
+
+            elif j < i:
+                C3 -= 8 * n_ij_factor * ni_factor * (k_ii @ k_ij.T).sum()
+
+    est_var_D = (k - 1) ** 2 * C1 + C2 + C3
+    est_var_Tr = C1
+
+    return (est_var_D, est_var_Tr)
+
+
 def stat_two_sample(x_mat, y_mat, h, mu_hat, sigma_hat, centering_type="nonparam"):
     """
     Compute kernel-based quadratic distance two-sample
@@ -147,12 +282,20 @@ def stat_two_sample(x_mat, y_mat, h, mu_hat, sigma_hat, centering_type="nonparam
     elif centering_type == "param":
         k_center = param_centering(kmat_zz, z_mat, cov_h, mu_hat, sigma_hat)
     np.fill_diagonal(k_center, 0)
-    test_non_par = (
+    test_non_par = n_z * (
         (np.sum(k_center[:n_x, :n_x]) / (n_x * (n_x - 1)))
         - 2 * (np.sum(k_center[:n_x, n_x : n_x + n_y]) / (n_x * n_y))
         + (np.sum(k_center[n_x : n_x + n_y, n_x : n_x + n_y]) / (n_y * (n_y - 1)))
     )
-    return n_z * test_non_par
+
+    test_trace = n_z * (
+        np.sum(k_center[:n_x, :n_x]) / (n_x * (n_x - 1))
+        + np.sum(k_center[n_x : n_x + n_y, n_x : n_x + n_y]) / (n_y * (n_y - 1))
+    )
+
+    var1, var2 = variance_two_sample_test(k_center, n_x, n_y)
+
+    return np.array([test_non_par, test_trace, var1, var2])
 
 
 def stat_normality_test(x_mat, h, mu_hat, sigma_hat):
@@ -221,37 +364,59 @@ def stat_ksample(x, y, h):
     k = len(np.unique(y))
     cov_h = (h**2) * np.diag(np.ones(d))
     kern_matrix = compute_kernel_matrix(x, x, cov_h)
-    cent_kern = nonparam_centering(kern_matrix, n)
+    k_center = nonparam_centering(kern_matrix, n)
     trace_k = 0
     cum_size = np.insert(np.cumsum(sizes), 0, 0)
     tn = 0
-    for l in range(0, k):
-        for r in range(l, k):
-            if l == r:
-                trace_k += (
-                    np.sum(
-                        cent_kern[
-                            cum_size[l] : cum_size[l + 1], cum_size[r] : cum_size[r + 1]
-                        ]
-                    )
-                    - np.sum(
-                        np.diag(
-                            cent_kern[
-                                cum_size[l] : cum_size[l + 1],
-                                cum_size[r] : cum_size[r + 1],
-                            ]
-                        )
-                    )
-                ) / (sizes[l] * (sizes[l] - 1))
-            else:
-                tn = tn - 2 * np.mean(
-                    cent_kern[
-                        cum_size[l] : cum_size[l + 1], cum_size[r] : cum_size[r + 1]
-                    ]
-                )
-    stat1 = n * ((k - 1) * trace_k + tn)
-    stat2 = n * trace_k
-    return np.array([stat1, stat2])
+
+    for l in range(k):
+        k_ll = k_center[
+            cum_size[l] : cum_size[l] + sizes[l], cum_size[l] : cum_size[l] + sizes[l]
+        ]
+
+        if sizes[l] > 1:
+            trace_k += k_ll.sum() / (sizes[l] * (sizes[l] - 1))
+
+        for r in range(l + 1, k):
+            k_lr = k_center[
+                cum_size[l] : cum_size[l] + sizes[l],
+                cum_size[r] : cum_size[r] + sizes[r],
+            ]
+            if (sizes[l] > 0) and (sizes[r] > 0):
+                tn -= 2 * k_lr.sum() / (sizes[l] * sizes[r])
+
+    var1, var2 = variance_k_sample_test(k_center, sizes, cum_size)
+    stat1 = (k - 1) * trace_k + tn
+    stat2 = trace_k
+    return np.array([stat1, stat2, var1, var2])
+
+    # for l in range(0, k):
+    #     for r in range(l, k):
+    #         if l == r:
+    #             trace_k += (
+    #                 np.sum(
+    #                     cent_kern[
+    #                         cum_size[l] : cum_size[l + 1], cum_size[r] : cum_size[r + 1]
+    #                     ]
+    #                 )
+    #                 - np.sum(
+    #                     np.diag(
+    #                         cent_kern[
+    #                             cum_size[l] : cum_size[l + 1],
+    #                             cum_size[r] : cum_size[r + 1],
+    #                         ]
+    #                     )
+    #                 )
+    #             ) / (sizes[l] * (sizes[l] - 1))
+    #         else:
+    #             tn = tn - 2 * np.mean(
+    #                 cent_kern[
+    #                     cum_size[l] : cum_size[l + 1], cum_size[r] : cum_size[r + 1]
+    #                 ]
+    #             )
+    # stat1 = n * ((k - 1) * trace_k + tn)
+    # stat2 = n * trace_k
+    # return np.array([stat1, stat2])
 
 
 def normal_cv_helper(size, h, mu_hat, sigma_hat, n_rep, random_state):
@@ -289,11 +454,11 @@ def normal_cv_helper(size, h, mu_hat, sigma_hat, n_rep, random_state):
     """
     if random_state is None:
         generator = check_random_state(random_state)
-    elif isinstance(random_state, int):
+    elif isinstance(random_state, (int, np.int_)):
         generator = check_random_state(random_state + n_rep)
 
     dat = generator.multivariate_normal(mu_hat.ravel(), sigma_hat, size)
-    return stat_normality_test(dat, h, mu_hat, sigma_hat)
+    return stat_normality_test(dat, h, mu_hat, sigma_hat)[0]
 
 
 def bootstrap_helper_twosample(size_x, size_y, h, data_pool, n_rep, random_state):
@@ -330,7 +495,7 @@ def bootstrap_helper_twosample(size_x, size_y, h, data_pool, n_rep, random_state
     """
     if random_state is None:
         generator = check_random_state(random_state)
-    elif isinstance(random_state, int):
+    elif isinstance(random_state, (int, np.int_)):
         generator = check_random_state(random_state + n_rep)
 
     ind_x = generator.choice(np.arange(0, size_x + size_y, 1), size_x, replace=True)
@@ -338,8 +503,13 @@ def bootstrap_helper_twosample(size_x, size_y, h, data_pool, n_rep, random_state
     data_x_star = data_pool[ind_x]
     data_y_star = data_pool[ind_y]
     result = stat_two_sample(
-        data_x_star, data_y_star, h, np.array([[0]]), np.array([[1]]), "nonparam"
-    )
+        data_x_star,
+        data_y_star,
+        h,
+        np.repeat(0, data_pool.shape[1]),
+        np.array([[1]]),
+        "nonparam",
+    )[:2]
     return result
 
 
@@ -377,7 +547,7 @@ def permutation_helper_twosample(size_x, size_y, h, data_pool, n_rep, random_sta
     """
     if random_state is None:
         generator = check_random_state(random_state)
-    elif isinstance(random_state, int):
+    elif isinstance(random_state, (int, np.int_)):
         generator = check_random_state(random_state + n_rep)
 
     ind_x = generator.choice(np.arange(0, size_x + size_y, 1), size_x, replace=False)
@@ -385,8 +555,13 @@ def permutation_helper_twosample(size_x, size_y, h, data_pool, n_rep, random_sta
     data_x_star = data_pool[ind_x]
     data_y_star = data_pool[ind_y]
     result = stat_two_sample(
-        data_x_star, data_y_star, h, np.array([[0]]), np.array([[1]]), "nonparam"
-    )
+        data_x_star,
+        data_y_star,
+        h,
+        np.repeat(0, data_pool.shape[1]),
+        np.array([[1]]),
+        "nonparam",
+    )[:2]
     return result
 
 
@@ -425,9 +600,10 @@ def subsampling_helper_twosample(size_x, size_y, b, h, data_pool, n_rep, random_
         The result of the two-sample test using subsampling
         resampling for the randomly generated data.
     """
+    print(random_state)
     if random_state is None:
         generator = check_random_state(random_state)
-    elif isinstance(random_state, int):
+    elif isinstance(random_state, (int, np.int_)):
         generator = check_random_state(random_state + n_rep)
 
     ind_x = generator.choice(np.arange(size_x), size=round(size_x * b), replace=False)
@@ -439,8 +615,13 @@ def subsampling_helper_twosample(size_x, size_y, b, h, data_pool, n_rep, random_
     data_x_star = data_pool[newsample[: round(size_x * b)], :]
     data_y_star = data_pool[newsample[round(size_x * b) :], :]
     result = stat_two_sample(
-        data_x_star, data_y_star, h, np.array([[0]]), np.array([[1]]), "nonparam"
-    )
+        data_x_star,
+        data_y_star,
+        h,
+        np.repeat(0, data_pool.shape[1]),
+        np.array([[1]]),
+        "nonparam",
+    )[:2]
     return result
 
 
@@ -484,7 +665,7 @@ def bootstrap_helper_ksample(x, y, k, h, sizes, cum_size, n_rep, random_state):
     """
     if random_state is None:
         generator = check_random_state(random_state)
-    elif isinstance(random_state, int):
+    elif isinstance(random_state, (int, np.int_)):
         generator = check_random_state(random_state + n_rep)
 
     ind_k = np.concatenate(
@@ -499,7 +680,7 @@ def bootstrap_helper_ksample(x, y, k, h, sizes, cum_size, n_rep, random_state):
     newsample = generator.choice(ind_k, len(ind_k), replace=False)
     y_ind = y
     data_k = x[newsample,]
-    res_num_iter = stat_ksample(data_k, y_ind, h)
+    res_num_iter = stat_ksample(data_k, y_ind, h)[:2]
     return res_num_iter
 
 
@@ -547,7 +728,7 @@ def subsampling_helper_ksample(x, y, k, h, sizes, b, cum_size, n_rep, random_sta
     """
     if random_state is None:
         generator = check_random_state(random_state)
-    elif isinstance(random_state, int):
+    elif isinstance(random_state, (int, np.int_)):
         generator = check_random_state(random_state + n_rep)
 
     ind_k = np.concatenate(
@@ -564,7 +745,7 @@ def subsampling_helper_ksample(x, y, k, h, sizes, b, cum_size, n_rep, random_sta
     y_ind = y[ind_k]
     newsample = generator.choice(ind_k, len(ind_k), replace=False)
     data_k = x[newsample,]
-    res_num_iter = stat_ksample(data_k, y_ind, h)
+    res_num_iter = stat_ksample(data_k, y_ind, h)[:2]
     return res_num_iter
 
 
@@ -602,12 +783,12 @@ def permutation_helper_ksample(x, y, n, h, n_rep, random_state):
     """
     if random_state is None:
         generator = check_random_state(random_state)
-    elif isinstance(random_state, int):
+    elif isinstance(random_state, (int, np.int_)):
         generator = check_random_state(random_state + n_rep)
 
     ind_k = generator.choice(np.arange(0, n), n, replace=False)
     ind_k = ind_k.astype(int)
     y_ind = y
     data_k = x[ind_k,]
-    res_num_iter = stat_ksample(data_k, y_ind, h)
+    res_num_iter = stat_ksample(data_k, y_ind, h)[:2]
     return res_num_iter

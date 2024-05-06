@@ -100,7 +100,8 @@ def cv_twosample(
             )
             for i in range(num_iter)
         )
-    return np.quantile(results, quantile)
+    cv = np.quantile(results, quantile, axis=0)
+    return cv
 
 
 def cv_normality(
@@ -252,4 +253,5 @@ def cv_ksample(
             for i in range(num_iter)
         )
 
-    return np.quantile(results, quantile, axis=0)
+    cv = np.quantile(results, quantile, axis=0)
+    return cv

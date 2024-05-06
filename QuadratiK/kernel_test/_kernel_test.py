@@ -6,8 +6,15 @@ import importlib
 import numpy as np
 import pandas as pd
 from tabulate import tabulate
+from scipy.stats import chi2
 
-from ._utils import stat_normality_test, stat_two_sample, stat_ksample
+from ._utils import (
+    stat_normality_test,
+    stat_two_sample,
+    stat_ksample,
+    dof_normality_test,
+    variance_normality_test,
+)
 from ._cv_functions import cv_twosample, cv_normality, cv_ksample
 from ._h_selection import select_h
 
@@ -254,15 +261,28 @@ class KernelTest:
                 )[0]
 
             # Compute the estimates of mean and covariance from the data
+            # if self.mu_hat is None:
+            #     self.mu_hat = np.mean(self.x, axis=0, keepdims=True)
+            # if self.sigma_hat is None:
+            #     self.sigma_hat = np.cov(self.x, rowvar=False)
+            #     if k == 1:
+            #         self.sigma_hat = np.array([[np.take(self.sigma_hat, 0)]])
+
             if self.mu_hat is None:
-                self.mu_hat = np.mean(self.x, axis=0, keepdims=True)
+                self.mu_hat = np.zeros(k).reshape(1, -1)
+            else:
+                self.x = self.x - self.mu_hat
+                self.mu_hat = np.zeros(k)
+
             if self.sigma_hat is None:
-                self.sigma_hat = np.cov(self.x, rowvar=False)
-                if k == 1:
-                    self.sigma_hat = np.array([[np.take(self.sigma_hat, 0)]])
+                self.sigma_hat = np.eye(k)
 
             statistic = stat_normality_test(self.x, self.h, self.mu_hat, self.sigma_hat)
-            cv = cv_normality(
+
+            sigma_h = (self.h**2) * np.eye(k)
+
+            var_un = variance_normality_test(sigma_h, self.sigma_hat, size_x)
+            cv_un = cv_normality(
                 size_x,
                 self.h,
                 self.mu_hat,
@@ -271,18 +291,24 @@ class KernelTest:
                 self.quantile,
                 self.random_state,
                 self.n_jobs,
-            )
-            un_h0 = statistic[0] > cv[0]
-            vn_h0 = statistic[1] > cv[1]
+            ) / np.sqrt(var_un)
+
+            dof, coeff = dof_normality_test(sigma_h, self.sigma_hat)
+            qu_q = chi2.ppf(self.quantile, dof)
+            cv_vn = coeff * qu_q
+
+            un_h0 = (statistic[0] / np.sqrt(var_un)) > cv_un
+            vn_h0 = statistic[1] > cv_vn
 
             self.test_type_ = "Kernel-based quadratic distance Normality test"
             self.un_h0_rejected_ = un_h0
             self.vn_h0_rejected_ = vn_h0
-            self.un_test_statistic_ = statistic[0]
+            self.un_test_statistic_ = statistic[0] / np.sqrt(var_un)
             self.vn_test_statistic_ = statistic[1]
-            self.un_cv_ = cv[0]
-            self.vn_cv_ = cv[1]
-            self.cv_method_ = "Empirical"
+            self.un_cv_ = cv_un
+            self.vn_cv_ = cv_vn
+            self.var_un_ = var_un
+            # self.cv_method_ = "Empirical"
             return self
 
         else:
@@ -323,8 +349,8 @@ class KernelTest:
                         self.x,
                         self.y,
                         self.h,
-                        np.array([[0]]),
-                        np.array([[1]]),
+                        np.zeros(k),
+                        np.eye(k),
                         "nonparam",
                     )
 
@@ -340,16 +366,17 @@ class KernelTest:
                     self.random_state,
                     self.n_jobs,
                 )
-                h0 = statistic > cv
+
+                h0 = statistic[:2] / np.sqrt(statistic[2:]) > cv / np.sqrt(
+                    statistic[2:]
+                )
 
                 self.test_type_ = "Kernel-based quadratic distance two-sample test"
                 self.un_h0_rejected_ = h0
-                self.vn_h0_rejected_ = None
-                self.un_test_statistic_ = statistic
-                self.vn_test_statistic_ = None
-                self.un_cv_ = cv
-                self.vn_cv_ = None
+                self.un_test_statistic_ = statistic[:2] / np.sqrt(statistic[2:])
+                self.un_cv_ = cv / np.sqrt(statistic[2:])
                 self.cv_method_ = self.method
+                self.var_un_ = statistic[2:]
                 return self
 
             else:
@@ -379,17 +406,18 @@ class KernelTest:
                     self.random_state,
                     self.n_jobs,
                 )
-                un_h0 = statistic[0] > cv[0]
-                vn_h0 = statistic[1] > cv[1]
+
+                h0 = statistic[:2] / np.sqrt(statistic[2:]) > cv / np.sqrt(
+                    statistic[2:]
+                )
 
                 self.test_type_ = "Kernel-based quadratic distance K-sample test"
-                self.un_h0_rejected_ = un_h0
-                self.vn_h0_rejected_ = vn_h0
-                self.un_test_statistic_ = statistic[0]
-                self.vn_test_statistic_ = statistic[1]
-                self.un_cv_ = cv[0]
-                self.vn_cv_ = cv[1]
+                self.un_h0_rejected_ = h0
+                self.un_test_statistic_ = statistic[:2] / np.sqrt(statistic[2:])
+                self.un_cv_ = cv / np.sqrt(statistic[2:])
                 self.cv_method_ = self.method
+                self.var_un_ = statistic[2:]
+
                 return self
 
     def stats(self):
