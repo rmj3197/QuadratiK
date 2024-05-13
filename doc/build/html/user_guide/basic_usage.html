@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>QuadratiK Usage Examples &#8212; QuadratiK 1.0.1.dev0 documentation</title>
+    <title>QuadratiK Usage Examples &#8212; QuadratiK 1.1.0 documentation</title>
   
   
   
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=990e3e20"></script>
+    <script src="../_static/documentation_options.js?v=051bfb12"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -48,7 +48,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/basic_usage';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Development" href="../development/index.html" />
+    <link rel="next" title="Random sampling from the Poisson kernel-based density" href="gen_plot_rpkb.html" />
     <link rel="prev" title="Wireless Indoor Localization Dataset" href="datasets.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -134,7 +134,7 @@
   
   
   
-    <p class="title logo__title">QuadratiK 1.0.1.dev0 documentation</p>
+    <p class="title logo__title">QuadratiK 1.1.0 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -177,6 +177,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User Guide</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="datasets.html">Wireless Indoor Localization Dataset</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">QuadratiK Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gen_plot_rpkb.html">Random sampling from the Poisson kernel-based density</a></li>
 </ul>
 </li>
 </ul>
@@ -343,7 +344,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Normality-Test">Normality Test</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Parametric">Parametric</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Non-parametric">Non-parametric</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QQ-Plot">QQ Plot</a></li>
 </ul>
 </li>
@@ -401,10 +401,12 @@ document.write(`
 <span class="n">normality_test</span> <span class="o">=</span> <span class="n">KernelTest</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">centering_type</span><span class="o">=</span><span class="s2">&quot;param&quot;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">test_type_</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Execution time: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">execution_time</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H0 is Rejected : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">h0_rejected_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Statistic : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">test_statistic_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Critical Value (CV) : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">cv_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CV Method : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">cv_method_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Un H0 is Rejected : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">un_h0_rejected_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Un Test Statistic : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">un_test_statistic_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Un Critical Value (CV) : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">vn_cv_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vn H0 is Rejected : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">vn_h0_rejected_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vn Test Statistic : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">vn_test_statistic_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vn Critical Value (CV) : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">vn_cv_</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selected tuning parameter : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">h</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -415,11 +417,13 @@ document.write(`
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Test : Kernel-based quadratic distance Normality test
-Execution time: 1.900
-H0 is Rejected : False
-Test Statistic : -0.004422397826208057
-Critical Value (CV) : 0.00495159345113745
-CV Method : Empirical
+Execution time: 2.427
+Un H0 is Rejected : False
+Un Test Statistic : -116.93474728173035
+Un Critical Value (CV) : 8.808524062653914
+Vn H0 is Rejected : False
+Vn Test Statistic : 0.6315175347522548
+Vn Critical Value (CV) : 8.808524062653914
 Selected tuning parameter : 0.4
 </pre></div></div>
 </div>
@@ -436,14 +440,18 @@ Selected tuning parameter : 0.4
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Time taken for execution: 1.900 seconds
+Time taken for execution: 2.427 seconds
 Test Results
---------------  ----------------------------------------------
-Test Type       Kernel-based quadratic distance Normality test
-Test Statistic  -0.004422397826208057
-Critical Value  0.00495159345113745
-Reject H0       False
---------------  ----------------------------------------------
+-----------------  ----------------------------------------------
+Test Type          Kernel-based quadratic distance Normality test
+Un Test Statistic  -116.93474728173035
+Un Critical Value  185.334479118873
+Un Reject H0       False
+Vn Test Statistic  0.6315175347522548
+Vn Critical Value  8.808524062653914
+Vn Reject H0       False
+Var Un             5.992919179649088e-06
+-----------------  ----------------------------------------------
 Summary Statistics
            Feature 0    Feature 1
 -------  -----------  -----------
@@ -453,85 +461,13 @@ Median       -0.0353       0.1323
 IQR           1.0704       1.3333
 Min          -2.6197      -1.9876
 Max           1.8862       2.7202
-</pre></div></div>
-</div>
-</section>
-<section id="Non-parametric">
-<h3>Non-parametric<a class="headerlink" href="#Non-parametric" title="Link to this heading">#</a></h3>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normality_test</span> <span class="o">=</span> <span class="n">KernelTest</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">centering_type</span><span class="o">=</span><span class="s2">&quot;nonparam&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">test_type_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Execution time: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">execution_time</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H0 is Rejected : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">h0_rejected_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Statistic : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">test_statistic_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Critical Value (CV) : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">cv_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CV Method : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">cv_method_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selected tuning parameter : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">h</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Test : Kernel-based quadratic distance Normality test
-Execution time: 0.158
-H0 is Rejected : False
-Test Statistic : 0.0015387891795935942
-Critical Value (CV) : 0.0020239838002163724
-CV Method : Empirical
-Selected tuning parameter : 0.4
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">normality_test</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Time taken for execution: 0.158 seconds
-Test Results
---------------  ----------------------------------------------
-Test Type       Kernel-based quadratic distance Normality test
-Test Statistic  0.0015387891795935942
-Critical Value  0.0020239838002163724
-Reject H0       False
---------------  ----------------------------------------------
-Summary Statistics
-           Feature 0    Feature 1
--------  -----------  -----------
-Mean         -0.1156       0.034
-Std Dev       0.8563       0.9989
-Median       -0.0353       0.1323
-IQR           1.0704       1.3333
-Min          -2.6197      -1.9876
-Max           1.8862       2.7202
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
 </pre></div></div>
 </div>
 </section>
 <section id="QQ-Plot">
 <h3>QQ Plot<a class="headerlink" href="#QQ-Plot" title="Link to this heading">#</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QuadratiK.tools</span> <span class="kn">import</span> <span class="n">qq_plot</span>
@@ -541,11 +477,11 @@ Max           1.8862       2.7202
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/user_guide_basic_usage_11_0.png" src="../_images/user_guide_basic_usage_11_0.png" />
+<img alt="../_images/user_guide_basic_usage_8_0.png" src="../_images/user_guide_basic_usage_8_0.png" />
 </div>
 </div>
 </section>
@@ -554,7 +490,7 @@ Max           1.8862       2.7202
 <h2>Two Sample Test<a class="headerlink" href="#Two-Sample-Test" title="Link to this heading">#</a></h2>
 <p>This sections shows example for the two-sample test using normal kernel-based quadratic distance</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QuadratiK.kernel_test</span> <span class="kn">import</span> <span class="n">KernelTest</span>
@@ -565,9 +501,9 @@ Max           1.8862       2.7202
 <span class="n">two_sample_test</span> <span class="o">=</span> <span class="n">KernelTest</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">test_type_</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Execution time: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">execution_time</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H0 is Rejected : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">h0_rejected_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Statistic : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">test_statistic_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Critical Value (CV) : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">cv_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H0 is Rejected : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">un_h0_rejected_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Statistic : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">un_test_statistic_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Critical Value (CV) : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">un_cv_</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CV Method : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">cv_method_</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selected tuning parameter : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">h</span><span class="p">))</span>
 </pre></div>
@@ -579,16 +515,16 @@ Max           1.8862       2.7202
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Test : Kernel-based quadratic distance two-sample test
-Execution time: 0.038
-H0 is Rejected : False
-Test Statistic : 0.0029175386660962063
-Critical Value (CV) : 0.00931651659981921
+Execution time: 0.181
+H0 is Rejected : [False False]
+Test Statistic : [0.3639171  0.40914903]
+Critical Value (CV) : [1.16208903 1.30725714]
 CV Method : subsampling
 Selected tuning parameter : 0.4
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">two_sample_test</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
@@ -600,14 +536,15 @@ Selected tuning parameter : 0.4
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Time taken for execution: 0.038 seconds
+Time taken for execution: 0.181 seconds
 Test Results
---------------  -----------------------------------------------
-Test Type       Kernel-based quadratic distance two-sample test
-Test Statistic  0.0029175386660962063
-Critical Value  0.00931651659981921
-Reject H0       False
---------------  -----------------------------------------------
+-----------------  -----------------------------------------------
+Test Type          Kernel-based quadratic distance two-sample test
+Un Test Statistic  [0.3639171  0.40914903]
+Un Critical Value  [1.16208903 1.30725714]
+Reject H0          [False False]
+Var Un             [6.42729627e-05 1.28399708e-05]
+-----------------  -----------------------------------------------
 Summary Statistics
                             Group 1    Group 2    Overall
 ------------------------  ---------  ---------  ---------
@@ -630,33 +567,25 @@ Summary Statistics
 <h2>K-Sample Test<a class="headerlink" href="#K-Sample-Test" title="Link to this heading">#</a></h2>
 <p>Shows examples for the kernel-based quadratic distance k-sample tests with the Normal kernel and bandwidth parameter h.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QuadratiK.kernel_test</span> <span class="kn">import</span> <span class="n">KernelTest</span>
 
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span> <span class="mi">100</span><span class="p">)</span>
 
-<span class="n">k_sample_test</span> <span class="o">=</span> <span class="n">KernelTest</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;permutation&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">k_sample_test</span> <span class="o">=</span> <span class="n">KernelTest</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;subsampling&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">test_type_</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Execution time: </span><span class="si">{:.3f}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">execution_time</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H0 is Rejected : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">h0_rejected_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Statistic : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">test_statistic_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Critical Value (CV) : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">cv_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H0 is Rejected : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">un_h0_rejected_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Statistic : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">un_test_statistic_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Critical Value (CV) : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">un_cv_</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CV Method : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">cv_method_</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selected tuning parameter : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">h</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Entered this K Sample Else
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -664,16 +593,16 @@ Entered this K Sample Else
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Test : Kernel-based quadratic distance K-sample test
-Execution time: 0.288 seconds
-H0 is Rejected : False
-Test Statistic : [0.00154197 0.00038549]
-Critical Value (CV) : [0.00395911 0.00098978]
-CV Method : permutation
+Execution time: 4.209 seconds
+H0 is Rejected : [False False]
+Test Statistic : [-1.19987341 -1.22848521]
+Critical Value (CV) : [1.80290935 1.84631206]
+CV Method : subsampling
 Selected tuning parameter : 1.5
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">k_sample_test</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
@@ -685,29 +614,42 @@ Selected tuning parameter : 1.5
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Time taken for execution: 0.288 seconds
+Time taken for execution: 4.209 seconds
 Test Results
---------------  ---------------------------------------------
-Test Type       Kernel-based quadratic distance K-sample test
-Test Statistic  [0.00154197 0.00038549]
-Critical Value  [0.00395911 0.00098978]
-Reject H0       False
---------------  ---------------------------------------------
+-----------------  ---------------------------------------------
+Test Type          Kernel-based quadratic distance K-sample test
+Un Test Statistic  [-1.19987341 -1.22848521]
+Un Critical Value  [1.80290935 1.84631206]
+Reject H0          [False False]
+Var Un             [2.06157521e-08 7.89821748e-10]
+-----------------  ---------------------------------------------
 Summary Statistics
-                            Group 0    Group 1    Group 2    Group 3    Group 4    Overall
+                            Group 1    Group 2    Group 3    Group 4    Group 5    Overall
 ------------------------  ---------  ---------  ---------  ---------  ---------  ---------
-(&#39;Feature 0&#39;, &#39;Mean&#39;)       -0.0309    -0.0533     0.1141     0.3318    -0.0612     0.0721
-(&#39;Feature 0&#39;, &#39;Std Dev&#39;)     0.8923     0.8846     1.0046     0.9959     0.8949     0.9497
-(&#39;Feature 0&#39;, &#39;Median&#39;)     -0.035      0.0282     0.0386     0.3026     0.0104     0.0463
-(&#39;Feature 0&#39;, &#39;IQR&#39;)         1.2255     1.1546     1.336      1.3052     1.1691     1.2548
-(&#39;Feature 0&#39;, &#39;Min&#39;)        -2.4994    -2.3629    -2.6969    -2.4242    -2.5539    -2.6969
-(&#39;Feature 0&#39;, &#39;Max&#39;)         1.849      1.8846     2.5601     2.5734     1.882      2.5734
-(&#39;Feature 1&#39;, &#39;Mean&#39;)        0.2104     0.1435     0.1877    -0.0868    -0.0808     0.0715
-(&#39;Feature 1&#39;, &#39;Std Dev&#39;)     0.9641     1.0551     1.0554     1.0276     1.1685     1.0591
-(&#39;Feature 1&#39;, &#39;Median&#39;)      0.279      0.0861     0.1893    -0.1258    -0.1441     0.1132
-(&#39;Feature 1&#39;, &#39;IQR&#39;)         1.3873     1.2558     1.323      1.3384     1.5526     1.4146
-(&#39;Feature 1&#39;, &#39;Min&#39;)        -1.9664    -2.591     -2.8723    -2.8485    -2.9214    -2.9214
-(&#39;Feature 1&#39;, &#39;Max&#39;)         2.2909     2.6017     2.5797     2.6324     2.5582     2.6324
+(&#39;Feature 0&#39;, &#39;Mean&#39;)       -0.016      0.1352     0.0391    -0.0453     0.001      0.0228
+(&#39;Feature 0&#39;, &#39;Std Dev&#39;)     0.9033     1.0094     0.8065     1.0001     1.0049     0.9465
+(&#39;Feature 0&#39;, &#39;Median&#39;)     -0.0216     0.0706     0.0854    -0.0767     0.0043     0.0217
+(&#39;Feature 0&#39;, &#39;IQR&#39;)         1.1691     1.5099     1.0209     1.1796     1.35       1.2662
+(&#39;Feature 0&#39;, &#39;Min&#39;)        -2.651     -2.4994    -2.1727    -3.0195    -2.6357    -3.0195
+(&#39;Feature 0&#39;, &#39;Max&#39;)         2.5269     2.4034     2.0615     2.4126     2.4267     2.5269
+(&#39;Feature 1&#39;, &#39;Mean&#39;)        0.0767     0.0006     0.2154     0.1073     0.1408     0.1081
+(&#39;Feature 1&#39;, &#39;Std Dev&#39;)     1.0609     1.1006     0.9916     0.9058     0.9807     1.0086
+(&#39;Feature 1&#39;, &#39;Median&#39;)      0.1344     0.0281     0.1926     0.1695     0.095      0.1397
+(&#39;Feature 1&#39;, &#39;IQR&#39;)         1.6374     1.2897     1.5382     1.0391     1.4977     1.4323
+(&#39;Feature 1&#39;, &#39;Min&#39;)        -2.4239    -2.8963    -1.9664    -2.0039    -2.2193    -2.8963
+(&#39;Feature 1&#39;, &#39;Max&#39;)         2.1633     2.5797     2.6017     3.1377     3.1099     3.1377
+(&#39;Feature 2&#39;, &#39;Mean&#39;)        0.0664     0.109      0.0648    -0.1372     0.0261     0.0258
+(&#39;Feature 2&#39;, &#39;Std Dev&#39;)     0.9982     0.8847     1.0373     1.0405     1.0345     1.0005
+(&#39;Feature 2&#39;, &#39;Median&#39;)      0.001      0.0707     0.0553    -0.1513    -0.0034     0.0041
+(&#39;Feature 2&#39;, &#39;IQR&#39;)         1.1909     1.1662     1.2926     1.4705     1.3745     1.3092
+(&#39;Feature 2&#39;, &#39;Min&#39;)        -2.6969    -2.5539    -2.7032    -2.5623    -2.6042    -2.7032
+(&#39;Feature 2&#39;, &#39;Max&#39;)         2.5734     2.1573     2.1709     2.6443     2.9491     2.9491
+(&#39;Feature 3&#39;, &#39;Mean&#39;)        0.1473     0.0332     0.0736    -0.019     -0.0514     0.0367
+(&#39;Feature 3&#39;, &#39;Std Dev&#39;)     0.9948     1.0394     1.1152     0.9658     0.9239     1.0083
+(&#39;Feature 3&#39;, &#39;Median&#39;)      0.1617     0.1228     0.009     -0.0896    -0.047     -0.0062
+(&#39;Feature 3&#39;, &#39;IQR&#39;)         1.2778     1.3332     1.4463     1.1245     1.2915     1.3144
+(&#39;Feature 3&#39;, &#39;Min&#39;)        -2.0734    -2.591     -2.9214    -2.9404    -2.2469    -2.9404
+(&#39;Feature 3&#39;, &#39;Max&#39;)         2.6324     2.493      3.1931     2.7597     2.3639     3.1931
 </pre></div></div>
 </div>
 </section>
@@ -715,7 +657,7 @@ Summary Statistics
 <h2>Poisson Kernel Test<a class="headerlink" href="#Poisson-Kernel-Test" title="Link to this heading">#</a></h2>
 <p>Shows example for perforing the the kernel-based quadratic distance Goodness-of-fit tests for Uniformity for spherical data using the Poisson kernel with concentration parameter rho.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QuadratiK.tools</span> <span class="kn">import</span> <span class="n">sample_hypersphere</span>
@@ -744,11 +686,11 @@ Summary Statistics
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Execution time: 0.038 seconds
+Execution time: 0.058 seconds
 U Statistic Results
 H0 is rejected : False
 Un Statistic : 1.6156682048968174
-Critical Value : 0.06155875299050079
+Critical Value : 1.9917172670030654
 V Statistic Results
 H0 is rejected : False
 Vn Statistic : 22.83255917641962
@@ -756,7 +698,7 @@ Critical Value : 23.229486935225513
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">unif_test</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
@@ -768,18 +710,18 @@ Critical Value : 23.229486935225513
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Time taken for execution: 0.038 seconds
+Time taken for execution: 0.058 seconds
 Test Results
---------------------------  -------------------
+--------------------------  ------------------
 Test Type                   Poisson Kernel-based quadratic
  distance test of Uniformity on the Sphere
 U Statistic Un              1.6156682048968174
-U Statistic Critical Value  0.06155875299050079
+U Statistic Critical Value  1.9917172670030654
 U Statistic Reject H0       False
 V Statistic Vn              22.83255917641962
 V Statistic Critical Value  23.229486935225513
 V Statistic Reject H0       False
---------------------------  -------------------
+--------------------------  ------------------
 Summary Statistics
            Feature 0    Feature 1    Feature 2
 -------  -----------  -----------  -----------
@@ -794,7 +736,7 @@ Max           0.9772       0.9738       0.9996
 <section id="id1">
 <h3>QQ Plot<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QuadratiK.tools</span> <span class="kn">import</span> <span class="n">qq_plot</span>
@@ -804,11 +746,11 @@ Max           0.9772       0.9738       0.9996
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/user_guide_basic_usage_25_0.png" src="../_images/user_guide_basic_usage_25_0.png" />
+<img alt="../_images/user_guide_basic_usage_22_0.png" src="../_images/user_guide_basic_usage_22_0.png" />
 </div>
 </div>
 </section>
@@ -817,7 +759,7 @@ Max           0.9772       0.9738       0.9996
 <h2>Poisson Kernel based Clustering<a class="headerlink" href="#Poisson-Kernel-based-Clustering" title="Link to this heading">#</a></h2>
 <p>Shows example for performing the Poisson kernel-based clustering algorithm on the Sphere based on the Poisson kernel-based densities.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QuadratiK.datasets</span> <span class="kn">import</span> <span class="n">load_wireless_data</span>
@@ -859,7 +801,7 @@ Average Silhouette Score: 0.3803089203572107
 <section id="Elbow-Plot-using-Euclidean-Distance-and-Cosine-Similarity-based-WCSS">
 <h3>Elbow Plot using Euclidean Distance and Cosine Similarity based WCSS<a class="headerlink" href="#Elbow-Plot-using-Euclidean-Distance-and-Cosine-Similarity-based-WCSS" title="Link to this heading">#</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wcss_euc</span> <span class="o">=</span> <span class="p">[]</span>
@@ -890,14 +832,14 @@ Average Silhouette Score: 0.3803089203572107
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/user_guide_basic_usage_30_0.png" src="../_images/user_guide_basic_usage_30_0.png" />
+<img alt="../_images/user_guide_basic_usage_27_0.png" src="../_images/user_guide_basic_usage_27_0.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/user_guide_basic_usage_30_1.png" src="../_images/user_guide_basic_usage_30_1.png" />
+<img alt="../_images/user_guide_basic_usage_27_1.png" src="../_images/user_guide_basic_usage_27_1.png" />
 </div>
 </div>
 </section>
@@ -905,7 +847,7 @@ Average Silhouette Score: 0.3803089203572107
 <section id="Density-Estimation-and-Sample-Generation-from-PKBD">
 <h2>Density Estimation and Sample Generation from PKBD<a class="headerlink" href="#Density-Estimation-and-Sample-Generation-from-PKBD" title="Link to this heading">#</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QuadratiK.spherical_clustering</span> <span class="kn">import</span> <span class="n">PKBD</span>
@@ -930,7 +872,7 @@ Average Silhouette Score: 0.3803089203572107
 <h2>Tuning Parameter <span class="math notranslate nohighlight">\(h\)</span> selection<a class="headerlink" href="#Tuning-Parameter-h-selection" title="Link to this heading">#</a></h2>
 <p>Computes the kernel bandwidth of the Gaussian kernel for the two-sample and ksample kernel-based quadratic distance (KBQD) tests.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">QuadratiK.kernel_test</span> <span class="kn">import</span> <span class="n">select_h</span>
@@ -950,11 +892,11 @@ Average Silhouette Score: 0.3803089203572107
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Selected h is:  1.2
+Selected h is:  0.8
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shows the detailed power vs h table</span>
@@ -963,7 +905,7 @@ Selected h is:  1.2
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -995,7 +937,7 @@ Selected h is:  1.2
       <th>0</th>
       <td>0.4</td>
       <td>0.2</td>
-      <td>0.02</td>
+      <td>0.08</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1007,79 +949,79 @@ Selected h is:  1.2
       <th>2</th>
       <td>1.2</td>
       <td>0.2</td>
-      <td>0.20</td>
+      <td>0.26</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1.6</td>
       <td>0.2</td>
-      <td>0.28</td>
+      <td>0.22</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2.0</td>
       <td>0.2</td>
-      <td>0.42</td>
+      <td>0.28</td>
     </tr>
     <tr>
       <th>5</th>
       <td>2.4</td>
       <td>0.2</td>
-      <td>0.30</td>
+      <td>0.38</td>
     </tr>
     <tr>
       <th>6</th>
       <td>2.8</td>
       <td>0.2</td>
-      <td>0.36</td>
+      <td>0.40</td>
     </tr>
     <tr>
       <th>7</th>
       <td>3.2</td>
       <td>0.2</td>
-      <td>0.20</td>
+      <td>0.38</td>
     </tr>
     <tr>
       <th>0</th>
       <td>0.4</td>
       <td>0.3</td>
-      <td>0.12</td>
+      <td>0.26</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.8</td>
       <td>0.3</td>
-      <td>0.40</td>
+      <td>0.56</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1.2</td>
       <td>0.3</td>
-      <td>0.50</td>
+      <td>0.56</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1.6</td>
       <td>0.3</td>
-      <td>0.44</td>
+      <td>0.62</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2.0</td>
       <td>0.3</td>
-      <td>0.40</td>
+      <td>0.64</td>
     </tr>
     <tr>
       <th>5</th>
       <td>2.4</td>
       <td>0.3</td>
-      <td>0.60</td>
+      <td>0.70</td>
     </tr>
     <tr>
       <th>6</th>
       <td>2.8</td>
       <td>0.3</td>
-      <td>0.56</td>
+      <td>0.78</td>
     </tr>
     <tr>
       <th>7</th>
@@ -1092,7 +1034,7 @@ Selected h is:  1.2
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shows the power plot</span>
@@ -1101,11 +1043,11 @@ Selected h is:  1.2
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/user_guide_basic_usage_37_0.png" src="../_images/user_guide_basic_usage_37_0.png" />
+<img alt="../_images/user_guide_basic_usage_34_0.png" src="../_images/user_guide_basic_usage_34_0.png" />
 </div>
 </div>
 </section>
@@ -1132,11 +1074,11 @@ Selected h is:  1.2
       </div>
     </a>
     <a class="right-next"
-       href="../development/index.html"
+       href="gen_plot_rpkb.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Development</p>
+        <p class="prev-next-title">Random sampling from the Poisson kernel-based density</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1158,7 +1100,6 @@ Selected h is:  1.2
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Normality-Test">Normality Test</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Parametric">Parametric</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Non-parametric">Non-parametric</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#QQ-Plot">QQ Plot</a></li>
 </ul>
 </li>

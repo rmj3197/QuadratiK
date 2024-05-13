@@ -1,6 +1,7 @@
-import importlib
+from importlib import metadata, import_module
 
-__version__ = "1.0.1.dev0"
+__version__ = "1.1.0"
+
 submodules = [
     "kernel_test",
     "poisson_kernel_test",
@@ -18,7 +19,7 @@ def __dir__():
 # taken from scipy
 def __getattr__(name):
     if name in submodules:
-        return importlib.import_module(f"QuadratiK.{name}")
+        return import_module(f"QuadratiK.{name}")
     else:
         try:
             return globals()[name]

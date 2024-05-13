@@ -77,7 +77,7 @@ class PKBC:
         log_lik_vec : numpy.ndarray of shape (num_init, )
             Array of log-likelihood values for each initialization
 
-        loklik\\_ : float
+        loglik\\_ : float
             Maximum value of the log-likelihood function
 
         mu\\_ : numpy.ndarray of shape (n_clusters, n_features)

@@ -20,8 +20,8 @@ stats = importlib.import_module("QuadratiK.tools").stats
 
 class PoissonKernelTest:
     """
-    Class for Poisson kernel-based quadratic distance
-    test of Uniformity on the Sphere
+    Class for Poisson kernel-based quadratic distance test
+    of Uniformity on the Sphere
 
     Parameters
     ----------
@@ -45,9 +45,8 @@ class PoissonKernelTest:
             to - https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
             Defaults to 8.
 
-
     Attributes
-    ----------
+    -----------
         test_type\\_ : str
             The type of test performed on the data
 
@@ -81,11 +80,14 @@ class PoissonKernelTest:
 
     Examples
     ---------
-    >>> from QuadratiK.tools import sample_hypersphere
+    >>> import numpy as np
+    >>> np.random.seed(0)
     >>> from QuadratiK.poisson_kernel_test import PoissonKernelTest
-    >>> np.random.seed(42)
-    >>> X = sample_hypersphere(100,3, random_state=42)
-    >>> unif_test = PoissonKernelTest(rho = 0.7, random_state=42).test(X)
+    >>> # data generation
+    >>> z = np.random.normal(size=(200, 3))
+    >>> data_unif = z / np.sqrt(np.sum(z**2, axis=1, keepdims=True))
+    >>> #performing the uniformity test
+    >>> unif_test = PoissonKernelTest(rho = 0.7, random_state=42).test(data_unif)
     >>> print("Execution time: {:.3f} seconds".format(unif_test.execution_time))
     >>> print("U Statistic Results")
     >>> print("H0 is rejected : {}".format(unif_test.u_statistic_h0_))
@@ -95,14 +97,14 @@ class PoissonKernelTest:
     >>> print("H0 is rejected : {}".format(unif_test.v_statistic_h0_))
     >>> print("Vn Statistic : {}".format(unif_test.v_statistic_vn_))
     >>> print("Critical Value : {}".format(unif_test.v_statistic_cv_))
-    ... Execution time: 0.181 seconds
+    ... Execution time: 1.894 seconds
     ... U Statistic Results
     ... H0 is rejected : False
-    ... Un Statistic : 1.6156682048968174
-    ... Critical Value : 0.06155875299050079
+    ... Un Statistic : 0.5977824645431915
+    ... Critical Value : 1.6128083124315886
     ... V Statistic Results
     ... H0 is rejected : False
-    ... Vn Statistic : 22.83255917641962
+    ... Vn Statistic : 19.722614852087553
     ... Critical Value : 23.229486935225513
     """
 

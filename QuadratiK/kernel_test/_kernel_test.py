@@ -75,23 +75,52 @@ class KernelTest:
 
     Attributes
     ----------
-        test_type\\_ : str
-            The type of test performed on the data
+        For Normality Test:
+            test_type\\_ : str
+                The type of test performed on the data
 
-        execution_time : float
-            Time taken for the test method to execute
+            execution_time : float
+                Time taken for the test method to execute
 
-        h0_rejected\\_ : boolean
-            Whether the null hypothesis is rejected (True) or not (False)
+            un_h0_rejected\\_ : boolean
+                Whether the null hypothesis using Un is rejected (True) or not (False)
 
-        test_statistic\\_ : float
-            Test statistic of the perfomed test type
+            vn_h0_rejected\\_ : boolean
+                Whether the null hypothesis using Vn is rejected (True) or not (False)
 
-        cv\\_ : float
-            Critical value
+            un_test_statistic\\_ : float
+                Un Test statistic of the perfomed test type
 
-        cv_method\\_ : str
-            Critical value method used for performing the test
+            vn_test_statistic\\_ : float
+                Vn Test statistic of the perfomed test type
+
+            un_cv\\_ : float
+                Critical value for Un
+
+            un_cv\\_ : float
+                Critical value for Vn
+
+        For Two-Sample and K-Sample Test:
+            test_type\\_ : str
+                The type of test performed on the data
+
+            execution_time : float
+                Time taken for the test method to execute
+
+            un_h0_rejected\\_ : boolean
+                Whether the null hypothesis using Un is rejected (True) or not (False)
+
+            un_test_statistic\\_ : float
+                Un Test statistic of the perfomed test type
+
+            un_cv\\_ : float
+                Critical value for Un
+
+            un_cv\\_ : float
+                Critical value for Vn
+
+            cv_method\\_ : str
+                Critical value method used for performing the test
 
     References
     -----------
@@ -130,7 +159,7 @@ class KernelTest:
     >>> from QuadratiK.kernel_test import KernelTest
     >>> # data generation
     >>> X_2 = np.random.multivariate_normal(mean = np.zeros(4), cov = np.eye(4), size=200)
-    >>> Y_2 = skewnorm.rvs(size=(200, 4),loc=np.zeros(4), scale=np.ones(4),a=np.repeat(0.5,4), random_state=0)
+    >>> Y_2 = skewnorm.rvs(size=(200, 4),loc=np.zeros(4), scale=np.ones(4),a=np.repeat(0.5,4), random_state=20)
     >>> # performing the two sample test
     >>> two_sample_test = KernelTest(h = 2,num_iter = 150, random_state=42).test(X_2,Y_2)
     >>> print("Test : {}".format(two_sample_test.test_type_))
@@ -141,10 +170,10 @@ class KernelTest:
     >>> print("CV Method : {}".format(two_sample_test.cv_method_))
     >>> print("Selected tuning parameter : {}".format(two_sample_test.h))
     ... Test : Kernel-based quadratic distance two-sample test
-    ... Execution time: 0.265 seconds
-    ... H0 is Rejected : True
-    ... Test Statistic : 0.035620906539451845
-    ... Critical Value (CV) : 0.0023528111662230473
+    ... Execution time: 1.900 seconds
+    ... H0 is Rejected : [ True  True]
+    ... Test Statistic : [ 5.061213   15.75171816]
+    ... Critical Value (CV) : [0.49011552 1.52578287]
     ... CV Method : subsampling
     ... Selected tuning parameter : 2
     """
@@ -259,14 +288,6 @@ class KernelTest:
                     quantile=self.quantile,
                     n_jobs=self.n_jobs,
                 )[0]
-
-            # Compute the estimates of mean and covariance from the data
-            # if self.mu_hat is None:
-            #     self.mu_hat = np.mean(self.x, axis=0, keepdims=True)
-            # if self.sigma_hat is None:
-            #     self.sigma_hat = np.cov(self.x, rowvar=False)
-            #     if k == 1:
-            #         self.sigma_hat = np.array([[np.take(self.sigma_hat, 0)]])
 
             if self.mu_hat is None:
                 self.mu_hat = np.zeros(k).reshape(1, -1)

@@ -88,7 +88,7 @@ def param_centering(kmat_zz, z_mat, cov_h, mu_hat, sigma_hat):
         Covariance of centering Normal distribution.
 
     Returns
-    -------
+    --------
     centered kernel matrix : numpy.ndarray
         Matrix of centered kernel
 
@@ -104,24 +104,25 @@ def param_centering(kmat_zz, z_mat, cov_h, mu_hat, sigma_hat):
     return k_center
 
 
-# def dof_normality_test(d, h):
-#     numerator = 1 - (h**2 / (h**2 + 2)) ** (d / 2)
-#     denominator = (
-#         (h**2 + 2) / (h**2 + 4) ** (d / 2)
-#         - 2 * (h**2 / (h**2 + 1)) ** (d / 2) * (h**2 / (h**2 + 3)) ** (d / 2)
-#         + (h**2 / (h**2 + 2)) ** d
-#     )
-#     dof = numerator**2 / denominator
-#     const = (
-#         ((h**2 + 2) / (h**2 * (h**2 + 4))) ** (d / 2)
-#         - 2 * (h**2 / (h**2 + 1)) ** (d / 2) * (1 / (h**2 + 3)) ** (d / 2)
-#         + (h / (h**2 + 2)) ** (d)
-#     ) / numerator
-
-#     return (dof, const)
-
-
 def dof_normality_test(sigma_h, v):
+    """
+    Compute the Degrees of Freedom (DOF) of the normal Kernel centered with
+    respect to the standard normal distribution, given the dimension d and the
+    bandwidth parameter h.
+
+    Parameters
+    -----------
+        sigma_h : np.ndarray
+            ovariance matrix of the gaussian kernel
+
+        v : np.ndarray
+            Covariance matrix of the tested distribution G
+
+    Returns
+    --------
+        DOF and Coefficient : tuple
+            DOF and the coefficient of the asymptotic distribution
+    """
     num_dof = np.linalg.det(sigma_h) ** (-1 / 2) - np.linalg.det(sigma_h + 2 * v) ** (
         -1 / 2
     )
@@ -139,20 +140,27 @@ def dof_normality_test(sigma_h, v):
     return (dof, const)
 
 
-# def variance_normality_test(d, h, n):
-#     var = (
-#         2
-#         / (n * (n - 1))
-#         * 1
-#         / (2 * np.pi) ** d
-#         * ((h**2 + 2) / (h**2**2 * (h**2 + 4))) ** (d / 2)
-#         - 2 / ((h**2 + 1) * (h**2 + 3)) ** (d / 2)
-#         + (h**2 + 2) ** (-d)
-#     )
-#     return var
-
-
 def variance_normality_test(sigma_h, v, n):
+    """
+    Compute the exact variance of kernel test for normality under the null
+    hypothesis that G=N(0,I).
+
+    Parameters
+    ----------
+        sigma_h: np.ndarray
+            Covariance matrix of the gaussian kernel
+
+        v : np.ndarray
+            Covariance matrix of the tested distribution G
+
+        n : int
+            Sample size
+
+    Returns
+    --------
+        variance: float
+            value of computed variance
+    """
     d = sigma_h.shape[0]
     var = (
         2
@@ -171,30 +179,56 @@ def variance_normality_test(sigma_h, v, n):
 
 
 def variance_two_sample_test(k_cen, n, m):
+    """
+    Exact variance of two-sample test. Compute the exact variance of kernel test for the
+    two-sample problem under the null hypothesis that F=G.
+
+    Parameters
+    ----------
+    k_cen : numpy.ndarray
+        Matrix with centered kernel values
+
+    n : int
+        Number of samples of type/kind 1.
+
+    n : int
+        Number of samples of type/kind 2.
+
+    Returns
+    -------
+    Computed variances : tuple
+        Tuple of variances for Dn and trace statistics
+    """
+
     np.fill_diagonal(k_cen, 0)
 
     K_xx = k_cen[:n, :n]
     K_yy = k_cen[n : n + m, n : n + m]
     K_xy = k_cen[:n, n : n + m]
 
-    # Factors
     n_factor = 1.0 / (n * (n - 1))
     m_factor = 1.0 / (m * (m - 1))
     cross_factor = 1.0 / (n * m)
 
-    # Variance estimate calculation
+    # Variance estimate calculation - Dn
     est_var_D = (
         2 * n_factor**2 * (K_xx**2).sum()
         + 8 * cross_factor**2 * (K_xy**2).sum()
         + 2 * m_factor**2 * (K_yy**2).sum()
     )
 
-    delta1 = (K_xx @ K_xy.T).sum()
-    delta2 = (K_xy @ K_yy.T).sum()
+    k_xx_mod = K_xx.copy()
+    np.fill_diagonal(k_xx_mod, 0)
+    delta1 = np.sum(k_xx_mod[:n, :n].T @ K_xy[:n, :m])
+
+    k_yy_mod = K_yy.copy()
+    np.fill_diagonal(k_yy_mod, 0)
+    delta2 = np.sum(k_yy_mod[:m, :m].T @ K_xy[:n, :m].T)
 
     est_var_D -= 8 * n_factor * cross_factor * delta1
     est_var_D -= 8 * m_factor * cross_factor * delta2
 
+    # Variance estimate calculation - trace
     est_var_Tr = (
         2 * (n_factor**2) * (K_xx**2).sum() + 2 * (m_factor**2) * (K_yy**2).sum()
     )
@@ -203,34 +237,70 @@ def variance_two_sample_test(k_cen, n, m):
 
 
 def variance_k_sample_test(k_cen, sizes, cum_size):
+    """
+    Compute the exact variance of kernel test for the k-sample problem under
+    the null hypothesis that F1=...=Fk.
 
+    Parameters
+    -----------
+        k_cen : np.ndarray
+            matrix with centered kernel values
+
+        sizes : list, np.ndarray
+            vector indicating size of samples
+
+        cum_size : list, np.ndarray
+            vector indicating sample's cumulative sizes
+
+    Returns:
+        variance: float
+            value of computed variance
+    """
     k = len(sizes)
 
     np.fill_diagonal(k_cen, 0)
+
+    ni_factors = 1 / (sizes * (sizes - 1))
+    n_ij_factors = 1 / (sizes.reshape(-1, 1) * sizes)
 
     C1 = 0
     C2 = 0
     C3 = 0
 
     for i in range(k):
-        ni_factor = 1 / (sizes[i] * (sizes[i] - 1))
         k_ii = k_cen[
             cum_size[i] : cum_size[i] + sizes[i], cum_size[i] : cum_size[i] + sizes[i]
         ]
-        C1 += 2 * ni_factor * ni_factor * (k_ii**2).sum()
+        C1 += 2 * (ni_factors[i] ** 2) * np.sum(k_ii**2)
 
-        for j in range(k):
-            n_ij_factor = 1 / (sizes[i] * sizes[j])
+    for i in range(k):
+        for j in range(i + 1, k):
             k_ij = k_cen[
                 cum_size[i] : cum_size[i] + sizes[i],
                 cum_size[j] : cum_size[j] + sizes[j],
             ]
-            if j > i:
-                C2 += 8 * n_ij_factor * n_ij_factor * (k_ij**2).sum()
-                C3 -= 8 * n_ij_factor * ni_factor * (k_ii @ k_ij.T).sum()
+            C2 += 8 * (n_ij_factors[i, j] ** 2) * np.sum(k_ij**2)
 
-            elif j < i:
-                C3 -= 8 * n_ij_factor * ni_factor * (k_ii @ k_ij.T).sum()
+    for i in range(k):
+        for j in range(k):
+            if i != j:
+                k_ii = k_cen[
+                    cum_size[i] : cum_size[i] + sizes[i],
+                    cum_size[i] : cum_size[i] + sizes[i],
+                ]
+                k_ij = k_cen[
+                    cum_size[i] : cum_size[i] + sizes[i],
+                    cum_size[j] : cum_size[j] + sizes[j],
+                ]
+                repeated_k_ii = np.repeat(k_ii[:, :, np.newaxis], sizes[j], axis=2)
+                expanded_k_ij = np.expand_dims(k_ij, 1)
+                non_diag_mask = ~np.eye(sizes[i], dtype=bool)[:, :, np.newaxis]
+                C3 -= (
+                    8
+                    * n_ij_factors[i][j]
+                    * ni_factors[i]
+                    * (repeated_k_ii * expanded_k_ij * non_diag_mask).sum()
+                )
 
     est_var_D = (k - 1) ** 2 * C1 + C2 + C3
     est_var_Tr = C1
@@ -266,8 +336,8 @@ def stat_two_sample(x_mat, y_mat, h, mu_hat, sigma_hat, centering_type="nonparam
 
     Returns
     -------
-    test statistic : float
-        Test statistic for the two-sample test.
+    test statistics and associated variances : np.ndarray
+        Test statistics and variances for the two-sample test.
     """
     n_x = x_mat.shape[0]
     k = x_mat.shape[1]
@@ -281,16 +351,15 @@ def stat_two_sample(x_mat, y_mat, h, mu_hat, sigma_hat, centering_type="nonparam
     elif centering_type == "param":
         k_center = param_centering(kmat_zz, z_mat, cov_h, mu_hat, sigma_hat)
     np.fill_diagonal(k_center, 0)
-    test_non_par = n_z * (
+    test_non_par = (
         (np.sum(k_center[:n_x, :n_x]) / (n_x * (n_x - 1)))
         - 2 * (np.sum(k_center[:n_x, n_x : n_x + n_y]) / (n_x * n_y))
         + (np.sum(k_center[n_x : n_x + n_y, n_x : n_x + n_y]) / (n_y * (n_y - 1)))
     )
 
-    test_trace = n_z * (
-        np.sum(k_center[:n_x, :n_x]) / (n_x * (n_x - 1))
-        + np.sum(k_center[n_x : n_x + n_y, n_x : n_x + n_y]) / (n_y * (n_y - 1))
-    )
+    test_trace = np.sum(k_center[:n_x, :n_x]) / (n_x * (n_x - 1)) + np.sum(
+        k_center[n_x : n_x + n_y, n_x : n_x + n_y]
+    ) / (n_y * (n_y - 1))
 
     var1, var2 = variance_two_sample_test(k_center, n_x, n_y)
 
@@ -317,8 +386,8 @@ def stat_normality_test(x_mat, h, mu_hat, sigma_hat):
 
     Returns
     -------
-    test statistic : float
-        Test statistic for the normality test.
+    test statistics : np.ndarray
+        Test statistics for the normality test.
     """
     n_x = x_mat.shape[0]
     k = x_mat.shape[1]
@@ -355,8 +424,8 @@ def stat_ksample(x, y, h):
 
     Returns
     -------
-    test statistic : numpy.ndarray
-        A array containing the two k-sample test statistics.
+    test statistics and associated variances : numpy.ndarray
+        Test statistics and variances for the k-sample test.
     """
     sizes = np.unique(y, return_counts=True)[1]
     n, d = x.shape
@@ -372,6 +441,7 @@ def stat_ksample(x, y, h):
         k_ll = k_center[
             cum_size[l] : cum_size[l] + sizes[l], cum_size[l] : cum_size[l] + sizes[l]
         ]
+        np.fill_diagonal(k_ll, 0)
 
         if sizes[l] > 1:
             trace_k += k_ll.sum() / (sizes[l] * (sizes[l] - 1))
@@ -388,34 +458,6 @@ def stat_ksample(x, y, h):
     stat1 = (k - 1) * trace_k + tn
     stat2 = trace_k
     return np.array([stat1, stat2, var1, var2])
-
-    # for l in range(0, k):
-    #     for r in range(l, k):
-    #         if l == r:
-    #             trace_k += (
-    #                 np.sum(
-    #                     cent_kern[
-    #                         cum_size[l] : cum_size[l + 1], cum_size[r] : cum_size[r + 1]
-    #                     ]
-    #                 )
-    #                 - np.sum(
-    #                     np.diag(
-    #                         cent_kern[
-    #                             cum_size[l] : cum_size[l + 1],
-    #                             cum_size[r] : cum_size[r + 1],
-    #                         ]
-    #                     )
-    #                 )
-    #             ) / (sizes[l] * (sizes[l] - 1))
-    #         else:
-    #             tn = tn - 2 * np.mean(
-    #                 cent_kern[
-    #                     cum_size[l] : cum_size[l + 1], cum_size[r] : cum_size[r + 1]
-    #                 ]
-    #             )
-    # stat1 = n * ((k - 1) * trace_k + tn)
-    # stat2 = n * trace_k
-    # return np.array([stat1, stat2])
 
 
 def normal_cv_helper(size, h, mu_hat, sigma_hat, n_rep, random_state):

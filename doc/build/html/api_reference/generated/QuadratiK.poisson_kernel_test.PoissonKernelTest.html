@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PoissonKernelTest &#8212; QuadratiK 1.0.1.dev0 documentation</title>
+    <title>PoissonKernelTest &#8212; QuadratiK 1.1.0 documentation</title>
   
   
   
@@ -37,7 +37,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=990e3e20"></script>
+    <script src="../../_static/documentation_options.js?v=051bfb12"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
@@ -133,7 +133,7 @@
   
   
   
-    <p class="title logo__title">QuadratiK 1.0.1.dev0 documentation</p>
+    <p class="title logo__title">QuadratiK 1.1.0 documentation</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -176,6 +176,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../user_guide/index.html">User Guide</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../user_guide/datasets.html">Wireless Indoor Localization Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../user_guide/basic_usage.html">QuadratiK Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/gen_plot_rpkb.html">Random sampling from the Poisson kernel-based density</a></li>
 </ul>
 </li>
 </ul>
@@ -362,8 +363,8 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="QuadratiK.poisson_kernel_test.PoissonKernelTest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">QuadratiK.poisson_kernel_test.</span></span><span class="sig-name descname"><span class="pre">PoissonKernelTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#QuadratiK.poisson_kernel_test.PoissonKernelTest" title="Link to this definition">#</a></dt>
-<dd><p>Class for Poisson kernel-based quadratic distance
-test of Uniformity on the Sphere</p>
+<dd><p>Class for Poisson kernel-based quadratic distance test 
+of Uniformity on the Sphere</p>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
 <blockquote>
@@ -420,11 +421,14 @@ Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/s
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">QuadratiK.tools</span> <span class="kn">import</span> <span class="n">sample_hypersphere</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">QuadratiK.poisson_kernel_test</span> <span class="kn">import</span> <span class="n">PoissonKernelTest</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">sample_hypersphere</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">unif_test</span> <span class="o">=</span> <span class="n">PoissonKernelTest</span><span class="p">(</span><span class="n">rho</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># data generation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_unif</span> <span class="o">=</span> <span class="n">z</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#performing the uniformity test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unif_test</span> <span class="o">=</span> <span class="n">PoissonKernelTest</span><span class="p">(</span><span class="n">rho</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">data_unif</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Execution time: </span><span class="si">{:.3f}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unif_test</span><span class="o">.</span><span class="n">execution_time</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;U Statistic Results&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H0 is rejected : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unif_test</span><span class="o">.</span><span class="n">u_statistic_h0_</span><span class="p">))</span>
@@ -434,14 +438,14 @@ Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/s
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H0 is rejected : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unif_test</span><span class="o">.</span><span class="n">v_statistic_h0_</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vn Statistic : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unif_test</span><span class="o">.</span><span class="n">v_statistic_vn_</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Critical Value : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unif_test</span><span class="o">.</span><span class="n">v_statistic_cv_</span><span class="p">))</span>
-<span class="gp">... </span><span class="n">Execution</span> <span class="n">time</span><span class="p">:</span> <span class="mf">0.181</span> <span class="n">seconds</span>
+<span class="gp">... </span><span class="n">Execution</span> <span class="n">time</span><span class="p">:</span> <span class="mf">1.894</span> <span class="n">seconds</span>
 <span class="gp">... </span><span class="n">U</span> <span class="n">Statistic</span> <span class="n">Results</span>
 <span class="gp">... </span><span class="n">H0</span> <span class="ow">is</span> <span class="n">rejected</span> <span class="p">:</span> <span class="kc">False</span>
-<span class="gp">... </span><span class="n">Un</span> <span class="n">Statistic</span> <span class="p">:</span> <span class="mf">1.6156682048968174</span>
-<span class="gp">... </span><span class="n">Critical</span> <span class="n">Value</span> <span class="p">:</span> <span class="mf">0.06155875299050079</span>
+<span class="gp">... </span><span class="n">Un</span> <span class="n">Statistic</span> <span class="p">:</span> <span class="mf">0.5977824645431915</span>
+<span class="gp">... </span><span class="n">Critical</span> <span class="n">Value</span> <span class="p">:</span> <span class="mf">1.6128083124315886</span>
 <span class="gp">... </span><span class="n">V</span> <span class="n">Statistic</span> <span class="n">Results</span>
 <span class="gp">... </span><span class="n">H0</span> <span class="ow">is</span> <span class="n">rejected</span> <span class="p">:</span> <span class="kc">False</span>
-<span class="gp">... </span><span class="n">Vn</span> <span class="n">Statistic</span> <span class="p">:</span> <span class="mf">22.83255917641962</span>
+<span class="gp">... </span><span class="n">Vn</span> <span class="n">Statistic</span> <span class="p">:</span> <span class="mf">19.722614852087553</span>
 <span class="gp">... </span><span class="n">Critical</span> <span class="n">Value</span> <span class="p">:</span> <span class="mf">23.229486935225513</span>
 </pre></div>
 </div>

@@ -14,4 +14,5 @@ Usage Examples
    :maxdepth: 4
 
    basic_usage
+   gen_plot_rpkb
 
