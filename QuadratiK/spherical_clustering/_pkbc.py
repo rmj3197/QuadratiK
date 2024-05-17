@@ -394,8 +394,9 @@ class PKBC:
 
         Returns
         -------
-            validation metrics : dict
-                The list consists of the following:\n
+            validation metrics : tuple
+                Return a tuple of a dictionary and elbow plots
+                The dictionary contains the following for different number of clusters - 
                 - Adjusted Rand Index : float (returned only when y_true is provided)
                     Adjusted Rand Index computed between the true and predicted cluster memberships.
                 - Macro Precision : float (returned only when y_true is provided)

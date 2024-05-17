@@ -397,10 +397,10 @@ def stat_normality_test(x_mat, h, mu_hat, sigma_hat):
     k_center = param_centering(kmat_zz, x_mat, cov_h, mu_hat, sigma_hat)
 
     # Compute the normality test V-statistic
-    Vn = n_x * np.sum(k_center) / (n_x) ** 2
+    Vn = np.sum(k_center) / (n_x)
 
     # Compute the normality test U-statistic
-    Un = n_x * ((np.sum(k_center) - np.sum(np.diagonal(k_center))) / (n_x * (n_x - 1)))
+    Un = ((np.sum(k_center) - np.sum(np.diagonal(k_center))) / (n_x * (n_x - 1)))
 
     return np.array([Un, Vn])
 
