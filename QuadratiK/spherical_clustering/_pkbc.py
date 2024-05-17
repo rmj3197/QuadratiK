@@ -68,38 +68,59 @@ class PKBC:
 
     Attributes
     ----------
-        alpha\\_ : numpy.ndarray of shape (n_clusters,)
+        alpha\\_ : dict
             Estimated mixing proportions
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            and each value is a numpy.ndarray of shape (n_clusters,).
+            
 
-        labels\\_ : numpy.ndarray of shape (n_samples,)
+        labels\\_ : dict 
             Final cluster membership assigned by the algorithm to each observation
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            and each value is a numpy.ndarray of shape (n_samples,)
 
-        log_lik_vec : numpy.ndarray of shape (num_init, )
+        log_lik_vecs_ : dict
             Array of log-likelihood values for each initialization
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            and each value is a numpy.ndarray of shape (num_init, )
+                
 
-        loglik\\_ : float
+        loglik\\_ : dict
             Maximum value of the log-likelihood function
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            and each value is a float
+            
 
-        mu\\_ : numpy.ndarray of shape (n_clusters, n_features)
+        mu\\_ : dict
             Estimated centroids
-
-        num_iter_per_run : numpy.ndarray of shape (num_init, )
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            and each value is a numpy.ndarray of shape (n_clusters, n_features)
+            
+        num_iter_per_runs_ : dict
             Number of E-M iterations per run
-
-        post_probs\\_ : numpy.ndarray of shape (n_samples, n_features)
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            and each value is a numpy.ndarray of shape (num_init, )
+                
+        post_probs\\_ : dict
             Posterior probabilities of each observation for the indicated clusters
-
-        rho\\_ : numpy.ndarray of shape (n_clusters,)
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            and each value is a numpy.ndarray of shape (n_samples, n_features)
+            
+        rho\\_ : dict
             Estimated concentration parameters rho
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            and each value is a numpy.ndarray of shape (n_clusters,)
+            
+        euclidean\\_wcss\\_ : dict
+            Values of within-cluster sum of squares computed with Euclidean distance.
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            and each value is a float
 
-        euclidean\\_wcss\\_ : float
-            Values of within-cluster sum of squares computed with
-            Euclidean distance.
-
-        cosine\\_wcss\\_ : float
-            Values of within-cluster sum of squares computed with
-            cosine similarity.
-
+        cosine\\_wcss\\_ : dict
+            Values of within-cluster sum of squares computed with cosine similarity.
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            and each value is a float
+           
     References
     ----------
         Golzy M. & Markatou M. (2020) Poisson Kernel-Based
@@ -117,19 +138,6 @@ class PKBC:
     >>> le.fit(y)
     >>> y = le.transform(y)
     >>> cluster_fit = PKBC(num_clust=4, random_state=42).fit(X)
-    >>> ari, macro_precision, macro_recall, avg_silhouette_Score = cluster_fit.validation(y)
-    >>> print("Estimated mixing proportions :", cluster_fit.alpha_)
-    >>> print("Estimated concentration parameters: ", cluster_fit.rho_)
-    >>> print("Adjusted Rand Index:", ari)
-    >>> print("Macro Precision:", macro_precision)
-    >>> print("Macro Recall:", macro_recall)
-    >>> print("Average Silhouette Score:", avg_silhouette_Score)
-    ... Estimated mixing proportions : [0.23590339 0.24977919 0.25777522 0.25654219]
-    ... Estimated concentration parameters:  [0.97773265 0.98348976 0.98226901 0.98572597]
-    ... Adjusted Rand Index: 0.9403086353805835
-    ... Macro Precision: 0.9771870612442508
-    ... Macro Recall: 0.9769999999999999
-    ... Average Silhouette Score: 0.3803089203572107
     """
 
     def __init__(
@@ -169,8 +177,27 @@ class PKBC:
         self.dat = dat
         if isinstance(self.dat, pd.DataFrame):
             self.dat = self.dat.to_numpy()
-        if self.num_clust < 1:
-            raise Exception("Input parameter num_clust must be greater than 1")
+
+        if not isinstance(self.num_clust, (int, range, list, np.ndarray)):
+            raise Exception(
+                "Please input only integer, list and np.ndarray for num_clust"
+            )
+
+        if isinstance(self.num_clust, int):
+            if self.num_clust < 1:
+                raise Exception("Input parameter num_clust must be greater than 1")
+            else:
+                self.num_clust = [self.num_clust]
+                
+        elif isinstance(self.num_clust, range):
+            self.num_clust = list (self.num_clust)
+
+        elif isinstance(self.num_clust, (list, np.ndarray)):
+            if not all(isinstance(x, int) and x > 1 for x in self.num_clust):
+                raise Exception(
+                    "Input parameter num_clust must a list or np.ndarray where each element be greater than 1"
+                )
+
         if self.max_iter < 1:
             raise Exception("Input parameter maxIter must be greater than 0")
         if self.stopping_rule not in ["max", "membership", "loglik"]:
@@ -193,145 +220,164 @@ class PKBC:
         check_loglik = self.stopping_rule == "loglik"
 
         # Normalize the data
+        self.dat_copy = self.dat.copy()
         self.dat = self.dat / np.linalg.norm(self.dat, axis=1, keepdims=True)
 
-        num_data, num_var = self.dat.shape
-        self.log_lik_vec = np.repeat(float("-inf"), self.num_init)
-        self.num_iter_per_run = np.repeat(-99, self.num_init)
-        alpha_best = np.repeat(-99, self.num_clust)
-        rho_best = np.repeat(-99, self.num_clust)
-        mu_best = np.zeros((self.num_clust, num_var))
-        norm_prob_mat_best = np.full((num_data, self.num_clust), -99)
+        self.euclidean_wcss_ = {}
+        self.cosine_wcss_ = {}
+        self.post_probs_ = {}
+        self.loglik_ = {}
+        self.mu_ = {}
+        self.rho_ = {}
+        self.alpha_ = {}
+        self.labels_ = {}
+        self.log_lik_vecs_ = {}
+        self.num_iter_per_runs_ = {}
 
-        if self.init_method == "sampledata":
-            unique_data = np.unique(self.dat, axis=0)
-            num_unique_obs = unique_data.shape[0]
-            if num_unique_obs < self.num_clust:
-                raise ValueError(
-                    "Only {} 'unique observations.', \
-                    When init_method = {}, \
-                        must have more than num_clust unique observations.".format(
-                        num_unique_obs, self.init_method
-                    )
-                )
-        log_w_d = (num_var / 2) * (np.log(2) + np.log(np.pi)) - sp.gammaln(num_var / 2)
-
-        for init in range(self.num_init):
-            alpha_current = np.full(self.num_clust, 1 / self.num_clust)
-            rho_current = np.full(self.num_clust, 0.5)
+        for k in self.num_clust:
+            num_data, num_var = self.dat.shape
+            self.log_lik_vec = np.repeat(float("-inf"), self.num_init)
+            self.num_iter_per_run = np.repeat(-99, self.num_init)
+            alpha_best = np.repeat(-99, k)
+            rho_best = np.repeat(-99, k)
+            mu_best = np.zeros((k, num_var))
+            norm_prob_mat_best = np.full((num_data, k), -99)
 
             if self.init_method == "sampledata":
-                mu_current = unique_data[
-                    generator.choice(
-                        num_unique_obs, size=self.num_clust, replace=False
-                    ),
-                    :,
-                ]
-
-            current_iter = 1
-            memb_current = np.empty(num_data)
-            log_lik_current = float("-inf")
-
-            while current_iter <= self.max_iter:
-                v_mat = np.dot(self.dat, mu_current.T)
-                alpha_mat_current = np.tile(alpha_current, (num_data, 1))
-                rho_mat_current = np.tile(rho_current, (num_data, 1))
-                log_prob_mat_denom = np.log(
-                    1
-                    + rho_mat_current**2
-                    - 2 * np.asarray(rho_mat_current) * np.asarray(v_mat)
-                )
-
-                log_prob_mat = (
-                    np.log(1 - (rho_mat_current) ** 2)
-                    - log_w_d
-                    - (num_var / 2) * log_prob_mat_denom
-                )
-
-                prob_sum = np.tile(
-                    np.dot(np.exp(log_prob_mat), alpha_current).reshape(num_data, 1),
-                    (1, self.num_clust),
-                )
-
-                log_norm_prob_mat_current = (
-                    np.log(alpha_mat_current) + log_prob_mat - np.log(prob_sum)
-                )
-
-                log_weight_mat = log_norm_prob_mat_current - log_prob_mat_denom
-                alpha_current = (
-                    np.sum(np.exp(log_norm_prob_mat_current), axis=0) / num_data
-                )
-                mu_num_sum_mat = np.dot(np.exp(log_weight_mat).T, self.dat)
-                mu_denom = np.linalg.norm(mu_num_sum_mat, axis=1, keepdims=True)
-                mu_current = mu_num_sum_mat / mu_denom
-                for h in range(self.num_clust):
-                    sum_h_weight_mat = np.sum(np.exp(log_weight_mat[:, h]))
-                    alpha_current_h = alpha_current[h]
-                    mu_denom_h = mu_denom[h]
-                    rho_current[h] = root_scalar(
-                        root_func,
-                        args=(
-                            num_data,
-                            alpha_current_h,
-                            num_var,
-                            mu_denom_h,
-                            sum_h_weight_mat,
-                        ),
-                        bracket=[0, 1],
-                        xtol=0.001,
-                    ).root
-                if current_iter >= self.max_iter:
-                    break
-
-                if check_membership:
-                    memb_previous = memb_current
-                    memb_current = np.argmax(np.exp(log_norm_prob_mat_current), axis=1)
-                    if all(memb_previous == memb_current):
-                        break
-
-                if check_loglik:
-                    log_lik_previous = log_lik_current
-                    log_lik_current = np.sum(
-                        np.log(np.dot(np.exp(log_prob_mat), alpha_current))
+                unique_data = np.unique(self.dat, axis=0)
+                num_unique_obs = unique_data.shape[0]
+                if num_unique_obs < k:
+                    raise ValueError(
+                        "Only {} 'unique observations.', \
+                        When init_method = {}, \
+                            must have more than num_clust unique observations.".format(
+                            num_unique_obs, self.init_method
+                        )
                     )
-                    if np.abs(log_lik_previous - log_lik_current) < self.tol:
-                        break
-                current_iter = current_iter + 1
-            log_lik_current = np.sum(
-                np.log(np.dot(np.exp(log_prob_mat), alpha_current))
+            log_w_d = (num_var / 2) * (np.log(2) + np.log(np.pi)) - sp.gammaln(
+                num_var / 2
             )
 
-            if log_lik_current > max(self.log_lik_vec):
-                alpha_best = alpha_current
-                rho_best = rho_current
-                mu_best = mu_current
-                norm_prob_mat_best = np.exp(log_norm_prob_mat_current)
-            self.log_lik_vec[init] = log_lik_current
-            self.num_iter_per_run[init] = current_iter - 1
+            for init in range(self.num_init):
+                alpha_current = np.full(k, 1 / k)
+                rho_current = np.full(k, 0.5)
 
-        memb_best = np.argmax(norm_prob_mat_best, axis=1)
+                if self.init_method == "sampledata":
+                    mu_current = unique_data[
+                        generator.choice(num_unique_obs, size=k, replace=False),
+                        :,
+                    ]
 
-        # euclidean wcss calculation
-        cluster_euclidean_wcss = Parallel(n_jobs=self.n_jobs)(
-            delayed(calculate_wcss_euclidean)(k, memb_best, self.dat, mu_best)
-            for k in range(self.num_clust)
-        )
-        self.euclidean_wcss_ = np.sum(cluster_euclidean_wcss)
+                current_iter = 1
+                memb_current = np.empty(num_data)
+                log_lik_current = float("-inf")
 
-        # cosine similarity wcss calculation
-        cluster_cosine_wcss = Parallel(n_jobs=self.n_jobs)(
-            delayed(calculate_wcss_cosine)(k, memb_best, self.dat, mu_best)
-            for k in range(self.num_clust)
-        )
+                while current_iter <= self.max_iter:
+                    v_mat = np.dot(self.dat, mu_current.T)
+                    alpha_mat_current = np.tile(alpha_current, (num_data, 1))
+                    rho_mat_current = np.tile(rho_current, (num_data, 1))
+                    log_prob_mat_denom = np.log(
+                        1
+                        + rho_mat_current**2
+                        - 2 * np.asarray(rho_mat_current) * np.asarray(v_mat)
+                    )
 
-        self.cosine_wcss_ = np.sum(cluster_cosine_wcss)
+                    log_prob_mat = (
+                        np.log(1 - (rho_mat_current) ** 2)
+                        - log_w_d
+                        - (num_var / 2) * log_prob_mat_denom
+                    )
 
-        self.post_probs_ = norm_prob_mat_best
-        self.loglik_ = max(self.log_lik_vec)
-        self.mu_ = mu_best
-        self.rho_ = rho_best
-        self.alpha_ = alpha_best
-        self.labels_ = memb_best
+                    prob_sum = np.tile(
+                        np.dot(np.exp(log_prob_mat), alpha_current).reshape(
+                            num_data, 1
+                        ),
+                        (1, k),
+                    )
+
+                    log_norm_prob_mat_current = (
+                        np.log(alpha_mat_current) + log_prob_mat - np.log(prob_sum)
+                    )
+
+                    log_weight_mat = log_norm_prob_mat_current - log_prob_mat_denom
+                    alpha_current = (
+                        np.sum(np.exp(log_norm_prob_mat_current), axis=0) / num_data
+                    )
+                    mu_num_sum_mat = np.dot(np.exp(log_weight_mat).T, self.dat)
+                    mu_denom = np.linalg.norm(mu_num_sum_mat, axis=1, keepdims=True)
+                    mu_current = mu_num_sum_mat / mu_denom
+                    for h in range(k):
+                        sum_h_weight_mat = np.sum(np.exp(log_weight_mat[:, h]))
+                        alpha_current_h = alpha_current[h]
+                        mu_denom_h = mu_denom[h]
+                        rho_current[h] = root_scalar(
+                            root_func,
+                            args=(
+                                num_data,
+                                alpha_current_h,
+                                num_var,
+                                mu_denom_h,
+                                sum_h_weight_mat,
+                            ),
+                            bracket=[0, 1],
+                            xtol=0.001,
+                        ).root
+                    if current_iter >= self.max_iter:
+                        break
+
+                    if check_membership:
+                        memb_previous = memb_current
+                        memb_current = np.argmax(
+                            np.exp(log_norm_prob_mat_current), axis=1
+                        )
+                        if all(memb_previous == memb_current):
+                            break
+
+                    if check_loglik:
+                        log_lik_previous = log_lik_current
+                        log_lik_current = np.sum(
+                            np.log(np.dot(np.exp(log_prob_mat), alpha_current))
+                        )
+                        if np.abs(log_lik_previous - log_lik_current) < self.tol:
+                            break
+                    current_iter = current_iter + 1
+                log_lik_current = np.sum(
+                    np.log(np.dot(np.exp(log_prob_mat), alpha_current))
+                )
+
+                if log_lik_current > max(self.log_lik_vec):
+                    alpha_best = alpha_current
+                    rho_best = rho_current
+                    mu_best = mu_current
+                    norm_prob_mat_best = np.exp(log_norm_prob_mat_current)
+                self.log_lik_vec[init] = log_lik_current
+                self.num_iter_per_run[init] = current_iter - 1
+
+            memb_best = np.argmax(norm_prob_mat_best, axis=1)
+
+            # euclidean wcss calculation
+            cluster_euclidean_wcss = Parallel(n_jobs=self.n_jobs)(
+                delayed(calculate_wcss_euclidean)(k, memb_best, self.dat, mu_best)
+                for k in range(k)
+            )
+            self.euclidean_wcss_[k] = np.sum(cluster_euclidean_wcss)
+
+            # cosine similarity wcss calculation
+            cluster_cosine_wcss = Parallel(n_jobs=self.n_jobs)(
+                delayed(calculate_wcss_cosine)(k, memb_best, self.dat, mu_best)
+                for k in range(k)
+            )
+
+            self.cosine_wcss_[k] = np.sum(cluster_cosine_wcss)
+
+            self.post_probs_[k] = norm_prob_mat_best
+            self.loglik_[k] = max(self.log_lik_vec)
+            self.mu_[k] = mu_best
+            self.rho_[k] = rho_best
+            self.alpha_[k] = alpha_best
+            self.labels_[k] = memb_best
+            self.log_lik_vecs_[k] = self.log_lik_vec
+            self.num_iter_per_runs_[k] = self.num_iter_per_run
         return self
 
     def validation(self, y_true=None):
@@ -347,8 +393,8 @@ class PKBC:
 
         Returns
         -------
-            validation metrics : tuple
-                The tuple consists of the following:\n
+            validation metrics : dict
+                The list consists of the following:\n
                 - Adjusted Rand Index : float (returned only when y_true is provided)
                     Adjusted Rand Index computed between the true and predicted cluster memberships.
                 - Macro Precision : float (returned only when y_true is provided)
@@ -378,34 +424,42 @@ class PKBC:
         if isinstance(y_true, pd.DataFrame):
             y_true = y_true.values.flatten()
 
-        avg_silhouette_score = silhouette_score(self.dat, self.labels_)
+        validation_metrics = {}
 
-        if y_true is not None:
-            le = LabelEncoder()
-            le.fit(y_true)
-            y_true = le.transform(y_true)
+        for k in self.num_clust:
 
-            cm = confusion_matrix(y_true, self.labels_)
-            cm_argmax = cm.argmax(axis=0)
-            y_pred_ = np.array([cm_argmax[i] for i in self.labels_])
+            avg_silhouette_score = silhouette_score(self.dat, self.labels_[k])
 
-            ari = adjusted_rand_score(y_true, self.labels_)
-            macro_precision = precision_score(y_true, y_pred_, average="macro")
-            macro_recall = recall_score(y_true, y_pred_, average="macro")
-            validation_metrics = (
-                ari,
-                macro_precision,
-                macro_recall,
-                avg_silhouette_score,
-            )
+            if y_true is not None:
+                le = LabelEncoder()
+                le.fit(y_true)
+                y_true = le.transform(y_true)
 
-        else:
-            validation_metrics = avg_silhouette_score
+                cm = confusion_matrix(y_true, self.labels_[k])
+                cm_argmax = cm.argmax(axis=0)
+                y_pred_ = np.array([cm_argmax[i] for i in self.labels_[k]])
+
+                ari = adjusted_rand_score(y_true, self.labels_[k])
+                macro_precision = precision_score(y_true, y_pred_, average="macro")
+                macro_recall = recall_score(y_true, y_pred_, average="macro")
+                validation_metrics[k] = [
+                    ari,
+                    macro_precision,
+                    macro_recall,
+                    avg_silhouette_score,
+                ]
+            else:
+                validation_metrics[k] = avg_silhouette_score
         return validation_metrics
 
-    def stats(self):
+    def stats_clusters(self, num_clust):
         """
         Function to generate descriptive statistics per variable (and per group if available).
+
+        Parameters
+        -----------
+        num_clust : int
+            Number of clusters for which the summary statistics should be shown
 
         Returns
         -------
@@ -413,10 +467,10 @@ class PKBC:
                 Dataframe of descriptive statistics
 
         """
-        summary_stats = stats(self.dat, self.labels_)
+        summary_stats = stats(self.dat_copy, self.labels_[num_clust])
         return summary_stats
 
-    def predict(self, X):
+    def predict(self, X, num_clust):
         """
         Predict the cluster membership for each sample in X.
 
@@ -425,21 +479,25 @@ class PKBC:
             X : numpy.ndarray, pandas.DataFrame
                 New data to predict membership
 
+            num_clust : int
+                Number of clusters to be used for prediction
+
         Returns
         --------
             (Cluster Probabilities, Membership) : tuple
                 The first element of the tuple is the cluster probabilities of the input samples.
                 The second element of the tuple is the predicted cluster membership of the new data.
         """
+        X = X / np.linalg.norm(X, axis=1, keepdims=True)
         num_data, num_var = X.shape
         if self.dat.shape[1] != X.shape[1]:
             raise ValueError(
                 f"X has {num_var} features, but PKBC is expecting {self.dat.shape[1]} features as input. Please provide same number of features as the fitted data."
             )
         log_w_d = (num_var / 2) * (np.log(2) + np.log(np.pi)) - sp.gammaln(num_var / 2)
-        v_mat = np.dot(X, self.mu_.T)
-        alpha_mat_current = np.tile(self.alpha_, (num_data, 1))
-        rho_mat_current = np.tile(self.rho_, (num_data, 1))
+        v_mat = np.dot(X, self.mu_[num_clust].T)
+        alpha_mat_current = np.tile(self.alpha_[num_clust], (num_data, 1))
+        rho_mat_current = np.tile(self.rho_[num_clust], (num_data, 1))
         log_prob_mat_denom = np.log(
             1 + rho_mat_current**2 - 2 * np.asarray(rho_mat_current) * np.asarray(v_mat)
         )
@@ -449,8 +507,8 @@ class PKBC:
             - (num_var / 2) * log_prob_mat_denom
         )
         prob_sum = np.tile(
-            np.dot(np.exp(log_prob_mat), self.alpha_).reshape(num_data, 1),
-            (1, self.num_clust),
+            np.dot(np.exp(log_prob_mat), self.alpha_[num_clust]).reshape(num_data, 1),
+            (1, num_clust),
         )
         log_norm_prob_mat_current = (
             np.log(alpha_mat_current) + log_prob_mat - np.log(prob_sum)
@@ -459,11 +517,11 @@ class PKBC:
         alpha_current = np.sum(np.exp(log_norm_prob_mat_current), axis=0) / num_data
         mu_num_sum_mat = np.dot(np.exp(log_weight_mat).T, X)
         mu_denom = np.linalg.norm(mu_num_sum_mat, axis=1, keepdims=True)
-        for h in range(self.num_clust):
+        for h in range(num_clust):
             sum_h_weight_mat = np.sum(np.exp(log_weight_mat[:, h]))
             alpha_current_h = alpha_current[h]
             mu_denom_h = mu_denom[h]
-            self.rho_[h] = root_scalar(
+            self.rho_[num_clust][h] = root_scalar(
                 root_func,
                 args=(
                     num_data,

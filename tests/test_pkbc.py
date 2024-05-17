@@ -27,40 +27,40 @@ class TestPKBC(unittest.TestCase):
 
         y_true = pd.DataFrame(np.repeat(np.arange(1, 4), repeats=100))
 
-        self.assertEqual(len(pkbd_cluster_fit_numpy.labels_), 300)
-        self.assertEqual(len(pkbd_cluster_fit_numpy.alpha_), 3)
-        self.assertTrue(np.isclose(np.sum(pkbd_cluster_fit_numpy.alpha_), 1))
-        self.assertEqual(len(pkbd_cluster_fit_numpy.rho_), 3)
+        self.assertEqual(len(pkbd_cluster_fit_numpy.labels_[3]), 300)
+        self.assertEqual(len(pkbd_cluster_fit_numpy.alpha_[3]), 3)
+        self.assertTrue(np.isclose(np.sum(pkbd_cluster_fit_numpy.alpha_[3]), 1))
+        self.assertEqual(len(pkbd_cluster_fit_numpy.rho_[3]), 3)
 
-        self.assertIsInstance(pkbd_cluster_fit_numpy.cosine_wcss_, (int, float))
-        self.assertIsInstance(pkbd_cluster_fit_numpy.euclidean_wcss_, (int, float))
+        self.assertIsInstance(pkbd_cluster_fit_numpy.cosine_wcss_[3], (int, float))
+        self.assertIsInstance(pkbd_cluster_fit_numpy.euclidean_wcss_[3], (int, float))
 
-        self.assertIsInstance(pkbd_cluster_fit_numpy.stats(), pd.DataFrame)
-        self.assertIsInstance(pkbd_cluster_fit_numpy.validation(), (int, float))
-        self.assertIsInstance(pkbd_cluster_fit_numpy.validation(y_true=y_true), tuple)
-        self.assertIsInstance(pkbd_cluster_fit_numpy.predict(prediction_data), tuple)
+        self.assertIsInstance(pkbd_cluster_fit_numpy.stats_clusters(3), pd.DataFrame)
+        self.assertIsInstance(pkbd_cluster_fit_numpy.validation()[3], (int, float))
+        self.assertIsInstance(pkbd_cluster_fit_numpy.validation(y_true=y_true)[3], list)
+        self.assertIsInstance(pkbd_cluster_fit_numpy.predict(prediction_data,3), tuple)
 
-        self.assertEqual(len(pkbd_cluster_fit_numpy_membership.labels_), 300)
-        self.assertEqual(len(pkbd_cluster_fit_numpy_membership.alpha_), 3)
-        self.assertTrue(np.isclose(np.sum(pkbd_cluster_fit_numpy_membership.alpha_), 1))
-        self.assertEqual(len(pkbd_cluster_fit_numpy_membership.rho_), 3)
-        self.assertIsInstance(pkbd_cluster_fit_numpy_membership.stats(), pd.DataFrame)
+        self.assertEqual(len(pkbd_cluster_fit_numpy_membership.labels_[3]), 300)
+        self.assertEqual(len(pkbd_cluster_fit_numpy_membership.alpha_[3]), 3)
+        self.assertTrue(np.isclose(np.sum(pkbd_cluster_fit_numpy_membership.alpha_[3]), 1))
+        self.assertEqual(len(pkbd_cluster_fit_numpy_membership.rho_[3]), 3)
+        self.assertIsInstance(pkbd_cluster_fit_numpy_membership.stats_clusters(3), pd.DataFrame)
         self.assertIsInstance(
-            pkbd_cluster_fit_numpy_membership.predict(prediction_data), tuple
+            pkbd_cluster_fit_numpy_membership.predict(prediction_data,3), tuple
         )
 
         self.assertIsInstance(
-            pkbd_cluster_fit_numpy_membership.cosine_wcss_, (int, float)
+            pkbd_cluster_fit_numpy_membership.cosine_wcss_[3], (int, float)
         )
         self.assertIsInstance(
-            pkbd_cluster_fit_numpy_membership.euclidean_wcss_, (int, float)
+            pkbd_cluster_fit_numpy_membership.euclidean_wcss_[3], (int, float)
         )
 
         self.assertIsInstance(
-            pkbd_cluster_fit_numpy_membership.validation(), (int, float)
+            pkbd_cluster_fit_numpy_membership.validation()[3], (int, float)
         )
         self.assertIsInstance(
-            pkbd_cluster_fit_numpy_membership.validation(y_true=y_true), tuple
+            pkbd_cluster_fit_numpy_membership.validation(y_true=y_true)[3], list
         )
 
         with self.assertRaises(Exception):
@@ -86,4 +86,4 @@ class TestPKBC(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             X = np.random.randn(10, 2)
-            pkbd_cluster_fit_numpy.predict(X)
+            pkbd_cluster_fit_numpy.predict(X,3)
