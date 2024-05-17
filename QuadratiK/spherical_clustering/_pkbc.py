@@ -17,6 +17,7 @@ from sklearn.metrics import (
     confusion_matrix,
 )
 from sklearn.preprocessing import LabelEncoder
+import matplotlib.pyplot as plt
 
 from ._utils import root_func, calculate_wcss_euclidean, calculate_wcss_cosine
 
@@ -450,7 +451,19 @@ class PKBC:
                 ]
             else:
                 validation_metrics[k] = avg_silhouette_score
-        return validation_metrics
+        
+        fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+        axs[0].plot(self.euclidean_wcss_.keys(), self.euclidean_wcss_.values(), "--o")
+        axs[0].set_xlabel("Number of Clusters")
+        axs[0].set_ylabel("Within Cluster Sum of Squares (WCSS)")
+        axs[0].set_title("Elbow Plot (Euclidean)")
+        axs[1].plot(self.cosine_wcss_.keys(), self.cosine_wcss_.values(), "--o")
+        axs[1].set_xlabel("Number of Clusters")
+        axs[1].set_ylabel("Within Cluster Sum of Squares (WCSS)")
+        axs[1].set_title("Elbow Plot (Cosine)")
+        plt.tight_layout()        
+        plt.close()
+        return (validation_metrics, fig)
 
     def stats_clusters(self, num_clust):
         """
