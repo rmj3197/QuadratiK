@@ -71,57 +71,57 @@ class PKBC:
     ----------
         alpha\\_ : dict
             Estimated mixing proportions
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_clusters,).
-            
 
-        labels\\_ : dict 
+
+        labels\\_ : dict
             Final cluster membership assigned by the algorithm to each observation
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_samples,)
 
         log_lik_vecs_ : dict
             Array of log-likelihood values for each initialization
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (num_init, )
-                
+
 
         loglik\\_ : dict
             Maximum value of the log-likelihood function
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a float
-            
+
 
         mu\\_ : dict
             Estimated centroids
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_clusters, n_features)
-            
+
         num_iter_per_runs_ : dict
             Number of E-M iterations per run
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (num_init, )
-                
+
         post_probs\\_ : dict
             Posterior probabilities of each observation for the indicated clusters
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_samples, n_features)
-            
+
         rho\\_ : dict
             Estimated concentration parameters rho
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_clusters,)
-            
+
         euclidean\\_wcss\\_ : dict
             Values of within-cluster sum of squares computed with Euclidean distance.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a float
 
         cosine\\_wcss\\_ : dict
             Values of within-cluster sum of squares computed with cosine similarity.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector, 
+            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a float
-           
+
     References
     ----------
         Golzy M. & Markatou M. (2020) Poisson Kernel-Based
@@ -189,9 +189,9 @@ class PKBC:
                 raise Exception("Input parameter num_clust must be greater than 1")
             else:
                 self.num_clust = [self.num_clust]
-                
+
         elif isinstance(self.num_clust, range):
-            self.num_clust = list (self.num_clust)
+            self.num_clust = list(self.num_clust)
 
         elif isinstance(self.num_clust, (list, np.ndarray)):
             if not all(isinstance(x, int) and x > 1 for x in self.num_clust):
@@ -396,7 +396,7 @@ class PKBC:
         -------
             validation metrics : tuple
                 Return a tuple of a dictionary and elbow plots
-                The dictionary contains the following for different number of clusters - 
+                The dictionary contains the following for different number of clusters -
                 - Adjusted Rand Index : float (returned only when y_true is provided)
                     Adjusted Rand Index computed between the true and predicted cluster memberships.
                 - Macro Precision : float (returned only when y_true is provided)
@@ -450,9 +450,26 @@ class PKBC:
                     macro_recall,
                     avg_silhouette_score,
                 ]
+                validation_metrics_idx = {
+                    "Metrics": [
+                        "ARI",
+                        "Macro Precision",
+                        "Macro Recall",
+                        "Average Silhouette Score",
+                    ]
+                }
             else:
                 validation_metrics[k] = avg_silhouette_score
-        
+                validation_metrics_idx = {
+                    "Metrics": [
+                        "Average Silhouette Score",
+                    ]
+                }
+
+        validation_metrics_df = pd.DataFrame(
+            {**validation_metrics_idx, **validation_metrics}
+        ).set_index("Metrics")
+
         fig, axs = plt.subplots(1, 2, figsize=(12, 4))
         axs[0].plot(self.euclidean_wcss_.keys(), self.euclidean_wcss_.values(), "--o")
         axs[0].set_xlabel("Number of Clusters")
@@ -462,9 +479,9 @@ class PKBC:
         axs[1].set_xlabel("Number of Clusters")
         axs[1].set_ylabel("Within Cluster Sum of Squares (WCSS)")
         axs[1].set_title("Elbow Plot (Cosine)")
-        plt.tight_layout()        
+        plt.tight_layout()
         plt.close()
-        return (validation_metrics, fig)
+        return (validation_metrics_df, fig)
 
     def stats_clusters(self, num_clust):
         """

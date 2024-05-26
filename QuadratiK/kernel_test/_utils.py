@@ -400,7 +400,7 @@ def stat_normality_test(x_mat, h, mu_hat, sigma_hat):
     Vn = np.sum(k_center) / (n_x)
 
     # Compute the normality test U-statistic
-    Un = ((np.sum(k_center) - np.sum(np.diagonal(k_center))) / (n_x * (n_x - 1)))
+    Un = (np.sum(k_center) - np.sum(np.diagonal(k_center))) / (n_x * (n_x - 1))
 
     return np.array([Un, Vn])
 
