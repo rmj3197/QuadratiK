@@ -5,6 +5,8 @@ Poisson Kernel based Clustering
 import importlib
 import numpy as np
 import pandas as pd
+from collections import Counter
+from tabulate import tabulate
 import scipy.special as sp
 from scipy.optimize import root_scalar
 from sklearn.utils.parallel import Parallel, delayed
@@ -568,3 +570,48 @@ class PKBC:
         memb_best = np.argmax(norm_prob_mat_best, axis=1)
 
         return (norm_prob_mat_best, memb_best)
+
+    def summary(self, print_fmt="simple"):
+        """
+        Summary function generates a table for the PKBC clustering.
+
+        Parameters
+        ----------
+            print_fmt : str, optional.
+                Used for printing the output in the desired format.
+                Supports all available options in tabulate,
+                see here: https://pypi.org/project/tabulate/.
+                Defaults to "simple_grid".
+
+        Returns
+        --------
+            summary : str
+                A string formatted in the desired output
+                format with the Loglikelihood, Euclidean WCSS, Cosine WCSS, Number of data
+                points in each cluster, and mixing proportion for the different number of clusters.
+        """
+        df = pd.DataFrame(
+            columns=[
+                "Loglikelihood",
+                "Euclidean WCSS",
+                "Cosine WCSS",
+                "Num Data Point/Cluster",
+                "Mixing Proportions (alpha)",
+            ]
+        )
+        df["Loglikelihood"] = pd.Series(
+            {k: np.round(v, 2) for k, v in self.loglik_.items()}
+        )
+        df["Euclidean WCSS"] = pd.Series(
+            {k: np.round(v, 2) for k, v in self.euclidean_wcss_.items()}
+        )
+        df["Cosine WCSS"] = pd.Series(
+            {k: np.round(v, 2) for k, v in self.cosine_wcss_.items()}
+        )
+        df["Num Data Point/Cluster"] = pd.Series(
+            {k: dict(Counter(v)) for k, v in self.labels_.items()}
+        )
+        df["Mixing Proportions (alpha)"] = pd.Series(
+            {k: np.round(v, 2) for k, v in self.alpha_.items()}
+        )
+        return tabulate(df, headers=df.columns, tablefmt=print_fmt)

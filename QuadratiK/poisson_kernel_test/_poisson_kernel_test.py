@@ -115,6 +115,21 @@ class PoissonKernelTest:
         self.random_state = random_state
         self.n_jobs = n_jobs
 
+    def __repr__(self):
+        return (
+            f"{self.__class__.__name__}(\n"
+            f"  Test Type={self.test_type_},\n"
+            f"  Execution Time={self.execution_time} seconds,\n"
+            f"  U-Statistic={self.u_statistic_un_},\n"
+            f"  U-Statistic Critical Value={self.u_statistic_cv_},\n"
+            f"  U-Statistic Null Hypothesis Rejected={self.u_statistic_h0_},\n"
+            f"  V-Statistic={self.v_statistic_vn_},\n"
+            f"  V-Statistic Critical Value={self.v_statistic_cv_},\n"
+            f"  V-Statistic Null Hypothesis Rejected={self.v_statistic_h0_},\n"
+            f"  Selected concentration parameter rho={self.rho},\n"
+            f")"
+        )
+
     @time_decorator
     def test(self, x):
         """
@@ -155,7 +170,9 @@ class PoissonKernelTest:
         if not isinstance(self.random_state, (int, type(None))):
             raise ValueError("Please specify a integer or None random_state")
 
-        method = "Poisson Kernel-based quadratic \n distance test of Uniformity on the Sphere"
+        method = (
+            "Poisson Kernel-based quadratic distance test of Uniformity on the Sphere"
+        )
 
         n, d = self.x.shape
         pk = stat_poisson_unif(self.x, self.rho)
@@ -218,36 +235,35 @@ class PoissonKernelTest:
                 A string formatted in the desired output
                 format with the kernel test results and summary statistics.
         """
-        res = pd.DataFrame()
-        res[""] = [
-            self.test_type_,
-            self.u_statistic_un_,
-            self.u_statistic_cv_,
-            self.u_statistic_h0_,
-            self.v_statistic_vn_,
-            self.v_statistic_cv_,
-            self.v_statistic_h0_,
+        index_labels = [
+            "Test Statistic",
+            "Critical Value",
+            "H0 is rejected (1 = True, 0 = False)",
         ]
-        res = res.set_axis(
-            [
-                "Test Type",
-                "U Statistic Un",
-                "U Statistic Critical Value",
-                "U Statistic Reject H0",
-                "V Statistic Vn",
-                "V Statistic Critical Value",
-                "V Statistic Reject H0",
-            ]
-        )
+        test_summary = {
+            "U-Statistic": [
+                self.u_statistic_un_,
+                self.u_statistic_cv_,
+                self.u_statistic_h0_,
+            ],
+            "V-Statistic": [
+                self.v_statistic_vn_,
+                self.v_statistic_cv_,
+                self.v_statistic_h0_,
+            ],
+        }
+        res = pd.DataFrame(test_summary, index=index_labels)
 
         summary_stats_df = self.stats().round(4)
 
         if print_fmt == "html":
             summary_string = (
-                "Time taken for execution: {:.3f} seconds".format(self.execution_time)
+                "Time taken for execution: {} seconds".format(self.execution_time)
                 + "<br>Test Results <br>"
-                + tabulate(res, tablefmt=print_fmt)
-                + "<br>Summary Statistics <br>"
+                + f"<br>{self.test_type_} <br>"
+                + tabulate(res, tablefmt=print_fmt, headers=res.columns)
+                + f"<br>Concentration parameter rho: {self.rho}<br>"
+                + "<br> Summary Statistics <br>"
                 + tabulate(
                     summary_stats_df,
                     tablefmt=print_fmt,
@@ -259,7 +275,9 @@ class PoissonKernelTest:
             summary_string = (
                 "Time taken for execution: {:.3f} seconds".format(self.execution_time)
                 + "\nTest Results \n"
-                + tabulate(res, tablefmt=print_fmt)
+                + f"{self.test_type_} \n"
+                + tabulate(res, tablefmt=print_fmt, headers=res.columns)
+                + f"\nConcentration parameter rho: {self.rho}\n"
                 + "\nSummary Statistics \n"
                 + tabulate(
                     summary_stats_df,

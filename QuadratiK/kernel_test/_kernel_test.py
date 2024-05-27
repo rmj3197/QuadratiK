@@ -206,6 +206,40 @@ class KernelTest:
         self.n_jobs = n_jobs
         self.random_state = random_state
 
+    def __repr__(self):
+        if self.vn_test_statistic_ is not None:
+            return (
+                f"{self.__class__.__name__}(\n"
+                f"  Test Type={self.test_type_},\n"
+                f"  Execution Time={self.execution_time} seconds,\n"
+                f"  U-Statistic={self.un_test_statistic_},\n"
+                f"  U-Statistic Critical Value={self.un_cv_},\n"
+                f"  U-Statistic Null Hypothesis Rejected={self.un_h0_rejected_},\n"
+                f"  U-Statistic Variance={self.var_un_},\n"
+                f"  V-Statistic={self.vn_test_statistic_},\n"
+                f"  V-Statistic Critical Value={self.vn_cv_},\n"
+                f"  V-Statistic Null Hypothesis Rejected={self.vn_h0_rejected_},\n"
+                f"  Selected tuning parameter h={self.h}\n"
+                f")"
+            )
+        else:
+            return (
+                f"{self.__class__.__name__}(\n"
+                f"  Test Type={self.test_type_},\n"
+                f"  Execution Time={self.execution_time} seconds,\n"
+                f"  Dn-Statistic={self.dn_test_statistic_},\n"
+                f"  Dn-Statistic Critical Value={self.dn_cv_},\n"
+                f"  Dn-Statistic Null Hypothesis Rejected={self.dn_h0_rejected_},\n"
+                f"  Dn-Statistic Variance={self.var_dn_},\n"
+                f"  Trace-Statistic={self.trace_test_statistic_},\n"
+                f"  Trace-Statistic Critical Value={self.trace_cv_},\n"
+                f"  Trace-Statistic Null Hypothesis Rejected={self.trace_h0_rejected_},\n"
+                f"  Trace-Statistic Variance={self.var_trace_},\n"
+                f"  Selected tuning parameter h={self.h},\n"
+                f"  Critical Value Method={self.cv_method_}\n"
+                f")"
+            )
+
     @time_decorator
     def test(self, x, y=None):
         """
@@ -329,7 +363,7 @@ class KernelTest:
             self.un_cv_ = cv_un
             self.vn_cv_ = cv_vn
             self.var_un_ = var_un
-            # self.cv_method_ = "Empirical"
+            self.cv_method_ = None
             return self
 
         else:
@@ -393,11 +427,13 @@ class KernelTest:
                 )
 
                 self.test_type_ = "Kernel-based quadratic distance two-sample test"
-                self.un_h0_rejected_ = h0
-                self.un_test_statistic_ = statistic[:2] / np.sqrt(statistic[2:])
-                self.un_cv_ = cv / np.sqrt(statistic[2:])
+                self.dn_h0_rejected_, self.trace_h0_rejected_ = h0
+                self.dn_test_statistic_, self.trace_test_statistic_ = statistic[
+                    :2
+                ] / np.sqrt(statistic[2:])
+                self.dn_cv_, self.trace_cv_ = cv / np.sqrt(statistic[2:])
                 self.cv_method_ = self.method
-                self.var_un_ = statistic[2:]
+                self.var_dn_, self.var_trace_ = statistic[2:]
                 self.vn_test_statistic_ = None
                 self.vn_cv_ = None
                 return self
@@ -435,11 +471,13 @@ class KernelTest:
                 )
 
                 self.test_type_ = "Kernel-based quadratic distance K-sample test"
-                self.un_h0_rejected_ = h0
-                self.un_test_statistic_ = statistic[:2] / np.sqrt(statistic[2:])
-                self.un_cv_ = cv / np.sqrt(statistic[2:])
+                self.dn_h0_rejected_, self.trace_h0_rejected_ = h0
+                self.dn_test_statistic_, self.trace_test_statistic_ = statistic[
+                    :2
+                ] / np.sqrt(statistic[2:])
+                self.dn_cv_, self.trace_cv_ = cv / np.sqrt(statistic[2:])
                 self.cv_method_ = self.method
-                self.var_un_ = statistic[2:]
+                self.var_dn_, self.var_trace_ = statistic[2:]
                 self.vn_test_statistic_ = None
                 self.vn_cv_ = None
                 return self
@@ -472,47 +510,43 @@ class KernelTest:
                 A string formatted in the desired output
                 format with the kernel test results and summary statistics.
         """
-        res = pd.DataFrame()
+
         if self.vn_test_statistic_ is None:
-            res[""] = [
-                self.test_type_,
-                self.un_test_statistic_,
-                self.un_cv_,
-                self.un_h0_rejected_,
-                self.var_un_,
+
+            index_labels = [
+                "Test Statistic",
+                "Critical Value",
+                "H0 is rejected (1 = True, 0 = False)",
             ]
-            res = res.set_axis(
-                [
-                    "Test Type",
-                    "Un Test Statistic",
-                    "Un Critical Value",
-                    "Reject H0",
-                    "Var Un",
-                ]
-            )
+            test_summary = {
+                "Dn": [self.dn_test_statistic_, self.dn_cv_, self.dn_h0_rejected_],
+                "Trace": [
+                    self.trace_test_statistic_,
+                    self.trace_cv_,
+                    self.trace_h0_rejected_,
+                ],
+            }
+            res = pd.DataFrame(test_summary, index=index_labels)
+
         else:
-            res[""] = [
-                self.test_type_,
-                self.un_test_statistic_,
-                self.un_cv_,
-                self.un_h0_rejected_,
-                self.vn_test_statistic_,
-                self.vn_cv_,
-                self.vn_h0_rejected_,
-                self.var_un_,
+            index_labels = [
+                "Test Statistic",
+                "Critical Value",
+                "H0 is rejected (1 = True, 0 = False)",
             ]
-            res = res.set_axis(
-                [
-                    "Test Type",
-                    "Un Test Statistic",
-                    "Un Critical Value",
-                    "Un Reject H0",
-                    "Vn Test Statistic",
-                    "Vn Critical Value",
-                    "Vn Reject H0",
-                    "Var Un",
-                ]
-            )
+            test_summary = {
+                "U-Statistic": [
+                    self.un_test_statistic_,
+                    self.un_cv_,
+                    self.un_h0_rejected_,
+                ],
+                "V-Statistic": [
+                    self.vn_test_statistic_,
+                    self.vn_cv_,
+                    self.vn_h0_rejected_,
+                ],
+            }
+            res = pd.DataFrame(test_summary, index=index_labels)
 
         summary_stats_df = self.stats()
 
@@ -520,8 +554,11 @@ class KernelTest:
             summary_string = (
                 "Time taken for execution: {} seconds".format(self.execution_time)
                 + "<br>Test Results <br>"
-                + tabulate(res, tablefmt=print_fmt)
-                + "<br>Summary Statistics <br>"
+                + f"<br> {self.test_type_} <br>"
+                + tabulate(res, tablefmt=print_fmt, headers=res.columns)
+                + f"<br> CV method: {self.cv_method_} <br>"
+                + f"<br> Selected tuning parameter h : {self.h} <br>"
+                + "<br> Summary Statistics <br>"
                 + tabulate(
                     summary_stats_df,
                     tablefmt=print_fmt,
@@ -533,7 +570,10 @@ class KernelTest:
             summary_string = (
                 "Time taken for execution: {:.3f} seconds".format(self.execution_time)
                 + "\nTest Results \n"
-                + tabulate(res, tablefmt=print_fmt)
+                + f"{self.test_type_} \n"
+                + tabulate(res, tablefmt=print_fmt, headers=res.columns)
+                + f"\nCV method: {self.cv_method_} \n"
+                + f"Selected tuning parameter h : {self.h} \n"
                 + "\nSummary Statistics \n"
                 + tabulate(
                     summary_stats_df,

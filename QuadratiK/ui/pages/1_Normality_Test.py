@@ -73,29 +73,26 @@ if data is not None:
 
         try:
             norm_test = run_normality_test(h_val, num_iter, b, x)
-            res = pd.DataFrame()
-            res["Value"] = [
-                norm_test.test_type_,
-                norm_test.un_test_statistic_,
-                norm_test.un_cv_,
-                norm_test.un_h0_rejected_,
-                norm_test.vn_test_statistic_,
-                norm_test.vn_cv_,
-                norm_test.vn_h0_rejected_,
-                norm_test.var_un_,
+            index_labels = [
+                "Test Statistic",
+                "Critical Value",
+                "H0 is rejected (1 = True, 0 = False)",
             ]
-            res = res.set_axis(
-                [
-                    "Test Type",
-                    "Un Test Statistic",
-                    "Un Critical Value",
-                    "Un Reject H0",
-                    "Vn Test Statistic",
-                    "Vn Critical Value",
-                    "Vn Reject H0",
-                    "Var Un",
-                ]
-            )
+            test_summary = {
+                "U-Statistic": [
+                    norm_test.un_test_statistic_,
+                    norm_test.un_cv_,
+                    norm_test.un_h0_rejected_,
+                ],
+                "V-Statistic": [
+                    norm_test.vn_test_statistic_,
+                    norm_test.vn_cv_,
+                    norm_test.vn_h0_rejected_,
+                ],
+            }
+            res = pd.DataFrame(test_summary, index=index_labels)
+
+            st.text(norm_test.test_type_)
             st.table(res)
             csv_res = res.to_csv().encode()
             st.download_button(

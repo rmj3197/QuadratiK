@@ -10,6 +10,12 @@ import pandas as pd
 pkt = importlib.import_module("QuadratiK.poisson_kernel_test").PoissonKernelTest
 qq_plot = importlib.import_module("QuadratiK.tools").qq_plot
 
+
+@st.cache_data(ttl=30, show_spinner=False)
+def run_uniformity_test(rho, num_iter, x):
+    return pkt(rho, num_iter).test(x)
+
+
 st.title("Poisson Kernel-based quadratic distance test of Uniformity on the Sphere")
 
 st.write(
@@ -67,34 +73,33 @@ if data is not None:
 
     with st.spinner("getting results ready..."):
         try:
-            unif_test = pkt(rho=rho, num_iter=num_iter).test(X)
-            res = pd.DataFrame()
-            res["Value"] = [
-                unif_test.test_type_,
-                unif_test.u_statistic_un_,
-                unif_test.u_statistic_cv_,
-                unif_test.u_statistic_h0_,
-                unif_test.v_statistic_vn_,
-                unif_test.v_statistic_cv_,
-                unif_test.v_statistic_h0_,
+            unif_test = run_uniformity_test(rho, num_iter, X)
+            index_labels = [
+                "Test Statistic",
+                "Critical Value",
+                "H0 is rejected (1 = True, 0 = False)",
             ]
-            res = res.set_axis(
-                [
-                    "Test Type",
-                    "Un Statistic",
-                    "Un Critical Value",
-                    "Un H0 is rejected",
-                    "Vn Statistic",
-                    "Vn Critical Value",
-                    "Vn H0 is rejected",
-                ]
-            )
+            test_summary = {
+                "U-Statistic": [
+                    unif_test.u_statistic_un_,
+                    unif_test.u_statistic_cv_,
+                    unif_test.u_statistic_h0_,
+                ],
+                "V-Statistic": [
+                    unif_test.v_statistic_vn_,
+                    unif_test.v_statistic_cv_,
+                    unif_test.v_statistic_h0_,
+                ],
+            }
+            res = pd.DataFrame(test_summary, index=index_labels)
+
+            st.text(unif_test.test_type_)
             st.table(res)
             csv_res = res.to_csv().encode()
             st.download_button(
                 "Click to Download the test results",
                 csv_res,
-                "Normality_Test_results.csv",
+                "Uniformity_Test_results.csv",
                 "text/csv",
                 key="download-txt",
             )

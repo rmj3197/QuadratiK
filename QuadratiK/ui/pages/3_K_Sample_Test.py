@@ -95,26 +95,26 @@ if data is not None:
         try:
             k_samp_test = run_ksample_test(h_val, num_iter, b, X, y)
 
-            # st.write(k_samp_test.summary(print_fmt = "html"),unsafe_allow_html=True)
-            # st.write("\n")
-
-            res = pd.DataFrame()
-            res["Value"] = [
-                k_samp_test.test_type_,
-                k_samp_test.un_test_statistic_,
-                k_samp_test.un_cv_,
-                k_samp_test.un_h0_rejected_,
-                k_samp_test.var_un_,
+            index_labels = [
+                "Test Statistic",
+                "Critical Value",
+                "H0 is rejected (1 = True, 0 = False)",
             ]
-            res = res.set_axis(
-                [
-                    "Test Type",
-                    "Un Test Statistic",
-                    "Un Critical Value",
-                    "Un Reject H0",
-                    "Var Un",
-                ]
-            )
+            test_summary = {
+                "Dn": [
+                    k_samp_test.dn_test_statistic_,
+                    k_samp_test.dn_cv_,
+                    k_samp_test.dn_h0_rejected_,
+                ],
+                "Trace": [
+                    k_samp_test.trace_test_statistic_,
+                    k_samp_test.trace_cv_,
+                    k_samp_test.trace_h0_rejected_,
+                ],
+            }
+            res = pd.DataFrame(test_summary, index=index_labels)
+
+            st.text(k_samp_test.test_type_)
             st.table(res)
             csv_res = res.to_csv().encode()
             st.download_button(

@@ -217,13 +217,9 @@ def variance_two_sample_test(k_cen, n, m):
         + 2 * m_factor**2 * (K_yy**2).sum()
     )
 
-    k_xx_mod = K_xx.copy()
-    np.fill_diagonal(k_xx_mod, 0)
-    delta1 = np.sum(k_xx_mod[:n, :n].T @ K_xy[:n, :m])
+    delta1 = np.sum(K_xx[:n, :n].T @ K_xy[:n, :m])
 
-    k_yy_mod = K_yy.copy()
-    np.fill_diagonal(k_yy_mod, 0)
-    delta2 = np.sum(k_yy_mod[:m, :m].T @ K_xy[:n, :m].T)
+    delta2 = np.sum(K_yy[:m, :m].T @ K_xy[:n, :m].T)
 
     est_var_D -= 8 * n_factor * cross_factor * delta1
     est_var_D -= 8 * m_factor * cross_factor * delta2
@@ -261,46 +257,32 @@ def variance_k_sample_test(k_cen, sizes, cum_size):
     np.fill_diagonal(k_cen, 0)
 
     ni_factors = 1 / (sizes * (sizes - 1))
-    n_ij_factors = 1 / (sizes.reshape(-1, 1) * sizes)
 
-    C1 = 0
-    C2 = 0
-    C3 = 0
+    C1, C2, C3 = 0, 0, 0
 
-    for i in range(k):
-        k_ii = k_cen[
-            cum_size[i] : cum_size[i] + sizes[i], cum_size[i] : cum_size[i] + sizes[i]
+    for l in range(k):
+        ni_factor = ni_factors[l]
+        k_ll = k_cen[
+            cum_size[l] : cum_size[l] + sizes[l],
+            cum_size[l] : cum_size[l] + sizes[l],
         ]
-        C1 += 2 * (ni_factors[i] ** 2) * np.sum(k_ii**2)
 
-    for i in range(k):
-        for j in range(i + 1, k):
-            k_ij = k_cen[
-                cum_size[i] : cum_size[i] + sizes[i],
-                cum_size[j] : cum_size[j] + sizes[j],
+        C1 += 2 * (ni_factor**2) * (k_ll**2).sum()
+
+        for r in range(l + 1, k):
+            n_lr_factor = 1 / (sizes[l] ** 2)
+            k_lr = k_cen[
+                cum_size[l] : cum_size[l] + sizes[l],
+                cum_size[r] : cum_size[r] + sizes[r],
             ]
-            C2 += 8 * (n_ij_factors[i, j] ** 2) * np.sum(k_ij**2)
+            k_rr = k_cen[
+                cum_size[r] : cum_size[r] + sizes[r],
+                cum_size[r] : cum_size[r] + sizes[r],
+            ]
 
-    for i in range(k):
-        for j in range(k):
-            if i != j:
-                k_ii = k_cen[
-                    cum_size[i] : cum_size[i] + sizes[i],
-                    cum_size[i] : cum_size[i] + sizes[i],
-                ]
-                k_ij = k_cen[
-                    cum_size[i] : cum_size[i] + sizes[i],
-                    cum_size[j] : cum_size[j] + sizes[j],
-                ]
-                repeated_k_ii = np.repeat(k_ii[:, :, np.newaxis], sizes[j], axis=2)
-                expanded_k_ij = np.expand_dims(k_ij, 1)
-                non_diag_mask = ~np.eye(sizes[i], dtype=bool)[:, :, np.newaxis]
-                C3 -= (
-                    8
-                    * n_ij_factors[i][j]
-                    * ni_factors[i]
-                    * (repeated_k_ii * expanded_k_ij * non_diag_mask).sum()
-                )
+            C2 += 8 * (n_lr_factor**2) * (k_lr**2).sum()
+            C3 -= 8 * n_lr_factor * ni_factor * (k_ll.T @ k_lr).sum()
+            C3 -= 8 * n_lr_factor * ni_factor * (k_rr.T @ k_lr.T).sum()
 
     est_var_D = (k - 1) ** 2 * C1 + C2 + C3
     est_var_Tr = C1
