@@ -60,7 +60,7 @@ class TestKernelTest(unittest.TestCase):
         ).test(x, y)
         self.assertTrue(np.all(two_sample_test_subsampling.dn_h0_rejected_))
         self.assertTrue(
-            isinstance(two_sample_test_subsampling.un_test_statistic_, np.ndarray)
+            isinstance(two_sample_test_subsampling.dn_test_statistic_, np.ndarray)
         )
 
         with self.assertRaises(ValueError):
@@ -84,7 +84,7 @@ class TestKernelTest(unittest.TestCase):
         ).test(x, y)
         self.assertTrue(np.all(two_sample_test_h_selection.dn_h0_rejected_))
         self.assertTrue(
-            isinstance(two_sample_test_h_selection.un_test_statistic_, np.ndarray)
+            isinstance(two_sample_test_h_selection.dn_test_statistic_, np.ndarray)
         )
 
     def test_ksample(self):
@@ -98,21 +98,21 @@ class TestKernelTest(unittest.TestCase):
             h=1.5, method="subsampling", b=0.5, random_state=42
         ).test(x, y)
         self.assertFalse(np.all(k_sample_test.dn_h0_rejected_))
-        self.assertTrue(isinstance(k_sample_test.un_test_statistic_, np.ndarray))
+        self.assertTrue(isinstance(k_sample_test.dn_test_statistic_, np.ndarray))
 
         k_sample_test_without_h = KernelTest(
             method="subsampling", b=0.5, random_state=42, alternative="location"
         ).test(x, y)
         self.assertFalse(np.all(k_sample_test_without_h.dn_h0_rejected_))
         self.assertTrue(
-            isinstance(k_sample_test_without_h.un_test_statistic_, np.ndarray)
+            isinstance(k_sample_test_without_h.dn_test_statistic_, np.ndarray)
         )
 
         k_sample_test_1d = KernelTest(
             h=1.5, method="subsampling", b=0.5, random_state=42
         ).test(x_1d, y_dataframe)
         self.assertFalse(np.all(k_sample_test_1d.dn_h0_rejected_))
-        self.assertTrue(isinstance(k_sample_test_1d.un_test_statistic_, np.ndarray))
+        self.assertTrue(isinstance(k_sample_test_1d.dn_test_statistic_, np.ndarray))
 
         with self.assertRaises(ValueError):
             KernelTest(h=1.5, method="subsampling", b=0.5, random_state=42).test(
