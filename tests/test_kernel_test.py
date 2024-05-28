@@ -60,7 +60,7 @@ class TestKernelTest(unittest.TestCase):
         ).test(x, y)
         self.assertTrue(np.all(two_sample_test_subsampling.dn_h0_rejected_))
         self.assertTrue(
-            isinstance(two_sample_test_subsampling.dn_test_statistic_, (int,float))
+            isinstance(two_sample_test_subsampling.dn_test_statistic_, (int, float))
         )
 
         with self.assertRaises(ValueError):
