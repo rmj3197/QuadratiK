@@ -50,7 +50,7 @@ def stats(x, y=None):
     if y is not None:
         statistics = {}
         if len(np.unique(y)) > 10:
-            assert x.shape == y.shape, "Dimensions of X and Y need to be the same"
+            # assert x.shape == y.shape, "Dimensions of X and Y need to be the same"
             y_stats = _stats_helper(y)
 
             pooled = np.concatenate((x, y))
