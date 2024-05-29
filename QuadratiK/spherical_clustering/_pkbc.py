@@ -39,19 +39,19 @@ class PKBC:
         num_clust : int
             Number of clusters.
 
-        max_iter : int
-            Maximum number of iterations before a run is terminated.
+        max_iter : int, optional
+            Maximum number of iterations before a run is terminated. Defaults to 300.
 
         stopping_rule : str, optional
             String describing the stopping rule to be used within each run.
-            Currently must be either 'max', 'membership', or 'loglik'.
+            Currently must be either 'max', 'membership', or 'loglik'. Defaults to `loglik`.
 
         init_method : str, optional
             String describing the initialization method to be used.
             Currently must be 'sampleData'.
 
         num_init : int, optional
-            Number of initializations.
+            Number of initializations. Defaults to 10.
 
         tol : float.
             Constant defining threshold by which log
