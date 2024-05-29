@@ -254,7 +254,7 @@ def _objective_two_sample(
         random_state=np.random.default_rng(random_state),
     )
 
-    statistic = stat_two_sample(xnew, ynew, h, np.repeat(0,d), np.diag(d))
+    statistic = stat_two_sample(xnew, ynew, h, np.repeat(0,d), np.eye(d))
     cv = cv_twosample(
         num_iter,
         quantile,
