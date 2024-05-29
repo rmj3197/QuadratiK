@@ -72,6 +72,11 @@ Examples
 
 Find basic examples at `QuadratiK Examples <https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html>`_
 
+You can also execute the examples on Binder |Binder|. 
+
+.. |Binder| image:: https://mybinder.org/badge_logo.svg
+   :target: https://mybinder.org/v2/gh/rmj3197/QuadratiK/HEAD?labpath=doc%2Fsource%2Fuser_guide
+
 Community
 +++++++++++
 
