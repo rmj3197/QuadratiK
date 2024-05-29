@@ -5,7 +5,7 @@ Contains the tuning parameter selection algorithm
 import numpy as np
 import pandas as pd
 from scipy.stats import skew, skewnorm
-from joblib import Parallel, delayed
+from sklearn.utils.parallel import Parallel, delayed
 import matplotlib.pyplot as plt
 
 from ._utils import stat_ksample, stat_two_sample, stat_normality_test
