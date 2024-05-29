@@ -141,6 +141,7 @@ def _objective_two_sample(
     rep_values,
     s_dat,
     skew_data,
+    d,
     random_state,
     n_jobs=8,
 ):
@@ -201,6 +202,9 @@ def _objective_two_sample(
         skew_data : numpy.ndarray
             Skewness of the multivariate distribution to be used
             for determining the best h
+            
+        d : int
+            Dimension of the data
 
         random_state : int, None, optional.
             Seed for random number generation. Defaults to None
@@ -250,7 +254,7 @@ def _objective_two_sample(
         random_state=np.random.default_rng(random_state),
     )
 
-    statistic = stat_two_sample(xnew, ynew, h, np.array([[0]]), np.array([[1]]))
+    statistic = stat_two_sample(xnew, ynew, h, np.repeat(0,d), np.diag(d))
     cv = cv_twosample(
         num_iter,
         quantile,
@@ -652,7 +656,7 @@ def select_h(
         )
 
         all_results = {}
-        for idx, delta_val in enumerate(delta):
+        for delta_val in delta:
             parameters = all_parameters[all_parameters[:, 1] == delta_val]
             results = Parallel(n_jobs=n_jobs)(
                 delayed(_objective_two_sample)(
@@ -671,6 +675,7 @@ def select_h(
                     param[2],
                     s_dat,
                     skew_data,
+                    d, 
                     random_state,
                 )
                 for param in parameters
