@@ -1,8 +1,6 @@
 QuadratiK Version 1.1.0
 ========================
 
-This version can be found on the master branch.
-
 This version includes - 
     1. **[NEW]** Minor bug fixes
     2. **[NEW]** Enforced Opt Out from Telemetry (streamlit) while using UI
