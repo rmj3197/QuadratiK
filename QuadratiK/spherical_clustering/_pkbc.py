@@ -36,7 +36,7 @@ class PKBC:
 
     Parameters
     ----------
-        num_clust : int
+        num_clust : int, list, np.ndarray, range
             Number of clusters.
 
         max_iter : int, optional
@@ -59,7 +59,7 @@ class PKBC:
             Defaults to 1e-7.
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Determines random number generation for centroid initialization. Defaults to None
 
         n_jobs : int
             Used only for computing the WCSS efficiently.
@@ -72,7 +72,7 @@ class PKBC:
     Attributes
     ----------
         alpha\\_ : dict
-            Estimated mixing proportions
+            Estimated mixing proportions.
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_clusters,).
 
@@ -89,28 +89,28 @@ class PKBC:
 
 
         loglik\\_ : dict
-            Maximum value of the log-likelihood function
+            Maximum value of the log-likelihood function.
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a float
 
 
         mu\\_ : dict
-            Estimated centroids
+            Estimated centroids.
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_clusters, n_features)
 
         num_iter_per_runs\\_ : dict
-            Number of E-M iterations per run
+            Number of E-M iterations per run.
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (num_init, )
 
         post_probs\\_ : dict
             Posterior probabilities of each observation for the indicated clusters
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a numpy.ndarray of shape (n_samples, n_features)
+            and each value is a numpy.ndarray of shape (n_samples, num_clust)
 
         rho\\_ : dict
-            Estimated concentration parameters rho
+            Estimated concentration parameters rho.
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_clusters,)
 
