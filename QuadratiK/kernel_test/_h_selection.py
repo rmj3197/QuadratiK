@@ -658,7 +658,7 @@ def select_h(
         all_results = {}
         for delta_val in delta:
             parameters = all_parameters[all_parameters[:, 1] == delta_val]
-            results = Parallel(n_jobs=n_jobs)(
+            results = Parallel(n_jobs=n_jobs, max_nbytes=5000)(
                 delayed(_objective_two_sample)(
                     alternative,
                     b,
