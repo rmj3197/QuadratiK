@@ -107,17 +107,23 @@ class KernelTest:
             execution_time : float
                 Time taken for the test method to execute
 
-            un_h0_rejected\\_ : boolean
+            dn_h0_rejected\\_ : boolean
                 Whether the null hypothesis using Un is rejected (True) or not (False)
 
-            un_test_statistic\\_ : float
+            dn_test_statistic\\_ : float
                 Un Test statistic of the perfomed test type
 
-            un_cv\\_ : float
+            dn_cv\\_ : float
                 Critical value for Un
 
-            un_cv\\_ : float
-                Critical value for Vn
+            trace_h0_rejected\\_ : boolean
+                Whether the null hypothesis using trace statistic is rejected (True) or not (False)
+
+            trace_test_statistic\\_ : float
+                Trace Test statistic of the perfomed test type
+
+            trace_cv\\_ : float
+                Critical value for trace statistic
 
             cv_method\\_ : str
                 Critical value method used for performing the test
@@ -140,18 +146,19 @@ class KernelTest:
     >>> data_norm = np.random.multivariate_normal(mean = np.zeros(4), cov = np.eye(4),size = 500)
     >>> # performing the normality test
     >>> normality_test = KernelTest(h=0.4, num_iter=150, method= "subsampling", random_state=42).test(data_norm)
-    >>> print(f"Test : {normality_test.test_type_}")
-    >>> print(f"Execution time: {normality_test.execution_time:.3f}")
-    >>> print(f"H0 is Rejected : {normality_test.un_h0_rejected_}")
-    >>> print(f"Test Statistic : {normality_test.un_test_statistic_}")
-    >>> print(f"Critical Value (CV) : {normality_test.un_cv_}")
-    >>> print(f"CV Method : {normality_test.cv_method_}")
-    ... Test : Kernel-based quadratic distance Normality test
-    ... Execution time: 0.356
-    ... H0 is Rejected : False
-    ... Test Statistic : 0.01018599246239244
-    ... Critical Value (CV) : 0.07765034009837886
-    ... CV Method : Empirical
+    >>> print(normality_test)
+    ... KernelTest(
+        Test Type=Kernel-based quadratic distance Normality test,
+        Execution Time=3.198080062866211 seconds,
+        U-Statistic=-0.1145936604628874,
+        U-Statistic Critical Value=1.1593122985543514,
+        U-Statistic Null Hypothesis Rejected=False,
+        U-Statistic Variance=1.108021332522181e-08,
+        V-Statistic=0.977955027161687,
+        V-Statistic Critical Value=42.460022848761945,
+        V-Statistic Null Hypothesis Rejected=False,
+        Selected tuning parameter h=0.4
+        )
 
     >>> import numpy as np
     >>> np.random.seed(0)
@@ -162,20 +169,21 @@ class KernelTest:
     >>> Y_2 = skewnorm.rvs(size=(200, 4),loc=np.zeros(4), scale=np.ones(4),a=np.repeat(0.5,4), random_state=20)
     >>> # performing the two sample test
     >>> two_sample_test = KernelTest(h = 2,num_iter = 150, random_state=42).test(X_2,Y_2)
-    >>> print("Test : {}".format(two_sample_test.test_type_))
-    >>> print("Execution time: {:.3f} seconds".format(two_sample_test.execution_time))
-    >>> print("H0 is Rejected : {}".format(two_sample_test.un_h0_rejected_))
-    >>> print("Test Statistic : {}".format(two_sample_test.un_test_statistic_))
-    >>> print("Critical Value (CV) : {}".format(two_sample_test.un_cv_))
-    >>> print("CV Method : {}".format(two_sample_test.cv_method_))
-    >>> print("Selected tuning parameter : {}".format(two_sample_test.h))
-    ... Test : Kernel-based quadratic distance two-sample test
-    ... Execution time: 1.900 seconds
-    ... H0 is Rejected : [ True  True]
-    ... Test Statistic : [ 5.061213   15.75171816]
-    ... Critical Value (CV) : [0.49011552 1.52578287]
-    ... CV Method : subsampling
-    ... Selected tuning parameter : 2
+    >>> print(two_sample_test)
+    ... KernelTest(
+        Test Type=Kernel-based quadratic distance two-sample test,
+        Execution Time=0.36570000648498535 seconds,
+        Dn-Statistic=5.061212999055004,
+        Dn-Statistic Critical Value=0.4901155246432661,
+        Dn-Statistic Null Hypothesis Rejected=True,
+        Dn-Statistic Variance=3.037711857184588e-10,
+        Trace-Statistic=15.751718163734266,
+        Trace-Statistic Critical Value=1.525782865913332,
+        Trace-Statistic Null Hypothesis Rejected=True,
+        Trace-Statistic Variance=7.879780877050946e-12,
+        Selected tuning parameter h=2,
+        Critical Value Method=subsampling
+        )
     """
 
     def __init__(

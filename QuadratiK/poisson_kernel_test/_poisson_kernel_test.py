@@ -88,24 +88,18 @@ class PoissonKernelTest:
     >>> data_unif = z / np.sqrt(np.sum(z**2, axis=1, keepdims=True))
     >>> #performing the uniformity test
     >>> unif_test = PoissonKernelTest(rho = 0.7, random_state=42).test(data_unif)
-    >>> print("Execution time: {:.3f} seconds".format(unif_test.execution_time))
-    >>> print("U Statistic Results")
-    >>> print("H0 is rejected : {}".format(unif_test.u_statistic_h0_))
-    >>> print("Un Statistic : {}".format(unif_test.u_statistic_un_))
-    >>> print("Critical Value : {}".format(unif_test.u_statistic_cv_))
-    >>> print("V Statistic Results")
-    >>> print("H0 is rejected : {}".format(unif_test.v_statistic_h0_))
-    >>> print("Vn Statistic : {}".format(unif_test.v_statistic_vn_))
-    >>> print("Critical Value : {}".format(unif_test.v_statistic_cv_))
-    ... Execution time: 1.894 seconds
-    ... U Statistic Results
-    ... H0 is rejected : False
-    ... Un Statistic : 0.5977824645431915
-    ... Critical Value : 1.6128083124315886
-    ... V Statistic Results
-    ... H0 is rejected : False
-    ... Vn Statistic : 19.722614852087553
-    ... Critical Value : 23.229486935225513
+    >>> print(unif_test)
+    ... PoissonKernelTest(
+        Test Type=Poisson Kernel-based quadratic distance test of Uniformity on the Sphere,
+        Execution Time=3.3801472187042236 seconds,
+        U-Statistic=0.5977824645431915,
+        U-Statistic Critical Value=1.6128083124315886,
+        U-Statistic Null Hypothesis Rejected=False,
+        V-Statistic=19.722614852087553,
+        V-Statistic Critical Value=23.229486935225513,
+        V-Statistic Null Hypothesis Rejected=False,
+        Selected concentration parameter rho=0.7,
+        )
     """
 
     def __init__(self, rho, num_iter=300, quantile=0.95, random_state=None, n_jobs=8):

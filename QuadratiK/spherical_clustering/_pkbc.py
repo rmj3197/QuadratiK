@@ -82,7 +82,7 @@ class PKBC:
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_samples,)
 
-        log_lik_vecs_ : dict
+        log_lik_vecs\\_ : dict
             Array of log-likelihood values for each initialization
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (num_init, )
@@ -99,7 +99,7 @@ class PKBC:
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_clusters, n_features)
 
-        num_iter_per_runs_ : dict
+        num_iter_per_runs\\_ : dict
             Number of E-M iterations per run
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (num_init, )
@@ -137,9 +137,6 @@ class PKBC:
     >>> from QuadratiK.spherical_clustering import PKBC
     >>> from sklearn.preprocessing import LabelEncoder
     >>> X, y = load_wireless_data(return_X_y=True)
-    >>> le = LabelEncoder()
-    >>> le.fit(y)
-    >>> y = le.transform(y)
     >>> cluster_fit = PKBC(num_clust=4, random_state=42).fit(X)
     """
 
@@ -385,8 +382,7 @@ class PKBC:
 
     def validation(self, y_true=None):
         """
-        Computes validation metrics such as ARI, Macro Precision
-        and Macro Recall when true labels are provided.
+        Computes validation metrics such as ARI, Macro Precision and Macro Recall when true labels are provided.
 
         Parameters
         -----------
@@ -395,26 +391,26 @@ class PKBC:
                 Defaults to None.
 
         Returns
-        -------
+        --------
             validation metrics : tuple
                 Return a tuple of a dictionary and elbow plots
-                The dictionary contains the following for different number of clusters -
+                The dictionary contains the following for different number of clusters:
                 - Adjusted Rand Index : float (returned only when y_true is provided)
-                    Adjusted Rand Index computed between the true and predicted cluster memberships.
+                Adjusted Rand Index computed between the true and predicted cluster memberships.
                 - Macro Precision : float (returned only when y_true is provided)
-                    Macro Precision computed between the true and predicted cluster memberships.
+                Macro Precision computed between the true and predicted cluster memberships.
                 - Macro Recall : float (returned only when y_true is provided)
-                    Macro Recall computed between the true and predicted cluster memberships.
+                Macro Recall computed between the true and predicted cluster memberships.
                 - Average Silhouette Score : float
-                    Mean Silhouette Coefficient of all samples.
+                Mean Silhouette Coefficient of all samples.
 
         References
-        ----------
+        -----------
             Rousseeuw, P.J. (1987) Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
             Journal of Computational and Applied Mathematics, 20, 53–65.
 
         Notes
-        -----
+        ------
             We have taken a naive approach to map the predicted cluster labels
             to the true class labels (if provided). This might not work in cases where `num_clust` is large.
             Please use `sklearn.metrics` for computing metrics in such cases, and provide the correctly

@@ -202,7 +202,7 @@ def _objective_two_sample(
         skew_data : numpy.ndarray
             Skewness of the multivariate distribution to be used
             for determining the best h
-            
+
         d : int
             Dimension of the data
 
@@ -254,7 +254,7 @@ def _objective_two_sample(
         random_state=np.random.default_rng(random_state),
     )
 
-    statistic = stat_two_sample(xnew, ynew, h, np.repeat(0,d), np.eye(d))
+    statistic = stat_two_sample(xnew, ynew, h, np.repeat(0, d), np.eye(d))
     cv = cv_twosample(
         num_iter,
         quantile,
@@ -675,7 +675,7 @@ def select_h(
                     param[2],
                     s_dat,
                     skew_data,
-                    d, 
+                    d,
                     random_state,
                 )
                 for param in parameters

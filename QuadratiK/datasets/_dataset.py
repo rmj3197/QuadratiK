@@ -113,7 +113,7 @@ def load_wisconsin_breast_cancer_data(
     desc=False, return_X_y=False, as_dataframe=True, scaled=False
 ):
     """
-    The wireless data frame has 569 rows and 31 columns. The first 30 variables
+    The wisconsin breast cancer dataset data frame has 569 rows and 31 columns. The first 30 variables
     report the features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass.
     They describe characteristics of the cell nuclei present in the image.
     The last column indicates the class labels (Benign = 0 or Malignant = 1).
@@ -252,7 +252,7 @@ def load_wisconsin_breast_cancer_data(
 
 def load_wine_data(desc=False, return_X_y=False, as_dataframe=True, scaled=False):
     """
-    The wireless data frame has 178 rows and 14 columns. The first 13 variables
+    The wine data frame has 178 rows and 14 columns. The first 13 variables
     report 13 constituents found in each of the three types of wines.
     The last column indicates the class labels (1,2 or 3).
 

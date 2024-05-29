@@ -83,7 +83,11 @@
     
     
     
-        PKBC.stats
+        PKBC.stats_clusters
+    
+    
+    
+        PKBC.summary
     
     
     
@@ -105,7 +109,11 @@
 
 
 
-.. automethod:: PKBC.stats
+.. automethod:: PKBC.stats_clusters
+
+
+
+.. automethod:: PKBC.summary
 
 
 

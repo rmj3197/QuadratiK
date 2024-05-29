@@ -71,8 +71,6 @@
     
     
     
-    
-    
         PoissonKernelTest.stats
     
     
