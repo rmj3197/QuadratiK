@@ -94,17 +94,19 @@ def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=F
 
     if return_X_y:
         X = data[:, :-1]
-        y = data[:, -1]
+        y = data[:, -1].astype(int)
         if desc:
             return (fdescr, X, y)
         else:
             return (X, y)
 
     if as_dataframe:
+        data = pd.DataFrame(data, columns=feature_names)
+        data["Class"] = data["Class"].astype(int)
         if desc:
-            return (fdescr, pd.DataFrame(data, columns=feature_names))
+            return (fdescr, data)
         else:
-            return pd.DataFrame(data, columns=feature_names)
+            return data
     else:
         return data
 
@@ -235,17 +237,19 @@ def load_wisconsin_breast_cancer_data(
 
     if return_X_y:
         X = data[:, :-1]
-        y = data[:, -1]
+        y = data[:, -1].astype(int)
         if desc:
             return (fdescr, X, y)
         else:
             return (X, y)
 
     if as_dataframe:
+        data = pd.DataFrame(data, columns=feature_names)
+        data["Class"] = data["Class"].astype(int)
         if desc:
-            return (fdescr, pd.DataFrame(data, columns=feature_names))
+            return (fdescr, data)
         else:
-            return pd.DataFrame(data, columns=feature_names)
+            return data
     else:
         return data
 
@@ -351,16 +355,18 @@ def load_wine_data(desc=False, return_X_y=False, as_dataframe=True, scaled=False
 
     if return_X_y:
         X = data[:, :-1]
-        y = data[:, -1]
+        y = data[:, -1].astype(int)
         if desc:
             return (fdescr, X, y)
         else:
             return (X, y)
 
     if as_dataframe:
+        data = pd.DataFrame(data, columns=feature_names)
+        data["Class"] = data["Class"].astype(int)
         if desc:
-            return (fdescr, pd.DataFrame(data, columns=feature_names))
+            return (fdescr, data)
         else:
-            return pd.DataFrame(data, columns=feature_names)
+            return data
     else:
         return data

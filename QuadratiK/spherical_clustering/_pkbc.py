@@ -48,7 +48,7 @@ class PKBC:
 
         init_method : str, optional
             String describing the initialization method to be used.
-            Currently must be 'sampleData'.
+            Currently must be 'sampledata'.
 
         num_init : int, optional
             Number of initializations. Defaults to 10.
