@@ -114,8 +114,8 @@ The work has been supported by Kaleida Health Foundation, Food and Drug Administ
 
 References
 +++++++++++
-Saraceno G., Markatou M., Mukhopadhyay R., Golzy M. (2023). Goodness of-
-fit and clustering of spherical data: The QuadratiK package in R and Python. Technical Report, Department of Biostatistics, University at Buffalo.
+Saraceno G., Markatou M., Mukhopadhyay R., Golzy M. (2024). 
+Goodness-of-Fit and Clustering of Spherical Data: the QuadratiK package in R and Python. arXiv preprint arXiv:2402.02290.
 
 Ding Y., Markatou M., Saraceno G. (2023). “Poisson Kernel-Based Tests for
 Uniformity on the d-Dimensional Sphere.” Statistica Sinica. DOI: 10.5705/ss.202022.0347.
