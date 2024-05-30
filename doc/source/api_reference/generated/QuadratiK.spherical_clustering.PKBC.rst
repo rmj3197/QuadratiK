@@ -75,7 +75,13 @@
     
     
     
+    
+    
         PKBC.fit
+    
+    
+    
+        PKBC.plot
     
     
     
@@ -102,6 +108,10 @@
 
 
 .. automethod:: PKBC.fit
+
+
+
+.. automethod:: PKBC.plot
 
 
 

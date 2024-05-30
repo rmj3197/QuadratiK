@@ -104,8 +104,6 @@ def sphere3d(x, y=None):
     z1 = r * cos(phi)
     xx, yy, zz = _extract_3d(x)
 
-    raw_symbols = ["circle", "diamond", "cross", "square", "x"]
-
     fig = go.Figure()
     fig.add_trace(
         go.Surface(
@@ -139,7 +137,6 @@ def sphere3d(x, y=None):
                     color=y,
                     colorscale="turbo",
                     showscale=False,
-                    symbol=[raw_symbols[value] for value in y],
                 ),
             )
         )

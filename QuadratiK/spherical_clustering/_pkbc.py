@@ -20,10 +20,13 @@ from sklearn.metrics import (
 )
 from sklearn.preprocessing import LabelEncoder
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 from ._utils import root_func, calculate_wcss_euclidean, calculate_wcss_cosine
 
 stats = importlib.import_module("QuadratiK.tools").stats
+extract3d = importlib.import_module("QuadratiK.tools._utils")._extract_3d
 
 
 class PKBC:
@@ -393,16 +396,20 @@ class PKBC:
         Returns
         --------
             validation metrics : tuple
-                Return a tuple of a dictionary and elbow plots
+                Return a tuple of a dictionary and elbow plots.
                 The dictionary contains the following for different number of clusters:
-                - Adjusted Rand Index : float (returned only when y_true is provided)
-                Adjusted Rand Index computed between the true and predicted cluster memberships.
-                - Macro Precision : float (returned only when y_true is provided)
-                Macro Precision computed between the true and predicted cluster memberships.
-                - Macro Recall : float (returned only when y_true is provided)
-                Macro Recall computed between the true and predicted cluster memberships.
-                - Average Silhouette Score : float
-                Mean Silhouette Coefficient of all samples.
+
+                - **Adjusted Rand Index** : float (returned only when y_true is provided)
+                    Adjusted Rand Index computed between the true and predicted cluster memberships.
+
+                - **Macro Precision** : float (returned only when y_true is provided)
+                    Macro Precision computed between the true and predicted cluster memberships.
+
+                - **Macro Recall** : float (returned only when y_true is provided)
+                    Macro Recall computed between the true and predicted cluster memberships.
+
+                - **Average Silhouette Score** : float
+                    Mean Silhouette Coefficient of all samples.
 
         References
         -----------
@@ -566,6 +573,246 @@ class PKBC:
         memb_best = np.argmax(norm_prob_mat_best, axis=1)
 
         return (norm_prob_mat_best, memb_best)
+
+    def plot(self, num_clust, y_true=None):
+        """
+        The method plot creates a 2D or 3D scatter plot with a circle or sphere
+        as the surface and data points plotted on it.
+
+        Parameters
+        ----------
+            num_clust : int
+                Specifies the number of clusters to visualize.
+
+            y_true : numpy.ndarray, list, pandas.series, optional
+                - If `y_true` is None, then only clusters colored according to the predicted labels.
+                - If `y_true` is provided, clusters are colored according to the predicted and true labels in different subplots
+
+        Returns
+        -------
+            Returns a 2D matplotlib figure object or 3D plotly figure object with data points plotted on it.
+        """
+        if self.dat.shape[1] < 2:
+            raise Exception(
+                "Plot is not implemented when dimensionality is less than 2."
+            )
+
+        if y_true is not None:
+            if not isinstance(y_true, (list, np.ndarray, pd.DataFrame)):
+                raise TypeError("The y_true must be a list, np.ndarray or pd.DataFrame")
+
+            if isinstance(y_true, pd.DataFrame):
+                y_true = y_true.to_numpy().flatten()
+            elif isinstance(y_true, pd.Series):
+                y_true = y_true.values
+            elif isinstance(y_true, np.ndarray):
+                if y_true.ndim == 1:
+                    pass
+                elif y_true.ndim == 2:
+                    y_true = y_true.flatten()
+
+        if num_clust not in self.num_clust:
+            raise ValueError(
+                "Please input correct number of clusters for which you want to see visualization"
+            )
+
+        if y_true is not None:
+            if self.dat.shape[1] == 2:
+                theta = np.linspace(0, 2 * np.pi, 100)
+                unit_circle_x = np.cos(theta)
+                unit_circle_y = np.sin(theta)
+                fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+                axes[0].scatter(
+                    self.dat[:, 0],
+                    self.dat[:, 1],
+                    c=self.labels_[num_clust],
+                    cmap="viridis",
+                    edgecolors="k",
+                )
+                axes[0].plot(
+                    unit_circle_x, unit_circle_y, linestyle="dashed", color="red"
+                )
+                axes[0].set_xlabel("Feature 1")
+                axes[0].set_ylabel("Feature 2")
+                axes[0].set_title("Plot with Predicted Labels")
+                axes[1].scatter(
+                    self.dat[:, 0], self.dat[:, 1], c=y_true, edgecolors="k"
+                )
+                axes[1].plot(
+                    unit_circle_x, unit_circle_y, linestyle="dashed", color="red"
+                )
+                axes[1].set_xlabel("Feature 1")
+                axes[1].set_ylabel("Feature 2")
+                axes[1].set_title("Plot with True Labels")
+                plt.tight_layout()
+                plt.close()
+                return fig
+            else:
+                xx, yy, zz = extract3d(self.dat)
+                r = 1
+                pi = np.pi
+                cos = np.cos
+                sin = np.sin
+                phi, theta = np.mgrid[0.0:pi:100j, 0.0 : 2.0 * pi : 100j]
+                x1 = r * sin(phi) * cos(theta)
+                y1 = r * sin(phi) * sin(theta)
+                z1 = r * cos(phi)
+
+                fig = make_subplots(
+                    rows=1,
+                    cols=2,
+                    specs=[[{"type": "scatter3d"}, {"type": "scatter3d"}]],
+                    subplot_titles=(
+                        "Colored by Predicted Class",
+                        "Colored by True Class",
+                    ),
+                )
+                fig.add_trace(
+                    go.Surface(
+                        x=x1,
+                        y=y1,
+                        z=z1,
+                        colorscale=[[0, "#DCDCDC"], [1, "#DCDCDC"]],
+                        opacity=0.5,
+                        showscale=False,
+                    ),
+                    row=1,
+                    col=1,
+                )
+                fig.add_trace(
+                    go.Scatter3d(
+                        x=xx,
+                        y=yy,
+                        z=zz,
+                        mode="markers",
+                        marker=dict(
+                            size=5,
+                            color=self.labels_[num_clust],
+                            colorscale="turbo",
+                            showscale=False,
+                        ),
+                    ),
+                    row=1,
+                    col=1,
+                )
+
+                fig.add_trace(
+                    go.Surface(
+                        x=x1,
+                        y=y1,
+                        z=z1,
+                        colorscale=[[0, "#DCDCDC"], [1, "#DCDCDC"]],
+                        opacity=0.5,
+                        showscale=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter3d(
+                        x=xx,
+                        y=yy,
+                        z=zz,
+                        mode="markers",
+                        marker=dict(
+                            size=5,
+                            color=y_true,
+                            colorscale="cividis",
+                            showscale=False,
+                        ),
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.update_layout(
+                    title="",
+                    scene=dict(
+                        xaxis=dict(range=[-1, 1]),
+                        yaxis=dict(range=[-1, 1]),
+                        zaxis=dict(range=[-1, 1]),
+                        aspectmode="data",
+                    ),
+                    showlegend=False,
+                )
+                return fig
+        else:
+            if self.dat.shape[1] == 2:
+                theta = np.linspace(0, 2 * np.pi, 100)
+                unit_circle_x = np.cos(theta)
+                unit_circle_y = np.sin(theta)
+                fig, ax = plt.subplots(1, 1, figsize=(8, 8))
+                ax.scatter(
+                    self.dat[:, 0],
+                    self.dat[:, 1],
+                    cmap="viridis",
+                    edgecolors="k",
+                )
+                ax.plot(unit_circle_x, unit_circle_y, linestyle="dashed", color="red")
+                ax.set_xlabel("Feature 1")
+                ax.set_ylabel("Feature 2")
+                ax.set_title("Plot with Predicted Labels")
+                plt.tight_layout()
+                plt.close()
+                return fig
+            else:
+                xx, yy, zz = extract3d(self.dat)
+                r = 1
+                pi = np.pi
+                cos = np.cos
+                sin = np.sin
+                phi, theta = np.mgrid[0.0:pi:100j, 0.0 : 2.0 * pi : 100j]
+                x1 = r * sin(phi) * cos(theta)
+                y1 = r * sin(phi) * sin(theta)
+                z1 = r * cos(phi)
+
+                fig = make_subplots(
+                    rows=1,
+                    cols=1,
+                    specs=[[{"type": "scatter3d"}]],
+                    subplot_titles=(
+                        "Colored by Predicted Class",
+                        "Colored by True Class",
+                    ),
+                )
+                fig.add_trace(
+                    go.Surface(
+                        x=x1,
+                        y=y1,
+                        z=z1,
+                        colorscale=[[0, "#DCDCDC"], [1, "#DCDCDC"]],
+                        opacity=0.5,
+                        showscale=False,
+                    ),
+                    row=1,
+                    col=1,
+                )
+                fig.add_trace(
+                    go.Scatter3d(
+                        x=xx,
+                        y=yy,
+                        z=zz,
+                        mode="markers",
+                        marker=dict(
+                            size=5,
+                            color=self.labels_[num_clust],
+                            colorscale="turbo",
+                            showscale=False,
+                        ),
+                    ),
+                    row=1,
+                    col=1,
+                )
+                fig.update_layout(
+                    title="",
+                    scene=dict(
+                        xaxis=dict(range=[-1, 1]),
+                        yaxis=dict(range=[-1, 1]),
+                        zaxis=dict(range=[-1, 1]),
+                        aspectmode="data",
+                    ),
+                    showlegend=False,
+                )
+                return fig
 
     def summary(self, print_fmt="simple"):
         """

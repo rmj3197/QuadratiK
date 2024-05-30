@@ -109,14 +109,9 @@ if data is not None:
             cluster_fit = pkbc(num_clust=num_clusters).fit(x)
             y_pred = cluster_fit.labels_
 
-            adj_rand, macro_precision, macro_recall, avg_silhouette_score = (
-                cluster_fit.validation(y)
-            )
+            validation_metrics, elbow_plot = cluster_fit.validation(y)
 
-            st.write("Adjusted Rand Index:", adj_rand)
-            st.write("Macro Precision:", macro_precision)
-            st.write("Macro Recall:", macro_recall)
-            st.write("Mean Silhouette Score", avg_silhouette_score)
+            st.dataframe(validation_metrics)
 
             st.write("**Results:**")
             clustering_results_json = {}
@@ -167,7 +162,7 @@ if data is not None:
 
     try:
         x_copy = x / np.linalg.norm(x, axis=1, keepdims=True)
-        y_pred = cluster_fit.labels_
+        y_pred = cluster_fit.labels_[num_clusters]
 
         with st.spinner("getting results ready..."):
             k_samp_test = kt(
@@ -179,22 +174,30 @@ if data is not None:
             res = pd.DataFrame()
             res["Value"] = [
                 k_samp_test.test_type_,
-                k_samp_test.un_test_statistic_,
-                k_samp_test.un_cv_,
-                k_samp_test.un_h0_rejected_,
-                k_samp_test.var_un_,
+                k_samp_test.dn_test_statistic_,
+                k_samp_test.dn_cv_,
+                k_samp_test.dn_h0_rejected_,
+                k_samp_test.var_dn_,
+                k_samp_test.trace_test_statistic_,
+                k_samp_test.trace_cv_,
+                k_samp_test.trace_h0_rejected_,
+                k_samp_test.var_trace_,
             ]
             res = res.set_axis(
                 [
                     "Test Type",
-                    "Un Test Statistic",
-                    "Un Critical Value",
-                    "Un Reject H0",
-                    "Var Un",
+                    "Dn Test Statistic",
+                    "Dn Critical Value",
+                    "Dn Reject H0",
+                    "Var Dn",
+                    "Trace Test Statistic",
+                    "Trace Critical Value",
+                    "Trace Reject H0",
+                    "Var Trace",
                 ]
             )
 
-            st.dataframe(res)
+            st.dataframe(res, width=800)
             csv_res = res.to_csv().encode()
             st.download_button(
                 "Click to Download the test results",
@@ -240,12 +243,12 @@ with st.expander("Click to view code"):
 
 def get_wcss_euclid(x, k):
     cluster_fitting = pkbc(num_clust=k).fit(x)
-    return cluster_fitting.euclidean_wcss_
+    return cluster_fitting.euclidean_wcss_[k]
 
 
 def get_wcss_cosine(x, k):
     cluster_fitting = pkbc(num_clust=k).fit(x)
-    return cluster_fitting.cosine_wcss_
+    return cluster_fitting.cosine_wcss_[k]
 
 
 if data is not None:
@@ -277,9 +280,6 @@ if data is not None:
                 "Euclidean Within Cluster Sum of Squares (Cosine Similarity)"
             )
             axs[1].set_title("Elbow Plot WCSS Cosine Similarity")
-
-            # buf = BytesIO()
-            # plt.savefig(buf, format="png")
             st.pyplot(fig)
         except:
             st.error("Please ensure that the data file is loaded")
@@ -312,8 +312,6 @@ if data is not None:
                 z1 = r * cos(phi)
                 xx, yy, zz = utils._extract_3d(x)
 
-                raw_symbols = ["circle", "diamond", "cross", "square", "x"]
-
                 fig = make_subplots(
                     rows=1,
                     cols=2,
@@ -342,11 +340,7 @@ if data is not None:
                         z=zz,
                         mode="markers",
                         marker=dict(
-                            size=5,
-                            color=y_pred,
-                            colorscale="turbo",
-                            showscale=False,
-                            symbol=[raw_symbols[value] for value in y_pred],
+                            size=5, color=y_pred, colorscale="turbo", showscale=False
                         ),
                     ),
                     row=1,
@@ -373,11 +367,7 @@ if data is not None:
                             z=zz,
                             mode="markers",
                             marker=dict(
-                                size=5,
-                                color=y,
-                                colorscale="cividis",
-                                showscale=False,
-                                symbol=[raw_symbols[value] for value in y],
+                                size=5, color=y, colorscale="cividis", showscale=False
                             ),
                         ),
                         row=1,
