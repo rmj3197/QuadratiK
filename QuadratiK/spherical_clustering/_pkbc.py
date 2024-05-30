@@ -78,12 +78,12 @@ class PKBC:
 
 
         labels\\_ : dict
-            Final cluster membership assigned by the algorithm to each observation
+            Final cluster membership assigned by the algorithm to each observation.
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (n_samples,)
 
         log_lik_vecs\\_ : dict
-            Array of log-likelihood values for each initialization
+            Array of log-likelihood values for each initialization.
             A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
             and each value is a numpy.ndarray of shape (num_init, )
 
