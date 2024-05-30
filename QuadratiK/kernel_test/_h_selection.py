@@ -25,7 +25,7 @@ def _objective_one_sample(
     s_dat,
     skew_data,
     random_state,
-    n_jobs=8,
+    n_jobs=1,
 ):
     """
     Objective function using using the best
@@ -143,7 +143,7 @@ def _objective_two_sample(
     skew_data,
     d,
     random_state,
-    n_jobs=8,
+    n_jobs=1,
 ):
     """
     Objective function using using the best
@@ -287,7 +287,7 @@ def _objective_k_sample(
     s_dat,
     skew_data,
     random_state,
-    n_jobs=8,
+    n_jobs=1,
 ):
     """
     Objective function using using the best
@@ -612,6 +612,7 @@ def select_h(
                     s_dat,
                     skew_data,
                     random_state,
+                    1,
                 )
                 for param in parameters
             )
@@ -677,6 +678,7 @@ def select_h(
                     skew_data,
                     d,
                     random_state,
+                    1,
                 )
                 for param in parameters
             )
@@ -731,6 +733,7 @@ def select_h(
                     s_dat,
                     skew_data,
                     random_state,
+                    1,
                 )
                 for param in parameters
             )
