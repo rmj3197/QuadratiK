@@ -8,8 +8,8 @@ API Reference
 
 .. currentmodule:: QuadratiK.kernel_test
 
-Kernel Test
---------------------------------
+Kernel Tests
+==============
 
 .. autosummary::
    :toctree: generated/
@@ -22,7 +22,7 @@ Kernel Test
 .. currentmodule:: QuadratiK.poisson_kernel_test
 
 Poisson Kernel Test
------------------------------------------------
+=====================
 
 .. autosummary::
    :toctree: generated/
@@ -35,7 +35,7 @@ Poisson Kernel Test
 .. currentmodule:: QuadratiK.spherical_clustering
 
 Spherical Clustering
------------------------------------------------
+======================
 
 .. autosummary::
    :toctree: generated/
@@ -49,7 +49,7 @@ Spherical Clustering
 .. currentmodule:: QuadratiK.ui
 
 User Interface
------------------------------------------------
+==================
 
 .. autosummary::
    :toctree: generated/
@@ -61,7 +61,7 @@ User Interface
 .. currentmodule:: QuadratiK.datasets
 
 Datasets
------------------------------------------------
+==============
 
 .. autosummary::
    :toctree: generated/
@@ -75,7 +75,7 @@ Datasets
 .. currentmodule:: QuadratiK.tools
 
 Tools
------------------------------------------------
+===========
 
 .. autosummary::
    :toctree: generated/
