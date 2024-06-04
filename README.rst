@@ -42,7 +42,7 @@ QuadratiK
 .. _Black: https://github.com/psf/black
 
 Introduction
-=============
+==============
 
 The QuadratiK package is implemented in both **R** and **Python**, providing a comprehensive set of goodness-of-fit tests and a clustering technique using kernel-based quadratic distances. This framework aims to bridge the gap between the statistical and machine learning literatures. It includes:
 
@@ -97,17 +97,17 @@ For downloading from Github use the following instructions,
    pip install -e .
 
 Contributing Guide
-"""""""""""""""""""""
+^^^^^^^^^^^^^^^^^^^^^
 
 Please refer to the `Contributing Guide <https://quadratik.readthedocs.io/en/latest/development/CONTRIBUTING.html>`_.
 
 Code of Conduct
-"""""""""""""""""
+^^^^^^^^^^^^^^^^^
 
 The code of conduct can be found at `Code of Conduct <https://quadratik.readthedocs.io/en/latest/development/CODE_OF_CONDUCT.html>`_. 
 
 License
-"""""""""
+^^^^^^^^^
 
 This project uses the GPL-3.0 license, with a full version of the license included in the repository `here <https://github.com/rmj3197/QuadratiK/blob/master/LICENSE>`_.
 
@@ -116,7 +116,7 @@ Funding Information
 The work has been supported by Kaleida Health Foundation, Food and Drug Administration, and Department of Biostatistics, University at Buffalo. 
 
 References
--------------
+------------
 Saraceno G., Markatou M., Mukhopadhyay R., Golzy M. (2024). 
 Goodness-of-Fit and Clustering of Spherical Data: the QuadratiK package in R and Python. arXiv preprint arXiv:2402.02290.
 

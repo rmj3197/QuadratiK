@@ -5,6 +5,10 @@
 
 .. include:: ../../README.rst
 
+===========================================
+Package Documentation and Usage Examples
+===========================================
+
 .. toctree::
    :hidden:
    :maxdepth: 4
@@ -26,12 +30,20 @@
 
    user_guide/index.rst
 
+================
+Development
+================
+
 .. toctree::
    :hidden:
    :maxdepth: 4
    :titlesonly:
 
    development/index.rst
+
+================
+Changelog
+================
 
 .. toctree::
    :hidden:
