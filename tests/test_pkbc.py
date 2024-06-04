@@ -7,6 +7,7 @@ of the fitted clustering model.
 import unittest
 import numpy as np
 import pandas as pd
+import plotly.graph_objects as go
 from QuadratiK.spherical_clustering import PKBC, PKBD
 
 
@@ -64,6 +65,9 @@ class TestPKBC(unittest.TestCase):
         self.assertIsInstance(
             pkbd_cluster_fit_numpy_membership.validation(y_true=y_true), tuple
         )
+
+        self.assertIsInstance(pkbd_cluster_fit_numpy.plot(3), type(go.Figure()))
+        self.assertIsInstance(pkbd_cluster_fit_numpy.summary(), str)
 
         with self.assertRaises(Exception):
             PKBC(num_clust=-1).fit(pd.DataFrame(data))
