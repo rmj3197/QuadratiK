@@ -30,7 +30,7 @@ def c_d_lambda(beta, p, lamda):
 
 def calculate_wcss_euclidean(k, memb_best, dat, mu_best):
     """
-    Used for computing the euclidean WCSS for a single cluster
+    Used for computing the euclidean WCSS for a single cluster.
     """
     idx = np.where(memb_best == k)[0]
     return np.sum(np.linalg.norm(dat[idx] - mu_best[k], axis=1) ** 2)
@@ -38,7 +38,7 @@ def calculate_wcss_euclidean(k, memb_best, dat, mu_best):
 
 def calculate_wcss_cosine(k, memb_best, dat, mu_best):
     """
-    Used for computing the cosine WCSS for a single cluster
+    Used for computing the cosine WCSS for a single cluster.
     """
     idx = np.where(memb_best == k)[0]
     return np.sum(dat[idx] * mu_best[k])

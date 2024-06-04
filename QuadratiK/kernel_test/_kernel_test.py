@@ -43,7 +43,8 @@ class KernelTest:
             The number of iterations to use for critical value estimation. Defaults to 150.
 
         b : float, optional
-            The size of the subsamples used in the subsampling algorithm. Defaults to 0.9.
+            The size of the subsamples used in the subsampling algorithm. Defaults to 0.9 i.e.
+            `0.9N` samples are used, where `N` represents the total sample size.
 
         quantile : float, optional
             The quantile to use for critical value estimation. Defaults to 0.95.
@@ -63,7 +64,7 @@ class KernelTest:
             Maximum number of groups allowed. Defaults to 10. Change in case of more than 10 groups.
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
         n_jobs : int, optional.
             n_jobs specifies the maximum number of concurrently
@@ -77,65 +78,65 @@ class KernelTest:
     ----------
         For Normality Test:
             test_type\\_ : str
-                The type of test performed on the data
+                The type of test performed on the data.
 
             execution_time : float
-                Time taken for the test method to execute
+                Time taken for the test method to execute.
 
             un_h0_rejected\\_ : boolean
-                Whether the null hypothesis using Un is rejected (True) or not (False)
+                Whether the null hypothesis using Un is rejected (True) or not (False).
 
             vn_h0_rejected\\_ : boolean
-                Whether the null hypothesis using Vn is rejected (True) or not (False)
+                Whether the null hypothesis using Vn is rejected (True) or not (False).
 
             un_test_statistic\\_ : float
-                Un Test statistic of the perfomed test type
+                Un Test statistic of the perfomed test type.
 
             vn_test_statistic\\_ : float
-                Vn Test statistic of the perfomed test type
+                Vn Test statistic of the perfomed test type.
 
             un_cv\\_ : float
-                Critical value for Un
+                Critical value for Un.
 
             un_cv\\_ : float
-                Critical value for Vn
+                Critical value for Vn.
 
         For Two-Sample and K-Sample Test:
             test_type\\_ : str
-                The type of test performed on the data
+                The type of test performed on the data.
 
             execution_time : float
-                Time taken for the test method to execute
+                Time taken for the test method to execute.
 
             dn_h0_rejected\\_ : boolean
-                Whether the null hypothesis using Un is rejected (True) or not (False)
+                Whether the null hypothesis using Un is rejected (True) or not (False).
 
             dn_test_statistic\\_ : float
-                Un Test statistic of the perfomed test type
+                Un Test statistic of the perfomed test type.
 
             dn_cv\\_ : float
-                Critical value for Un
+                Critical value for Un.
 
             trace_h0_rejected\\_ : boolean
-                Whether the null hypothesis using trace statistic is rejected (True) or not (False)
+                Whether the null hypothesis using trace statistic is rejected (True) or not (False).
 
             trace_test_statistic\\_ : float
-                Trace Test statistic of the perfomed test type
+                Trace Test statistic of the perfomed test type.
 
             trace_cv\\_ : float
-                Critical value for trace statistic
+                Critical value for trace statistic.
 
             cv_method\\_ : str
-                Critical value method used for performing the test
+                Critical value method used for performing the test.
 
     References
     -----------
         Markatou M., Saraceno G., Chen Y (2023). “Two- and k-Sample Tests Based on Quadratic Distances.
-        ”Manuscript, (Department of Biostatistics, University at Buffalo)
+        ”Manuscript, (Department of Biostatistics, University at Buffalo).
 
         Lindsay BG, Markatou M. & Ray S. (2014) Kernels, Degrees of Freedom, and
         Power Properties of Quadratic Distance Goodness-of-Fit Tests, Journal of the American Statistical
-        Association, 109:505, 395-410, DOI: 10.1080/01621459.2013.836972
+        Association, 109:505, 395-410, DOI: 10.1080/01621459.2013.836972.
 
     Examples
     --------
@@ -267,7 +268,7 @@ class KernelTest:
         Returns
         -------
             self : object
-                Fitted estimator
+                Fitted estimator.
         """
 
         self.x = x
@@ -497,7 +498,7 @@ class KernelTest:
         Returns
         -------
             summary_stats_df : pandas.DataFrame
-                Dataframe of descriptive statistics
+                Dataframe of descriptive statistics.
         """
         summary_stats_df = stats(self.x, self.y)
         return summary_stats_df.round(4)
@@ -510,7 +511,7 @@ class KernelTest:
         ----------
             print_fmt : str, optional.
                 Used for printing the output in the desired format. Defaults to "simple_grid".
-                Supports all available options in tabulate, see here: https://pypi.org/project/tabulate/
+                Supports all available options in tabulate, see here: https://pypi.org/project/tabulate/.
 
         Returns
         --------

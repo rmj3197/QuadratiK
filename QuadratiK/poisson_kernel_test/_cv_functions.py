@@ -32,14 +32,14 @@ def poisson_cv(d, size, rho, num_iter, quantile, random_state=None, n_jobs=8):
         The quantile value to be calculated from the results.
 
     random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
     n_jobs : int, optional
         n_jobs specifies the maximum number of concurrently
         running workers. If 1 is given, no joblib parallelism
         is used at all, which is useful for debugging. For more
         information on joblib n_jobs refer to -
-        https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
+        https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
 
     Returns
     ---------
@@ -49,7 +49,7 @@ def poisson_cv(d, size, rho, num_iter, quantile, random_state=None, n_jobs=8):
     References
     ----------
         Ding Yuxin, Markatou Marianthi, Saraceno Giovanni (2023). “Poisson Kernel-Based Tests for
-        Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/ss.202022.0347
+        Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/ss.202022.0347.
     """
 
     results = Parallel(n_jobs=n_jobs)(

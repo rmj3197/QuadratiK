@@ -20,8 +20,8 @@ stats = importlib.import_module("QuadratiK.tools").stats
 
 class PoissonKernelTest:
     """
-    Class for Poisson kernel-based quadratic distance test
-    of Uniformity on the Sphere
+    Class for Poisson kernel-based quadratic distance tests
+    of Uniformity on the Sphere.
 
     Parameters
     ----------
@@ -33,10 +33,10 @@ class PoissonKernelTest:
             Number of iterations for critical value estimation of U-statistic.
 
         quantile : float, optional
-            The quantile to use for critical value estimation
+            The quantile to use for critical value estimation.
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
         n_jobs : int, optional.
             n_jobs specifies the maximum number of concurrently running workers.
@@ -48,20 +48,20 @@ class PoissonKernelTest:
     Attributes
     -----------
         test_type\\_ : str
-            The type of test performed on the data
+            The type of test performed on the data.
 
         execution_time : float
-            Time taken for the test method to execute
+            Time taken for the test method to execute.
 
         u_statistic_h0\\_ : boolean
             A logical value indicating whether or not the null hypothesis
-            is rejected according to Un
+            is rejected according to Un.
 
         u_statistic_un\\_ : float
             The value of the U-statistic.
 
         u_statistic_cv\\_ : float
-            The empirical critical value for Un
+            The empirical critical value for Un.
 
         v_statistic_h0\\_ : boolean
             A logical value indicating whether or not the null hypothesis is
@@ -76,7 +76,7 @@ class PoissonKernelTest:
     References
     -----------
         Ding Y., Markatou M., Saraceno G. (2023). “Poisson Kernel-Based Tests for
-        Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/ss.202022.0347
+        Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/ss.202022.0347.
 
     Examples
     ---------
@@ -128,7 +128,7 @@ class PoissonKernelTest:
     def test(self, x):
         """
         Performs the Poisson kernel-based quadratic distance Goodness-of-fit tests for
-        Uniformity for spherical data using the Poisson kernel with concentration parameter :math:`rho`
+        Uniformity for spherical data using the Poisson kernel with concentration parameter :math:`rho`.
 
         Parameters
         ----------
@@ -138,7 +138,7 @@ class PoissonKernelTest:
         Returns
         -------
             self : object
-                Fitted estimator
+                Fitted estimator.
         """
         self.x = x
         if isinstance(x, np.ndarray):
@@ -205,7 +205,7 @@ class PoissonKernelTest:
         Returns
         -------
             summary_stats_df : pandas.DataFrame
-                Dataframe of descriptive statistics
+                Dataframe of descriptive statistics.
         """
         summary_stats_df = stats(self.x)
         return summary_stats_df.round(4)
@@ -213,7 +213,7 @@ class PoissonKernelTest:
     def summary(self, print_fmt="simple_grid"):
         """
         Summary function generates a table for
-        the poisson kernel test results and the summary statistics.
+        the Poisson kernel test results and the summary statistics.
 
         Parameters
         ----------

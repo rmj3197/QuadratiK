@@ -1,5 +1,6 @@
+==========
 QuadratiK
-=========
+==========
 |GitHub Actions|_ |Codecov|_ |Documentation Status|_ |PyPI Version|_ |PyPI Python Version|_ |PyPI Downloads|_ |GitHub Search|_ |Black|_
 
 .. |GitHub Actions| image:: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg
@@ -41,34 +42,36 @@ QuadratiK
 .. _Black: https://github.com/psf/black
 
 Introduction
--------------
+=============
 
 The QuadratiK package is implemented in both **R** and **Python**, providing a comprehensive set of goodness-of-fit tests and a clustering technique using kernel-based quadratic distances. This framework aims to bridge the gap between the statistical and machine learning literatures. It includes:
 
 * **Goodness-of-Fit Tests** : The software implements one, two, and k-sample tests for goodness of fit, offering an efficient and mathematically sound way to assess the fit of probability distributions. Expanded capabilities include supporting tests for uniformity on the :math:`d`-dimensional Sphere based on Poisson kernel densities.
 
-* **Clustering Algorithm for Spherical Data**: the package incorporates a unique clustering algorithm specifically tailored for spherical data. This algorithm leverages a mixture of Poisson-kernel-based densities on the sphere, enabling effective clustering of spherical data or data that has been spherically transformed. This facilitates the uncovering of underlying patterns and relationships in the data.
+* **Clustering Algorithm for Spherical Data**: the package incorporates a unique clustering algorithm specifically tailored for spherical data. This algorithm leverages a mixture of Poisson-kernel-based densities on the sphere, enabling effective clustering of spherical data or data that has been spherically transformed. This facilitates the uncovering of underlying patterns and relationships in the data. Additionally, the package also includes Poisson Kernel-based Densities random number generation.
 
 * **Additional Features**: Alongside these functionalities, the software includes additional graphical functions, aiding users in validating cluster results as well as visualizing and representing clustering results. This enhances the interpretability and usability of the analysis.
 
+* **User Interface**: We also provide a dashboard application built using ``streamlit`` allowing users to access the methods implemented in the package without the need for programming.
+
 Authors
-++++++++
+---------
 Giovanni Saraceno <gsaracen@buffalo.edu>, Marianthi Markatou <markatou@buffalo.edu>, Raktim Mukhopadhyay <raktimmu@buffalo.edu>, Mojgan Golzy <golzym@health.missouri.edu>
 
 Mantainer: Raktim Mukhopadhyay <raktimmu@buffalo.edu>
 
 Documentation
-+++++++++++++++
+---------------
 
 The documentation is hosted on Read the Docs at - https://quadratik.readthedocs.io/en/latest/
 
 Installation using ``pip``
-+++++++++++++++++++++++++++
+----------------------------
 
 ``pip install QuadratiK``
 
 Examples
-+++++++++
+----------
 
 Find basic examples at `QuadratiK Examples <https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html>`_
 
@@ -78,10 +81,10 @@ You can also execute the examples on Binder |Binder|.
    :target: https://mybinder.org/v2/gh/rmj3197/QuadratiK/HEAD?labpath=doc%2Fsource%2Fuser_guide
 
 Community
-+++++++++++
+------------
 
 Development Version Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For installing the development version, please download the code files from the master branch of the Github repository. 
 Please note that installation from Github might be buggy, for latest stable release please download using ``pip``.
@@ -94,26 +97,26 @@ For downloading from Github use the following instructions,
    pip install -e .
 
 Contributing Guide
-~~~~~~~~~~~~~~~~~~~~
+"""""""""""""""""""""
 
 Please refer to the `Contributing Guide <https://quadratik.readthedocs.io/en/latest/development/CONTRIBUTING.html>`_.
 
 Code of Conduct
-~~~~~~~~~~~~~~~~
+"""""""""""""""""
 
 The code of conduct can be found at `Code of Conduct <https://quadratik.readthedocs.io/en/latest/development/CODE_OF_CONDUCT.html>`_. 
 
 License
-~~~~~~~~
+"""""""""
 
 This project uses the GPL-3.0 license, with a full version of the license included in the repository `here <https://github.com/rmj3197/QuadratiK/blob/master/LICENSE>`_.
 
 Funding Information
-++++++++++++++++++++
+---------------------
 The work has been supported by Kaleida Health Foundation, Food and Drug Administration, and Department of Biostatistics, University at Buffalo. 
 
 References
-+++++++++++
+-------------
 Saraceno G., Markatou M., Mukhopadhyay R., Golzy M. (2024). 
 Goodness-of-Fit and Clustering of Spherical Data: the QuadratiK package in R and Python. arXiv preprint arXiv:2402.02290.
 

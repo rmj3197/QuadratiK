@@ -2,11 +2,11 @@ QuadratiK Version 1.1.0
 ========================
 
 This version includes - 
-    1. **[NEW]** Minor bug fixes
-    2. **[NEW]** Enforced Opt Out from Telemetry (streamlit) while using UI
-    3. **[NEW]** Additional test cases to increase coverage
-    4. **[NEW]** Documentation improvements (hosting on Read the Docs, and included Code of Conduct and Contributing Guide)
+    1. **[NEW]** Minor bug fixes.
+    2. **[NEW]** Enforced Opt Out from Telemetry (streamlit) while using UI.
+    3. **[NEW]** Additional test cases to increase coverage.
+    4. **[NEW]** Documentation improvements (hosting on Read the Docs, and included Code of Conduct and Contributing Guide).
     5. **[NEW]** Added predict method to extract cluster membership of new data.  
-    6. **[NEW]** Included Vn statistic for Normality Test
-    7. **[NEW]** Included trace statistics and computation of variances for Two-sample and K-sample test
-    8. **[REMOVED]** Removed non-parameteric Normality test
+    6. **[NEW]** Included Vn statistic for Normality Test.
+    7. **[NEW]** Included trace statistics and computation of variances for Two-sample and K-sample test.
+    8. **[REMOVED]** Removed non-parameteric Normality test.

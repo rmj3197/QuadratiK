@@ -40,33 +40,33 @@ def cv_twosample(
             The quantile to use for critical value estimation.
 
         data_pool: numpy.ndarray
-            ndarray containing the data to be used in the test
+            ndarray containing the data to be used in the test.
 
         size_x : int
-            The number of rows in the data_pool corresponding to group X
+            The number of rows in the data_pool corresponding to group X.
 
         size_y : int
-            The number of rows in the data_pool corresponding to group Y
+            The number of rows in the data_pool corresponding to group Y.
 
         h : float
-            The tuning parameter for the kernel test
+            The tuning parameter for the kernel test.
 
         method : str
             Method to use for computing the critical value
-            (one of bootstrap, permutation, or subsampling)
+            (one of bootstrap, permutation, or subsampling).
 
         b : float, optional
-            Subsampling block size (only used if method is subsampling)
+            Subsampling block size (only used if method is subsampling).
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
         n_jobs : int, optional
             n_jobs specifies the maximum number of concurrently
             running workers. If 1 is given, no joblib parallelism
             is used at all, which is useful for debugging. For more
             information on joblib n_jobs refer to -
-            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
+            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
 
     Returns
     -------
@@ -76,7 +76,7 @@ def cv_twosample(
     References
     -----------
         Markatou Marianthi, Saraceno Giovanni, Chen Yang (2023). “Two- and k-Sample Tests Based on
-        Quadratic Distances.” Manuscript, (Department of Biostatistics, University at Buffalo)
+        Quadratic Distances.” Manuscript, (Department of Biostatistics, University at Buffalo).
 
     """
     if method == "bootstrap":
@@ -147,14 +147,14 @@ def cv_normality(
             The quantile of the distribution used to select the critical value.
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
         n_jobs : int, optional
             n_jobs specifies the maximum number of concurrently
             running workers. If 1 is given, no joblib parallelism
             is used at all, which is useful for debugging. For more
             information on joblib n_jobs refer to -
-            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
+            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
 
     Returns
     -------
@@ -180,7 +180,7 @@ def cv_ksample(
     n_jobs=8,
 ):
     """
-    Compute the critical value for k-sample kernel tests
+    Compute the critical value for k-sample kernel tests.
 
     Parameters
     --------------
@@ -208,14 +208,14 @@ def cv_ksample(
             (one of "bootstrap", "permutation" or "subsampling").
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
         n_jobs : int, optional
             n_jobs specifies the maximum number of concurrently
             running workers. If 1 is given, no joblib parallelism
             is used at all, which is useful for debugging. For more
             information on joblib n_jobs refer to -
-            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
+            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
 
     Returns
     ---------
@@ -226,7 +226,7 @@ def cv_ksample(
     References
     -----------
         Markatou Marianthi, Saraceno Giovanni, Chen Yang (2023). “Two- and k-Sample Tests Based on
-        Quadratic Distances.” Manuscript, (Department of Biostatistics, University at Buffalo)
+        Quadratic Distances.” Manuscript, (Department of Biostatistics, University at Buffalo).
     """
     sizes = np.unique(y, return_counts=True)[1]
     n = len(y)

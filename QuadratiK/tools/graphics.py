@@ -62,7 +62,7 @@ def sphere3d(x, y=None):
             The parameter `x` represents the input data for the scatter plot.
             It should be a 2D array-like object with shape (n_samples, 3),
             where each row represents the coordinates of a point in
-            3D space
+            3D space.
 
         y : numpy.ndarray, list, pandas.series, optional
             The parameter `y` is an optional input that determines the color and
@@ -166,7 +166,7 @@ def plot_clusters_2d(x, y=None):
             The parameter `x` is a 2-dimensional array or matrix
             containing the coordinates of the data points to be plotted.
             Each row of `x` represents the coordinates of a single data point
-            in the 2-dimensional space
+            in the 2-dimensional space.
 
         y : numpy.ndarray, pandas.DataFrame, optional
             The parameter `y` is an optional array that represents the labels

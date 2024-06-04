@@ -94,7 +94,7 @@ def stats(x, y=None):
 
 def sample_hypersphere(npoints=100, ndim=3, random_state=None):
     """
-    Generate random samples from the hypersphere
+    Generate random samples from the hypersphere.
 
     Parameters
     --------------
@@ -107,7 +107,7 @@ def sample_hypersphere(npoints=100, ndim=3, random_state=None):
             Default is 3.
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
     Returns
     ---------

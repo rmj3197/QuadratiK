@@ -1,7 +1,8 @@
 .. _api_reference:
 
+===============
 API Reference
-=============
+===============
 
 .. automodule:: QuadratiK.kernel_test
 

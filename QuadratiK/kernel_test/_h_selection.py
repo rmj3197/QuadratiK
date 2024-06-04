@@ -35,7 +35,7 @@ def _objective_one_sample(
     ----------
         alternative : str
             family of alternative chosen for selecting h,
-            must be one of "mean", "variance" and "skewness"
+            must be one of "mean", "variance" and "skewness".
 
         delta : numpy.ndarray
             Array of parameter values indicating chosen alternatives.
@@ -49,10 +49,10 @@ def _objective_one_sample(
 
         mean_dat : numpy.ndarray
             Means of the multivariate distribution to be used
-            for determining the best h
+            for determining the best h.
 
         n : int
-            Number of observations in set of samples
+            Number of observations in set of samples.
 
         num_iter : int
             The number of iterations to use for critical value estimation.
@@ -61,30 +61,30 @@ def _objective_one_sample(
             Quantile to use for critical value estimation.
 
         rep_values : int
-            Number of the bootstrap replication
+            Number of the bootstrap replication.
 
         s_dat : numpy.ndarray
             Variances of the multivariate distribution to be used
-            for determining the best h
+            for determining the best h.
 
         skew_data : numpy.ndarray
             Skewness of the multivariate distribution to be used
-            for determining the best h
+            for determining the best h.
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
         n_jobs : int, optional
             n_jobs specifies the maximum number of concurrently
             running workers. If 1 is given, no joblib parallelism
             is used at all, which is useful for debugging. For more
             information on joblib n_jobs refer to -
-            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
+            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
 
     Returns
     -------
         List containing rep_values, delta, h and boolean
-        representing the rejection/acceptance of null hypothesis
+        representing the rejection/acceptance of null hypothesis.
     """
     dk = delta_dim * delta
     if alternative == "location":
@@ -147,13 +147,13 @@ def _objective_two_sample(
 ):
     """
     Objective function using using the best
-    h is chosen for two sample test
+    h is chosen for two sample test.
 
     Parameters
     ----------
         alternative : str
             family of alternative chosen for selecting h,
-            must be one of "mean", "variance" and "skewness"
+            must be one of "mean", "variance" and "skewness".
 
         b : float
             The size of the subsamples used in the subsampling algorithm.
@@ -169,57 +169,57 @@ def _objective_two_sample(
             Bandwidth for the kernel function.
 
         m : int
-            Number of observations in second set of samples
+            Number of observations in second set of samples.
 
         mean_dat : numpy.ndarray
             Means of the multivariate distribution to be used
-            for determining the best h
+            for determining the best h.
 
         method : str
             the method used for critical value estimation,
             must be one of "subsampling", "bootstrap", or "permutation".
 
         n : int
-            Number of observations in first set of samples
+            Number of observations in first set of samples.
 
         num_iter : int
             The number of iterations to use for critical value estimation.
 
         pooled : numpy.ndarray
             Observations in first set and second
-            set of samples combined together retaining the number of columns
+            set of samples combined together retaining the number of columns.
 
         quantile : float
             Quantile to use for critical value estimation.
 
         rep_values : int
-            Number of the bootstrap replication
+            Number of the bootstrap replication.
 
         s_dat : numpy.ndarray
             Variances of the multivariate distribution to be used
-            for determining the best h
+            for determining the best h.
 
         skew_data : numpy.ndarray
             Skewness of the multivariate distribution to be used
-            for determining the best h
+            for determining the best h.
 
         d : int
-            Dimension of the data
+            Dimension of the data.
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
         n_jobs : int, optional
             n_jobs specifies the maximum number of concurrently
             running workers. If 1 is given, no joblib parallelism
             is used at all, which is useful for debugging. For more
             information on joblib n_jobs refer to -
-            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
+            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
 
     Returns
     -------
         List containing rep_values, delta, h and boolean
-        representing the rejection/acceptance of null hypothesis
+        representing the rejection/acceptance of null hypothesis.
     """
 
     dk = delta_dim * delta
@@ -291,13 +291,13 @@ def _objective_k_sample(
 ):
     """
     Objective function using using the best
-    h is chosen for k-sample test
+    h is chosen for k-sample test.
 
     Parameters
     ----------
         alternative : str
             family of alternative chosen for selecting h,
-            must be one of "mean", "variance" and "skewness"
+            must be one of "mean", "variance" and "skewness".
 
         num_iter : int
             The number of iterations to use for critical value estimation.
@@ -316,11 +316,11 @@ def _objective_k_sample(
             Bandwidth for the kernel function.
 
         k : int
-            Number of classes (or groups) in the data
+            Number of classes (or groups) in the data.
 
         mean_dat : numpy.ndarray
             Means of the multivariate distribution to be used
-            for determining the best h
+            for determining the best h.
 
         method : str
             the method used for critical value estimation,
@@ -333,30 +333,30 @@ def _objective_k_sample(
             Quantile to use for critical value estimation.
 
         rep_values : int
-            Number of the bootstrap replication
+            Number of the bootstrap replication.
 
         s_dat : numpy.ndarray
             Variances of the multivariate distribution to be used
-            for determining the best h
+            for determining the best h.
 
         skew_data : numpy.ndarray
             Skewness of the multivariate distribution to be used
-            for determining the best h
+            for determining the best h.
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
         n_jobs : int, optional
             n_jobs specifies the maximum number of concurrently
             running workers. If 1 is given, no joblib parallelism
             is used at all, which is useful for debugging. For more
             information on joblib n_jobs refer to -
-            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html
+            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
 
     Returns
     -------
         List containing rep_values, delta, h and boolean
-        representing the rejection/acceptance of null hypothesis
+        representing the rejection/acceptance of null hypothesis.
     """
     dk = delta_dim * delta
     if alternative == "location":
@@ -434,22 +434,22 @@ def select_h(
     The function performs the selection of the optimal value for the tuning
     parameter h of the normal kernel function, for the two-sample and k-sample
     KBQD tests. It performs a small simulation study, generating samples according
-    to the family of alternative specified, for the chosen values
+    to the family of a specified alternative, for the chosen values
     of h_values and delta.
 
     Parameters
     ----------
         x : numpy.ndarray or pandas.DataFrame
-            Data set of observations from X
+            Data set of observations from X.
 
         y : numpy.ndarray or pandas.DataFrame, optional
             Data set of observations from Y for two sample test
-            or set of labels in case of k-sample test
+            or set of labels in case of k-sample test.
 
         alternative : str, optional
             Family of alternative chosen for selecting h,
             must be one of "location", "scale" and "skewness".
-            Defaults to "location"
+            Defaults to "location".
 
         method : str, optional.
             The method used for critical value estimation,
@@ -458,7 +458,8 @@ def select_h(
 
         b : float, optional.
             The size of the subsamples used in the subsampling algorithm.
-            Defaults to 0.8.
+            Defaults to 0.8 i.e. `0.8N` samples are used, where `N`
+            represents the total sample size.
 
         num_iter : int, optional.
             The number of iterations to use for critical value estimation.
@@ -477,7 +478,7 @@ def select_h(
             Defaults to None.
 
         n_rep : int, optional. Defaults to 50.
-            Number of bootstrap replications
+            Number of bootstrap replications.
 
         n_jobs : int, optional.
             n_jobs specifies the maximum number of concurrently running workers.
@@ -497,21 +498,21 @@ def select_h(
             values in h\\_values and delta. Defaults to False.
 
         random_state : int, None, optional.
-            Seed for random number generation. Defaults to None
+            Seed for random number generation. Defaults to None.
 
     Returns
     -------
         h : float
-            The selected value of tuning parameter h
+            The selected value of tuning parameter h.
 
         h vs Power table : pandas.DataFrame
-            A table containing the h, delta and corresponding powers
+            A table containing the h, delta and corresponding powers.
 
     References
     -----------
         Markatou M., Saraceno G., Chen Y. (2023). “Two- and k-Sample Tests
         Based on Quadratic Distances. ”Manuscript, (Department of Biostatistics,
-        University at Buffalo)
+        University at Buffalo).
 
     Examples
     --------

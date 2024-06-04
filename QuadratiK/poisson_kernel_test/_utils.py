@@ -32,7 +32,7 @@ def dof(d, rho):
 def stat_poisson_unif(x_mat, rho):
     """
     Compute the Poisson kernel-based test for Uniformity
-    given a sample of observations on the Sphere
+    given a sample of observations on the Sphere.
 
     Parameters
     --------------
@@ -46,7 +46,7 @@ def stat_poisson_unif(x_mat, rho):
     ---------
     (Un,Vn) : tuple
         Tuple containing value of the
-        U-statistic and V-statistic
+        U-statistic and V-statistic.
     """
     n_x = x_mat.shape[0]
     pmat = compute_poisson_matrix(x_mat, rho)

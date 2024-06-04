@@ -90,7 +90,7 @@ def param_centering(kmat_zz, z_mat, cov_h, mu_hat, sigma_hat):
     Returns
     --------
     centered kernel matrix : numpy.ndarray
-        Matrix of centered kernel
+        Matrix of centered kernel.
 
     """
     n_z = z_mat.shape[0]
@@ -113,7 +113,7 @@ def dof_normality_test(sigma_h, v):
     Parameters
     -----------
         sigma_h : np.ndarray
-            ovariance matrix of the gaussian kernel
+            ovariance matrix of the gaussian kernel.
 
         v : np.ndarray
             Covariance matrix of the tested distribution G
@@ -121,7 +121,7 @@ def dof_normality_test(sigma_h, v):
     Returns
     --------
         DOF and Coefficient : tuple
-            DOF and the coefficient of the asymptotic distribution
+            DOF and the coefficient of the asymptotic distribution.
     """
     num_dof = np.linalg.det(sigma_h) ** (-1 / 2) - np.linalg.det(sigma_h + 2 * v) ** (
         -1 / 2
@@ -148,18 +148,18 @@ def variance_normality_test(sigma_h, v, n):
     Parameters
     ----------
         sigma_h: np.ndarray
-            Covariance matrix of the gaussian kernel
+            Covariance matrix of the gaussian kernel.
 
         v : np.ndarray
-            Covariance matrix of the tested distribution G
+            Covariance matrix of the tested distribution G.
 
         n : int
-            Sample size
+            Sample size.
 
     Returns
     --------
         variance: float
-            value of computed variance
+            value of computed variance.
     """
     d = sigma_h.shape[0]
     var = (
@@ -186,7 +186,7 @@ def variance_two_sample_test(k_cen, n, m):
     Parameters
     ----------
     k_cen : numpy.ndarray
-        Matrix with centered kernel values
+        Matrix with centered kernel values.
 
     n : int
         Number of samples of type/kind 1.
@@ -197,7 +197,7 @@ def variance_two_sample_test(k_cen, n, m):
     Returns
     -------
     Computed variances : tuple
-        Tuple of variances for Dn and trace statistics
+        Tuple of variances for Dn and trace statistics.
     """
 
     np.fill_diagonal(k_cen, 0)
@@ -240,17 +240,17 @@ def variance_k_sample_test(k_cen, sizes, cum_size):
     Parameters
     -----------
         k_cen : np.ndarray
-            matrix with centered kernel values
+            matrix with centered kernel values.
 
         sizes : list, np.ndarray
-            vector indicating size of samples
+            vector indicating size of samples.
 
         cum_size : list, np.ndarray
-            vector indicating sample's cumulative sizes
+            vector indicating sample's cumulative sizes.
 
     Returns:
         variance: float
-            value of computed variance
+            value of computed variance.
     """
     k = len(sizes)
 

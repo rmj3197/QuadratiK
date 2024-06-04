@@ -6,8 +6,8 @@ This version is currently in development.
 This version can be found on the master branch.
 
 This version includes - 
-    1. **[NEW]** Included repr method for KernelTest and PoissonKernelTest classes
-    2. **[NEW]** Separate attributes for Dn and Trace statistics, CV and H0
-    3. **[NEW]** Updated summary print format for KernelTest and PoissonKernelTest
-    4. **[NEW]** Updated Examples
-    5. **[NEW]** Included Binder link
+    1. **[NEW]** Included repr method for KernelTest and PoissonKernelTest classes.
+    2. **[NEW]** Separate attributes for Dn and Trace statistics, CV and H0.
+    3. **[NEW]** Updated summary print format for KernelTest and PoissonKernelTest.
+    4. **[NEW]** Updated Examples.
+    5. **[NEW]** Included Binder link.

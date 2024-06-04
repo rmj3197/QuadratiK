@@ -105,7 +105,7 @@ class PKBD:
                 Defaults to 'rejvmf'.
 
             random_state : int, None, optional.
-                Seed for random number generation. Defaults to None
+                Seed for random number generation. Defaults to None.
 
         Returns
         -------
@@ -122,7 +122,7 @@ class PKBD:
             29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.
 
             Sablica L., Hornik K., Leydold J. "Efficient sampling from the PKBD
-            distribution," Electronic Journal of Statistics, 17(2), 2180-2209, (2023)
+            distribution," Electronic Journal of Statistics, 17(2), 2180-2209, (2023).
 
         Examples
         --------

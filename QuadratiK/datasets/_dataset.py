@@ -42,7 +42,7 @@ def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=F
             (n_samples,) containing the target samples.
 
         data : pandas.DataFrame, if as_dataframe is True
-            Dataframe of the data with shape (n_samples, n_features + class)
+            Dataframe of the data with shape (n_samples, n_features + class).
 
         (desc, data, target) : tuple, if desc is True and return_X_y is True
             A tuple of description and two numpy.ndarray. The first containing a 2D
@@ -60,7 +60,7 @@ def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=F
         User Localization in an Indoor Environment Using Fuzzy Hybrid of Particle Swarm Optimization
         & Gravitational Search Algorithm with Neural Networks. In: Deep, K., et al. Proceedings of
         Sixth International Conference on Soft Computing for Problem Solving. Advances in Intelligent
-        Systems and Computing, vol 546. Springer, Singapore. https://doi.org/10.1007/978-981-10-3322-3_27
+        Systems and Computing, vol 546. Springer, Singapore. https://doi.org/10.1007/978-981-10-3322-3_27.
 
     Source
     -------
@@ -115,7 +115,7 @@ def load_wisconsin_breast_cancer_data(
     desc=False, return_X_y=False, as_dataframe=True, scaled=False
 ):
     """
-    The wisconsin breast cancer dataset data frame has 569 rows and 31 columns. The first 30 variables
+    The Wisconsin breast cancer dataset data frame has 569 rows and 31 columns. The first 30 variables
     report the features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass.
     They describe characteristics of the cell nuclei present in the image.
     The last column indicates the class labels (Benign = 0 or Malignant = 1).
@@ -153,7 +153,7 @@ def load_wisconsin_breast_cancer_data(
             (n_samples,) containing the target samples.
 
         data : pandas.DataFrame, if as_dataframe is True
-            Dataframe of the data with shape (n_samples, n_features + class)
+            Dataframe of the data with shape (n_samples, n_features + class).
 
         (desc, data, target) : tuple, if desc is True and return_X_y is True
             A tuple of description and two numpy.ndarray. The first containing a 2D
@@ -293,7 +293,7 @@ def load_wine_data(desc=False, return_X_y=False, as_dataframe=True, scaled=False
             (n_samples,) containing the target samples.
 
         data : pandas.DataFrame, if as_dataframe is True
-            Dataframe of the data with shape (n_samples, n_features + class)
+            Dataframe of the data with shape (n_samples, n_features + class).
 
         (desc, data, target) : tuple, if desc is True and return_X_y is True
             A tuple of description and two numpy.ndarray. The first containing a 2D
