@@ -5,49 +5,61 @@
 
 .. include:: ../../README.rst
 
-===========================================
-Package Documentation and Usage Examples
-===========================================
+.. only:: not html
 
-.. toctree::
-   :hidden:
-   :maxdepth: 4
-   :titlesonly:
+   =================
+   Getting Started
+   =================
 
-   getting_started/index.rst
+   .. toctree::
+      :maxdepth: 4
 
-.. toctree::
-   :hidden:
-   :maxdepth: 4
-   :titlesonly:
+      getting_started/index.rst
 
-   api_reference/index.rst
+.. only:: not html
 
-.. toctree::
-   :hidden:
-   :maxdepth: 4
-   :titlesonly:
+   =================
+   API Reference
+   =================
 
-   user_guide/index.rst
+   .. toctree::
+      :hidden:
+      :maxdepth: 4
 
-================
-Development
-================
+      api_reference/index.rst
 
-.. toctree::
-   :hidden:
-   :maxdepth: 4
-   :titlesonly:
+.. only:: not html
 
-   development/index.rst
+   =================
+   User Guide
+   =================
 
-================
-Changelog
-================
+   .. toctree::
+      :hidden:
+      :maxdepth: 4
 
-.. toctree::
-   :hidden:
-   :maxdepth: 4
-   :titlesonly:
+      user_guide/index.rst
 
-   changelog/index.rst
+.. only:: not html
+
+   =================
+   Development
+   =================
+
+   .. toctree::
+      :hidden:
+      :maxdepth: 4
+
+      development/index.rst
+
+.. only:: not html
+
+   =================
+   Changelog
+   =================
+
+   .. toctree::
+      :hidden:
+      :maxdepth: 4
+
+      changelog/index.rst
