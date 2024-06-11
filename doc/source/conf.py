@@ -17,7 +17,7 @@ copyright = (
     "2023, Giovanni Saraceno, Marianthi Markatou, Raktim Mukhopadhyay, Mojgan Golzy"
 )
 author = "Giovanni Saraceno, Marianthi Markatou, Raktim Mukhopadhyay, Mojgan Golzy"
-release = "1.1.dev0"
+release = "1.1.1"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -47,7 +47,20 @@ html_css_files = ["css/custom.css"]
 strip_signature_backslash = True
 
 # -- Options for Latex output -------------------------------------------------
-latex_elements = {"extraclassoptions": "openany,oneside"}
+latex_elements = {
+    "extraclassoptions": "openany,oneside",
+    "preamble": r"""
+    \usepackage{fancyhdr}
+    \makeatletter
+    \fancypagestyle{normal}{
+        \fancyhf{}
+        \fancyfoot[R]{\py@HeaderFamily\thepage}
+        \renewcommand{\headrulewidth}{0pt}
+        \renewcommand{\footrulewidth}{0.4pt}
+    }
+    \makeatother
+    """,
+}
 latex_documents = [
     (
         "index",
