@@ -1,0 +1,5 @@
+QuadratiK Version 1.2.dev0
+=========================
+
+This is the current version under development. So far this version includes - 
+    1. **[NEW]** Included usage instructions for Dashboard Application under User Guide.

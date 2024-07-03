@@ -86,7 +86,7 @@ if data is not None:
             X = data[:, :col_number]
             y = data[:, col_number]
             h_selected, all_values, power_plot = select_h(
-                x=X, y=y, alternative=alternative, power_plot=True
+                x=X, y=y, num_iter=B, b=b, alternative=alternative, power_plot=True
             )
 
             st.markdown(r"The selected $h$ is : " + str(h_selected))

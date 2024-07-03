@@ -12,24 +12,24 @@ qq_plot = importlib.import_module("QuadratiK.tools").qq_plot
 
 @st.cache_data(ttl=30, show_spinner=False)
 def run_normality_test(h_val, num_iter, b, x):
-    return kt(h=h_val, num_iter=num_iter, b=b, centering_type="nonparam").test(x=x)
+    return kt(h=h_val, num_iter=num_iter, b=b, centering_type="param").test(x=x)
 
 
 st.title("Normality Test")
-st.write("Performs the Nonparametric Multivariate Normality Test.")
+st.write("Performs the Parametric Multivariate Normality Test.")
 
 with st.expander("Click to view code"):
     code_python = """
     from QuadratiK.kernel_test import KernelTest
     X = Read your data file here
-    normality_test = KernelTest(h = 0.5, centering_type="nonparam").test(X)
+    normality_test = KernelTest(h = 0.5, centering_type="param").test(X)
     normality_test.summary()
     """
     st.code(code_python, language="python")
 
     code_R = """
     library(QuadratiK)
-    norm_test <- kb.test(x=dat_norm, h=h, centering="Nonparam")
+    norm_test <- kb.test(x=dat_norm, h=h)
     summary(norm_test)
     """
     st.code(code_R, language="r")
