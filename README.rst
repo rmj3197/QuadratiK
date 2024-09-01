@@ -99,10 +99,17 @@ Installation using ``pip``
 
 ``pip install QuadratiK``
 
-Examples
-----------
+Usage Examples
+----------------
 
-Find basic examples at `QuadratiK Examples <https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html>`_
+- `QuadratiK Examples <https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html>`_:
+  A collection of basic examples that demonstrate how to use the core functionalities of the QuadratiK package. Ideal for new users to get started quickly.
+
+- `Random sampling from the Poisson kernel-based density <https://quadratik.readthedocs.io/en/latest/user_guide/gen_plot_rpkb.html>`_:
+  Learn how to generate random samples from the Poisson kernel-based density and visualize the results.
+
+- `Usage Instructions for Dashboard Application <https://quadratik.readthedocs.io/en/latest/user_guide/dashboard_application_usage.html>`_:
+  Step-by-step instructions on how to set up and use the QuadratiK dashboard application. This guide helps you interactively explore and analyze data using the dashboard's features.
 
 You can also execute the examples on Binder |Binder|. 
 
