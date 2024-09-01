@@ -9,9 +9,13 @@ QuadratiK
    * - **Usage**
      - **Release**
      - **Development**
-   * - |PyPI Python Version|_ |PyPI Downloads|_
+   * - |License|_ |PyPI Python Version|_ |PyPI Downloads|_
      - |PyPI Version|_ |GitHub Actions|_ |Documentation Status|_
-     - |Codecov|_ |Black|_ |Repo Status|_
+     - |Codecov|_ |Ruff|_ |Ruff|_ |Black|_ |Codacy|_ |Codefactor|_ |Repo Status|_
+
+.. |License| image:: https://img.shields.io/badge/License-GPLv3-blue.svg
+   :target: https://github.com/rmj3197/QuadratiK/blob/main/LICENSE
+   :alt: License: GPL v3
 
 .. |GitHub Actions| image:: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg
    :target: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
@@ -34,9 +38,21 @@ QuadratiK
 .. |PyPI Downloads| image:: https://img.shields.io/pepy/dt/QuadratiK
    :alt: PyPI Total Downloads
 
-.. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
-   :target: https://github.com/psf/black
-   :alt: Black Code Formatter
+.. |Black| image:: https://github.com/rmj3197/QuadratiK/actions/workflows/black_check.yml/badge.svg
+   :target: https://github.com/rmj3197/QuadratiK/actions/workflows/black_check.yml
+   :alt: Black
+
+.. |Ruff| image:: https://github.com/rmj3197/QuadratiK/actions/workflows/ruff_linting.yml/badge.svg
+   :target: https://github.com/rmj3197/QuadratiK/actions/workflows/ruff_linting.yml
+   :alt: Ruff Linting
+
+.. |Codacy| image:: https://app.codacy.com/project/badge/Grade/321a7de540c5458da777ff883f81812f
+   :target: https://app.codacy.com/gh/rmj3197/QuadratiK/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
+   :alt: Codacy Badge
+
+.. |Codefactor| image:: https://www.codefactor.io/repository/github/rmj3197/quadratik/badge
+   :target: https://www.codefactor.io/repository/github/rmj3197/quadratik
+   :alt: CodeFactor
 
 .. |Repo Status| image:: https://www.repostatus.org/badges/latest/active.svg
    :target: https://www.repostatus.org/#active
