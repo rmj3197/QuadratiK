@@ -1,0 +1,45 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: QuadratiK
+message: 'If you use this package, please cite the following work.'
+type: software
+authors:
+  - given-names: Giovanni
+    family-names: Saraceno
+    email: gsaracen@buffalo.edu
+    affiliation: University at Buffalo
+  - given-names: Marianthi
+    family-names: Markatou
+    email: markatou@buffalo.edu
+    affiliation: University at Buffalo
+  - given-names: Raktim
+    family-names: Mukhopadhyay
+    email: raktimmu@Buffalo.edu
+    affiliation: University at Buffalo
+  - given-names: Mojgan
+    family-names: Golzy
+    email: golzym@health.missouri.edu
+    affiliation: >-
+      Biomedical Informatics, Biostatistics and Medical
+      Epidemiology (BBME), University of Missouri
+license: GPL-3.0
+preferred-citation:
+  type: generic
+  title: >-
+    Goodness-of-Fit and Clustering of Spherical Data: the QuadratiK package in R
+    and Python
+  authors:
+    - family-names: Saraceno
+      given-names: Giovanni
+    - family-names: Markatou
+      given-names: Marianthi
+    - family-names: Mukhopadhyay
+      given-names: Raktim
+    - family-names: Golzy
+      given-names: Mojgan
+  journal: arXiv preprint
+  year: 2024
+  doi: 10.48550/arXiv.2402.02290
+  url: 'https://arxiv.org/abs/2402.02290'
