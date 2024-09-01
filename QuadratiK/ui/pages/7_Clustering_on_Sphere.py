@@ -2,17 +2,17 @@
 Contains the PKBC functionality of the UI
 """
 
-import importlib
 import copy
-import streamlit as st
-import pandas as pd
-import numpy as np
+import importlib
+
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import plotly.graph_objects as go
+import streamlit as st
 from plotly.subplots import make_subplots
 from sklearn.preprocessing import LabelEncoder
 from sklearn.utils.parallel import Parallel, delayed
-
 
 kt = importlib.import_module("QuadratiK.kernel_test").KernelTest
 qq_plot = importlib.import_module("QuadratiK.tools").qq_plot

@@ -3,9 +3,10 @@ Contains the Tuning Parameter h selection
 functionality of the UI
 """
 
-import streamlit as st
-import pandas as pd
 import importlib
+
+import pandas as pd
+import streamlit as st
 
 select_h = importlib.import_module("QuadratiK.kernel_test").select_h
 

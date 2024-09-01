@@ -3,9 +3,9 @@ Contains the Poisson Kerel Test test functionality of the UI
 """
 
 import importlib
-import streamlit as st
-import pandas as pd
 
+import pandas as pd
+import streamlit as st
 
 pkt = importlib.import_module("QuadratiK.poisson_kernel_test").PoissonKernelTest
 qq_plot = importlib.import_module("QuadratiK.tools").qq_plot

@@ -3,27 +3,28 @@ Poisson Kernel based Clustering
 """
 
 import importlib
+from collections import Counter
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from collections import Counter
-from tabulate import tabulate
+import plotly.graph_objects as go
 import scipy.special as sp
+from plotly.subplots import make_subplots
 from scipy.optimize import root_scalar
-from sklearn.utils.parallel import Parallel, delayed
-from sklearn.utils.validation import check_random_state
 from sklearn.metrics import (
+    adjusted_rand_score,
+    confusion_matrix,
     precision_score,
     recall_score,
-    adjusted_rand_score,
     silhouette_score,
-    confusion_matrix,
 )
 from sklearn.preprocessing import LabelEncoder
-import matplotlib.pyplot as plt
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+from sklearn.utils.parallel import Parallel, delayed
+from sklearn.utils.validation import check_random_state
+from tabulate import tabulate
 
-from ._utils import root_func, calculate_wcss_euclidean, calculate_wcss_cosine
+from ._utils import calculate_wcss_cosine, calculate_wcss_euclidean, root_func
 
 stats = importlib.import_module("QuadratiK.tools").stats
 extract3d = importlib.import_module("QuadratiK.tools._utils")._extract_3d
@@ -205,11 +206,11 @@ class PKBC:
             raise ValueError("Input parameter maxIter must be greater than 0")
         if self.stopping_rule not in ["max", "membership", "loglik"]:
             raise ValueError(
-                "Unrecognized value {} in input parameter.".format(self.stopping_rule)
+                f"Unrecognized value {self.stopping_rule} in input parameter."
             )
         if self.init_method not in ["sampledata"]:
             raise Exception(
-                "Unrecognized value {} in input parameter.".format(self.init_method)
+                f"Unrecognized value {self.init_method} in input parameter."
             )
         if self.num_init < 1:
             raise ValueError("Input parameter numInit must be greater than 0")
@@ -251,11 +252,9 @@ class PKBC:
                 num_unique_obs = unique_data.shape[0]
                 if num_unique_obs < k:
                     raise ValueError(
-                        "Only {} 'unique observations.', \
-                        When init_method = {}, \
-                            must have more than num_clust unique observations.".format(
-                            num_unique_obs, self.init_method
-                        )
+                        f"Only {num_unique_obs} 'unique observations.', \
+                        When init_method = {self.init_method}, \
+                            must have more than num_clust unique observations."
                     )
             log_w_d = (num_var / 2) * (np.log(2) + np.log(np.pi)) - sp.gammaln(
                 num_var / 2

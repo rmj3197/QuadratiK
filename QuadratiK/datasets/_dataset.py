@@ -1,6 +1,7 @@
-import pandas as pd
-import numpy as np
 from importlib import resources
+
+import numpy as np
+import pandas as pd
 
 
 def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=False):

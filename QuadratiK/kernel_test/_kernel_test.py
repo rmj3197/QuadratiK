@@ -3,20 +3,21 @@ Kernel-based quadratic distance Goodness-of-Fit tests
 """
 
 import importlib
+
 import numpy as np
 import pandas as pd
-from tabulate import tabulate
 from scipy.stats import chi2
+from tabulate import tabulate
 
+from ._cv_functions import cv_ksample, cv_normality, cv_twosample
+from ._h_selection import select_h
 from ._utils import (
+    dof_normality_test,
+    stat_ksample,
     stat_normality_test,
     stat_two_sample,
-    stat_ksample,
-    dof_normality_test,
     variance_normality_test,
 )
-from ._cv_functions import cv_twosample, cv_normality, cv_ksample
-from ._h_selection import select_h
 
 time_decorator = importlib.import_module(
     "QuadratiK.tools._utils"
@@ -560,7 +561,7 @@ class KernelTest:
 
         if print_fmt == "html":
             summary_string = (
-                "Time taken for execution: {} seconds".format(self.execution_time)
+                f"Time taken for execution: {self.execution_time} seconds"
                 + "<br>Test Results <br>"
                 + f"<br> {self.test_type_} <br>"
                 + tabulate(res, tablefmt=print_fmt, headers=res.columns)
@@ -576,7 +577,7 @@ class KernelTest:
             )
         else:
             summary_string = (
-                "Time taken for execution: {:.3f} seconds".format(self.execution_time)
+                f"Time taken for execution: {self.execution_time:.3f} seconds"
                 + "\nTest Results \n"
                 + f"{self.test_type_} \n"
                 + tabulate(res, tablefmt=print_fmt, headers=res.columns)

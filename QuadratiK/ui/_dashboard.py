@@ -3,11 +3,12 @@ Contains the UI class is a user interface class that runs a Streamlit
 dashboard using asyncio.
 """
 
-from importlib import resources
-import sys
 import asyncio
-from streamlit.web import cli as stcli
+import sys
+from importlib import resources
+
 import nest_asyncio
+from streamlit.web import cli as stcli
 
 nest_asyncio.apply()
 

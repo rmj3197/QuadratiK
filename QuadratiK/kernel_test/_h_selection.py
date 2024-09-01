@@ -2,14 +2,14 @@
 Contains the tuning parameter selection algorithm
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy.stats import skew, skewnorm
 from sklearn.utils.parallel import Parallel, delayed
-import matplotlib.pyplot as plt
 
-from ._utils import stat_ksample, stat_two_sample, stat_normality_test
-from ._cv_functions import cv_ksample, cv_twosample, cv_normality
+from ._cv_functions import cv_ksample, cv_normality, cv_twosample
+from ._utils import stat_ksample, stat_normality_test, stat_two_sample
 
 
 def _objective_one_sample(

@@ -2,16 +2,17 @@
 Critical value functions for Kernel Test
 """
 
-from sklearn.utils.parallel import Parallel, delayed
 import numpy as np
+from sklearn.utils.parallel import Parallel, delayed
+
 from ._utils import (
-    normal_cv_helper,
-    bootstrap_helper_twosample,
-    permutation_helper_twosample,
-    subsampling_helper_twosample,
     bootstrap_helper_ksample,
-    subsampling_helper_ksample,
+    bootstrap_helper_twosample,
+    normal_cv_helper,
     permutation_helper_ksample,
+    permutation_helper_twosample,
+    subsampling_helper_ksample,
+    subsampling_helper_twosample,
 )
 
 

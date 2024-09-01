@@ -3,8 +3,9 @@ Contains the Two Sample test functionality of the UI
 """
 
 import importlib
-import streamlit as st
+
 import pandas as pd
+import streamlit as st
 
 kt = importlib.import_module("QuadratiK.kernel_test").KernelTest
 qq_plot = importlib.import_module("QuadratiK.tools").qq_plot

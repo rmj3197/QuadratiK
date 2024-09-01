@@ -1,8 +1,9 @@
-from ._utils import _qq_plot_twosample, _extract_3d, _qq_plot_onesample
-import pandas as pd
-import numpy as np
-import plotly.graph_objects as go
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+
+from ._utils import _extract_3d, _qq_plot_onesample, _qq_plot_twosample
 
 plt.ioff()
 

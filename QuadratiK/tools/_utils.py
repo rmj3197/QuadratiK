@@ -1,9 +1,9 @@
 import time
 from functools import wraps
-import matplotlib.pyplot as plt
 
-import pandas as pd
+import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 from scipy import stats
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression

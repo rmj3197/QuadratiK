@@ -4,11 +4,12 @@ Contains the data generation from PKBD functionality of the UI
 
 import importlib
 import re
-import streamlit as st
-import pandas as pd
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import plotly.graph_objects as go
+import streamlit as st
 from plotly.subplots import make_subplots
 
 pkbd = importlib.import_module("QuadratiK.spherical_clustering").PKBD
