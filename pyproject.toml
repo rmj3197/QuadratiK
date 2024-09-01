@@ -53,7 +53,7 @@ skip = "pp*"
 
 [tool.ruff]
 line-length = 88 # same as black
-exclude = [".ipynb"]
+exclude = ["*.ipynb"]
 
 [tool.ruff.lint]
 extend-select = [
