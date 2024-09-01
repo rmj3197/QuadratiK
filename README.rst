@@ -1,7 +1,17 @@
 ==========
 QuadratiK
 ==========
-|GitHub Actions|_ |Codecov|_ |Documentation Status|_ |PyPI Version|_ |PyPI Python Version|_ |PyPI Downloads|_ |GitHub Search|_ |Black|_
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 25 25
+
+   * - **Usage**
+     - **Release**
+     - **Development**
+   * - |PyPI Python Version|_ |PyPI Downloads|_
+     - |PyPI Version|_ |GitHub Actions|_ |Documentation Status|_
+     - |Codecov|_ |Black|_ |Repo Status|_
 
 .. |GitHub Actions| image:: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml/badge.svg
    :target: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
@@ -24,13 +34,13 @@ QuadratiK
 .. |PyPI Downloads| image:: https://img.shields.io/pepy/dt/QuadratiK
    :alt: PyPI Total Downloads
 
-.. |GitHub Search| image:: https://img.shields.io/github/search/rmj3197/QuadratiK/QuadratiK?logo=github
-   :target: https://github.com/rmj3197/QuadratiK
-   :alt: GitHub search hit counter
-
 .. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
    :alt: Black Code Formatter
+
+.. |Repo Status| image:: https://www.repostatus.org/badges/latest/active.svg
+   :target: https://www.repostatus.org/#active
+   :alt: Project Status: Active – The project has reached a stable, usable state and is being actively developed.
 
 .. _GitHub Actions: https://github.com/rmj3197/QuadratiK/actions/workflows/release.yml
 .. _Codecov: https://codecov.io/gh/rmj3197/QuadratiK
@@ -38,8 +48,8 @@ QuadratiK
 .. _PyPI Version: https://pypi.org/project/QuadratiK/
 .. _PyPI Python Version: https://pypi.org/project/QuadratiK/
 .. _PyPI Downloads: https://pepy.tech/project/quadratik
-.. _GitHub Search: https://github.com/rmj3197/QuadratiK
 .. _Black: https://github.com/psf/black
+.. _Repo Status: https://www.repostatus.org/#active
 
 Introduction
 ==============
