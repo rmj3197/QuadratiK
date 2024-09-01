@@ -260,19 +260,19 @@ def variance_k_sample_test(k_cen, sizes, cum_size):
 
     C1, C2, C3 = 0, 0, 0
 
-    for l in range(k):
-        ni_factor = ni_factors[l]
+    for L in range(k):
+        ni_factor = ni_factors[L]
         k_ll = k_cen[
-            cum_size[l] : cum_size[l] + sizes[l],
-            cum_size[l] : cum_size[l] + sizes[l],
+            cum_size[L] : cum_size[L] + sizes[L],
+            cum_size[L] : cum_size[L] + sizes[L],
         ]
 
         C1 += 2 * (ni_factor**2) * (k_ll**2).sum()
 
-        for r in range(l + 1, k):
-            n_lr_factor = 1 / (sizes[l] ** 2)
+        for r in range(L + 1, k):
+            n_lr_factor = 1 / (sizes[L] ** 2)
             k_lr = k_cen[
-                cum_size[l] : cum_size[l] + sizes[l],
+                cum_size[L] : cum_size[L] + sizes[L],
                 cum_size[r] : cum_size[r] + sizes[r],
             ]
             k_rr = k_cen[
@@ -419,22 +419,22 @@ def stat_ksample(x, y, h):
     cum_size = np.insert(np.cumsum(sizes), 0, 0)
     tn = 0
 
-    for l in range(k):
+    for L in range(k):
         k_ll = k_center[
-            cum_size[l] : cum_size[l] + sizes[l], cum_size[l] : cum_size[l] + sizes[l]
+            cum_size[L] : cum_size[L] + sizes[L], cum_size[L] : cum_size[L] + sizes[L]
         ]
         np.fill_diagonal(k_ll, 0)
 
-        if sizes[l] > 1:
-            trace_k += k_ll.sum() / (sizes[l] * (sizes[l] - 1))
+        if sizes[L] > 1:
+            trace_k += k_ll.sum() / (sizes[L] * (sizes[L] - 1))
 
-        for r in range(l + 1, k):
+        for r in range(L + 1, k):
             k_lr = k_center[
-                cum_size[l] : cum_size[l] + sizes[l],
+                cum_size[L] : cum_size[L] + sizes[L],
                 cum_size[r] : cum_size[r] + sizes[r],
             ]
-            if (sizes[l] > 0) and (sizes[r] > 0):
-                tn -= 2 * k_lr.sum() / (sizes[l] * sizes[r])
+            if (sizes[L] > 0) and (sizes[r] > 0):
+                tn -= 2 * k_lr.sum() / (sizes[L] * sizes[r])
 
     var1, var2 = variance_k_sample_test(k_center, sizes, cum_size)
     stat1 = (k - 1) * trace_k + tn

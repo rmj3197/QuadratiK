@@ -521,7 +521,6 @@ class KernelTest:
         """
 
         if self.vn_test_statistic_ is None:
-
             index_labels = [
                 "Test Statistic",
                 "Critical Value",

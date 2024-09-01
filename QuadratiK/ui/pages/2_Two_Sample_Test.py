@@ -3,7 +3,6 @@ Contains the Two Sample test functionality of the UI
 """
 
 import importlib
-import numpy as np
 import streamlit as st
 import pandas as pd
 
@@ -45,7 +44,7 @@ header_exist = st.checkbox(
     "**Select, if the header is present in the data file.**", value=True
 )
 
-if header_exist == False:
+if header_exist is False:
     header = None
 else:
     header = "infer"
@@ -60,10 +59,8 @@ if x_data is not None:
     st.write(x_data.name + " Uploaded Successfully")
     try:
         X = pd.read_csv(x_data, sep=delim, header=header)
-    except:
-        st.error(
-            "Unable to read the data file. Please make sure that the delimiter is correct."
-        )
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
 y_data = st.file_uploader(
     "Choose data file for Y", accept_multiple_files=False, type=[".txt", ".csv"]
@@ -73,11 +70,8 @@ if y_data is not None:
     st.write(y_data.name + " Uploaded Successfully")
     try:
         Y = pd.read_csv(y_data, sep=delim, header=header)
-    except:
-        st.error(
-            "Unable to read the data file. Please make sure that the delimiter is correct."
-        )
-
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
 if (y_data) and (x_data) is not None:
     num_iter = st.number_input(
@@ -139,8 +133,8 @@ if (y_data) and (x_data) is not None:
                 key="download-csv",
             )
             st.success("Done!")
-        except:
-            st.error("Please check user inputs and data file")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
 
 
 st.header("QQ Plots", divider="grey")
@@ -154,8 +148,8 @@ with st.expander("Click to view code"):
 if (y_data) and (x_data) is not None:
     try:
         st.pyplot(qq_plot(X, Y), use_container_width=True)
-    except:
-        st.error("Please ensure that the data file is loaded")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
 st.markdown(
     r"""

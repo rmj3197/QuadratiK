@@ -13,7 +13,6 @@ from QuadratiK.datasets import (
 
 
 class TestLoadWirelessData(unittest.TestCase):
-
     def test_return_X_y(self):
         X1, y1 = load_wireless_data(return_X_y=True, as_dataframe=False)
         X2, y2 = load_wisconsin_breast_cancer_data(return_X_y=True, as_dataframe=False)

@@ -1,5 +1,5 @@
 """
-Contains additional tools. 
+Contains additional tools.
 """
 
 import numpy as np

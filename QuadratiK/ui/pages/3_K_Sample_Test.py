@@ -20,7 +20,6 @@ st.title("K Sample Test")
 st.write("Performs the Nonparametric K-Sample Test")
 
 with st.expander("Click to view code"):
-
     code_python = """
     from QuadratiK.kernel_test import KernelTest
     X,y = Read your data file here
@@ -42,7 +41,7 @@ header_exist = st.checkbox(
     "**Select, if the header is present in the data file.**", value=True
 )
 
-if header_exist == False:
+if header_exist is False:
     header = None
 else:
     header = "infer"
@@ -55,10 +54,8 @@ if data is not None:
     st.success(data.name + " Uploaded Successfully")
     try:
         data = pd.read_csv(data, sep=delim, header=header)
-    except:
-        st.error(
-            "Unable to read the data file. Please make sure that the delimiter is correct."
-        )
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
     data = data.values
     label_col = data.shape[1] - 1
@@ -138,8 +135,8 @@ if data is not None:
                 key="download-csv",
             )
             st.success("Done!")
-        except:
-            st.error("Please check user inputs and data file")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
 
 st.markdown(
     r"""

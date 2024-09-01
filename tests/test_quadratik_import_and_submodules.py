@@ -3,12 +3,10 @@ Checks if QuadratiK can be imported correctly along with submodules
 """
 
 import unittest
-import importlib
 import QuadratiK
 
 
 class TestQuadratiKModule(unittest.TestCase):
-
     def test_version(self):
         from QuadratiK import __version__
 

@@ -1,5 +1,5 @@
 """
-Critical value for the uniformity test on the sphere based 
+Critical value for the uniformity test on the sphere based
 on the centered poisson kernel tests
 """
 

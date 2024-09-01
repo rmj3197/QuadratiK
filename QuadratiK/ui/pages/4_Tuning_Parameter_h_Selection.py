@@ -5,10 +5,7 @@ functionality of the UI
 
 import streamlit as st
 import pandas as pd
-import numpy as np
-import json
 import importlib
-import matplotlib.pyplot as plt
 
 select_h = importlib.import_module("QuadratiK.kernel_test").select_h
 
@@ -37,7 +34,7 @@ header_exist = st.checkbox(
     "**Select, if the header is present in the data file.**", value=True
 )
 
-if header_exist == False:
+if header_exist is False:
     header = None
 else:
     header = "infer"
@@ -50,10 +47,8 @@ if data is not None:
     st.success(data.name + " Uploaded Successfully")
     try:
         data = pd.read_csv(data, sep=delim, header=header)
-    except:
-        st.error(
-            "Unable to read the data file. Please make sure that the delimiter is correct."
-        )
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
     data = data.to_numpy()
     label_col = data.shape[1] - 1
@@ -103,8 +98,8 @@ if data is not None:
 
             st.pyplot(power_plot, use_container_width=True)
             st.success("Done!")
-        except:
-            st.error("Please check user inputs and data file")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
 
 st.markdown(
     r"""

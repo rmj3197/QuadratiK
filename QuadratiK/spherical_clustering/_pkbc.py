@@ -414,7 +414,7 @@ class PKBC:
         References
         -----------
             Rousseeuw, P.J. (1987) Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
-            Journal of Computational and Applied Mathematics, 20, 53–65.
+            Journal of Computational and Applied Mathematics, 20, 53-65.
 
         Notes
         ------
@@ -434,7 +434,6 @@ class PKBC:
         validation_metrics = {}
 
         for k in self.num_clust:
-
             avg_silhouette_score = silhouette_score(self.dat, self.labels_[k])
 
             if y_true is not None:

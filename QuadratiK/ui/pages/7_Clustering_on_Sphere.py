@@ -4,7 +4,6 @@ Contains the PKBC functionality of the UI
 
 import importlib
 import copy
-from io import BytesIO
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -80,8 +79,8 @@ if data is not None:
                     step=1,
                 )
             )
-        except:
-            st.error("Enter a valid column number")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
 
     else:
         pass
@@ -99,8 +98,8 @@ if data is not None:
                 le = LabelEncoder()
                 le.fit(y)
                 y = le.transform(y)
-            except:
-                st.error("Please check the input data file")
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
     else:
         x = copy.copy(data)
 
@@ -141,8 +140,8 @@ if data is not None:
             )
 
             st.success("Done!")
-    except:
-        st.error("Please check the input data file")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
 st.header("K-Sample Test for the identified clusters", divider="grey")
 
@@ -218,8 +217,8 @@ if data is not None:
                 "text/csv",
                 key="download-summary",
             )
-    except:
-        st.error("Check data file and selected parameters.")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
 st.header("Visualizations", divider="grey")
 
@@ -281,8 +280,8 @@ if data is not None:
             )
             axs[1].set_title("Elbow Plot WCSS Cosine Similarity")
             st.pyplot(fig)
-        except:
-            st.error("Please ensure that the data file is loaded")
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
 
 
 st.subheader("Data on Sphere")
@@ -396,8 +395,8 @@ if data is not None:
                 fig2 = circle2d(x, y)
                 plt.title("Colored by True Class")
                 st.pyplot(fig2)
-    except:
-        st.error("Please ensure that the data file is loaded")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
 st.markdown(
     r"""

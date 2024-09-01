@@ -9,7 +9,6 @@ from QuadratiK.spherical_clustering import PKBD
 
 
 class TestPKBD(unittest.TestCase):
-
     def test_rpkb(self):
         pkbd = PKBD()
         x_rejvmf = pkbd.rpkb(100, [1, 0, 0], 0.8, "rejvmf", random_state=42)

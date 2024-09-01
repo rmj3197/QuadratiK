@@ -2,12 +2,13 @@ import time
 from functools import wraps
 import matplotlib.pyplot as plt
 
-plt.ioff()
 import pandas as pd
 import numpy as np
 from scipy import stats
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
+
+plt.ioff()
 
 
 def _qq_plot_twosample(sample1, sample2):

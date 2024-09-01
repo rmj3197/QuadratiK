@@ -5,7 +5,6 @@ from QuadratiK.kernel_test import KernelTest
 
 
 class TestKernelTest(unittest.TestCase):
-
     def setUp(self):
         np.random.seed(81423)
 

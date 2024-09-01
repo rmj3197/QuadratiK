@@ -1,6 +1,6 @@
 """
-Tests the functionality of the PKBC class 
-generating data and checking the properties 
+Tests the functionality of the PKBC class
+generating data and checking the properties
 of the fitted clustering model.
 """
 

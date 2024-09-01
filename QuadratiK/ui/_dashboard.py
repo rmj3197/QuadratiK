@@ -1,5 +1,5 @@
 """
-Contains the UI class is a user interface class that runs a Streamlit 
+Contains the UI class is a user interface class that runs a Streamlit
 dashboard using asyncio.
 """
 
