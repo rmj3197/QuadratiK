@@ -26,7 +26,7 @@ authors:
       Epidemiology (BBME), University of Missouri
 license: GPL-3.0
 preferred-citation:
-  type: generic
+  type: article
   title: >-
     Goodness-of-Fit and Clustering of Spherical Data: the QuadratiK package in R
     and Python
