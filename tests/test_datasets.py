@@ -2,13 +2,15 @@
 Testing loading datasets with different arguments
 """
 
+import unittest
+
 import numpy as np
 import pandas as pd
-import unittest
+
 from QuadratiK.datasets import (
+    load_wine_data,
     load_wireless_data,
     load_wisconsin_breast_cancer_data,
-    load_wine_data,
 )
 
 

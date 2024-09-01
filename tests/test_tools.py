@@ -3,14 +3,16 @@ Tests the tools module
 """
 
 import unittest
+
 import numpy as np
 import pandas as pd
+
 from QuadratiK.tools import (
-    stats,
-    sample_hypersphere,
-    qq_plot,
-    sphere3d,
     plot_clusters_2d,
+    qq_plot,
+    sample_hypersphere,
+    sphere3d,
+    stats,
 )
 
 

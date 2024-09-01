@@ -188,7 +188,7 @@ class PKBC:
 
         if isinstance(self.num_clust, int):
             if self.num_clust < 1:
-                raise Exception("Input parameter num_clust must be greater than 1")
+                raise ValueError("Input parameter num_clust must be greater than 1")
             else:
                 self.num_clust = [self.num_clust]
 
@@ -197,14 +197,14 @@ class PKBC:
 
         elif isinstance(self.num_clust, (list, np.ndarray)):
             if not all(isinstance(x, int) and x > 1 for x in self.num_clust):
-                raise Exception(
+                raise TypeError(
                     "Input parameter num_clust must a list or np.ndarray where each element be greater than 1"
                 )
 
         if self.max_iter < 1:
-            raise Exception("Input parameter maxIter must be greater than 0")
+            raise ValueError("Input parameter maxIter must be greater than 0")
         if self.stopping_rule not in ["max", "membership", "loglik"]:
-            raise Exception(
+            raise ValueError(
                 "Unrecognized value {} in input parameter.".format(self.stopping_rule)
             )
         if self.init_method not in ["sampledata"]:
@@ -212,7 +212,7 @@ class PKBC:
                 "Unrecognized value {} in input parameter.".format(self.init_method)
             )
         if self.num_init < 1:
-            raise Exception("Input parameter numInit must be greater than 0")
+            raise ValueError("Input parameter numInit must be greater than 0")
         if not isinstance(self.random_state, (int, type(None))):
             raise ValueError("Please specify a integer or None random_state")
 

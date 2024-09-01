@@ -1,6 +1,8 @@
+import unittest
+
 import numpy as np
 import pandas as pd
-import unittest
+
 from QuadratiK.kernel_test import KernelTest
 
 

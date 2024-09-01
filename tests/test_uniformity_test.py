@@ -4,8 +4,10 @@ hypersphere using the Poisson Kernel Test.
 """
 
 import unittest
+
 import numpy as np
 import pandas as pd
+
 from QuadratiK.poisson_kernel_test import PoissonKernelTest
 from QuadratiK.tools import sample_hypersphere
 

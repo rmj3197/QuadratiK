@@ -3,6 +3,7 @@ Checks if QuadratiK can be imported correctly along with submodules
 """
 
 import unittest
+
 import QuadratiK
 
 
@@ -26,5 +27,4 @@ class TestQuadratiKModule(unittest.TestCase):
     def test_invalid_attribute(self):
         with self.assertRaises(AttributeError):
             import QuadratiK
-
-            QuadratiK.__some__
+            _ = QuadratiK.__some__

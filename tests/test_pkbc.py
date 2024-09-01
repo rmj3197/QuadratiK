@@ -5,10 +5,12 @@ of the fitted clustering model.
 """
 
 import unittest
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
-import matplotlib.pyplot as plt
+
 from QuadratiK.spherical_clustering import PKBC, PKBD
 
 
@@ -71,28 +73,28 @@ class TestPKBC(unittest.TestCase):
         self.assertIsInstance(pkbd_cluster_fit_numpy.plot(3, y_true), type(go.Figure()))
         self.assertIsInstance(pkbd_cluster_fit_numpy.summary(), str)
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(ValueError):
             PKBC(num_clust=-1).fit(pd.DataFrame(data))
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(ValueError):
             PKBC(num_clust=3, max_iter=-1).fit(data)
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(ValueError):
             PKBC(num_clust=3, init_method="some").fit(data)
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(ValueError):
             PKBC(num_clust=3, num_init=-1).fit(data)
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(ValueError):
             PKBC(num_clust=3, random_state=[42]).fit(data)
 
         with self.assertRaises(ValueError):
             PKBC(num_clust=310).fit(data)
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(ValueError):
             PKBC(num_clust=3, stopping_rule="some").fit(data)
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(TypeError):
             PKBC(num_clust=pd.DataFrame(3)).fit(data)
 
         with self.assertRaises(ValueError):
