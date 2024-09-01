@@ -47,3 +47,19 @@ pytest-cov = "^4.1.0"
 
 [tool.poetry.urls]
 Homepage = "https://github.com/rmj3197/QuadratiK"
+
+[tool.cibuildwheel]
+skip = "pp*"
+
+[tool.ruff]
+line-length = 88 # same as black
+exclude = [".ipynb"]
+
+[tool.ruff.lint]
+extend-select = [
+  "B",   # flake8-bugbear
+  "I",   # isort
+  "PGH", # pygrep-hooks
+  "RUF", # Ruff-specific
+  "UP",  # pyupgrade
+]
