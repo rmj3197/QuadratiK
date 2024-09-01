@@ -11,7 +11,7 @@ QuadratiK
      - **Development**
    * - |License|_ |PyPI Python Version|_ |PyPI Downloads|_
      - |PyPI Version|_ |GitHub Actions|_ |Documentation Status|_
-     - |Codecov|_ |Ruff|_ |Ruff|_ |Black|_ |Codacy|_ |Codefactor|_ |Repo Status|_
+     - |Codecov|_ |Ruff|_ |Black|_ |Codacy|_ |Codefactor|_ |Repo Status|_
 
 .. |License| image:: https://img.shields.io/badge/License-GPLv3-blue.svg
    :target: https://github.com/rmj3197/QuadratiK/blob/main/LICENSE
