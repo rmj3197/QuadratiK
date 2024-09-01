@@ -48,9 +48,6 @@ pytest-cov = "^4.1.0"
 [tool.poetry.urls]
 Homepage = "https://github.com/rmj3197/QuadratiK"
 
-[tool.cibuildwheel]
-skip = "pp* cp3[0-8]*"
-
 [tool.ruff]
 line-length = 88 # same as black
 exclude = ["*.ipynb"]
