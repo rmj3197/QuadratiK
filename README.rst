@@ -66,6 +66,9 @@ QuadratiK
 .. _PyPI Downloads: https://pepy.tech/project/quadratik
 .. _Black: https://github.com/psf/black
 .. _Repo Status: https://www.repostatus.org/#active
+.. _Ruff: https://github.com/rmj3197/QuadratiK/actions/workflows/ruff_linting.yml
+.. _Codacy: https://app.codacy.com/gh/rmj3197/QuadratiK/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
+.. _Codefactor: https://www.codefactor.io/repository/github/rmj3197/quadratik
 
 Introduction
 ==============
