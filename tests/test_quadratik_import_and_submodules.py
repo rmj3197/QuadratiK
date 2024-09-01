@@ -27,4 +27,5 @@ class TestQuadratiKModule(unittest.TestCase):
     def test_invalid_attribute(self):
         with self.assertRaises(AttributeError):
             import QuadratiK
+
             _ = QuadratiK.__some__
