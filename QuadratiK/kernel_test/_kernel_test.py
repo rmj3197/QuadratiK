@@ -188,6 +188,41 @@ class KernelTest:
         )
     """
 
+    __slots__ = (
+        "h",
+        "method",
+        "num_iter",
+        "b",
+        "quantile",
+        "mu_hat",
+        "sigma_hat",
+        "centering_type",
+        "alternative",
+        "k_threshold",
+        "random_state",
+        "n_jobs",
+        "x",
+        "y",
+        "test_type_",
+        "execution_time",
+        "un_test_statistic_",
+        "un_cv_",
+        "un_h0_rejected_",
+        "var_un_",
+        "vn_test_statistic_",
+        "vn_cv_",
+        "vn_h0_rejected_",
+        "dn_test_statistic_",
+        "dn_cv_",
+        "dn_h0_rejected_",
+        "var_dn_",
+        "trace_test_statistic_",
+        "trace_cv_",
+        "trace_h0_rejected_",
+        "var_trace_",
+        "cv_method_",
+    )
+
     def __init__(
         self,
         h=None,

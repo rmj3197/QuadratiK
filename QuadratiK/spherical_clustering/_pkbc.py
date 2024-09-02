@@ -144,6 +144,31 @@ class PKBC:
     >>> cluster_fit = PKBC(num_clust=4, random_state=42).fit(X)
     """
 
+    __slots__ = (
+        "num_clust",
+        "max_iter",
+        "stopping_rule",
+        "init_method",
+        "num_init",
+        "tol",
+        "random_state",
+        "n_jobs",
+        "dat",
+        "dat_copy",
+        "euclidean_wcss_",
+        "cosine_wcss_",
+        "post_probs_",
+        "loglik_",
+        "mu_",
+        "rho_",
+        "alpha_",
+        "labels_",
+        "log_lik_vecs_",
+        "num_iter_per_runs_",
+        "log_lik_vec",
+        "num_iter_per_run",
+    )
+
     def __init__(
         self,
         num_clust,
