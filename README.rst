@@ -90,17 +90,17 @@ Giovanni Saraceno <gsaracen@buffalo.edu>, Marianthi Markatou <markatou@buffalo.e
 Mantainer: Raktim Mukhopadhyay <raktimmu@buffalo.edu>
 
 Documentation
----------------
+===============
 
 The documentation is hosted on Read the Docs at - https://quadratik.readthedocs.io/en/latest/
 
 Installation using ``pip``
-----------------------------
+============================
 
 ``pip install QuadratiK``
 
 Usage Examples
-----------------
+===============
 
 - `QuadratiK Examples <https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html>`_:
   A collection of basic examples that demonstrate how to use the core functionalities of the QuadratiK package. Ideal for new users to get started quickly.
@@ -117,10 +117,10 @@ You can also execute the examples on Binder |Binder|.
    :target: https://mybinder.org/v2/gh/rmj3197/QuadratiK/HEAD?labpath=doc%2Fsource%2Fuser_guide
 
 Community
-------------
+===========
 
 Development Version Installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------
 
 For installing the development version, please download the code files from the master branch of the Github repository. 
 Please note that installation from Github might be buggy, for latest stable release please download using ``pip``.
@@ -133,23 +133,23 @@ For downloading from Github use the following instructions,
    pip install -e .
 
 Contributing Guide
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 Please refer to the `Contributing Guide <https://quadratik.readthedocs.io/en/latest/development/CONTRIBUTING.html>`_.
 
 Code of Conduct
-^^^^^^^^^^^^^^^^^
+----------------
 
 The code of conduct can be found at `Code of Conduct <https://quadratik.readthedocs.io/en/latest/development/CODE_OF_CONDUCT.html>`_. 
 
 License
-^^^^^^^^^
+--------
 
 This project uses the GPL-3.0 license, with a full version of the license included in the repository `here <https://github.com/rmj3197/QuadratiK/blob/master/LICENSE>`_.
 
 
 Citation
---------
+==========
 
 If you use this package, please consider citing it using the following entry:
 
@@ -167,11 +167,11 @@ If you use this package, please consider citing it using the following entry:
 
 
 Funding Information
----------------------
+=====================
 The work has been supported by Kaleida Health Foundation, Food and Drug Administration, and Department of Biostatistics, University at Buffalo. 
 
 References
-------------
+============
 Saraceno G., Markatou M., Mukhopadhyay R., Golzy M. (2024). 
 Goodness-of-Fit and Clustering of Spherical Data: the QuadratiK package in R and Python. arXiv preprint arXiv:2402.02290.
 
