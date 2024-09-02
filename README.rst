@@ -99,7 +99,7 @@ The documentation is hosted on Read the Docs at - https://quadratik.readthedocs.
 Installation using ``pip``
 ============================
 
-``pip install QuadratiK``
+The package can be installed from PyPI using ``pip install QuadratiK``
 
 Usage Examples
 ===============
