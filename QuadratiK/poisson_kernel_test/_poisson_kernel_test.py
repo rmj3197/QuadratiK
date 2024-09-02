@@ -101,22 +101,22 @@ class PoissonKernelTest:
         Selected concentration parameter rho=0.7,
         )
     """
-    
+
     __slots__ = (
-        'rho',
-        'num_iter',
-        'quantile',
-        'random_state',
-        'n_jobs',
-        'x',
-        'test_type_',
-        'execution_time',
-        'u_statistic_un_',
-        'u_statistic_cv_',
-        'u_statistic_h0_',
-        'v_statistic_vn_',
-        'v_statistic_cv_',
-        'v_statistic_h0_'
+        "rho",
+        "num_iter",
+        "quantile",
+        "random_state",
+        "n_jobs",
+        "x",
+        "test_type_",
+        "execution_time",
+        "u_statistic_un_",
+        "u_statistic_cv_",
+        "u_statistic_h0_",
+        "v_statistic_vn_",
+        "v_statistic_cv_",
+        "v_statistic_h0_",
     )
 
     def __init__(self, rho, num_iter=300, quantile=0.95, random_state=None, n_jobs=8):
