@@ -124,7 +124,7 @@ Community
 Development Version Installation
 ----------------------------------
 
-To install the development version of `QuadratiK`, you will need to download the code files from the master branch of the GitHub repository. Keep in mind that the development version may contain bugs or unstable features. For the latest stable release, we recommend installing via `pip` or downloading a release from GitHub.
+To install the development version of ``QuadratiK``, you will need to download the code files from the master branch of the GitHub repository. Keep in mind that the development version may contain bugs or unstable features. For the latest stable release, we recommend installing via `pip` or downloading a release from GitHub.
 
 Cloning the Repository
 ************************
