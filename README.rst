@@ -174,27 +174,27 @@ Please note that this list is not exhaustive.
 R Packages
 ------------
 
-- **`stats`**: Contains the Kolmogorov-Smirnov test, performed using the `ks.test` function.
-- **`goftest`**: Includes the Cramér-von Mises test.
-- **`goft`**: Provides the Anderson-Darling test.
-- **`vsgoftest`**: Performs GoF tests for various distributions (uniform, normal, lognormal, exponential, gamma, Weibull, Pareto, Fisher, Laplace, and Beta) based on Shannon entropy and the Kullback-Leibler divergence.
-- **`GoFKernel`**: Contains an implementation of Fan's test.
-- **`GSAR`**: Implements graph-based ranking strategies for univariate and high-dimensional multivariate two-sample GoF tests. Includes the univariate run-based test, two-sample Kolmogorov-Smirnov test, and a modified Kolmogorov-Smirnov test for scale alternatives.
-- **`crossmatch`**: Provides a two-sample test based on interpoint distances.
-- **`energy`**: Offers a collection of test statistics for multivariate inference based on energy statistics.
-- **`kernlab`**: Includes an implementation of the Maximum Mean Discrepancy (MMD) test statistic using kernel mean embedding properties.
-- **`kSamples`**: Contains several nonparametric Rank Score $k$-sample tests, including the Kruskal-Wallis test, van der Waerden scores, normal scores, and the Anderson-Darling test.
-- **`coin`**: Provides permutation tests tailored against location and scale alternatives, and for survival distributions.
-- **`circular`**: Offers tests for data represented as points on the surface of a unit hypersphere, including Rayleigh's test, Rao’s Spacing test, Kuiper's test, and Watson's test of uniformity.
-- **`CircNNTSR`**: Provides a test for uniformity based on nonnegative trigonometric sums.
-- **`sphunif`**: Contains a collection of Sobolev tests and other nonparametric tests for uniformity on the sphere.
+- **``stats``**: Contains the Kolmogorov-Smirnov test, performed using the `ks.test` function.
+- **``goftest`**: Includes the Cramér-von Mises test.
+- **``goft``**: Provides the Anderson-Darling test.
+- **``vsgoftest``**: Performs GoF tests for various distributions (uniform, normal, lognormal, exponential, gamma, Weibull, Pareto, Fisher, Laplace, and Beta) based on Shannon entropy and the Kullback-Leibler divergence.
+- **``GoFKernel``**: Contains an implementation of Fan's test.
+- **``GSAR``**: Implements graph-based ranking strategies for univariate and high-dimensional multivariate two-sample GoF tests. Includes the univariate run-based test, two-sample Kolmogorov-Smirnov test, and a modified Kolmogorov-Smirnov test for scale alternatives.
+- **``crossmatch``**: Provides a two-sample test based on interpoint distances.
+- **``energy``**: Offers a collection of test statistics for multivariate inference based on energy statistics.
+- **``kernlab``**: Includes an implementation of the Maximum Mean Discrepancy (MMD) test statistic using kernel mean embedding properties.
+- **``kSamples``**: Contains several nonparametric Rank Score $k$-sample tests, including the Kruskal-Wallis test, van der Waerden scores, normal scores, and the Anderson-Darling test.
+- **``coin``**: Provides permutation tests tailored against location and scale alternatives, and for survival distributions.
+- **``circular``**: Offers tests for data represented as points on the surface of a unit hypersphere, including Rayleigh's test, Rao’s Spacing test, Kuiper's test, and Watson's test of uniformity.
+- **``CircNNTSR``**: Provides a test for uniformity based on nonnegative trigonometric sums.
+- **``sphunif``**: Contains a collection of Sobolev tests and other nonparametric tests for uniformity on the sphere.
 
 Python Packages
 ----------------
 
-- **`scipy`**: Includes a number of goodness-of-fit (GoF) tests, such as the Kolmogorov-Smirnov test, Cramér-von Mises test, and Anderson-Darling test. 
+- **``scipy``**: Includes a number of goodness-of-fit (GoF) tests, such as the Kolmogorov-Smirnov test, Cramér-von Mises test, and Anderson-Darling test. 
    For more details, please see the `Scipy Statistical Functions documentation <https://docs.scipy.org/doc/scipy/reference/stats.html>`_.
-- **`hyppo`**: This package offers implementations of various Goodness-of-Fit (GoF) testing methods, such as the Maximum Mean Discrepancy (MMD) and Energy statistics for $k$-sample testing. For more information, visit: <https://hyppo.neurodata.io/>.
+- **``hyppo``**: This package offers implementations of various Goodness-of-Fit (GoF) testing methods, such as the Maximum Mean Discrepancy (MMD) and Energy statistics for $k$-sample testing. For more information, visit: <https://hyppo.neurodata.io/>.
 
 
 Funding Information
