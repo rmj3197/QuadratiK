@@ -124,15 +124,80 @@ Community
 Development Version Installation
 ----------------------------------
 
-For installing the development version, please download the code files from the master branch of the Github repository. 
-Please note that installation from Github might be buggy, for latest stable release please download using ``pip``.
-For downloading from Github use the following instructions, 
+To install the development version of `QuadratiK`, you will need to download the code files from the master branch of the GitHub repository. Keep in mind that the development version may contain bugs or unstable features. For the latest stable release, we recommend installing via `pip` or downloading a release from GitHub.
+
+Cloning the Repository
+************************
+
+To clone the master branch from GitHub, use the following command:
 
 .. code-block:: bash
 
-   git clone https://github.com/rmj3197/QuadratiK.git
-   cd QuadratiK
-   pip install -e .
+    git clone https://github.com/rmj3197/QuadratiK.git
+
+Setting Up a Virtual Environment
+***********************************
+
+We strongly recommend creating a new virtual environment to isolate the `QuadratiK` installation and its dependencies from your system-wide Python environment. You can create a virtual environment using `venv`, `virtualenv`, or any other virtual environment manager of your choice. For example, using `venv`:
+
+.. code-block:: bash
+
+    python3 -m venv quadratik-env
+    source quadratik-env/bin/activate  # On Windows: quadratik-env\Scripts\activate
+
+Installing Dependencies with Poetry
+*************************************
+
+`QuadratiK` uses the Poetry package manager for dependency management and installation. If you don't have Poetry installed, you can install it by following the instructions on the `Poetry Documentation`_.
+
+After setting up your virtual environment and cloning the repository, navigate to the `QuadratiK` directory:
+
+.. code-block:: bash
+
+    cd QuadratiK
+
+You can install the project dependencies and set up the development environment by running:
+
+.. code-block:: bash
+
+    poetry install
+
+This command will create a virtual environment (if one doesn't already exist), install the dependencies specified in `pyproject.toml`, and set up the project for development.
+
+Activating the Poetry Environment
+************************************
+
+After installation, you can activate the Poetry-managed virtual environment by running:
+
+.. code-block:: bash
+
+    poetry shell
+
+This ensures that any commands you run are executed within the isolated environment.
+
+Running Tests
+***************
+
+To verify that everything is set up correctly, you can run the project's test suite. This will help ensure that the development environment is correctly configured:
+
+.. code-block:: bash
+
+    poetry run pytest
+
+This command uses Poetry to run `pytest` within the virtual environment, executing all the tests defined in the project.
+
+Additional Notes
+******************
+
+- If you encounter any issues during installation or while using the development version, please report them on the `GitHub Issues`_ page.
+
+- For contributing to `QuadratiK`, please follow the `contribution guidelines`_ provided in the repository.
+
+- To keep your development environment up-to-date, you can periodically pull the latest changes from the master branch and run `poetry update` to update dependencies.
+
+.. _Poetry Documentation: https://python-poetry.org/docs/#installation
+.. _GitHub Issues: https://github.com/rmj3197/QuadratiK/issues
+.. _contribution guidelines: https://github.com/rmj3197/QuadratiK/blob/master/CONTRIBUTING.md
 
 Contributing Guide
 ---------------------
