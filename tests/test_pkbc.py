@@ -95,7 +95,7 @@ class TestPKBC(unittest.TestCase):
             PKBC(num_clust=3, stopping_rule="some").fit(data)
 
         with self.assertRaises(TypeError):
-            PKBC(num_clust=pd.DataFrame(3)).fit(data)
+            PKBC(num_clust=pd.DataFrame([3])).fit(data)
 
         with self.assertRaises(ValueError):
             X = np.random.randn(10, 2)
