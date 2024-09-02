@@ -83,6 +83,8 @@ The QuadratiK package is implemented in both **R** and **Python**, providing a c
 
 * **User Interface**: We also provide a dashboard application built using ``streamlit`` allowing users to access the methods implemented in the package without the need for programming.
 
+The **R** implementation is available on `CRAN <https://cran.r-project.org/web/packages/QuadratiK/index.html>`_.
+
 Authors
 ---------
 Giovanni Saraceno <gsaracen@buffalo.edu>, Marianthi Markatou <markatou@buffalo.edu>, Raktim Mukhopadhyay <raktimmu@buffalo.edu>, Mojgan Golzy <golzym@health.missouri.edu>
