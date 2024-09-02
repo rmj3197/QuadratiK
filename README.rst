@@ -145,6 +145,20 @@ We strongly recommend creating a new virtual environment to isolate the `Quadrat
     python3 -m venv quadratik-env
     source quadratik-env/bin/activate  # On Windows: quadratik-env\Scripts\activate
 
+Activating the Poetry Environment
+************************************
+
+After installation, you can activate the Poetry-managed virtual environment by running:
+
+.. code-block:: bash
+
+    poetry shell
+
+This ensures that any commands you run are executed within the isolated environment.
+
+Please note that if managing your own virtual environment externally, you do not need to use poetry shell since you will, 
+already have activated that virtual environment and made available the correct python instance. 
+
 Installing Dependencies with Poetry
 *************************************
 
@@ -162,18 +176,7 @@ You can install the project dependencies and set up the development environment 
 
     poetry install
 
-This command will create a virtual environment (if one doesn't already exist), install the dependencies specified in `pyproject.toml`, and set up the project for development.
-
-Activating the Poetry Environment
-************************************
-
-After installation, you can activate the Poetry-managed virtual environment by running:
-
-.. code-block:: bash
-
-    poetry shell
-
-This ensures that any commands you run are executed within the isolated environment.
+This command will install the dependencies specified in `pyproject.toml` and the package, and set up the project for development.
 
 Running Tests
 ***************
