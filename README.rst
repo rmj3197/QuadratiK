@@ -83,7 +83,7 @@ The QuadratiK package is implemented in both **R** and **Python**, providing a c
 
 * **User Interface**: We also provide a dashboard application built using ``streamlit`` allowing users to access the methods implemented in the package without the need for programming.
 
-The **R** implementation can be found on `CRAN <https://cran.r-project.org/web/packages/QuadratiK/index.html>`_ and the corresponding GitHub repository is available at `QuadratiK in R <https://github.com/giovsaraceno/QuadratiK-package>`_.
+The **R** implementation can be found on `CRAN <https://cran.r-project.org/web/packages/QuadratiK/index.html>`_ and the corresponding GitHub repository is available `here <https://github.com/giovsaraceno/QuadratiK-package>`_.
 
 Authors
 ---------
@@ -138,7 +138,7 @@ To clone the master branch from GitHub, use the following command:
 Poetry Setup
 **************
 
-``QuadratiK`` uses the ``poetry`` package manager for dependency management and installation. If you don't have ``Poetry`` installed, you can install it by following the instructions on the `Poetry Documentation`_.
+``QuadratiK`` uses the ``poetry`` package manager for dependency management and installation. If you don't have ``Poetry`` installed, you can install it by following the instructions in the `Poetry Documentation`_.
 
 Setting Up a Virtual Environment
 ***********************************
