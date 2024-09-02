@@ -189,6 +189,21 @@ class PKBC:
         self.random_state = random_state
         self.n_jobs = n_jobs
 
+        self.dat = None
+        self.dat_copy = None
+        self.euclidean_wcss_ = None
+        self.cosine_wcss_ = None
+        self.post_probs_ = None
+        self.loglik_ = None
+        self.mu_ = None
+        self.rho_ = None
+        self.alpha_ = None
+        self.labels_ = None
+        self.log_lik_vecs_ = None
+        self.num_iter_per_runs_ = None
+        self.log_lik_vec = None
+        self.num_iter_per_run = None
+
     def fit(self, dat):
         """
         Performs Poisson Kernel-based Clustering.

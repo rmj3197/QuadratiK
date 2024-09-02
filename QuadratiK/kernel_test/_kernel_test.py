@@ -251,6 +251,27 @@ class KernelTest:
         self.n_jobs = n_jobs
         self.random_state = random_state
 
+        self.x = None
+        self.y = None
+        self.test_type_ = None
+        self.execution_time = None
+        self.un_test_statistic_ = None
+        self.un_cv_ = None
+        self.un_h0_rejected_ = None
+        self.var_un_ = None
+        self.vn_test_statistic_ = None
+        self.vn_cv_ = None
+        self.vn_h0_rejected_ = None
+        self.dn_test_statistic_ = None
+        self.dn_cv_ = None
+        self.dn_h0_rejected_ = None
+        self.var_dn_ = None
+        self.trace_test_statistic_ = None
+        self.trace_cv_ = None
+        self.trace_h0_rejected_ = None
+        self.var_trace_ = None
+        self.cv_method_ = None
+
     def __repr__(self):
         if self.vn_test_statistic_ is not None:
             return (

@@ -126,6 +126,16 @@ class PoissonKernelTest:
         self.random_state = random_state
         self.n_jobs = n_jobs
 
+        self.x = None
+        self.test_type_ = None
+        self.execution_time = None
+        self.u_statistic_un_ = None
+        self.u_statistic_cv_ = None
+        self.u_statistic_h0_ = None
+        self.v_statistic_vn_ = None
+        self.v_statistic_cv_ = None
+        self.v_statistic_h0_ = None
+
     def __repr__(self):
         return (
             f"{self.__class__.__name__}(\n"
