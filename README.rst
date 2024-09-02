@@ -138,12 +138,12 @@ To clone the master branch from GitHub, use the following command:
 Poetry Setup
 **************
 
-`QuadratiK` uses the **Poetry** package manager for dependency management and installation. If you don't have Poetry installed, you can install it by following the instructions on the `Poetry Documentation`_.
+``QuadratiK`` uses the ``poetry`` package manager for dependency management and installation. If you don't have ``Poetry`` installed, you can install it by following the instructions on the `Poetry Documentation`_.
 
 Setting Up a Virtual Environment
 ***********************************
 
-We strongly recommend creating a new virtual environment to isolate the `QuadratiK` installation and its dependencies from your system-wide Python environment. You can create a virtual environment using `venv`, `virtualenv`, or any other virtual environment manager of your choice. For example, using `venv`:
+We strongly recommend creating a new virtual environment to isolate the ``QuadratiK`` installation and its dependencies from your system-wide Python environment. You can create a virtual environment using ``venv``, ``virtualenv``, or any other virtual environment manager of your choice. For example, using ``venv``:
 
 .. code-block:: bash
 
@@ -197,18 +197,17 @@ Additional Notes
 
 - If you encounter any issues during installation or while using the development version, please report them on the `GitHub Issues`_ page.
 
-- For contributing to `QuadratiK`, please follow the `contribution guidelines`_ provided in the repository.
-
 - To keep your development environment up-to-date, you can periodically pull the latest changes from the master branch and run `poetry update` to update dependencies.
 
 .. _Poetry Documentation: https://python-poetry.org/docs/#installation
 .. _GitHub Issues: https://github.com/rmj3197/QuadratiK/issues
-.. _contribution guidelines: https://github.com/rmj3197/QuadratiK/blob/master/CONTRIBUTING.md
 
 Contributing Guide
 ---------------------
 
-Please refer to the `Contributing Guide <https://quadratik.readthedocs.io/en/latest/development/CONTRIBUTING.html>`_.
+For contributing to ``QuadratiK``, please follow the `contribution guidelines`_ provided in the repository.
+
+.. _contribution guidelines: https://quadratik.readthedocs.io/en/latest/development/CODE_OF_CONDUCT.html
 
 Code of Conduct
 ----------------
