@@ -135,6 +135,8 @@ To clone the master branch from GitHub, use the following command:
 
     git clone https://github.com/rmj3197/QuadratiK.git
 
+**`QuadratiK` uses the Poetry package manager for dependency management and installation. If you don't have Poetry installed, you can install it by following the instructions on the `Poetry Documentation`_.**
+
 Setting Up a Virtual Environment
 ***********************************
 
@@ -161,8 +163,6 @@ already have activated that virtual environment and made available the correct p
 
 Installing Dependencies with Poetry
 *************************************
-
-`QuadratiK` uses the Poetry package manager for dependency management and installation. If you don't have Poetry installed, you can install it by following the instructions on the `Poetry Documentation`_.
 
 After setting up your virtual environment and cloning the repository, navigate to the `QuadratiK` directory:
 
