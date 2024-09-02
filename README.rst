@@ -190,7 +190,7 @@ R Packages
 - ``sphunif``: Contains a collection of Sobolev tests and other nonparametric tests for uniformity on the sphere.
 
 Python Packages
-----------------
+---------------
 
 - ``scipy``: Includes a number of goodness-of-fit (GoF) tests, such as the Kolmogorov-Smirnov test, Cramér-von Mises test, and Anderson-Darling test. For more details, please see the `Scipy Statistical Functions documentation <https://docs.scipy.org/doc/scipy/reference/stats.html>`_.
 - ``hyppo``: This package offers implementations of various Goodness-of-Fit (GoF) testing methods, such as the Maximum Mean Discrepancy (MMD) and Energy statistics for $k$-sample testing. For more information, visit: `Hyppo Documentation <https://hyppo.neurodata.io/>`_.
