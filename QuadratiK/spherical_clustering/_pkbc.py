@@ -183,7 +183,7 @@ class PKBC:
             self.dat = self.dat.to_numpy()
 
         if not isinstance(self.num_clust, (int, range, list, np.ndarray)):
-            raise Exception(
+            raise TypeError(
                 "Please input only integer, list and np.ndarray for num_clust"
             )
 
@@ -209,7 +209,7 @@ class PKBC:
                 f"Unrecognized value {self.stopping_rule} in input parameter."
             )
         if self.init_method not in ["sampledata"]:
-            raise Exception(
+            raise ValueError(
                 f"Unrecognized value {self.init_method} in input parameter."
             )
         if self.num_init < 1:
@@ -591,7 +591,7 @@ class PKBC:
             Returns a 2D matplotlib figure object or 3D plotly figure object with data points plotted on it.
         """
         if self.dat.shape[1] < 2:
-            raise Exception(
+            raise ValueError(
                 "Plot is not implemented when dimensionality is less than 2."
             )
 
