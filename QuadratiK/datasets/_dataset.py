@@ -1,6 +1,5 @@
 from importlib import resources
-
-from typing import Union, Tuple, Optional
+from typing import Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -17,7 +16,7 @@ def load_wireless_data(
     Tuple[str, np.ndarray],
     Tuple[pd.DataFrame, pd.DataFrame],
     Tuple[np.ndarray, np.ndarray],
-    pd.dataFrame,
+    pd.DataFrame,
     np.ndarray,
 ]:
     """
@@ -159,7 +158,7 @@ def load_wisconsin_breast_cancer_data(
     Tuple[str, np.ndarray],
     Tuple[pd.DataFrame, pd.DataFrame],
     Tuple[np.ndarray, np.ndarray],
-    pd.dataFrame,
+    pd.DataFrame,
     np.ndarray,
 ]:
     """
@@ -334,7 +333,7 @@ def load_wine_data(
     Tuple[str, np.ndarray],
     Tuple[pd.DataFrame, pd.DataFrame],
     Tuple[np.ndarray, np.ndarray],
-    pd.dataFrame,
+    pd.DataFrame,
     np.ndarray,
 ]:
     """
