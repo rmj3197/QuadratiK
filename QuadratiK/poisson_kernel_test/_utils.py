@@ -1,8 +1,10 @@
+from typing import Dict, Optional, Tuple
+
 import numpy as np
 from sklearn.utils.validation import check_random_state
 
 
-def dof(d, rho):
+def dof(d: int, rho: float) -> Dict[str, float]:
     """
     Compute the Degrees of Freedom (DOF) of the Poisson Kernel given the
     dimension d and concentration parameter rho
@@ -29,7 +31,7 @@ def dof(d, rho):
     return result
 
 
-def stat_poisson_unif(x_mat, rho):
+def stat_poisson_unif(x_mat: np.ndarray, rho: float) -> Tuple[float, float]:
     """
     Compute the Poisson kernel-based test for Uniformity
     given a sample of observations on the Sphere.
@@ -56,7 +58,9 @@ def stat_poisson_unif(x_mat, rho):
     return (un, vn)
 
 
-def poisson_cv_helper(size, d, rho, n_rep, random_state):
+def poisson_cv_helper(
+    size: int, d: int, rho: float, n_rep: int, random_state: Optional[int]
+) -> float:
     """
     Generate a sample of observations on the Sphere and
     perform a Poisson kernel-based test for uniformity.
@@ -92,7 +96,7 @@ def poisson_cv_helper(size, d, rho, n_rep, random_state):
     return un
 
 
-def compute_poisson_matrix(x_mat, rho):
+def compute_poisson_matrix(x_mat: np.ndarray, rho: float) -> np.ndarray:
     """
     Compute the Poisson kernel matrix between
     observations in a sample.

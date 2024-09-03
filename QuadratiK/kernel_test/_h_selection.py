@@ -2,6 +2,8 @@
 Contains the tuning parameter selection algorithm
 """
 
+from typing import Optional, Union
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -13,19 +15,19 @@ from ._utils import stat_ksample, stat_normality_test, stat_two_sample
 
 
 def _objective_one_sample(
-    alternative,
-    delta,
-    delta_dim,
-    h,
-    mean_dat,
-    n,
-    num_iter,
-    quantile,
-    rep_values,
-    s_dat,
-    skew_data,
-    random_state,
-    n_jobs=1,
+    alternative: str,
+    delta: np.ndarray,
+    delta_dim: Union[np.ndarray, int],
+    h: float,
+    mean_dat: np.ndarray,
+    n: int,
+    num_iter: int,
+    quantile: float,
+    rep_values: int,
+    s_dat: np.ndarray,
+    skew_data: np.ndarray,
+    random_state: Optional[int],
+    n_jobs: int = 1,
 ):
     """
     Objective function using using the best
@@ -126,24 +128,24 @@ def _objective_one_sample(
 
 
 def _objective_two_sample(
-    alternative,
-    b,
-    delta,
-    delta_dim,
-    h,
-    m,
-    mean_dat,
-    method,
-    n,
-    num_iter,
-    pooled,
-    quantile,
-    rep_values,
-    s_dat,
-    skew_data,
-    d,
-    random_state,
-    n_jobs=1,
+    alternative: str,
+    b: float,
+    delta: np.ndarray,
+    delta_dim: Union[np.ndarray, int],
+    h: float,
+    m: int,
+    mean_dat: np.ndarray,
+    method: str,
+    n: int,
+    num_iter: int,
+    pooled: np.ndarray,
+    quantile: float,
+    rep_values: int,
+    s_dat: np.ndarray,
+    skew_data: np.ndarray,
+    d: int,
+    random_state: Optional[int],
+    n_jobs: int = 1,
 ):
     """
     Objective function using using the best
@@ -272,22 +274,22 @@ def _objective_two_sample(
 
 
 def _objective_k_sample(
-    alternative,
-    num_iter,
-    b,
-    delta,
-    delta_dim,
-    h,
-    k,
-    mean_dat,
-    method,
-    n,
-    quantile,
-    rep_values,
-    s_dat,
-    skew_data,
-    random_state,
-    n_jobs=1,
+    alternative: str,
+    num_iter: int,
+    b: float,
+    delta: np.ndarray,
+    delta_dim: Union[np.ndarray, int],
+    h: float,
+    k: int,
+    mean_dat: np.ndarray,
+    method: str,
+    n: int,
+    quantile: float,
+    rep_values: int,
+    s_dat: np.ndarray,
+    skew_data: np.ndarray,
+    random_state: Optional[int],
+    n_jobs: int = 1,
 ):
     """
     Objective function using using the best
@@ -410,21 +412,21 @@ def _objective_k_sample(
 
 
 def select_h(
-    x,
-    y=None,
-    alternative="location",
-    method="subsampling",
-    b=0.8,
-    num_iter=150,
-    delta_dim=1,
-    delta=None,
-    h_values=None,
-    n_rep=50,
-    n_jobs=8,
-    quantile=0.95,
-    k_threshold=10,
-    power_plot=False,
-    random_state=None,
+    x: Union[np.ndarray, pd.DataFrame],
+    y=Optional[Union[np.ndarray, pd.DataFrame]],
+    alternative: str = "location",
+    method: str = "subsampling",
+    b: float = 0.8,
+    num_iter: int = 150,
+    delta_dim: Union[np.ndarray, int] = 1,
+    delta: Optional[np.ndarray] = None,
+    h_values: Optional[np.ndarray] = None,
+    n_rep: int = 50,
+    n_jobs: int = 8,
+    quantile: float = 0.95,
+    k_threshold: int = 10,
+    power_plot: bool = False,
+    random_state: Optional[int] = None,
 ):
     """
     This function computes the kernel bandwidth of the Gaussian kernel

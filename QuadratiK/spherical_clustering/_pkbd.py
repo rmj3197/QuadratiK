@@ -3,6 +3,8 @@ The PKBD class provides methods for estimating the density and generating sample
 Poisson-kernel based distribution (PKBD).
 """
 
+from typing import List, Optional, Union
+
 import numpy as np
 import pandas as pd
 import scipy.special as sp
@@ -10,7 +12,7 @@ from scipy.optimize import root_scalar
 from scipy.stats import vonmises_fisher
 from sklearn.utils.validation import check_random_state
 
-from ._utils import c_d_lambda
+from ._utils import _c_d_lambda
 
 
 class PKBD:
@@ -18,10 +20,16 @@ class PKBD:
     Class for estimating density and generating samples of Poisson-kernel based distribution (PKBD).
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
-    def dpkb(self, x, mu, rho, logdens=False):
+    def dpkb(
+        self,
+        x: Union[np.ndarray, pd.DataFrame],
+        mu: np.ndarray,
+        rho: float,
+        logdens: bool = False,
+    ) -> np.ndarray:
         """
         Function for estimating the density function of the PKB distribution.
 
@@ -78,7 +86,14 @@ class PKBD:
 
         return density
 
-    def rpkb(self, n, mu, rho, method="rejvmf", random_state=None):
+    def rpkb(
+        self,
+        n: int,
+        mu: Union[np.ndarray, List[float]],
+        rho: float,
+        method: str = "rejvmf",
+        random_state: Optional[int] = None,
+    ) -> np.ndarray:
         """
         Function for generating a random sample from PKBD.
         The number of observation generated is determined by `n`.
@@ -88,7 +103,7 @@ class PKBD:
             n : int
                 Sample size.
 
-            mu : float
+            mu : np.ndarray, list
                 Location parameter with the same length as the quantiles.
 
             rho : float
@@ -111,8 +126,7 @@ class PKBD:
         -------
             samples : numpy.ndarray
                 Generated observations from a poisson kernel-based density.
-                This function returns a list with the matrix of generated observations, the
-                number of tries and the number of acceptance.
+                This function returns a matrix of generated observations.
 
         References
         -----------
@@ -182,7 +196,7 @@ class PKBD:
             lamda = 2 * rho / (1 + rho**2)
             beta_lambda = lamda / (2 - lamda)
             beta_star = root_scalar(
-                c_d_lambda, args=(p, lamda), bracket=[beta_lambda, 1], xtol=0.001
+                _c_d_lambda, args=(p, lamda), bracket=[beta_lambda, 1], xtol=0.001
             ).root
             b1 = beta_star / (1 - beta_star)
             b2 = -1 + 1 / np.sqrt(1 - beta_star)

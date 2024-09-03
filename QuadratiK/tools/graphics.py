@@ -1,3 +1,5 @@
+from typing import Optional, Union
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -8,7 +10,9 @@ from ._utils import _extract_3d, _qq_plot_onesample, _qq_plot_twosample
 plt.ioff()
 
 
-def qq_plot(x, y=None, dist="norm"):
+def qq_plot(
+    x: np.ndarray, y: Optional[np.ndarray] = None, dist: str = "norm"
+) -> plt.Figure:
     """
     The function qq_plot is used to create a quantile-quantile plot,
     either for a single sample or for two samples.
@@ -52,7 +56,10 @@ def qq_plot(x, y=None, dist="norm"):
         return _qq_plot_twosample(x, y)
 
 
-def sphere3d(x, y=None):
+def sphere3d(
+    x: Union[np.ndarray, pd.DataFrame],
+    y: Optional[Union[np.ndarray, list, pd.Series]] = None,
+) -> plt.Figure:
     """
     The function sphere3d creates a 3D scatter plot with a sphere
     as the surface and data points plotted on it.
@@ -155,7 +162,10 @@ def sphere3d(x, y=None):
     return fig
 
 
-def plot_clusters_2d(x, y=None):
+def plot_clusters_2d(
+    x: Union[np.ndarray, pd.DataFrame],
+    y: Optional[Union[np.ndarray, pd.DataFrame]] = None,
+) -> plt.Figure:
     """
     This function plots a 2D scatter plot of data points,
     with an optional argument to color the points based on

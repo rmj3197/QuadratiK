@@ -9,6 +9,8 @@
 import os
 import sys
 
+import QuadratiK
+
 basedir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, basedir)
 
@@ -17,7 +19,7 @@ copyright = (
     "2023, Giovanni Saraceno, Marianthi Markatou, Raktim Mukhopadhyay, Mojgan Golzy"
 )
 author = "Giovanni Saraceno, Marianthi Markatou, Raktim Mukhopadhyay, Mojgan Golzy"
-release = "1.2.dev0"
+release = QuadratiK.__version__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

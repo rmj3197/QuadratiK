@@ -2,6 +2,8 @@
 Critical value functions for Kernel Test
 """
 
+from typing import Optional
+
 import numpy as np
 from sklearn.utils.parallel import Parallel, delayed
 
@@ -17,16 +19,16 @@ from ._utils import (
 
 
 def cv_twosample(
-    num_iter,
-    quantile,
-    data_pool,
-    size_x,
-    size_y,
-    h,
-    method,
-    b=0.9,
-    random_state=None,
-    n_jobs=8,
+    num_iter: int,
+    quantile: float,
+    data_pool: np.ndarray,
+    size_x: int,
+    size_y: int,
+    h: float,
+    method: str,
+    b: float = 0.9,
+    random_state: Optional[int] = None,
+    n_jobs: int = 8,
 ):
     """
     This function computes the critical value for two-sample kernel tests with
@@ -106,14 +108,14 @@ def cv_twosample(
 
 
 def cv_normality(
-    size,
-    h,
-    mu_hat,
-    sigma_hat,
-    num_iter=500,
-    quantile=0.95,
-    random_state=None,
-    n_jobs=8,
+    size: int,
+    h: float,
+    mu_hat: np.ndarray,
+    sigma_hat: np.ndarray,
+    num_iter: int = 500,
+    quantile: float = 0.95,
+    random_state: Optional[int] = None,
+    n_jobs: int = 8,
 ):
     """
     This function computes the empirical critical value for the
@@ -170,15 +172,15 @@ def cv_normality(
 
 
 def cv_ksample(
-    x,
-    y,
-    h,
-    num_iter=150,
-    b=0.9,
-    quantile=0.95,
-    method="subsampling",
-    random_state=None,
-    n_jobs=8,
+    x: np.ndarray,
+    y: np.ndarray,
+    h: float,
+    num_iter: int = 150,
+    b: float = 0.9,
+    quantile: float = 0.95,
+    method: str = "subsampling",
+    random_state: Optional[int] = None,
+    n_jobs: int = 8,
 ):
     """
     Compute the critical value for k-sample kernel tests.

@@ -3,6 +3,7 @@ Poisson kernel-based quadratic distance test of Uniformity on the Sphere
 """
 
 import importlib
+from typing import Optional, Union
 
 import numpy as np
 import pandas as pd
@@ -119,7 +120,14 @@ class PoissonKernelTest:
         "v_statistic_h0_",
     )
 
-    def __init__(self, rho, num_iter=300, quantile=0.95, random_state=None, n_jobs=8):
+    def __init__(
+        self,
+        rho: float,
+        num_iter: int = 300,
+        quantile: float = 0.95,
+        random_state: Optional[int] = None,
+        n_jobs: int = 8,
+    ) -> None:
         self.rho = rho
         self.num_iter = num_iter
         self.quantile = quantile
@@ -136,7 +144,7 @@ class PoissonKernelTest:
         self.v_statistic_cv_ = None
         self.v_statistic_h0_ = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return (
             f"{self.__class__.__name__}(\n"
             f"  Test Type={self.test_type_},\n"
@@ -152,7 +160,7 @@ class PoissonKernelTest:
         )
 
     @time_decorator
-    def test(self, x):
+    def test(self, x: Union[np.ndarray, pd.DataFrame]) -> "PoissonKernelTest":
         """
         Performs the Poisson kernel-based quadratic distance Goodness-of-fit tests for
         Uniformity for spherical data using the Poisson kernel with concentration parameter :math:`rho`.
@@ -225,7 +233,7 @@ class PoissonKernelTest:
 
         return self
 
-    def stats(self):
+    def stats(self) -> pd.DataFrame:
         """
         Function to generate descriptive statistics.
 
@@ -237,7 +245,7 @@ class PoissonKernelTest:
         summary_stats_df = stats(self.x)
         return summary_stats_df.round(4)
 
-    def summary(self, print_fmt="simple_grid"):
+    def summary(self, print_fmt: str = "simple_grid") -> str:
         """
         Summary function generates a table for
         the Poisson kernel test results and the summary statistics.

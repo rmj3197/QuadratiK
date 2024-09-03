@@ -29,7 +29,7 @@ class UI:
     def __init__(self) -> None:
         pass
 
-    async def main(self):
+    async def main(self) -> None:
         """
         The `main` function runs a Streamlit dashboard by executing a command-line command.
         """
@@ -50,7 +50,7 @@ class UI:
         ]
         sys.exit(stcli.main())
 
-    def run(self):
+    def run(self) -> None:
         """
         The function runs the main function asynchronously using the asyncio library in Python.
         """

@@ -3,13 +3,23 @@ Critical value for the uniformity test on the sphere based
 on the centered poisson kernel tests
 """
 
+from typing import Optional
+
 import numpy as np
 from sklearn.utils.parallel import Parallel, delayed
 
 from ._utils import poisson_cv_helper
 
 
-def poisson_cv(d, size, rho, num_iter, quantile, random_state=None, n_jobs=8):
+def poisson_cv(
+    d: int,
+    size: int,
+    rho: float,
+    num_iter: int,
+    quantile: float,
+    random_state: Optional[int] = None,
+    n_jobs: int = 8,
+) -> float:
     """
     Perform a Poisson kernel-based test for uniformity multiple
     times and return the quantile of the results.

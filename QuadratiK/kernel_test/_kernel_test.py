@@ -3,6 +3,7 @@ Kernel-based quadratic distance Goodness-of-Fit tests
 """
 
 import importlib
+from typing import Optional, Union
 
 import numpy as np
 import pandas as pd
@@ -59,7 +60,7 @@ class KernelTest:
         alternative : str, optional
             String indicating the type of alternative to be used for calculating "h"
             by the tuning parameter selection algorithm when h is not provided.
-            Defaults to 'None'
+            Must be one of "mean", "variance" and "skewness". Defaults to 'None'
 
         k_threshold : int, optional
             Maximum number of groups allowed. Defaults to 10. Change in case of more than 10 groups.
@@ -225,19 +226,19 @@ class KernelTest:
 
     def __init__(
         self,
-        h=None,
-        method="subsampling",
-        num_iter=150,
-        b=0.9,
-        quantile=0.95,
-        mu_hat=None,
-        sigma_hat=None,
-        centering_type="nonparam",
-        alternative=None,
-        k_threshold=10,
-        random_state=None,
-        n_jobs=8,
-    ):
+        h: Optional[float] = None,
+        method: str = "subsampling",
+        num_iter: str = 150,
+        b: float = 0.9,
+        quantile: float = 0.95,
+        mu_hat: Optional[np.ndarray] = None,
+        sigma_hat: Optional[np.ndarray] = None,
+        centering_type: str = "nonparam",
+        alternative: Optional[str] = None,
+        k_threshold: int = 10,
+        random_state: Optional[int] = None,
+        n_jobs: int = 8,
+    ) -> None:
         self.h = h
         self.method = method
         self.num_iter = num_iter
@@ -272,7 +273,7 @@ class KernelTest:
         self.var_trace_ = None
         self.cv_method_ = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         if self.vn_test_statistic_ is not None:
             return (
                 f"{self.__class__.__name__}(\n"
@@ -307,7 +308,11 @@ class KernelTest:
             )
 
     @time_decorator
-    def test(self, x, y=None):
+    def test(
+        self,
+        x: Union[np.ndarray, pd.DataFrame],
+        y: Optional[Union[np.ndarray, pd.DataFrame]] = None,
+    ) -> "KernelTest":
         """
         Function to perform the kernel-based quadratic distance tests using
         the Gaussian kernel with bandwidth parameter h.
@@ -548,7 +553,7 @@ class KernelTest:
                 self.vn_cv_ = None
                 return self
 
-    def stats(self):
+    def stats(self) -> pd.DataFrame:
         """
         Function to generate descriptive statistics per variable (and per group if available).
 
@@ -560,7 +565,7 @@ class KernelTest:
         summary_stats_df = stats(self.x, self.y)
         return summary_stats_df.round(4)
 
-    def summary(self, print_fmt="simple_grid"):
+    def summary(self, print_fmt: str = "simple_grid") -> str:
         """
         Summary function generates a table for the kernel test results and the summary statistics.
 

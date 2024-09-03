@@ -1,8 +1,12 @@
+from typing import List, Optional, Tuple, Union
+
 import numpy as np
 from sklearn.utils.validation import check_random_state
 
 
-def compute_kernel_matrix(x_mat, y_mat, cov_h):
+def compute_kernel_matrix(
+    x_mat: np.ndarray, y_mat: np.ndarray, cov_h: np.ndarray
+) -> np.ndarray:
     """
     Compute the Gaussian kernel matrix between two samples.
 
@@ -35,7 +39,7 @@ def compute_kernel_matrix(x_mat, y_mat, cov_h):
     return kmat_zz
 
 
-def nonparam_centering(kmat_zz, n_z):
+def nonparam_centering(kmat_zz: np.ndarray, n_z: np.ndarray) -> np.ndarray:
     """
     Compute the non-parametric centered kernel.
 
@@ -65,7 +69,13 @@ def nonparam_centering(kmat_zz, n_z):
     return k_center
 
 
-def param_centering(kmat_zz, z_mat, cov_h, mu_hat, sigma_hat):
+def param_centering(
+    kmat_zz: np.ndarray,
+    z_mat: np.ndarray,
+    cov_h: np.ndarray,
+    mu_hat: np.ndarray,
+    sigma_hat: np.ndarray,
+) -> np.ndarray:
     """
     Compute the Gaussian kernel centered with respect to a Normal distribution
     with mean vector mu and covariance sigma.
@@ -104,7 +114,7 @@ def param_centering(kmat_zz, z_mat, cov_h, mu_hat, sigma_hat):
     return k_center
 
 
-def dof_normality_test(sigma_h, v):
+def dof_normality_test(sigma_h: np.ndarray, v: np.ndarray) -> Tuple[float, float]:
     """
     Compute the Degrees of Freedom (DOF) of the normal Kernel centered with
     respect to the standard normal distribution, given the dimension d and the
@@ -140,7 +150,7 @@ def dof_normality_test(sigma_h, v):
     return (dof, const)
 
 
-def variance_normality_test(sigma_h, v, n):
+def variance_normality_test(sigma_h: np.ndarray, v: np.ndarray, n: int) -> float:
     """
     Compute the exact variance of kernel test for normality under the null
     hypothesis that G=N(0,I).
@@ -178,7 +188,7 @@ def variance_normality_test(sigma_h, v, n):
     return var
 
 
-def variance_two_sample_test(k_cen, n, m):
+def variance_two_sample_test(k_cen: np.ndarray, n: int, m: int) -> Tuple[float, float]:
     """
     Exact variance of two-sample test. Compute the exact variance of kernel test for the
     two-sample problem under the null hypothesis that F=G.
@@ -191,7 +201,7 @@ def variance_two_sample_test(k_cen, n, m):
     n : int
         Number of samples of type/kind 1.
 
-    n : int
+    m : int
         Number of samples of type/kind 2.
 
     Returns
@@ -232,7 +242,11 @@ def variance_two_sample_test(k_cen, n, m):
     return (est_var_D, est_var_Tr)
 
 
-def variance_k_sample_test(k_cen, sizes, cum_size):
+def variance_k_sample_test(
+    k_cen: np.ndarray,
+    sizes: Union[List[int], np.ndarray],
+    cum_size: Union[List[int], np.ndarray],
+) -> float:
     """
     Compute the exact variance of kernel test for the k-sample problem under
     the null hypothesis that F1=...=Fk.
@@ -290,7 +304,14 @@ def variance_k_sample_test(k_cen, sizes, cum_size):
     return (est_var_D, est_var_Tr)
 
 
-def stat_two_sample(x_mat, y_mat, h, mu_hat, sigma_hat, centering_type="nonparam"):
+def stat_two_sample(
+    x_mat: np.ndarray,
+    y_mat: np.ndarray,
+    h: float,
+    mu_hat: np.ndarray,
+    sigma_hat: np.ndarray,
+    centering_type: str = "nonparam",
+) -> np.ndarray:
     """
     Compute kernel-based quadratic distance two-sample
     test with Normal kernel.
@@ -348,7 +369,9 @@ def stat_two_sample(x_mat, y_mat, h, mu_hat, sigma_hat, centering_type="nonparam
     return np.array([test_non_par, test_trace, var1, var2])
 
 
-def stat_normality_test(x_mat, h, mu_hat, sigma_hat):
+def stat_normality_test(
+    x_mat: np.ndarray, h: float, mu_hat: np.ndarray, sigma_hat: np.ndarray
+) -> np.ndarray:
     """
     Compute kernel-based quadratic distance test for
     Normality
@@ -363,8 +386,6 @@ def stat_normality_test(x_mat, h, mu_hat, sigma_hat):
         Mean vector for the reference distribution.
     sigma_hat : numpy.ndarray
         Covariance matrix of the reference distribution.
-    centering_type : str, optional. Defaults to param.
-        String indicating the method used for centering the normal kernel.
 
     Returns
     -------
@@ -387,7 +408,7 @@ def stat_normality_test(x_mat, h, mu_hat, sigma_hat):
     return np.array([Un, Vn])
 
 
-def stat_ksample(x, y, h):
+def stat_ksample(x: np.ndarray, y: np.ndarray, h: float) -> np.ndarray:
     """
     Compute the kernel-based quadratic distance k-sample tests
     with the Normal kernel and bandwidth parameter h.
@@ -442,7 +463,14 @@ def stat_ksample(x, y, h):
     return np.array([stat1, stat2, var1, var2])
 
 
-def normal_cv_helper(size, h, mu_hat, sigma_hat, n_rep, random_state):
+def normal_cv_helper(
+    size: int,
+    h: float,
+    mu_hat: np.ndarray,
+    sigma_hat: np.ndarray,
+    n_rep: int,
+    random_state: Optional[int],
+) -> np.ndarray:
     """
     Generate a sample from a multivariate normal distribution and perform a
     kernel-based quadratic distance test for normality.
@@ -484,7 +512,14 @@ def normal_cv_helper(size, h, mu_hat, sigma_hat, n_rep, random_state):
     return stat_normality_test(dat, h, mu_hat, sigma_hat)[0]
 
 
-def bootstrap_helper_twosample(size_x, size_y, h, data_pool, n_rep, random_state):
+def bootstrap_helper_twosample(
+    size_x: int,
+    size_y: int,
+    h: float,
+    data_pool: np.ndarray,
+    n_rep: int,
+    random_state: Optional[int],
+) -> np.ndarray:
     """
     Helper function for CV estimation using bootstrap for
     two sample test.
@@ -536,7 +571,14 @@ def bootstrap_helper_twosample(size_x, size_y, h, data_pool, n_rep, random_state
     return result
 
 
-def permutation_helper_twosample(size_x, size_y, h, data_pool, n_rep, random_state):
+def permutation_helper_twosample(
+    size_x: int,
+    size_y: int,
+    h: float,
+    data_pool: np.ndarray,
+    n_rep: int,
+    random_state: Optional[int],
+) -> np.ndarray:
     """
     Helper function for CV estimation using permutation for
     two sample test.
@@ -588,7 +630,15 @@ def permutation_helper_twosample(size_x, size_y, h, data_pool, n_rep, random_sta
     return result
 
 
-def subsampling_helper_twosample(size_x, size_y, b, h, data_pool, n_rep, random_state):
+def subsampling_helper_twosample(
+    size_x: int,
+    size_y: int,
+    b: float,
+    h: float,
+    data_pool: np.ndarray,
+    n_rep: int,
+    random_state: Optional[int],
+) -> np.ndarray:
     """
     Helper function for CV estimation using subsampling for
     two sample test.
@@ -647,7 +697,16 @@ def subsampling_helper_twosample(size_x, size_y, b, h, data_pool, n_rep, random_
     return result
 
 
-def bootstrap_helper_ksample(x, y, k, h, sizes, cum_size, n_rep, random_state):
+def bootstrap_helper_ksample(
+    x: np.ndarray,
+    y: np.ndarray,
+    k: int,
+    h: float,
+    sizes: np.ndarray,
+    cum_size: np.ndarray,
+    n_rep: int,
+    random_state: Optional[int],
+) -> np.ndarray:
     """
     Helper function for CV estimation using bootstrap for
     K-sample test.
@@ -706,7 +765,17 @@ def bootstrap_helper_ksample(x, y, k, h, sizes, cum_size, n_rep, random_state):
     return res_num_iter
 
 
-def subsampling_helper_ksample(x, y, k, h, sizes, b, cum_size, n_rep, random_state):
+def subsampling_helper_ksample(
+    x: np.ndarray,
+    y: np.ndarray,
+    k: int,
+    h: float,
+    sizes: np.ndarray,
+    b: float,
+    cum_size: np.ndarray,
+    n_rep: int,
+    random_state: Optional[int],
+):
     """
     Helper function for CV estimation using subsampling for
     K-sample test.
@@ -771,7 +840,14 @@ def subsampling_helper_ksample(x, y, k, h, sizes, b, cum_size, n_rep, random_sta
     return res_num_iter
 
 
-def permutation_helper_ksample(x, y, n, h, n_rep, random_state):
+def permutation_helper_ksample(
+    x: np.ndarray,
+    y: np.ndarray,
+    n: int,
+    h: float,
+    n_rep: int,
+    random_state: Optional[int],
+):
     """
     Helper function for CV estimation using permutation for
     K-sample test.

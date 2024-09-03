@@ -4,6 +4,7 @@ Poisson Kernel based Clustering
 
 import importlib
 from collections import Counter
+from typing import Optional, Tuple, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -24,7 +25,7 @@ from sklearn.utils.parallel import Parallel, delayed
 from sklearn.utils.validation import check_random_state
 from tabulate import tabulate
 
-from ._utils import calculate_wcss_cosine, calculate_wcss_euclidean, root_func
+from ._utils import _calculate_wcss_cosine, _calculate_wcss_euclidean, _root_func
 
 stats = importlib.import_module("QuadratiK.tools").stats
 extract3d = importlib.import_module("QuadratiK.tools._utils")._extract_3d
@@ -171,15 +172,15 @@ class PKBC:
 
     def __init__(
         self,
-        num_clust,
-        max_iter=300,
-        stopping_rule="loglik",
-        init_method="sampledata",
-        num_init=10,
-        tol=1e-7,
-        random_state=None,
-        n_jobs=4,
-    ):
+        num_clust: int,
+        max_iter: int = 300,
+        stopping_rule: str = "loglik",
+        init_method: str = "sampledata",
+        num_init: int = 10,
+        tol: float = 1e-7,
+        random_state: Optional[int] = None,
+        n_jobs: int = 4,
+    ) -> None:
         self.num_clust = num_clust
         self.max_iter = max_iter
         self.stopping_rule = stopping_rule
@@ -204,7 +205,7 @@ class PKBC:
         self.log_lik_vec = None
         self.num_iter_per_run = None
 
-    def fit(self, dat):
+    def fit(self, dat: Union[np.ndarray, pd.DataFrame]) -> "PKBC":
         """
         Performs Poisson Kernel-based Clustering.
 
@@ -353,7 +354,7 @@ class PKBC:
                         alpha_current_h = alpha_current[h]
                         mu_denom_h = mu_denom[h]
                         rho_current[h] = root_scalar(
-                            root_func,
+                            _root_func,
                             args=(
                                 num_data,
                                 alpha_current_h,
@@ -399,14 +400,14 @@ class PKBC:
 
             # euclidean wcss calculation
             cluster_euclidean_wcss = Parallel(n_jobs=self.n_jobs)(
-                delayed(calculate_wcss_euclidean)(k, memb_best, self.dat, mu_best)
+                delayed(_calculate_wcss_euclidean)(k, memb_best, self.dat, mu_best)
                 for k in range(k)
             )
             self.euclidean_wcss_[k] = np.sum(cluster_euclidean_wcss)
 
             # cosine similarity wcss calculation
             cluster_cosine_wcss = Parallel(n_jobs=self.n_jobs)(
-                delayed(calculate_wcss_cosine)(k, memb_best, self.dat, mu_best)
+                delayed(_calculate_wcss_cosine)(k, memb_best, self.dat, mu_best)
                 for k in range(k)
             )
 
@@ -422,7 +423,9 @@ class PKBC:
             self.num_iter_per_runs_[k] = self.num_iter_per_run
         return self
 
-    def validation(self, y_true=None):
+    def validation(
+        self, y_true: Optional[np.ndarray] = None
+    ) -> Tuple[pd.DataFrame, plt.Figure]:
         """
         Computes validation metrics such as ARI, Macro Precision and Macro Recall when true labels are provided.
 
@@ -435,8 +438,8 @@ class PKBC:
         Returns
         --------
             validation metrics : tuple
-                Return a tuple of a dictionary and elbow plots.
-                The dictionary contains the following for different number of clusters:
+                Return a tuple of a dataframe and elbow plots.
+                The dataframe contains the following for different number of clusters:
 
                 - **Adjusted Rand Index** : float (returned only when y_true is provided)
                     Adjusted Rand Index computed between the true and predicted cluster memberships.
@@ -526,7 +529,7 @@ class PKBC:
         plt.close()
         return (validation_metrics_df, fig)
 
-    def stats_clusters(self, num_clust):
+    def stats_clusters(self, num_clust: int) -> pd.DataFrame:
         """
         Function to generate descriptive statistics per variable (and per group if available).
 
@@ -544,7 +547,9 @@ class PKBC:
         summary_stats = stats(self.dat_copy, self.labels_[num_clust])
         return summary_stats
 
-    def predict(self, X, num_clust):
+    def predict(
+        self, X: Union[np.ndarray, pd.DataFrame], num_clust: int
+    ) -> Tuple[np.ndarray, np.ndarray]:
         """
         Predict the cluster membership for each sample in X.
 
@@ -566,7 +571,8 @@ class PKBC:
         num_data, num_var = X.shape
         if self.dat.shape[1] != X.shape[1]:
             raise ValueError(
-                f"X has {num_var} features, but PKBC is expecting {self.dat.shape[1]} features as input. Please provide same number of features as the fitted data."
+                f"X has {num_var} features, but PKBC is expecting {
+                    self.dat.shape[1]} features as input. Please provide same number of features as the fitted data."
             )
         log_w_d = (num_var / 2) * (np.log(2) + np.log(np.pi)) - sp.gammaln(num_var / 2)
         v_mat = np.dot(X, self.mu_[num_clust].T)
@@ -596,7 +602,7 @@ class PKBC:
             alpha_current_h = alpha_current[h]
             mu_denom_h = mu_denom[h]
             self.rho_[num_clust][h] = root_scalar(
-                root_func,
+                _root_func,
                 args=(
                     num_data,
                     alpha_current_h,
@@ -612,7 +618,11 @@ class PKBC:
 
         return (norm_prob_mat_best, memb_best)
 
-    def plot(self, num_clust, y_true=None):
+    def plot(
+        self,
+        num_clust: int,
+        y_true: Optional[Union[np.ndarray, list, pd.Series]] = None,
+    ) -> Union[plt.Figure, go.Figure]:
         """
         The method plot creates a 2D or 3D scatter plot with a circle or sphere
         as the surface and data points plotted on it.
@@ -852,7 +862,7 @@ class PKBC:
                 )
                 return fig
 
-    def summary(self, print_fmt="simple"):
+    def summary(self, print_fmt: str = "simple") -> str:
         """
         Summary function generates a table for the PKBC clustering.
 

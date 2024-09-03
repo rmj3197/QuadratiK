@@ -1,5 +1,6 @@
 import time
 from functools import wraps
+from typing import Any, Callable, Tuple, TypeVar, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -11,7 +12,9 @@ from sklearn.linear_model import LinearRegression
 plt.ioff()
 
 
-def _qq_plot_twosample(sample1, sample2):
+def _qq_plot_twosample(
+    sample1: Union[np.ndarray, pd.DataFrame], sample2: Union[np.ndarray, pd.DataFrame]
+) -> plt.Figure:
     """
     Generate a Quantile-Quantile (QQ) plot for two samples.
 
@@ -56,7 +59,9 @@ def _qq_plot_twosample(sample1, sample2):
     return fig
 
 
-def _qq_plot_onesample(sample1, dist="norm"):
+def _qq_plot_onesample(
+    sample1: Union[np.ndarray, pd.DataFrame], dist: str = "norm"
+) -> plt.Figure:
     """
     Generate a Quantile-Quantile (QQ) plot for a single sample against a specified distribution.
 
@@ -110,7 +115,7 @@ def _qq_plot_onesample(sample1, dist="norm"):
     return fig
 
 
-def _extract_3d(data):
+def _extract_3d(data: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Extract the first three principal components of the data and normalize them.
 
@@ -134,7 +139,7 @@ def _extract_3d(data):
     return (data_pca[:, 0], data_pca[:, 1], data_pca[:, 2])
 
 
-def _stats_helper(dat):
+def _stats_helper(dat: np.ndarray) -> pd.DataFrame:
     """
     Calculate descriptive statistics for each feature in the input data.
 
@@ -162,7 +167,10 @@ def _stats_helper(dat):
     return dat_stats
 
 
-def class_method_call_timing(func):
+F = TypeVar("F", bound=Callable[..., Any])
+
+
+def class_method_call_timing(func: F) -> F:
     """
     Decorator to measure the execution time of a
     class method and store it in the instance.
