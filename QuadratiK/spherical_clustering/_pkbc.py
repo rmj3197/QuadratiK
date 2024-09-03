@@ -571,8 +571,8 @@ class PKBC:
         num_data, num_var = X.shape
         if self.dat.shape[1] != X.shape[1]:
             raise ValueError(
-                f"X has {num_var} features, but PKBC is expecting {
-                    self.dat.shape[1]} features as input. Please provide same number of features as the fitted data."
+                f"X has {num_var} features, but PKBC is expecting {self.dat.shape[1]} features as input. \
+                    Please provide same number of features as the fitted data."
             )
         log_w_d = (num_var / 2) * (np.log(2) + np.log(np.pi)) - sp.gammaln(num_var / 2)
         v_mat = np.dot(X, self.mu_[num_clust].T)
