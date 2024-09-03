@@ -413,7 +413,7 @@ def _objective_k_sample(
 
 def select_h(
     x: Union[np.ndarray, pd.DataFrame],
-    y=Optional[Union[np.ndarray, pd.DataFrame]],
+    y: Optional[Union[np.ndarray, pd.DataFrame]] = None,
     alternative: str = "location",
     method: str = "subsampling",
     b: float = 0.8,

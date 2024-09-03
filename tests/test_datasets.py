@@ -65,9 +65,11 @@ class TestLoadWirelessData(unittest.TestCase):
         self.assertTrue(isinstance(descr3, str))
 
     def test_scaled_as_numpy(self):
-        X1, y1 = load_wireless_data(scaled=True, return_X_y=True)
-        X2, y2 = load_wisconsin_breast_cancer_data(scaled=True, return_X_y=True)
-        X3, y3 = load_wine_data(scaled=True, return_X_y=True)
+        X1, y1 = load_wireless_data(scaled=True, return_X_y=True, as_dataframe=False)
+        X2, y2 = load_wisconsin_breast_cancer_data(
+            scaled=True, return_X_y=True, as_dataframe=False
+        )
+        X3, y3 = load_wine_data(scaled=True, return_X_y=True, as_dataframe=False)
         self.assertTrue(isinstance(X1, np.ndarray))
         self.assertTrue(isinstance(y1, np.ndarray))
         self.assertTrue(isinstance(X2, np.ndarray))
@@ -82,12 +84,12 @@ class TestLoadWirelessData(unittest.TestCase):
         self.assertTrue(isinstance(descr1, str))
         self.assertTrue(isinstance(descr2, str))
         self.assertTrue(isinstance(descr3, str))
-        self.assertTrue(isinstance(X1, np.ndarray))
-        self.assertTrue(isinstance(y1, np.ndarray))
-        self.assertTrue(isinstance(X2, np.ndarray))
-        self.assertTrue(isinstance(y2, np.ndarray))
-        self.assertTrue(isinstance(X3, np.ndarray))
-        self.assertTrue(isinstance(y3, np.ndarray))
+        self.assertTrue(isinstance(X1, pd.DataFrame))
+        self.assertTrue(isinstance(y1, pd.DataFrame))
+        self.assertTrue(isinstance(X2, pd.DataFrame))
+        self.assertTrue(isinstance(y2, pd.DataFrame))
+        self.assertTrue(isinstance(X3, pd.DataFrame))
+        self.assertTrue(isinstance(y3, pd.DataFrame))
 
     def test_as_numpy(self):
         df1 = load_wireless_data(as_dataframe=False)

@@ -1,10 +1,25 @@
 from importlib import resources
 
+from typing import Union, Tuple, Optional
+
 import numpy as np
 import pandas as pd
 
 
-def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=False):
+def load_wireless_data(
+    desc: bool = False,
+    return_X_y: bool = False,
+    as_dataframe: bool = True,
+    scaled: bool = False,
+) -> Union[
+    Tuple[str, pd.DataFrame, pd.DataFrame],
+    Tuple[str, pd.DataFrame],
+    Tuple[str, np.ndarray],
+    Tuple[pd.DataFrame, pd.DataFrame],
+    Tuple[np.ndarray, np.ndarray],
+    pd.dataFrame,
+    np.ndarray,
+]:
     """
     The wireless data frame has 2000 rows and 8 columns. The first 7 variables
     report the measurements of the Wi-Fi signal strength received from 7 Wi-Fi routers in an
@@ -96,25 +111,57 @@ def load_wireless_data(desc=False, return_X_y=False, as_dataframe=True, scaled=F
     if return_X_y:
         X = data[:, :-1]
         y = data[:, -1].astype(int)
-        if desc:
-            return (fdescr, X, y)
-        else:
-            return (X, y)
 
     if as_dataframe:
-        data = pd.DataFrame(data, columns=feature_names)
-        data["Class"] = data["Class"].astype(int)
-        if desc:
-            return (fdescr, data)
-        else:
-            return data
-    else:
+        data_df = pd.DataFrame(data, columns=feature_names)
+        data_df["Class"] = data_df["Class"].astype(int)
+
+    if desc and return_X_y and as_dataframe:
+        return (
+            fdescr,
+            pd.DataFrame(X, columns=feature_names[:-1]),
+            pd.DataFrame(y, columns=["Class"]),
+        )
+
+    if desc and return_X_y and not as_dataframe:
+        return (fdescr, X, y)
+
+    if desc and not return_X_y and as_dataframe:
+        return (fdescr, data_df)
+
+    if desc and not return_X_y and not as_dataframe:
+        return (fdescr, data)
+
+    if not desc and return_X_y and as_dataframe:
+        return (
+            pd.DataFrame(X, columns=feature_names[:-1]),
+            pd.DataFrame(y, columns=["Class"]),
+        )
+
+    if not desc and return_X_y and not as_dataframe:
+        return (X, y)
+
+    if not desc and not return_X_y and as_dataframe:
+        return data_df
+
+    if not desc and not return_X_y and not as_dataframe:
         return data
 
 
 def load_wisconsin_breast_cancer_data(
-    desc=False, return_X_y=False, as_dataframe=True, scaled=False
-):
+    desc: bool = False,
+    return_X_y: bool = False,
+    as_dataframe: bool = True,
+    scaled: bool = False,
+) -> Union[
+    Tuple[str, pd.DataFrame, pd.DataFrame],
+    Tuple[str, pd.DataFrame],
+    Tuple[str, np.ndarray],
+    Tuple[pd.DataFrame, pd.DataFrame],
+    Tuple[np.ndarray, np.ndarray],
+    pd.dataFrame,
+    np.ndarray,
+]:
     """
     The Wisconsin breast cancer dataset data frame has 569 rows and 31 columns. The first 30 variables
     report the features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass.
@@ -239,23 +286,57 @@ def load_wisconsin_breast_cancer_data(
     if return_X_y:
         X = data[:, :-1]
         y = data[:, -1].astype(int)
-        if desc:
-            return (fdescr, X, y)
-        else:
-            return (X, y)
 
     if as_dataframe:
-        data = pd.DataFrame(data, columns=feature_names)
-        data["Class"] = data["Class"].astype(int)
-        if desc:
-            return (fdescr, data)
-        else:
-            return data
-    else:
+        data_df = pd.DataFrame(data, columns=feature_names)
+        data_df["Class"] = data_df["Class"].astype(int)
+
+    if desc and return_X_y and as_dataframe:
+        return (
+            fdescr,
+            pd.DataFrame(X, columns=feature_names[:-1]),
+            pd.DataFrame(y, columns=["Class"]),
+        )
+
+    if desc and return_X_y and not as_dataframe:
+        return (fdescr, X, y)
+
+    if desc and not return_X_y and as_dataframe:
+        return (fdescr, data_df)
+
+    if desc and not return_X_y and not as_dataframe:
+        return (fdescr, data)
+
+    if not desc and return_X_y and as_dataframe:
+        return (
+            pd.DataFrame(X, columns=feature_names[:-1]),
+            pd.DataFrame(y, columns=["Class"]),
+        )
+
+    if not desc and return_X_y and not as_dataframe:
+        return (X, y)
+
+    if not desc and not return_X_y and as_dataframe:
+        return data_df
+
+    if not desc and not return_X_y and not as_dataframe:
         return data
 
 
-def load_wine_data(desc=False, return_X_y=False, as_dataframe=True, scaled=False):
+def load_wine_data(
+    desc: bool = False,
+    return_X_y: bool = False,
+    as_dataframe: bool = True,
+    scaled: bool = False,
+) -> Union[
+    Tuple[str, pd.DataFrame, pd.DataFrame],
+    Tuple[str, pd.DataFrame],
+    Tuple[str, np.ndarray],
+    Tuple[pd.DataFrame, pd.DataFrame],
+    Tuple[np.ndarray, np.ndarray],
+    pd.dataFrame,
+    np.ndarray,
+]:
     """
     The wine data frame has 178 rows and 14 columns. The first 13 variables
     report 13 constituents found in each of the three types of wines.
@@ -357,17 +438,38 @@ def load_wine_data(desc=False, return_X_y=False, as_dataframe=True, scaled=False
     if return_X_y:
         X = data[:, :-1]
         y = data[:, -1].astype(int)
-        if desc:
-            return (fdescr, X, y)
-        else:
-            return (X, y)
 
     if as_dataframe:
-        data = pd.DataFrame(data, columns=feature_names)
-        data["Class"] = data["Class"].astype(int)
-        if desc:
-            return (fdescr, data)
-        else:
-            return data
-    else:
+        data_df = pd.DataFrame(data, columns=feature_names)
+        data_df["Class"] = data_df["Class"].astype(int)
+
+    if desc and return_X_y and as_dataframe:
+        return (
+            fdescr,
+            pd.DataFrame(X, columns=feature_names[:-1]),
+            pd.DataFrame(y, columns=["Class"]),
+        )
+
+    if desc and return_X_y and not as_dataframe:
+        return (fdescr, X, y)
+
+    if desc and not return_X_y and as_dataframe:
+        return (fdescr, data_df)
+
+    if desc and not return_X_y and not as_dataframe:
+        return (fdescr, data)
+
+    if not desc and return_X_y and as_dataframe:
+        return (
+            pd.DataFrame(X, columns=feature_names[:-1]),
+            pd.DataFrame(y, columns=["Class"]),
+        )
+
+    if not desc and return_X_y and not as_dataframe:
+        return (X, y)
+
+    if not desc and not return_X_y and as_dataframe:
+        return data_df
+
+    if not desc and not return_X_y and not as_dataframe:
         return data
