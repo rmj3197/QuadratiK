@@ -2,7 +2,6 @@ QuadratiK Version 1.2.dev0
 ==========================
 
 This is the current version under development. So far, this version includes:
-
     1. **[NEW]** Code fixed to raise fine-grained exceptions instead of base Exception.
     2. **[NEW]** ``__slots__`` are implemented for classes in order to reduce memory footprint.
     3. **[NEW]** All instance variables are now defined in the ``__init__`` method.

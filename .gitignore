@@ -160,3 +160,4 @@ cython_debug/
 .vscode/
 htmlcov/
 .DS_Store
+build/
