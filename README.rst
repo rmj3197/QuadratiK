@@ -224,24 +224,6 @@ License
 
 This project uses the GPL-3.0 license, with a full version of the license included in the `repository <https://github.com/rmj3197/QuadratiK/blob/master/LICENSE>`_.
 
-
-Citation
-==========
-
-If you use this package, please consider citing it using the following entry:
-
-.. code-block:: tex
-
-    @misc{saraceno2024goodnessoffitclusteringsphericaldata,
-          title={Goodness-of-Fit and Clustering of Spherical Data: the QuadratiK package in R and Python}, 
-          author={Giovanni Saraceno and Marianthi Markatou and Raktim Mukhopadhyay and Mojgan Golzy},
-          year={2024},
-          eprint={2402.02290},
-          archivePrefix={arXiv},
-          primaryClass={stat.CO},
-          url={https://arxiv.org/abs/2402.02290}, 
-    }
-
 Related Packages
 =================
 
@@ -272,6 +254,22 @@ Python Packages
 - ``scipy``: Includes a number of goodness-of-fit (GoF) tests, such as the Kolmogorov-Smirnov test, Cramér-von Mises test, and Anderson-Darling test. For more details, please see the `Scipy Statistical Functions documentation <https://docs.scipy.org/doc/scipy/reference/stats.html>`_.
 - ``hyppo``: This package offers implementations of various Goodness-of-Fit (GoF) testing methods, such as the Maximum Mean Discrepancy (MMD) and Energy statistics for $k$-sample testing. For more information, visit: `Hyppo Documentation <https://hyppo.neurodata.io/>`_.
 
+Citation
+==========
+
+If you use this package, please consider citing it using the following entry:
+
+.. code-block:: tex
+
+    @misc{saraceno2024goodnessoffitclusteringsphericaldata,
+          title={Goodness-of-Fit and Clustering of Spherical Data: the QuadratiK package in R and Python}, 
+          author={Giovanni Saraceno and Marianthi Markatou and Raktim Mukhopadhyay and Mojgan Golzy},
+          year={2024},
+          eprint={2402.02290},
+          archivePrefix={arXiv},
+          primaryClass={stat.CO},
+          url={https://arxiv.org/abs/2402.02290}, 
+    }
 
 Funding Information
 =====================
