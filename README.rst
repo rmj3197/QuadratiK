@@ -109,7 +109,7 @@ Usage Examples
 - `QuadratiK Examples <https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html>`_:
   A collection of basic examples that demonstrate how to use the core functionalities of the QuadratiK package. Ideal for new users to get started quickly.
 
-- `An Introduction to Poisson Kernel-Based distributions <https://quadratik.readthedocs.io/en/latest/user_guide/pkbd.html>_`
+- `An Introduction to Poisson Kernel-Based distributions <https://quadratik.readthedocs.io/en/latest/user_guide/pkbd.html>`_:
   A short introduction to the Poisson Kernel-Based distributions. 
 
 - `Random sampling from the Poisson kernel-based density <https://quadratik.readthedocs.io/en/latest/user_guide/gen_plot_rpkb.html>`_:
