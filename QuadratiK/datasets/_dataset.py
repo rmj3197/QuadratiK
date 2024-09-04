@@ -51,6 +51,7 @@ def load_wireless_data(
     -------
     - If `desc=True`, `return_X_y=True`, `as_dataframe=True`:
         Returns a tuple containing: (str, pd.DataFrame, pd.DataFrame)
+
         - `fdescr` : str
             The description of the dataset.
         - `X` : pd.DataFrame
@@ -60,6 +61,7 @@ def load_wireless_data(
 
     - If `desc=True`, `return_X_y=True`, `as_dataframe=False`:
         Returns a tuple containing: (str, np.ndarray, np.ndarray)
+
         - `fdescr` : str
             The description of the dataset.
         - `X` : np.ndarray
@@ -69,6 +71,7 @@ def load_wireless_data(
 
     - If `desc=True`, `return_X_y=False`, `as_dataframe=True`:
         Returns a tuple containing: (str, pd.DataFrame)
+
         - `fdescr` : str
             The description of the dataset.
         - `data_df` : pd.DataFrame
@@ -76,6 +79,7 @@ def load_wireless_data(
 
     - If `desc=True`, `return_X_y=False`, `as_dataframe=False`:
         Returns a tuple containing: (str, np.ndarray)
+
         - `fdescr` : str
             The description of the dataset.
         - `data` : np.ndarray
@@ -83,6 +87,7 @@ def load_wireless_data(
 
     - If `desc=False`, `return_X_y=True`, `as_dataframe=True`:
         Returns a tuple containing: (pd.DataFrame, pd.DataFrame)
+
         - `X` : pd.DataFrame
             A DataFrame with the features.
         - `y` : pd.DataFrame
@@ -90,6 +95,7 @@ def load_wireless_data(
 
     - If `desc=False`, `return_X_y=True`, `as_dataframe=False`:
         Returns a tuple containing: (np.ndarray, np.ndarray)
+
         - `X` : np.ndarray
             A numpy array with the features.
         - `y` : np.ndarray
@@ -97,11 +103,13 @@ def load_wireless_data(
 
     - If `desc=False`, `return_X_y=False`, `as_dataframe=True`:
         Returns: pd.DataFrame
+
         - `data_df` : pd.DataFrame
             A DataFrame containing the entire dataset.
 
     - If `desc=False`, `return_X_y=False`, `as_dataframe=False`:
         Returns: np.ndarray
+
         - `data` : np.ndarray
             A numpy array containing the entire dataset.
 
@@ -230,6 +238,7 @@ def load_wisconsin_breast_cancer_data(
     -------
     - If `desc=True`, `return_X_y=True`, `as_dataframe=True`:
         Returns a tuple containing: (str, pd.DataFrame, pd.DataFrame)
+
         - `fdescr` : str
             The description of the dataset.
         - `X` : pd.DataFrame
@@ -239,6 +248,7 @@ def load_wisconsin_breast_cancer_data(
 
     - If `desc=True`, `return_X_y=True`, `as_dataframe=False`:
         Returns a tuple containing: (str, np.ndarray, np.ndarray)
+
         - `fdescr` : str
             The description of the dataset.
         - `X` : np.ndarray
@@ -248,6 +258,7 @@ def load_wisconsin_breast_cancer_data(
 
     - If `desc=True`, `return_X_y=False`, `as_dataframe=True`:
         Returns a tuple containing: (str, pd.DataFrame)
+
         - `fdescr` : str
             The description of the dataset.
         - `data_df` : pd.DataFrame
@@ -255,6 +266,7 @@ def load_wisconsin_breast_cancer_data(
 
     - If `desc=True`, `return_X_y=False`, `as_dataframe=False`:
         Returns a tuple containing: (str, np.ndarray)
+
         - `fdescr` : str
             The description of the dataset.
         - `data` : np.ndarray
@@ -262,6 +274,7 @@ def load_wisconsin_breast_cancer_data(
 
     - If `desc=False`, `return_X_y=True`, `as_dataframe=True`:
         Returns a tuple containing: (pd.DataFrame, pd.DataFrame)
+
         - `X` : pd.DataFrame
             A DataFrame with the features.
         - `y` : pd.DataFrame
@@ -269,6 +282,7 @@ def load_wisconsin_breast_cancer_data(
 
     - If `desc=False`, `return_X_y=True`, `as_dataframe=False`:
         Returns a tuple containing: (np.ndarray, np.ndarray)
+
         - `X` : np.ndarray
             A numpy array with the features.
         - `y` : np.ndarray
@@ -276,11 +290,13 @@ def load_wisconsin_breast_cancer_data(
 
     - If `desc=False`, `return_X_y=False`, `as_dataframe=True`:
         Returns: pd.DataFrame
+
         - `data_df` : pd.DataFrame
             A DataFrame containing the entire dataset.
 
     - If `desc=False`, `return_X_y=False`, `as_dataframe=False`:
         Returns: np.ndarray
+
         - `data` : np.ndarray
             A numpy array containing the entire dataset.
 
@@ -440,6 +456,7 @@ def load_wine_data(
     -------
     - If `desc=True`, `return_X_y=True`, `as_dataframe=True`:
         Returns a tuple containing: (str, pd.DataFrame, pd.DataFrame)
+
         - `fdescr` : str
             The description of the dataset.
         - `X` : pd.DataFrame
@@ -449,6 +466,7 @@ def load_wine_data(
 
     - If `desc=True`, `return_X_y=True`, `as_dataframe=False`:
         Returns a tuple containing: (str, np.ndarray, np.ndarray)
+
         - `fdescr` : str
             The description of the dataset.
         - `X` : np.ndarray
@@ -458,6 +476,7 @@ def load_wine_data(
 
     - If `desc=True`, `return_X_y=False`, `as_dataframe=True`:
         Returns a tuple containing: (str, pd.DataFrame)
+
         - `fdescr` : str
             The description of the dataset.
         - `data_df` : pd.DataFrame
@@ -465,6 +484,7 @@ def load_wine_data(
 
     - If `desc=True`, `return_X_y=False`, `as_dataframe=False`:
         Returns a tuple containing: (str, np.ndarray)
+
         - `fdescr` : str
             The description of the dataset.
         - `data` : np.ndarray
@@ -472,6 +492,7 @@ def load_wine_data(
 
     - If `desc=False`, `return_X_y=True`, `as_dataframe=True`:
         Returns a tuple containing: (pd.DataFrame, pd.DataFrame)
+
         - `X` : pd.DataFrame
             A DataFrame with the features.
         - `y` : pd.DataFrame
@@ -479,6 +500,7 @@ def load_wine_data(
 
     - If `desc=False`, `return_X_y=True`, `as_dataframe=False`:
         Returns a tuple containing: (np.ndarray, np.ndarray)
+
         - `X` : np.ndarray
             A numpy array with the features.
         - `y` : np.ndarray
@@ -486,11 +508,13 @@ def load_wine_data(
 
     - If `desc=False`, `return_X_y=False`, `as_dataframe=True`:
         Returns: pd.DataFrame
+
         - `data_df` : pd.DataFrame
             A DataFrame containing the entire dataset.
 
     - If `desc=False`, `return_X_y=False`, `as_dataframe=False`:
         Returns: np.ndarray
+
         - `data` : np.ndarray
             A numpy array containing the entire dataset.
 
