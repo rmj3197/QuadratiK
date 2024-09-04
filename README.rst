@@ -75,9 +75,11 @@ Introduction
 
 The QuadratiK package is implemented in both **R** and **Python**, providing a comprehensive set of goodness-of-fit tests and a clustering technique using kernel-based quadratic distances. This framework aims to bridge the gap between the statistical and machine learning literatures. It includes:
 
-* **Goodness-of-Fit Tests** : The software implements one, two, and k-sample tests for goodness of fit, offering an efficient and mathematically sound way to assess the fit of probability distributions. Expanded capabilities include supporting tests for uniformity on the $d$-dimensional Sphere based on Poisson kernel densities.
+* **Goodness-of-Fit Tests** : The software implements one, two, and k-sample tests for goodness of fit, offering an efficient and mathematically sound way to assess the fit of probability distributions. Expanded capabilities include supporting tests for uniformity on the $d$-dimensional Sphere based on Poisson kernel densities. Our tests are particularly useful for large, high-dimensional datasets where the assessment of fit of probability models is of interest. Specifically, we offer tests for normality, as well as two- and k-sample tests, where testing equality of two or more distributions is of interest, i.e. $H_0: F_1 = F_2$ and $H_0: F_1 = \\ldots = F_k$ respectively. The proposed tests perform well in terms of level and power for contiguous alternatives, heavy tailed distributions and in higher dimensions. 
 
-* **Clustering Algorithm for Spherical Data**: the package incorporates a unique clustering algorithm specifically tailored for spherical data. This algorithm leverages a mixture of Poisson-kernel-based densities on the sphere, enabling effective clustering of spherical data or data that has been spherically transformed. This facilitates the uncovering of underlying patterns and relationships in the data. Additionally, the package also includes Poisson Kernel-based Densities random number generation.
+* **Poisson Kernel-based Distribution (PKBD)** :  The package also includes functionality for generating random samples from PKBD and computing the density value. A short guide on PKBD is included in `User Guide <user_guide>`_. For more details please see `Golzy and Markatou (2020) <https://www.tandfonline.com/doi/abs/10.1080/10618600.2020.1740713>`_.
+
+* **Clustering Algorithm for Spherical Data**: The package incorporates a unique clustering algorithm specifically tailored for spherical data. This algorithm leverages a mixture of Poisson-kernel-based densities on the sphere, enabling effective clustering of spherical data or data that has been spherically transformed. This facilitates the uncovering of underlying patterns and relationships in the data. The clustering algorithm is especially useful in the presence of noise in the data and the presence of non-negligible overlap between clusters. 
 
 * **Additional Features**: Alongside these functionalities, the software includes additional graphical functions, aiding users in validating cluster results as well as visualizing and representing clustering results. This enhances the interpretability and usability of the analysis.
 
@@ -106,6 +108,9 @@ Usage Examples
 
 - `QuadratiK Examples <https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html>`_:
   A collection of basic examples that demonstrate how to use the core functionalities of the QuadratiK package. Ideal for new users to get started quickly.
+
+- `An Introduction to Poisson Kernel-Based distributions <https://quadratik.readthedocs.io/en/latest/user_guide/pkbd.html>`
+  A short introduction to the Poisson Kernel-Based distributions. 
 
 - `Random sampling from the Poisson kernel-based density <https://quadratik.readthedocs.io/en/latest/user_guide/gen_plot_rpkb.html>`_:
   Learn how to generate random samples from the Poisson kernel-based density and visualize the results.
@@ -217,7 +222,7 @@ The code of conduct can be found at `Code of Conduct <https://quadratik.readthed
 License
 --------
 
-This project uses the GPL-3.0 license, with a full version of the license included in the repository `here <https://github.com/rmj3197/QuadratiK/blob/master/LICENSE>`_.
+This project uses the GPL-3.0 license, with a full version of the license included in the `repository <https://github.com/rmj3197/QuadratiK/blob/master/LICENSE>`_.
 
 
 Citation

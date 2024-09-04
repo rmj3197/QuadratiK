@@ -21,6 +21,7 @@ Random Sampling from PKBD
 .. toctree::
    :maxdepth: 4
 
+   pkbd.rst
    gen_plot_rpkb
 
 Usage Instructions for Dashboard Application

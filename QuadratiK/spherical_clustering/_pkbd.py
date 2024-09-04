@@ -18,6 +18,7 @@ from ._utils import _c_d_lambda
 class PKBD:
     """
     Class for estimating density and generating samples of Poisson-kernel based distribution (PKBD).
+    Details on PKBD can be found in :ref:`User Guide <pkbd>`.
     """
 
     def __init__(self) -> None:
