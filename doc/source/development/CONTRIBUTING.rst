@@ -10,7 +10,7 @@ First of all, thanks for considering contributing to QuadratiK!
 .. _new_issue: https://github.com/rmj3197/QuadratiK/issues/new
 .. _website: https://quadratik.readthedocs.io/en/latest/
 .. _citation: https://arxiv.org/abs/2402.02290
-.. _conduct: 
+.. _conduct: https://github.com/rmj3197/QuadratiK/blob/master/doc/source/development/CODE_OF_CONDUCT.rst
 .. _bug_report: https://github.com/rmj3197/QuadratiK/issues/new?assignees=&labels=Bug%2CNeeds+Triage&projects=&template=bug_report.yml
 .. _doc_improvement: https://github.com/rmj3197/QuadratiK/issues/new?assignees=&labels=Documentation%2CNeeds+Triage&projects=&template=documentation_improvement.yml
 .. _email: mailto:raktimmu@buffalo.edu

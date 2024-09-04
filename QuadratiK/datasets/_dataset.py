@@ -49,25 +49,61 @@ def load_wireless_data(
 
     Returns
     -------
+    - If `desc=True`, `return_X_y=True`, `as_dataframe=True`:
+        Returns a tuple containing: (str, pd.DataFrame, pd.DataFrame)
+        - `fdescr` : str
+            The description of the dataset.
+        - `X` : pd.DataFrame
+            A DataFrame with the features.
+        - `y` : pd.DataFrame
+            A DataFrame with the class labels.
 
-        (data, target) : tuple, if return_X_y is True
-            A tuple of two ndarray. The first containing a 2D array of shape
-            (n_samples, n_features) with each row representing one sample and
-            each column representing the features. The second ndarray of shape
-            (n_samples,) containing the target samples.
+    - If `desc=True`, `return_X_y=True`, `as_dataframe=False`:
+        Returns a tuple containing: (str, np.ndarray, np.ndarray)
+        - `fdescr` : str
+            The description of the dataset.
+        - `X` : np.ndarray
+            A numpy array with the features .
+        - `y` : np.ndarray
+            A numpy array with the class labels .
 
-        data : pandas.DataFrame, if as_dataframe is True
-            Dataframe of the data with shape (n_samples, n_features + class).
+    - If `desc=True`, `return_X_y=False`, `as_dataframe=True`:
+        Returns a tuple containing: (str, pd.DataFrame)
+        - `fdescr` : str
+            The description of the dataset.
+        - `data_df` : pd.DataFrame
+            A DataFrame containing the entire dataset.
 
-        (desc, data, target) : tuple, if desc is True and return_X_y is True
-            A tuple of description and two numpy.ndarray. The first containing a 2D
-            array of shape (n_samples, n_features) with each row representing
-            one sample and each column representing the features. The second
-            ndarray of shape (n_samples,) containing the target samples.
+    - If `desc=True`, `return_X_y=False`, `as_dataframe=False`:
+        Returns a tuple containing: (str, np.ndarray)
+        - `fdescr` : str
+            The description of the dataset.
+        - `data` : np.ndarray
+            A numpy array containing the entire dataset.
 
-        (desc, data) : tuple, if desc is True and as_dataframe is True
-            A tuple of description and pandas.DataFrame.
-            Dataframe of the data with shape (n_samples, n_features + class)
+    - If `desc=False`, `return_X_y=True`, `as_dataframe=True`:
+        Returns a tuple containing: (pd.DataFrame, pd.DataFrame)
+        - `X` : pd.DataFrame
+            A DataFrame with the features.
+        - `y` : pd.DataFrame
+            A DataFrame with the class labels.
+
+    - If `desc=False`, `return_X_y=True`, `as_dataframe=False`:
+        Returns a tuple containing: (np.ndarray, np.ndarray)
+        - `X` : np.ndarray
+            A numpy array with the features.
+        - `y` : np.ndarray
+            A numpy array with the class labels.
+
+    - If `desc=False`, `return_X_y=False`, `as_dataframe=True`:
+        Returns: pd.DataFrame
+        - `data_df` : pd.DataFrame
+            A DataFrame containing the entire dataset.
+
+    - If `desc=False`, `return_X_y=False`, `as_dataframe=False`:
+        Returns: np.ndarray
+        - `data` : np.ndarray
+            A numpy array containing the entire dataset.
 
     References
     ----------
@@ -192,25 +228,61 @@ def load_wisconsin_breast_cancer_data(
 
     Returns
     -------
+    - If `desc=True`, `return_X_y=True`, `as_dataframe=True`:
+        Returns a tuple containing: (str, pd.DataFrame, pd.DataFrame)
+        - `fdescr` : str
+            The description of the dataset.
+        - `X` : pd.DataFrame
+            A DataFrame with the features.
+        - `y` : pd.DataFrame
+            A DataFrame with the class labels.
 
-        (data, target) : tuple, if return_X_y is True
-            A tuple of two ndarray. The first containing a 2D array of shape
-            (n_samples, n_features) with each row representing one sample and
-            each column representing the features. The second ndarray of shape
-            (n_samples,) containing the target samples.
+    - If `desc=True`, `return_X_y=True`, `as_dataframe=False`:
+        Returns a tuple containing: (str, np.ndarray, np.ndarray)
+        - `fdescr` : str
+            The description of the dataset.
+        - `X` : np.ndarray
+            A numpy array with the features .
+        - `y` : np.ndarray
+            A numpy array with the class labels .
 
-        data : pandas.DataFrame, if as_dataframe is True
-            Dataframe of the data with shape (n_samples, n_features + class).
+    - If `desc=True`, `return_X_y=False`, `as_dataframe=True`:
+        Returns a tuple containing: (str, pd.DataFrame)
+        - `fdescr` : str
+            The description of the dataset.
+        - `data_df` : pd.DataFrame
+            A DataFrame containing the entire dataset.
 
-        (desc, data, target) : tuple, if desc is True and return_X_y is True
-            A tuple of description and two numpy.ndarray. The first containing a 2D
-            array of shape (n_samples, n_features) with each row representing
-            one sample and each column representing the features. The second
-            ndarray of shape (n_samples,) containing the target samples.
+    - If `desc=True`, `return_X_y=False`, `as_dataframe=False`:
+        Returns a tuple containing: (str, np.ndarray)
+        - `fdescr` : str
+            The description of the dataset.
+        - `data` : np.ndarray
+            A numpy array containing the entire dataset.
 
-        (desc, data) : tuple, if desc is True and as_dataframe is True
-            A tuple of description and pandas.DataFrame.
-            Dataframe of the data with shape (n_samples, n_features + class)
+    - If `desc=False`, `return_X_y=True`, `as_dataframe=True`:
+        Returns a tuple containing: (pd.DataFrame, pd.DataFrame)
+        - `X` : pd.DataFrame
+            A DataFrame with the features.
+        - `y` : pd.DataFrame
+            A DataFrame with the class labels.
+
+    - If `desc=False`, `return_X_y=True`, `as_dataframe=False`:
+        Returns a tuple containing: (np.ndarray, np.ndarray)
+        - `X` : np.ndarray
+            A numpy array with the features.
+        - `y` : np.ndarray
+            A numpy array with the class labels.
+
+    - If `desc=False`, `return_X_y=False`, `as_dataframe=True`:
+        Returns: pd.DataFrame
+        - `data_df` : pd.DataFrame
+            A DataFrame containing the entire dataset.
+
+    - If `desc=False`, `return_X_y=False`, `as_dataframe=False`:
+        Returns: np.ndarray
+        - `data` : np.ndarray
+            A numpy array containing the entire dataset.
 
     References
     ----------
@@ -366,25 +438,61 @@ def load_wine_data(
 
     Returns
     -------
+    - If `desc=True`, `return_X_y=True`, `as_dataframe=True`:
+        Returns a tuple containing: (str, pd.DataFrame, pd.DataFrame)
+        - `fdescr` : str
+            The description of the dataset.
+        - `X` : pd.DataFrame
+            A DataFrame with the features.
+        - `y` : pd.DataFrame
+            A DataFrame with the class labels.
 
-        (data, target) : tuple, if return_X_y is True
-            A tuple of two ndarray. The first containing a 2D array of shape
-            (n_samples, n_features) with each row representing one sample and
-            each column representing the features. The second ndarray of shape
-            (n_samples,) containing the target samples.
+    - If `desc=True`, `return_X_y=True`, `as_dataframe=False`:
+        Returns a tuple containing: (str, np.ndarray, np.ndarray)
+        - `fdescr` : str
+            The description of the dataset.
+        - `X` : np.ndarray
+            A numpy array with the features .
+        - `y` : np.ndarray
+            A numpy array with the class labels .
 
-        data : pandas.DataFrame, if as_dataframe is True
-            Dataframe of the data with shape (n_samples, n_features + class).
+    - If `desc=True`, `return_X_y=False`, `as_dataframe=True`:
+        Returns a tuple containing: (str, pd.DataFrame)
+        - `fdescr` : str
+            The description of the dataset.
+        - `data_df` : pd.DataFrame
+            A DataFrame containing the entire dataset.
 
-        (desc, data, target) : tuple, if desc is True and return_X_y is True
-            A tuple of description and two numpy.ndarray. The first containing a 2D
-            array of shape (n_samples, n_features) with each row representing
-            one sample and each column representing the features. The second
-            ndarray of shape (n_samples,) containing the target samples.
+    - If `desc=True`, `return_X_y=False`, `as_dataframe=False`:
+        Returns a tuple containing: (str, np.ndarray)
+        - `fdescr` : str
+            The description of the dataset.
+        - `data` : np.ndarray
+            A numpy array containing the entire dataset.
 
-        (desc, data) : tuple, if desc is True and as_dataframe is True
-            A tuple of description and pandas.DataFrame.
-            Dataframe of the data with shape (n_samples, n_features + class)
+    - If `desc=False`, `return_X_y=True`, `as_dataframe=True`:
+        Returns a tuple containing: (pd.DataFrame, pd.DataFrame)
+        - `X` : pd.DataFrame
+            A DataFrame with the features.
+        - `y` : pd.DataFrame
+            A DataFrame with the class labels.
+
+    - If `desc=False`, `return_X_y=True`, `as_dataframe=False`:
+        Returns a tuple containing: (np.ndarray, np.ndarray)
+        - `X` : np.ndarray
+            A numpy array with the features.
+        - `y` : np.ndarray
+            A numpy array with the class labels.
+
+    - If `desc=False`, `return_X_y=False`, `as_dataframe=True`:
+        Returns: pd.DataFrame
+        - `data_df` : pd.DataFrame
+            A DataFrame containing the entire dataset.
+
+    - If `desc=False`, `return_X_y=False`, `as_dataframe=False`:
+        Returns: np.ndarray
+        - `data` : np.ndarray
+            A numpy array containing the entire dataset.
 
     References
     ----------
