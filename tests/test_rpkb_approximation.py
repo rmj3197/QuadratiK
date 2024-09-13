@@ -10,7 +10,7 @@ from QuadratiK.spherical_clustering import PKBD
 
 class TestApproximation:
     def test(self):
-        n = 10000
+        n = 100000
         loc = np.array([-1, 0])
         rho = 0.6
 
