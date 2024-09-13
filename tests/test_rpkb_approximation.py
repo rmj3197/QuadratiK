@@ -15,7 +15,7 @@ class TestApproximation:
         rho = 0.6
 
         wrapped_cauchy = wrapcauchy.rvs(rho, loc=-np.pi, size=n)
-        pkbd = PKBD().rpkb(n=10000, mu=loc, rho=rho)
+        pkbd = PKBD().rpkb(n=n, mu=loc, rho=rho)
         pkbd_angles = np.arctan2(pkbd[:, 1], pkbd[:, 0])
 
         quantiles = np.arange(0.05, 1, 0.05)
