@@ -73,11 +73,11 @@ QuadratiK
 Introduction
 ==============
 
-The QuadratiK package is implemented in both **R** and **Python**, providing a comprehensive set of goodness-of-fit tests and a clustering technique using kernel-based quadratic distances. This framework aims to bridge the gap between the statistical and machine learning literatures. It includes:
+The QuadratiK package is implemented in both **R** and **Python**, providing a comprehensive set of goodness-of-fit tests and a clustering technique using kernel-based quadratic distances, and algorithms for generating random samples from a PKBD distribution. It includes: 
 
 * **Goodness-of-Fit Tests** : The software implements one, two, and k-sample tests for goodness of fit, offering an efficient and mathematically sound way to assess the fit of probability distributions. Expanded capabilities include supporting tests for uniformity on the :math:`d`-dimensional Sphere based on Poisson kernel densities. Our tests are particularly useful for large, high-dimensional datasets where the assessment of fit of probability models is of interest. Specifically, we offer tests for normality, as well as two- and k-sample tests, where testing equality of two or more distributions is of interest, i.e. :math:`H_0: F_1 = F_2` and :math:`H_0: F_1 = \ldots = F_k` respectively. The proposed tests perform well in terms of level and power for contiguous alternatives, heavy tailed distributions and in higher dimensions. 
 
-* **Poisson Kernel-based Distribution (PKBD)** :  The package also includes functionality for generating random samples from PKBD and computing the density value. A short guide on PKBD is included in `User Guide <user_guide>`_. For more details please see `Golzy and Markatou (2020) <https://www.tandfonline.com/doi/abs/10.1080/10618600.2020.1740713>`_.
+* **Poisson Kernel-based Distribution (PKBD)** :  The package also includes functionality for generating random samples from PKBD and computing the density value. A short guide on PKBD is included in `User Guide <user_guide>`_. For more details please see `Golzy and Markatou (2020) <https://www.tandfonline.com/doi/abs/10.1080/10618600.2020.1740713>`_ and `Sablica et al. (2023) <https://projecteuclid.org/journals/electronic-journal-of-statistics/volume-17/issue-2/Efficient-sampling-from-the-PKBD-distribution/10.1214/23-EJS2149.full>`_.
 
 * **Clustering Algorithm for Spherical Data**: The package incorporates a unique clustering algorithm specifically tailored for spherical data. This algorithm leverages a mixture of Poisson-kernel-based densities on the sphere, enabling effective clustering of spherical data or data that has been spherically transformed. This facilitates the uncovering of underlying patterns and relationships in the data. The clustering algorithm is especially useful in the presence of noise in the data and the presence of non-negligible overlap between clusters. 
 
@@ -228,7 +228,11 @@ Related Packages
 =================
 
 Below is a list of packages in `R` and `Python` that provide functionalities related to Goodness-of-Fit testing. 
-Please note that this list is not exhaustive.
+Please note that this list is not exhaustive. We also would like to point out that while these packages deal with
+goodness-of-fit in general, none encodes the methodology and algorithms that are present in our software.
+Furthermore, our software incorporates a clustering algorithm for data that reside on the :math:`d`-dimensional sphere
+that is especially useful in the presence of noise in the data and the presence of non-negligible overlap between
+clusters. Functions that can be used to generate data from PKBDs are also provided. 
 
 R Packages
 ------------
@@ -287,5 +291,8 @@ Golzy M. & Markatou M. (2020) Poisson Kernel-Based Clustering on the Sphere:
 Convergence Properties, Identifiability, and a Method of Sampling, Journal of Computational and
 Graphical Statistics, 29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.
 
-Markatou M, Saraceno G, Chen Y (2023). “Two- and k-Sample Tests Based on Quadratic Distances.”
-Manuscript, (Department of Biostatistics, University at Buffalo).
+Sablica, L., Hornik, K., & Leydold, J. (2023). Efficient sampling from the PKBD distribution. Electronic Journal of Statistics, 17(2), 2180-2209.
+
+Markatou, M., & Saraceno, G. (2024). A unified framework for multivariate two-sample and k-sample kernel-based quadratic distance goodness-of-fit tests. BOI: 10.48550/arXiv.2407.16374v1
+
+

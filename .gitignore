@@ -158,6 +158,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 .vscode/
-htmlcov/
+htmlcov/s
 .DS_Store
 build/
+.Rproj.user
+.Rhistory
+QuadratiK.Rproj
