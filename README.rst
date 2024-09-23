@@ -293,6 +293,6 @@ Graphical Statistics, 29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.
 
 Sablica, L., Hornik, K., & Leydold, J. (2023). Efficient sampling from the PKBD distribution. Electronic Journal of Statistics, 17(2), 2180-2209.
 
-Markatou, M., & Saraceno, G. (2024). A unified framework for multivariate two-sample and k-sample kernel-based quadratic distance goodness-of-fit tests. BOI: 10.48550/arXiv.2407.16374v1
+Markatou, M., & Saraceno, G. (2024). A unified framework for multivariate two-sample and k-sample kernel-based quadratic distance goodness-of-fit tests. DOI: 10.48550/arXiv.2407.16374v1
 
 

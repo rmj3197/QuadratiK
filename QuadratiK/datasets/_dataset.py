@@ -40,7 +40,7 @@ def load_wireless_data(
             Defaults to False.
 
         as_dataframe : boolean, optional
-            Determines whether the function should return the data as a pandas DataFrame (Trues)
+            Determines whether the function should return the data as a pandas DataFrame (True)
             or as a numpy array (False). Defaults to True.
 
         scaled : boolean, optional
@@ -227,7 +227,7 @@ def load_wisconsin_breast_cancer_data(
             Defaults to False.
 
         as_dataframe : boolean, optional
-            Determines whether the function should return the data as a pandas DataFrame (Trues)
+            Determines whether the function should return the data as a pandas DataFrame (True)
             or as a numpy array (False). Defaults to True.
 
         scaled : boolean, optional
@@ -445,7 +445,7 @@ def load_wine_data(
             Defaults to False.
 
         as_dataframe : boolean, optional
-            Determines whether the function should return the data as a pandas DataFrame (Trues)
+            Determines whether the function should return the data as a pandas DataFrame (True)
             or as a numpy array (False). Defaults to True.
 
         scaled : boolean, optional
