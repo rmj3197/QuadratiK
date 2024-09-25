@@ -277,7 +277,7 @@ If you use this package, please consider citing it using the following entry:
 
 Funding Information
 =====================
-The work has been supported by Kaleida Health Foundation, Food and Drug Administration, and Department of Biostatistics, University at Buffalo. 
+The work has been supported by Kaleida Health Foundation and National Science Foundation. 
 
 References
 ============

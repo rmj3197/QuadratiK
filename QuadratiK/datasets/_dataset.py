@@ -308,7 +308,7 @@ def load_wisconsin_breast_cancer_data(
 
     Source
     -------
-        Wolberg, W., Mangasarian, O., Street, N., & Street, W. (1993). Breast Cancer Wisconsin (Diagnostic) [Dataset]. 
+        Wolberg, W., Mangasarian, O., Street, N., & Street, W. (1993). Breast Cancer Wisconsin (Diagnostic) [Dataset].
         UCI Machine Learning Repository. https://doi.org/10.24432/C5DW2B.
 
     Examples

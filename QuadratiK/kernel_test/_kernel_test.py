@@ -133,7 +133,7 @@ class KernelTest:
 
     References
     -----------
-        Markatou, M., & Saraceno, G. (2024). A unified framework for multivariate two-sample and k-sample 
+        Markatou, M., & Saraceno, G. (2024). A unified framework for multivariate two-sample and k-sample
         kernel-based quadratic distance goodness-of-fit tests. arXiv preprint arXiv:2407.16374.
 
         Lindsay BG, Markatou M. & Ray S. (2014) Kernels, Degrees of Freedom, and
