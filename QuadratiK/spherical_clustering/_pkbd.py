@@ -136,8 +136,8 @@ class PKBD:
             and a Method of Sampling, Journal of Computational and Graphical Statistics,
             29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.
 
-            Sablica L., Hornik K., Leydold J. "Efficient sampling from the PKBD
-            distribution," Electronic Journal of Statistics, 17(2), 2180-2209, (2023).
+            Sablica, L., Hornik, K., & Leydold, J. (2023). Efficient sampling from the PKBD distribution. 
+            Electronic Journal of Statistics, 17(2), 2180-2209.
 
         Examples
         --------

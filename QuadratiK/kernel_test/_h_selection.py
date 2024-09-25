@@ -512,9 +512,8 @@ def select_h(
 
     References
     -----------
-        Markatou M., Saraceno G., Chen Y. (2023). “Two- and k-Sample Tests
-        Based on Quadratic Distances. ”Manuscript, (Department of Biostatistics,
-        University at Buffalo).
+        Markatou, M., & Saraceno, G. (2024). A unified framework for multivariate two-sample and 
+        k-sample kernel-based quadratic distance goodness-of-fit tests. arXiv preprint arXiv:2407.16374.
 
     Examples
     --------

@@ -123,7 +123,7 @@ def load_wireless_data(
 
     Source
     -------
-        Bhatt,Rajen. (2017). Wireless Indoor Localization. UCI Machine Learning Repository.
+        Bhatt, R. (2017). Wireless Indoor Localization. UCI Machine Learning Repository.
         https://doi.org/10.24432/C51880.
 
     Examples
@@ -308,8 +308,8 @@ def load_wisconsin_breast_cancer_data(
 
     Source
     -------
-        Wolberg,William, Mangasarian,Olvi, Street,Nick, and Street,W.. (1995).
-        Breast Cancer Wisconsin (Diagnostic). UCI Machine Learning Repository. https://doi.org/10.24432/C5DW2B.
+        Wolberg, W., Mangasarian, O., Street, N., & Street, W. (1993). Breast Cancer Wisconsin (Diagnostic) [Dataset]. 
+        UCI Machine Learning Repository. https://doi.org/10.24432/C5DW2B.
 
     Examples
     --------
@@ -525,8 +525,7 @@ def load_wine_data(
 
     Source
     -------
-        Aeberhard,Stefan and Forina,M.. (1991). Wine.
-        UCI Machine Learning Repository. https://doi.org/10.24432/C5PC7J.
+        Aeberhard, S. & Forina, M. (1992). Wine [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5PC7J.
 
     Examples
     --------

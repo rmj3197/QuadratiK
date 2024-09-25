@@ -166,7 +166,7 @@ After installation, you can activate the Poetry-managed virtual environment by r
 
 This ensures that any commands you run are executed within the isolated environment.
 
-Please note that if managing your own virtual environment externally, you do not need to use poetry shell since you will, 
+Please note that if managing your own virtual environment externally, you do not need to use poetry shell since you will 
 already have activated that virtual environment and made available the correct python instance. 
 
 Installing Dependencies with Poetry

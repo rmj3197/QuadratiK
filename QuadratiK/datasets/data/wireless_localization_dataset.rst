@@ -31,7 +31,7 @@ as a negative value ranging from -100 to 0. The labels correspond to 'conference
 Source
 ------
 
-Bhatt,Rajen. (2017). Wireless Indoor Localization. UCI Machine Learning Repository. https://doi.org/10.24432/C51880.
+Bhatt, R. (2017). Wireless Indoor Localization. UCI Machine Learning Repository. https://doi.org/10.24432/C51880.
 
 References
 ----------
