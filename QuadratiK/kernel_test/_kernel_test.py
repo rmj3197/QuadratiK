@@ -31,6 +31,7 @@ class KernelTest:
     Class for performing the kernel-based quadratic distance goodness-of-fit tests using
     the Gaussian kernel with tuning parameter h. Depending on the input `y` the function performs
     the test of multivariate normality, the non-parametric two-sample tests or the k-sample tests.
+    More details on kernel-based quadratic distance goodness-of-fit tests can be found in :ref:`User Guide <kbqd>`.
 
     Parameters
     ----------

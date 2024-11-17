@@ -32,7 +32,8 @@ class PKBD:
         logdens: bool = False,
     ) -> np.ndarray:
         """
-        Function for estimating the density function of the PKB distribution.
+        Computes the density value for a given point `x` from the Poisson kernel-based distribution
+        with mean direction vector `mu` and concentration parameter `rho`.
 
         Parameters
         ----------

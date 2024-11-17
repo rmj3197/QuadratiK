@@ -438,6 +438,8 @@ def select_h(
     KBQD tests. It performs a small simulation study, generating samples according
     to the family of a specified alternative, for the chosen values
     of h_values and delta.
+    
+    Please see :ref:`User Guide <hselect>` for more details.
 
     Parameters
     ----------

@@ -10,8 +10,12 @@ QuadratiK
      - **Release**
      - **Development**
    * - |License|_ |PyPI Python Version|_ |PyPI Downloads|_
-     - |PyPI Version|_ |GitHub Actions|_ |Documentation Status|_
+     - |arXiv|_ |PyPI Version|_ |GitHub Actions|_ |Documentation Status|_
      - |Codecov|_ |Ruff|_ |Black|_ |Codacy|_ |Codefactor|_ |Repo Status|_
+   
+.. |arXiv| image:: https://img.shields.io/badge/doi-arXiv:2402.02290v2-green.svg
+   :target: https://doi.org/10.48550/arXiv.2402.02290
+   :alt: QuadratiK arXiv publication
 
 .. |License| image:: https://img.shields.io/badge/License-GPLv3-blue.svg
    :target: https://github.com/rmj3197/QuadratiK/blob/main/LICENSE
@@ -69,6 +73,7 @@ QuadratiK
 .. _Ruff: https://github.com/rmj3197/QuadratiK/actions/workflows/ruff_linting.yml
 .. _Codacy: https://app.codacy.com/gh/rmj3197/QuadratiK/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
 .. _Codefactor: https://www.codefactor.io/repository/github/rmj3197/quadratik
+.. _arXiv: https://doi.org/10.48550/arXiv.2402.02290
 
 Introduction
 ==============
