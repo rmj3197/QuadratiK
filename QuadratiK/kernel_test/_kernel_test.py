@@ -34,111 +34,111 @@ class KernelTest:
 
     Parameters
     ----------
-        h : float, optional
-            Bandwidth for the kernel function.
+    h : float, optional
+        Bandwidth for the kernel function.
 
-        method : str, optional
-            The method used for critical value estimation ("subsampling", "bootstrap",
-            or "permutation").
+    method : str, optional
+        The method used for critical value estimation ("subsampling", "bootstrap",
+        or "permutation").
 
-        num_iter : int, optional
-            The number of iterations to use for critical value estimation. Defaults to 150.
+    num_iter : int, optional
+        The number of iterations to use for critical value estimation. Defaults to 150.
 
-        b : float, optional
-            The size of the subsamples used in the subsampling algorithm. Defaults to 0.9 i.e.
-            `0.9N` samples are used, where `N` represents the total sample size.
+    b : float, optional
+        The size of the subsamples used in the subsampling algorithm. Defaults to 0.9 i.e.
+        `0.9N` samples are used, where `N` represents the total sample size.
 
-        quantile : float, optional
-            The quantile to use for critical value estimation. Defaults to 0.95.
+    quantile : float, optional
+        The quantile to use for critical value estimation. Defaults to 0.95.
 
-        mu_hat : numpy.ndarray, optional
-            Mean vector for the reference distribution. Defaults to None.
+    mu_hat : numpy.ndarray, optional
+        Mean vector for the reference distribution. Defaults to None.
 
-        sigma_hat : numpy.ndarray, optional
-            Covariance matrix of the reference distribution. Defaults to None.
+    sigma_hat : numpy.ndarray, optional
+        Covariance matrix of the reference distribution. Defaults to None.
 
-        alternative : str, optional
-            String indicating the type of alternative to be used for calculating "h"
-            by the tuning parameter selection algorithm when h is not provided.
-            Must be one of "mean", "variance" and "skewness". Defaults to 'None'
+    alternative : str, optional
+        String indicating the type of alternative to be used for calculating "h"
+        by the tuning parameter selection algorithm when h is not provided.
+        Must be one of "mean", "variance" and "skewness". Defaults to 'None'
 
-        k_threshold : int, optional
-            Maximum number of groups allowed. Defaults to 10. Change in case of more than 10 groups.
+    k_threshold : int, optional
+        Maximum number of groups allowed. Defaults to 10. Change in case of more than 10 groups.
 
-        random_state : int, None, optional.
-            Seed for random number generation. Defaults to None.
+    random_state : int, None, optional.
+        Seed for random number generation. Defaults to None.
 
-        n_jobs : int, optional.
-            n_jobs specifies the maximum number of concurrently
-            running workers. If 1 is given, no joblib parallelism
-            is used at all, which is useful for debugging. For more
-            information on joblib n_jobs refer to -
-            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
-            Defaults to 8.
+    n_jobs : int, optional.
+        n_jobs specifies the maximum number of concurrently
+        running workers. If 1 is given, no joblib parallelism
+        is used at all, which is useful for debugging. For more
+        information on joblib n_jobs refer to -
+        https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
+        Defaults to 8.
 
     Attributes
     ----------
-        For Normality Test:
-            test_type\\_ : str
-                The type of test performed on the data.
+    For Normality Test:
+        test_type\\_ : str
+            The type of test performed on the data.
 
-            execution_time : float
-                Time taken for the test method to execute.
+        execution_time : float
+            Time taken for the test method to execute.
 
-            un_h0_rejected\\_ : boolean
-                Whether the null hypothesis using Un is rejected (True) or not (False).
+        un_h0_rejected\\_ : boolean
+            Whether the null hypothesis using Un is rejected (True) or not (False).
 
-            vn_h0_rejected\\_ : boolean
-                Whether the null hypothesis using Vn is rejected (True) or not (False).
+        vn_h0_rejected\\_ : boolean
+            Whether the null hypothesis using Vn is rejected (True) or not (False).
 
-            un_test_statistic\\_ : float
-                Un Test statistic of the perfomed test type.
+        un_test_statistic\\_ : float
+            Un Test statistic of the perfomed test type.
 
-            vn_test_statistic\\_ : float
-                Vn Test statistic of the perfomed test type.
+        vn_test_statistic\\_ : float
+            Vn Test statistic of the perfomed test type.
 
-            un_cv\\_ : float
-                Critical value for Un.
+        un_cv\\_ : float
+            Critical value for Un.
 
-            un_cv\\_ : float
-                Critical value for Vn.
+        un_cv\\_ : float
+            Critical value for Vn.
 
-        For Two-Sample and K-Sample Test:
-            test_type\\_ : str
-                The type of test performed on the data.
+    For Two-Sample and K-Sample Test:
+        test_type\\_ : str
+            The type of test performed on the data.
 
-            execution_time : float
-                Time taken for the test method to execute.
+        execution_time : float
+            Time taken for the test method to execute.
 
-            dn_h0_rejected\\_ : boolean
-                Whether the null hypothesis using Un is rejected (True) or not (False).
+        dn_h0_rejected\\_ : boolean
+            Whether the null hypothesis using Un is rejected (True) or not (False).
 
-            dn_test_statistic\\_ : float
-                Un Test statistic of the perfomed test type.
+        dn_test_statistic\\_ : float
+            Un Test statistic of the perfomed test type.
 
-            dn_cv\\_ : float
-                Critical value for Un.
+        dn_cv\\_ : float
+            Critical value for Un.
 
-            trace_h0_rejected\\_ : boolean
-                Whether the null hypothesis using trace statistic is rejected (True) or not (False).
+        trace_h0_rejected\\_ : boolean
+            Whether the null hypothesis using trace statistic is rejected (True) or not (False).
 
-            trace_test_statistic\\_ : float
-                Trace Test statistic of the perfomed test type.
+        trace_test_statistic\\_ : float
+            Trace Test statistic of the perfomed test type.
 
-            trace_cv\\_ : float
-                Critical value for trace statistic.
+        trace_cv\\_ : float
+            Critical value for trace statistic.
 
-            cv_method\\_ : str
-                Critical value method used for performing the test.
+        cv_method\\_ : str
+            Critical value method used for performing the test.
 
     References
     -----------
-        Markatou, M., & Saraceno, G. (2024). A unified framework for multivariate two-sample and k-sample
-        kernel-based quadratic distance goodness-of-fit tests. arXiv preprint arXiv:2407.16374.
+    Markatou, M., & Saraceno, G. (2024). A unified framework for multivariate two-sample and k-sample
+    kernel-based quadratic distance goodness-of-fit tests. arXiv preprint arXiv:2407.16374.
 
-        Lindsay BG, Markatou M. & Ray S. (2014) Kernels, Degrees of Freedom, and
-        Power Properties of Quadratic Distance Goodness-of-Fit Tests, Journal of the American Statistical
-        Association, 109:505, 395-410, DOI: 10.1080/01621459.2013.836972.
+    Lindsay BG, Markatou M. & Ray S. (2014) Kernels, Degrees of Freedom, and
+    Power Properties of Quadratic Distance Goodness-of-Fit Tests, Journal of the American Statistical
+    Association, 109:505, 395-410, DOI: 10.1080/01621459.2013.836972.
 
     Examples
     --------
@@ -321,16 +321,16 @@ class KernelTest:
 
         Parameters
         ----------
-            x : numpy.ndarray or pandas.DataFrame.
-                A numeric array of data values.
-            y : numpy.ndarray or pandas.DataFrame, optional
-                A numeric array data values (for two-sample test) and a 1D array of class labels
-                (for k-sample test). Defaults to None.
+        x : numpy.ndarray or pandas.DataFrame.
+            A numeric array of data values.
+        y : numpy.ndarray or pandas.DataFrame, optional
+            A numeric array data values (for two-sample test) and a 1D array of class labels
+            (for k-sample test). Defaults to None.
 
         Returns
         -------
-            self : object
-                Fitted estimator.
+        self : object
+            Fitted estimator.
         """
 
         self.x = x
@@ -559,8 +559,8 @@ class KernelTest:
 
         Returns
         -------
-            summary_stats_df : pandas.DataFrame
-                Dataframe of descriptive statistics.
+        summary_stats_df : pandas.DataFrame
+            Dataframe of descriptive statistics.
         """
         summary_stats_df = stats(self.x, self.y)
         return summary_stats_df.round(4)
@@ -571,15 +571,15 @@ class KernelTest:
 
         Parameters
         ----------
-            print_fmt : str, optional.
-                Used for printing the output in the desired format. Defaults to "simple_grid".
-                Supports all available options in tabulate, see here: https://pypi.org/project/tabulate/.
+        print_fmt : str, optional.
+            Used for printing the output in the desired format. Defaults to "simple_grid".
+            Supports all available options in tabulate, see here: https://pypi.org/project/tabulate/.
 
         Returns
         --------
-            summary : str
-                A string formatted in the desired output
-                format with the kernel test results and summary statistics.
+        summary : str
+            A string formatted in the desired output
+            format with the kernel test results and summary statistics.
         """
 
         if self.vn_test_statistic_ is None:

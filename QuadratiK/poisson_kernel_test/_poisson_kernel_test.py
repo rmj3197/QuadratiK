@@ -26,58 +26,58 @@ class PoissonKernelTest:
 
     Parameters
     ----------
-        rho : float
-            The value of concentration parameter used for the
-            Poisson kernel function.
+    rho : float
+        The value of concentration parameter used for the
+        Poisson kernel function.
 
-        num_iter : int, optional
-            Number of iterations for critical value estimation of U-statistic.
+    num_iter : int, optional
+        Number of iterations for critical value estimation of U-statistic.
 
-        quantile : float, optional
-            The quantile to use for critical value estimation.
+    quantile : float, optional
+        The quantile to use for critical value estimation.
 
-        random_state : int, None, optional.
-            Seed for random number generation. Defaults to None.
+    random_state : int, None, optional.
+        Seed for random number generation. Defaults to None.
 
-        n_jobs : int, optional.
-            n_jobs specifies the maximum number of concurrently running workers.
-            If 1 is given, no joblib parallelism is used at all, which is useful for debugging.
-            For more information on joblib n_jobs refer
-            to - https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
-            Defaults to 8.
+    n_jobs : int, optional.
+        n_jobs specifies the maximum number of concurrently running workers.
+        If 1 is given, no joblib parallelism is used at all, which is useful for debugging.
+        For more information on joblib n_jobs refer
+        to - https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
+        Defaults to 8.
 
     Attributes
     -----------
-        test_type\\_ : str
-            The type of test performed on the data.
+    test_type\\_ : str
+        The type of test performed on the data.
 
-        execution_time : float
-            Time taken for the test method to execute.
+    execution_time : float
+        Time taken for the test method to execute.
 
-        u_statistic_h0\\_ : boolean
-            A logical value indicating whether or not the null hypothesis
-            is rejected according to Un.
+    u_statistic_h0\\_ : boolean
+        A logical value indicating whether or not the null hypothesis
+        is rejected according to Un.
 
-        u_statistic_un\\_ : float
-            The value of the U-statistic.
+    u_statistic_un\\_ : float
+        The value of the U-statistic.
 
-        u_statistic_cv\\_ : float
-            The empirical critical value for Un.
+    u_statistic_cv\\_ : float
+        The empirical critical value for Un.
 
-        v_statistic_h0\\_ : boolean
-            A logical value indicating whether or not the null hypothesis is
-            rejected according to Vn.
+    v_statistic_h0\\_ : boolean
+        A logical value indicating whether or not the null hypothesis is
+        rejected according to Vn.
 
-        v_statistic_vn\\_ : float
-            The value of the V-statistic.
+    v_statistic_vn\\_ : float
+        The value of the V-statistic.
 
-        v_statistic_cv\\_ : float
-            The critical value for Vn computed following the asymptotic distribution.
+    v_statistic_cv\\_ : float
+        The critical value for Vn computed following the asymptotic distribution.
 
     References
     -----------
-        Ding Y., Markatou M., Saraceno G. (2023). “Poisson Kernel-Based Tests for
-        Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/ss.202022.0347.
+    Ding Y., Markatou M., Saraceno G. (2023). “Poisson Kernel-Based Tests for
+    Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/ss.202022.0347.
 
     Examples
     ---------
@@ -167,13 +167,13 @@ class PoissonKernelTest:
 
         Parameters
         ----------
-            x : numpy.ndarray, pandas.DataFrame
-                a numeric d-dim matrix of data points on the Sphere :math:`S^{(d-1)}`.
+        x : numpy.ndarray, pandas.DataFrame
+            a numeric d-dim matrix of data points on the Sphere :math:`S^{(d-1)}`.
 
         Returns
         -------
-            self : object
-                Fitted estimator.
+        self : object
+            Fitted estimator.
         """
         self.x = x
         if isinstance(x, np.ndarray):
@@ -239,8 +239,8 @@ class PoissonKernelTest:
 
         Returns
         -------
-            summary_stats_df : pandas.DataFrame
-                Dataframe of descriptive statistics.
+        summary_stats_df : pandas.DataFrame
+            Dataframe of descriptive statistics.
         """
         summary_stats_df = stats(self.x)
         return summary_stats_df.round(4)
@@ -252,17 +252,17 @@ class PoissonKernelTest:
 
         Parameters
         ----------
-            print_fmt : str, optional.
-                Used for printing the output in the desired format.
-                Supports all available options in tabulate,
-                see here: https://pypi.org/project/tabulate/.
-                Defaults to "simple_grid".
+        print_fmt : str, optional.
+            Used for printing the output in the desired format.
+            Supports all available options in tabulate,
+            see here: https://pypi.org/project/tabulate/.
+            Defaults to "simple_grid".
 
         Returns
         --------
-            summary : str
-                A string formatted in the desired output
-                format with the kernel test results and summary statistics.
+        summary : str
+            A string formatted in the desired output
+            format with the kernel test results and summary statistics.
         """
         index_labels = [
             "Test Statistic",

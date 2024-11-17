@@ -31,21 +31,21 @@ def load_wireless_data(
     Parameters
     ----------
 
-        desc : boolean, optional
-            If set to `True`, the function will return the description along with the data.
-            If set to `False`, the description will not be included. Defaults to False.
+    desc : boolean, optional
+        If set to `True`, the function will return the description along with the data.
+        If set to `False`, the description will not be included. Defaults to False.
 
-        return_X_y : boolean, optional
-            Determines whether the function should return the data as separate arrays (`X` and `y`).
-            Defaults to False.
+    return_X_y : boolean, optional
+        Determines whether the function should return the data as separate arrays (`X` and `y`).
+        Defaults to False.
 
-        as_dataframe : boolean, optional
-            Determines whether the function should return the data as a pandas DataFrame (True)
-            or as a numpy array (False). Defaults to True.
+    as_dataframe : boolean, optional
+        Determines whether the function should return the data as a pandas DataFrame (True)
+        or as a numpy array (False). Defaults to True.
 
-        scaled : boolean, optional
-            Determines whether or not the data should be scaled. If set to True, the data will be
-            divided by its Euclidean norm along each row. Defaults to False.
+    scaled : boolean, optional
+        Determines whether or not the data should be scaled. If set to True, the data will be
+        divided by its Euclidean norm along each row. Defaults to False.
 
     Returns
     -------
@@ -115,16 +115,16 @@ def load_wireless_data(
 
     References
     ----------
-        Rohra, J.G., Perumal, B., Narayanan, S.J., Thakur, P., Bhatt, R.B. (2017).
-        User Localization in an Indoor Environment Using Fuzzy Hybrid of Particle Swarm Optimization
-        & Gravitational Search Algorithm with Neural Networks. In: Deep, K., et al. Proceedings of
-        Sixth International Conference on Soft Computing for Problem Solving. Advances in Intelligent
-        Systems and Computing, vol 546. Springer, Singapore. https://doi.org/10.1007/978-981-10-3322-3_27.
+    Rohra, J.G., Perumal, B., Narayanan, S.J., Thakur, P., Bhatt, R.B. (2017).
+    User Localization in an Indoor Environment Using Fuzzy Hybrid of Particle Swarm Optimization
+    & Gravitational Search Algorithm with Neural Networks. In: Deep, K., et al. Proceedings of
+    Sixth International Conference on Soft Computing for Problem Solving. Advances in Intelligent
+    Systems and Computing, vol 546. Springer, Singapore. https://doi.org/10.1007/978-981-10-3322-3_27.
 
     Source
     -------
-        Bhatt, R. (2017). Wireless Indoor Localization. UCI Machine Learning Repository.
-        https://doi.org/10.24432/C51880.
+    Bhatt, R. (2017). Wireless Indoor Localization. UCI Machine Learning Repository.
+    https://doi.org/10.24432/C51880.
 
     Examples
     --------
@@ -218,21 +218,21 @@ def load_wisconsin_breast_cancer_data(
     Parameters
     ----------
 
-        desc : boolean, optional
-            If set to `True`, the function will return the description along with the data.
-            If set to `False`, the description will not be included. Defaults to False.
+    desc : boolean, optional
+        If set to `True`, the function will return the description along with the data.
+        If set to `False`, the description will not be included. Defaults to False.
 
-        return_X_y : boolean, optional
-            Determines whether the function should return the data as separate arrays (`X` and `y`).
-            Defaults to False.
+    return_X_y : boolean, optional
+        Determines whether the function should return the data as separate arrays (`X` and `y`).
+        Defaults to False.
 
-        as_dataframe : boolean, optional
-            Determines whether the function should return the data as a pandas DataFrame (True)
-            or as a numpy array (False). Defaults to True.
+    as_dataframe : boolean, optional
+        Determines whether the function should return the data as a pandas DataFrame (True)
+        or as a numpy array (False). Defaults to True.
 
-        scaled : boolean, optional
-            Determines whether or not the data should be scaled. If set to True, the data will be
-            divided by its Euclidean norm along each row. Defaults to False.
+    scaled : boolean, optional
+        Determines whether or not the data should be scaled. If set to True, the data will be
+        divided by its Euclidean norm along each row. Defaults to False.
 
     Returns
     -------
@@ -302,14 +302,14 @@ def load_wisconsin_breast_cancer_data(
 
     References
     ----------
-        Street, W. N., Wolberg, W. H., & Mangasarian, O. L. (1993, July).
-        Nuclear feature extraction for breast tumor diagnosis.
-        In Biomedical image processing and biomedical visualization (Vol. 1905, pp. 861-870). SPIE.
+    Street, W. N., Wolberg, W. H., & Mangasarian, O. L. (1993, July).
+    Nuclear feature extraction for breast tumor diagnosis.
+    In Biomedical image processing and biomedical visualization (Vol. 1905, pp. 861-870). SPIE.
 
     Source
     -------
-        Wolberg, W., Mangasarian, O., Street, N., & Street, W. (1993). Breast Cancer Wisconsin (Diagnostic) [Dataset].
-        UCI Machine Learning Repository. https://doi.org/10.24432/C5DW2B.
+    Wolberg, W., Mangasarian, O., Street, N., & Street, W. (1993). Breast Cancer Wisconsin (Diagnostic) [Dataset].
+    UCI Machine Learning Repository. https://doi.org/10.24432/C5DW2B.
 
     Examples
     --------
@@ -436,21 +436,21 @@ def load_wine_data(
     Parameters
     ----------
 
-        desc : boolean, optional
-            If set to `True`, the function will return the description along with the data.
-            If set to `False`, the description will not be included. Defaults to False.
+    desc : boolean, optional
+        If set to `True`, the function will return the description along with the data.
+        If set to `False`, the description will not be included. Defaults to False.
 
-        return_X_y : boolean, optional
-            Determines whether the function should return the data as separate arrays (`X` and `y`).
-            Defaults to False.
+    return_X_y : boolean, optional
+        Determines whether the function should return the data as separate arrays (`X` and `y`).
+        Defaults to False.
 
-        as_dataframe : boolean, optional
-            Determines whether the function should return the data as a pandas DataFrame (True)
-            or as a numpy array (False). Defaults to True.
+    as_dataframe : boolean, optional
+        Determines whether the function should return the data as a pandas DataFrame (True)
+        or as a numpy array (False). Defaults to True.
 
-        scaled : boolean, optional
-            Determines whether or not the data should be scaled. If set to True, the data will be
-            divided by its Euclidean norm along each row. Defaults to False.
+    scaled : boolean, optional
+        Determines whether or not the data should be scaled. If set to True, the data will be
+        divided by its Euclidean norm along each row. Defaults to False.
 
     Returns
     -------
@@ -520,12 +520,12 @@ def load_wine_data(
 
     References
     ----------
-        Aeberhard, S., Coomans, D., & De Vel, O. (1994). Comparative analysis of statistical pattern recognition
-        methods in high dimensional settings. Pattern Recognition, 27(8), 1065-1077.
+    Aeberhard, S., Coomans, D., & De Vel, O. (1994). Comparative analysis of statistical pattern recognition
+    methods in high dimensional settings. Pattern Recognition, 27(8), 1065-1077.
 
     Source
     -------
-        Aeberhard, S. & Forina, M. (1992). Wine [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5PC7J.
+    Aeberhard, S. & Forina, M. (1992). Wine [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5PC7J.
 
     Examples
     --------

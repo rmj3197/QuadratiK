@@ -36,19 +36,19 @@ class PKBD:
 
         Parameters
         ----------
-            x : numpy.ndarray, pandas.DataFrame
-                A matrix with a number of columns >= 2.
-            mu : float
-                Location parameter with the same length as the rows of x. Normalized to length one.
-            rho : float
-                Concentration parameter. :math:`\\rho \\in (0,1]`.
-            logdens : bool, optional
-                If True, densities d are given as :math:`\\log(d)`. Defaults to False.
+        x : numpy.ndarray, pandas.DataFrame
+            A matrix with a number of columns >= 2.
+        mu : float
+            Location parameter with the same length as the rows of x. Normalized to length one.
+        rho : float
+            Concentration parameter. :math:`\\rho \\in (0,1]`.
+        logdens : bool, optional
+            If True, densities d are given as :math:`\\log(d)`. Defaults to False.
 
         Returns
         -------
-            density : numpy.ndarray
-                An array with the evaluated density values.
+        density : numpy.ndarray
+            An array with the evaluated density values.
         """
         if len(mu) < 2:
             raise ValueError("mu must have length >= 2")
@@ -101,43 +101,43 @@ class PKBD:
 
         Parameters
         ----------
-            n : int
-                Sample size.
+        n : int
+            Sample size.
 
-            mu : np.ndarray, list
-                Location parameter with the same length as the quantiles.
+        mu : np.ndarray, list
+            Location parameter with the same length as the quantiles.
 
-            rho : float
-                Concentration parameter. :math:`\\rho \\in (0,1]`.
+        rho : float
+            Concentration parameter. :math:`\\rho \\in (0,1]`.
 
-            method : str, optional
-                String that indicates the method used for sampling observations.
-                The available methods are :\n
-                - 'rejvmf': acceptance-rejection algorithm using von Mises-Fisher envelops.
-                    (Algorithm in Table 2 of Golzy and Markatou 2020);
-                - 'rejacg': using angular central Gaussian envelops.
-                    (Algorithm in Table 1 of Sablica et al. 2023);
+        method : str, optional
+            String that indicates the method used for sampling observations.
+            The available methods are :\n
+            - 'rejvmf': acceptance-rejection algorithm using von Mises-Fisher envelops.
+                (Algorithm in Table 2 of Golzy and Markatou 2020);
+            - 'rejacg': using angular central Gaussian envelops.
+                (Algorithm in Table 1 of Sablica et al. 2023);
 
-                Defaults to 'rejvmf'.
+            Defaults to 'rejvmf'.
 
-            random_state : int, None, optional.
-                Seed for random number generation. Defaults to None.
+        random_state : int, None, optional.
+            Seed for random number generation. Defaults to None.
 
         Returns
         -------
-            samples : numpy.ndarray
-                Generated observations from a poisson kernel-based density.
-                This function returns a matrix of generated observations.
+        samples : numpy.ndarray
+            Generated observations from a poisson kernel-based density.
+            This function returns a matrix of generated observations.
 
         References
         -----------
-            Golzy M. & Markatou M. (2020) Poisson Kernel-Based
-            Clustering on the Sphere: Convergence Properties, Identifiability,
-            and a Method of Sampling, Journal of Computational and Graphical Statistics,
-            29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.
+        Golzy M. & Markatou M. (2020) Poisson Kernel-Based
+        Clustering on the Sphere: Convergence Properties, Identifiability,
+        and a Method of Sampling, Journal of Computational and Graphical Statistics,
+        29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.
 
-            Sablica, L., Hornik, K., & Leydold, J. (2023). Efficient sampling from the PKBD distribution.
-            Electronic Journal of Statistics, 17(2), 2180-2209.
+        Sablica, L., Hornik, K., & Leydold, J. (2023). Efficient sampling from the PKBD distribution.
+        Electronic Journal of Statistics, 17(2), 2180-2209.
 
         Examples
         --------

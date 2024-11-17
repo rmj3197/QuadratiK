@@ -122,16 +122,16 @@ def dof_normality_test(sigma_h: np.ndarray, v: np.ndarray) -> Tuple[float, float
 
     Parameters
     -----------
-        sigma_h : np.ndarray
-            ovariance matrix of the gaussian kernel.
+    sigma_h : np.ndarray
+        ovariance matrix of the gaussian kernel.
 
-        v : np.ndarray
-            Covariance matrix of the tested distribution G
+    v : np.ndarray
+        Covariance matrix of the tested distribution G
 
     Returns
     --------
-        DOF and Coefficient : tuple
-            DOF and the coefficient of the asymptotic distribution.
+    DOF and Coefficient : tuple
+        DOF and the coefficient of the asymptotic distribution.
     """
     num_dof = np.linalg.det(sigma_h) ** (-1 / 2) - np.linalg.det(sigma_h + 2 * v) ** (
         -1 / 2
@@ -157,19 +157,19 @@ def variance_normality_test(sigma_h: np.ndarray, v: np.ndarray, n: int) -> float
 
     Parameters
     ----------
-        sigma_h: np.ndarray
-            Covariance matrix of the gaussian kernel.
+    sigma_h: np.ndarray
+        Covariance matrix of the gaussian kernel.
 
-        v : np.ndarray
-            Covariance matrix of the tested distribution G.
+    v : np.ndarray
+        Covariance matrix of the tested distribution G.
 
-        n : int
-            Sample size.
+    n : int
+        Sample size.
 
     Returns
     --------
-        variance: float
-            value of computed variance.
+    variance: float
+        value of computed variance.
     """
     d = sigma_h.shape[0]
     var = (
@@ -253,18 +253,18 @@ def variance_k_sample_test(
 
     Parameters
     -----------
-        k_cen : np.ndarray
-            matrix with centered kernel values.
+    k_cen : np.ndarray
+        matrix with centered kernel values.
 
-        sizes : list, np.ndarray
-            vector indicating size of samples.
+    sizes : list, np.ndarray
+        vector indicating size of samples.
 
-        cum_size : list, np.ndarray
-            vector indicating sample's cumulative sizes.
+    cum_size : list, np.ndarray
+        vector indicating sample's cumulative sizes.
 
     Returns:
-        variance: float
-            value of computed variance.
+    variance: float
+        value of computed variance.
     """
     k = len(sizes)
 
