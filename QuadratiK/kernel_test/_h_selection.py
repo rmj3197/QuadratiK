@@ -2,7 +2,7 @@
 Contains the tuning parameter selection algorithm
 """
 
-from typing import Optional, Union, Tuple
+from typing import Optional, Tuple, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
