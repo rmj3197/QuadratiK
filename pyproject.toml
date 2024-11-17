@@ -47,6 +47,7 @@ pytest-cov = "^4.1.0"
 
 [tool.poetry.urls]
 Homepage = "https://github.com/rmj3197/QuadratiK"
+Documentation = "https://quadratik.readthedocs.io"
 
 [tool.ruff]
 line-length = 88 # same as black
