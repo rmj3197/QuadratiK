@@ -22,7 +22,7 @@ stats = importlib.import_module("QuadratiK.tools").stats
 class PoissonKernelTest:
     """
     Class for Poisson kernel-based quadratic distance tests
-    of Uniformity on the Sphere. More details can be found in the 
+    of Uniformity on the Sphere. More details can be found in the
     :ref:`User Guide <pktest>`.
 
     Parameters
@@ -74,12 +74,12 @@ class PoissonKernelTest:
 
     v_statistic_cv\\_ : float
         The critical value for Vn computed following the asymptotic distribution.
-    
+
     Note
     -----
-    A U-statistic is a type of statistic that is used to estimate a population parameter. 
-    It is based on the idea of averaging over all possible distinct combinations of a fixed size from a sample. 
-    A V-statistic considers all possible tuples of a certain size, not just distinct combinations and can be used in contexts 
+    A U-statistic is a type of statistic that is used to estimate a population parameter.
+    It is based on the idea of averaging over all possible distinct combinations of a fixed size from a sample.
+    A V-statistic considers all possible tuples of a certain size, not just distinct combinations and can be used in contexts
     where unbiasedness is not required.
 
     References
