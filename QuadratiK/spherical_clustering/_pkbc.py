@@ -41,100 +41,100 @@ class PKBC:
 
     Parameters
     ----------
-        num_clust : int, list, np.ndarray, range
-            Number of clusters.
+    num_clust : int, list, np.ndarray, range
+        Number of clusters.
 
-        max_iter : int, optional
-            Maximum number of iterations before a run is terminated. Defaults to 300.
+    max_iter : int, optional
+        Maximum number of iterations before a run is terminated. Defaults to 300.
 
-        stopping_rule : str, optional
-            String describing the stopping rule to be used within each run.
-            Currently must be either 'max', 'membership', or 'loglik'. Defaults to `loglik`.
+    stopping_rule : str, optional
+        String describing the stopping rule to be used within each run.
+        Currently must be either 'max', 'membership', or 'loglik'. Defaults to `loglik`.
 
-        init_method : str, optional
-            String describing the initialization method to be used.
-            Currently must be 'sampledata'.
+    init_method : str, optional
+        String describing the initialization method to be used.
+        Currently must be 'sampledata'.
 
-        num_init : int, optional
-            Number of initializations. Defaults to 10.
+    num_init : int, optional
+        Number of initializations. Defaults to 10.
 
-        tol : float.
-            Constant defining threshold by which log
-            likelihood must change to continue iterations, if applicable.
-            Defaults to 1e-7.
+    tol : float.
+        Constant defining threshold by which log
+        likelihood must change to continue iterations, if applicable.
+        Defaults to 1e-7.
 
-        random_state : int, None, optional.
-            Determines random number generation for centroid initialization. Defaults to None.
+    random_state : int, None, optional.
+        Determines random number generation for centroid initialization. Defaults to None.
 
-        n_jobs : int
-            Used only for computing the WCSS efficiently.
-            n_jobs specifies the maximum number of concurrently running workers.
-            If 1 is given, no joblib parallelism is used at all, which is useful for debugging.
-            For more information on joblib n_jobs refer to -
-            https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
-            Defaults to 4.
+    n_jobs : int
+        Used only for computing the WCSS efficiently.
+        n_jobs specifies the maximum number of concurrently running workers.
+        If 1 is given, no joblib parallelism is used at all, which is useful for debugging.
+        For more information on joblib n_jobs refer to -
+        https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
+        Defaults to 4.
 
     Attributes
     ----------
-        alpha\\_ : dict
-            Estimated mixing proportions.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a numpy.ndarray of shape (n_clusters,).
+    alpha\\_ : dict
+        Estimated mixing proportions.
+        A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
+        and each value is a numpy.ndarray of shape (n_clusters,).
 
 
-        labels\\_ : dict
-            Final cluster membership assigned by the algorithm to each observation.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a numpy.ndarray of shape (n_samples,).
+    labels\\_ : dict
+        Final cluster membership assigned by the algorithm to each observation.
+        A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
+        and each value is a numpy.ndarray of shape (n_samples,).
 
-        log_lik_vecs\\_ : dict
-            Array of log-likelihood values for each initialization.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a numpy.ndarray of shape (num_init, ).
-
-
-        loglik\\_ : dict
-            Maximum value of the log-likelihood function.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a float.
+    log_lik_vecs\\_ : dict
+        Array of log-likelihood values for each initialization.
+        A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
+        and each value is a numpy.ndarray of shape (num_init, ).
 
 
-        mu\\_ : dict
-            Estimated centroids.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a numpy.ndarray of shape (n_clusters, n_features).
+    loglik\\_ : dict
+        Maximum value of the log-likelihood function.
+        A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
+        and each value is a float.
 
-        num_iter_per_runs\\_ : dict
-            Number of E-M iterations per run.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a numpy.ndarray of shape (num_init, ).
 
-        post_probs\\_ : dict
-            Posterior probabilities of each observation for the indicated clusters.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a numpy.ndarray of shape (n_samples, num_clust).
+    mu\\_ : dict
+        Estimated centroids.
+        A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
+        and each value is a numpy.ndarray of shape (n_clusters, n_features).
 
-        rho\\_ : dict
-            Estimated concentration parameters rho.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a numpy.ndarray of shape (n_clusters,).
+    num_iter_per_runs\\_ : dict
+        Number of E-M iterations per run.
+        A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
+        and each value is a numpy.ndarray of shape (num_init, ).
 
-        euclidean\\_wcss\\_ : dict
-            Values of within-cluster sum of squares computed with Euclidean distance.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a float.
+    post_probs\\_ : dict
+        Posterior probabilities of each observation for the indicated clusters.
+        A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
+        and each value is a numpy.ndarray of shape (n_samples, num_clust).
 
-        cosine\\_wcss\\_ : dict
-            Values of within-cluster sum of squares computed with cosine similarity.
-            A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
-            and each value is a float.
+    rho\\_ : dict
+        Estimated concentration parameters rho.
+        A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
+        and each value is a numpy.ndarray of shape (n_clusters,).
+
+    euclidean\\_wcss\\_ : dict
+        Values of within-cluster sum of squares computed with Euclidean distance.
+        A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
+        and each value is a float.
+
+    cosine\\_wcss\\_ : dict
+        Values of within-cluster sum of squares computed with cosine similarity.
+        A dictionary containing key-value pairs, where each key is an element from the `num_clust` vector,
+        and each value is a float.
 
     References
     ----------
-        Golzy M. & Markatou M. (2020) Poisson Kernel-Based
-        Clustering on the Sphere: Convergence Properties, Identifiability,
-        and a Method of Sampling, Journal of Computational and Graphical Statistics,
-        29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.
+    Golzy M. & Markatou M. (2020) Poisson Kernel-Based
+    Clustering on the Sphere: Convergence Properties, Identifiability,
+    and a Method of Sampling, Journal of Computational and Graphical Statistics,
+    29:4, 758-770, DOI: 10.1080/10618600.2020.1740713.
 
     Examples
     ---------
@@ -211,13 +211,13 @@ class PKBC:
 
         Parameters
         ----------
-            dat : numpy.ndarray, pandas.DataFrame
-                A numeric array of data values.
+        dat : numpy.ndarray, pandas.DataFrame
+            A numeric array of data values.
 
         Returns
         -------
-            self : object
-                Fitted estimator
+        self : object
+            Fitted estimator
         """
         self.dat = dat
         if isinstance(self.dat, pd.DataFrame):
@@ -431,43 +431,43 @@ class PKBC:
 
         Parameters
         -----------
-            y_true : numpy.ndarray.
-                Array of true memberships to clusters,
-                Defaults to None.
+        y_true : numpy.ndarray.
+            Array of true memberships to clusters,
+            Defaults to None.
 
         Returns
         --------
-            validation metrics : tuple
-                Return a tuple of a dataframe and elbow plots.
-                The dataframe contains the following for different number of clusters:
+        validation metrics : tuple
+            Return a tuple of a dataframe and elbow plots.
+            The dataframe contains the following for different number of clusters:
 
-                - **Adjusted Rand Index** : float (returned only when y_true is provided)
-                    Adjusted Rand Index computed between the true and predicted cluster memberships.
+            - **Adjusted Rand Index** : float (returned only when y_true is provided)
+                Adjusted Rand Index computed between the true and predicted cluster memberships.
 
-                - **Macro Precision** : float (returned only when y_true is provided)
-                    Macro Precision computed between the true and predicted cluster memberships.
+            - **Macro Precision** : float (returned only when y_true is provided)
+                Macro Precision computed between the true and predicted cluster memberships.
 
-                - **Macro Recall** : float (returned only when y_true is provided)
-                    Macro Recall computed between the true and predicted cluster memberships.
+            - **Macro Recall** : float (returned only when y_true is provided)
+                Macro Recall computed between the true and predicted cluster memberships.
 
-                - **Average Silhouette Score** : float
-                    Mean Silhouette Coefficient of all samples.
+            - **Average Silhouette Score** : float
+                Mean Silhouette Coefficient of all samples.
 
         References
         -----------
-            Rousseeuw, P.J. (1987) Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
-            Journal of Computational and Applied Mathematics, 20, 53-65.
+        Rousseeuw, P.J. (1987) Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
+        Journal of Computational and Applied Mathematics, 20, 53-65.
 
         Notes
         ------
-            We have taken a naive approach to map the predicted cluster labels
-            to the true class labels (if provided). This might not work in cases where `num_clust` is large.
-            Please use `sklearn.metrics` for computing metrics in such cases, and provide the correctly
-            matched labels.
+        We have taken a naive approach to map the predicted cluster labels
+        to the true class labels (if provided). This might not work in cases where `num_clust` is large.
+        Please use `sklearn.metrics` for computing metrics in such cases, and provide the correctly
+        matched labels.
 
         See also
         --------
-            `sklearn.metrics` : Scikit-learn metrics functionality support a wide range of metrics.
+        `sklearn.metrics` : Scikit-learn metrics functionality support a wide range of metrics.
         """
 
         if isinstance(y_true, pd.DataFrame):
@@ -540,8 +540,8 @@ class PKBC:
 
         Returns
         -------
-            summary_stats_df : pandas.DataFrame
-                Dataframe of descriptive statistics.
+        summary_stats_df : pandas.DataFrame
+            Dataframe of descriptive statistics.
 
         """
         summary_stats = stats(self.dat_copy, self.labels_[num_clust])
@@ -555,17 +555,17 @@ class PKBC:
 
         Parameters
         -----------
-            X : numpy.ndarray, pandas.DataFrame
-                New data to predict membership.
+        X : numpy.ndarray, pandas.DataFrame
+            New data to predict membership.
 
-            num_clust : int
-                Number of clusters to be used for prediction.
+        num_clust : int
+            Number of clusters to be used for prediction.
 
         Returns
         --------
-            (Cluster Probabilities, Membership) : tuple
-                The first element of the tuple is the cluster probabilities of the input samples.
-                The second element of the tuple is the predicted cluster membership of the new data.
+        (Cluster Probabilities, Membership) : tuple
+            The first element of the tuple is the cluster probabilities of the input samples.
+            The second element of the tuple is the predicted cluster membership of the new data.
         """
         X = X / np.linalg.norm(X, axis=1, keepdims=True)
         num_data, num_var = X.shape
@@ -629,16 +629,16 @@ class PKBC:
 
         Parameters
         ----------
-            num_clust : int
-                Specifies the number of clusters to visualize.
+        num_clust : int
+            Specifies the number of clusters to visualize.
 
-            y_true : numpy.ndarray, list, pandas.series, optional
-                - If `y_true` is None, then only clusters colored according to the predicted labels.
-                - If `y_true` is provided, clusters are colored according to the predicted and true labels in different subplots.
+        y_true : numpy.ndarray, list, pandas.series, optional
+            - If `y_true` is None, then only clusters colored according to the predicted labels.
+            - If `y_true` is provided, clusters are colored according to the predicted and true labels in different subplots.
 
         Returns
         -------
-            Returns a 2D matplotlib figure object or 3D plotly figure object with data points plotted on it.
+        Returns a 2D matplotlib figure object or 3D plotly figure object with data points plotted on it.
         """
         if self.dat.shape[1] < 2:
             raise ValueError(
@@ -868,18 +868,18 @@ class PKBC:
 
         Parameters
         ----------
-            print_fmt : str, optional.
-                Used for printing the output in the desired format.
-                Supports all available options in tabulate,
-                see here: https://pypi.org/project/tabulate/.
-                Defaults to "simple_grid".
+        print_fmt : str, optional.
+            Used for printing the output in the desired format.
+            Supports all available options in tabulate,
+            see here: https://pypi.org/project/tabulate/.
+            Defaults to "simple_grid".
 
         Returns
         --------
-            summary : str
-                A string formatted in the desired output
-                format with the Loglikelihood, Euclidean WCSS, Cosine WCSS, Number of data
-                points in each cluster, and mixing proportion for the different number of clusters.
+        summary : str
+            A string formatted in the desired output
+            format with the Loglikelihood, Euclidean WCSS, Cosine WCSS, Number of data
+            points in each cluster, and mixing proportion for the different number of clusters.
         """
         df = pd.DataFrame(
             columns=[

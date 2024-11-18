@@ -51,7 +51,7 @@ Noticed a typo on the website? Think a function could use a better example? Good
 
 #### API documentation
 
-The API documentation is built automatically from the docstrings of classes, functions, etc. in the source files. The docs are built with sphinx and use the "sphinx_book_theme" theme. If you have the dependencies installed (tool.poetry.group.doc.dependencies inside pyproject.toml) you can build the documentation locally with `make html` in the /doc directory. Opening the /doc/build/index.html file with a browser will then allow you to browse the documentation and check your contributions locally.
+The API documentation is built automatically from the docstrings of classes, functions, etc. in the source files. The docs are built with sphinx and use the "sphinx_book_theme" theme. If you have the dependencies installed (tool.poetry.group.doc.dependencies inside pyproject.toml) you can build the documentation locally with `make html` in the /docs directory. Opening the /docs/build/index.html file with a browser will then allow you to browse the documentation and check your contributions locally.
 
 - Go to `QuadratiK/` directory in the [code repository][repo].
 - Look for the file with the name of the function.

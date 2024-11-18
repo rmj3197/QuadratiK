@@ -20,17 +20,17 @@ def stats(
 
     Parameters
     ----------
-        x : numpy.ndarray, pandas.DataFrame
-            Data for which statistics is to be calculated.
+    x : numpy.ndarray, pandas.DataFrame
+        Data for which statistics is to be calculated.
 
-        y : numpy.ndarray, pandas.DataFrame, optional
-            The parameter `y` is an optional input that can be either another set of observations,
-            or the associated labels for observations (data points).
+    y : numpy.ndarray, pandas.DataFrame, optional
+        The parameter `y` is an optional input that can be either another set of observations,
+        or the associated labels for observations (data points).
 
     Returns
     -------
-        summary statistics : pandas.DataFrame
-            Summary statistics of the input data.
+    summary statistics : pandas.DataFrame
+        Summary statistics of the input data.
 
     Examples
     --------
@@ -106,22 +106,22 @@ def sample_hypersphere(
 
     Parameters
     --------------
-        npoints : int, optional.
-            The number of points to generate.
-            Default is 100.
+    npoints : int, optional.
+        The number of points to generate.
+        Default is 100.
 
-        ndim : int, optional.
-            The dimensionality of the hypersphere.
-            Default is 3.
+    ndim : int, optional.
+        The dimensionality of the hypersphere.
+        Default is 3.
 
-        random_state : int, None, optional.
-            Seed for random number generation. Defaults to None.
+    random_state : int, None, optional.
+        Seed for random number generation. Defaults to None.
 
     Returns
     ---------
-        data on sphere : numpy.ndarray
-            An array containing random vectors sampled uniformly
-            from the surface of the hypersphere.
+    data on sphere : numpy.ndarray
+        An array containing random vectors sampled uniformly
+        from the surface of the hypersphere.
 
     Examples
     ---------

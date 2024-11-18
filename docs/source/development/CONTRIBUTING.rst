@@ -10,7 +10,7 @@ First of all, thanks for considering contributing to QuadratiK!
 .. _new_issue: https://github.com/rmj3197/QuadratiK/issues/new
 .. _website: https://quadratik.readthedocs.io/en/latest/
 .. _citation: https://arxiv.org/abs/2402.02290
-.. _conduct: https://github.com/rmj3197/QuadratiK/blob/master/doc/source/development/CODE_OF_CONDUCT.rst
+.. _conduct: https://github.com/rmj3197/QuadratiK/blob/master/docs/source/development/CODE_OF_CONDUCT.rst
 .. _bug_report: https://github.com/rmj3197/QuadratiK/issues/new?assignees=&labels=Bug%2CNeeds+Triage&projects=&template=bug_report.yml
 .. _doc_improvement: https://github.com/rmj3197/QuadratiK/issues/new?assignees=&labels=Documentation%2CNeeds+Triage&projects=&template=documentation_improvement.yml
 .. _email: mailto:raktimmu@buffalo.edu
@@ -62,7 +62,7 @@ Noticed a typo on the website? Think a function could use a better example? Good
 API documentation
 ^^^^^^^^^^^^^^^^^^^
 
-The API documentation is built automatically from the docstrings of classes, functions, etc. in the source files. The docs are built with sphinx and use the "sphinx_book_theme" theme. If you have the dependencies installed (tool.poetry.group.doc.dependencies inside pyproject.toml) you can build the documentation locally with ``make html`` in the /doc directory. Opening the /doc/build/index.html file with a browser will then allow you to browse the documentation and check your contributions locally.
+The API documentation is built automatically from the docstrings of classes, functions, etc. in the source files. The docs are built with sphinx and use the "sphinx_book_theme" theme. If you have the dependencies installed (tool.poetry.group.doc.dependencies inside pyproject.toml) you can build the documentation locally with ``make html`` in the /doc directory. Opening the /docs/build/index.html file with a browser will then allow you to browse the documentation and check your contributions locally.
 
 - Go to ``QuadratiK/`` directory in the `code repository <repo>`.
 - Look for the file with the name of the function.

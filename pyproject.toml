@@ -11,7 +11,7 @@ readme = "README.rst"
 packages = [
     { include = "QuadratiK" },
     { include = "tests" },
-    { include = "doc" },
+    { include = "docs" },
 ]
 include = [{ path = "QuadratiK/ui/.streamlit", format = ["sdist", "wheel"] }]
 
@@ -31,10 +31,10 @@ numpy = "^1.26.2"
 requires = ["poetry-core", "setuptools"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry.group.doc]
+[tool.poetry.group.docs]
 optional = true
 
-[tool.poetry.group.doc.dependencies]
+[tool.poetry.group.docs.dependencies]
 myst-parser = ">=0.16"
 sphinx = ">=4.0"
 sphinx-autobuild = ">=2021.0"
@@ -47,6 +47,7 @@ pytest-cov = "^4.1.0"
 
 [tool.poetry.urls]
 Homepage = "https://github.com/rmj3197/QuadratiK"
+Documentation = "https://quadratik.readthedocs.io"
 
 [tool.ruff]
 line-length = 88 # same as black
