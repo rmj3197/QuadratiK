@@ -2,13 +2,19 @@ QuadratiK Version 1.2.dev0
 ==========================
 
 This is the current version under development. So far, this version includes:
-    1. **[NEW]** Code fixed to raise fine-grained exceptions instead of base Exception.
-    2. **[NEW]** ``__slots__`` are implemented for classes in order to reduce memory footprint.
-    3. **[NEW]** All instance variables are now defined in the ``__init__`` method.
-    4. **[NEW]** New CI checks for ``Ruff`` and ``Black`` are included.
-    5. **[NEW]** Development Guide has been updated with instructions on using ``Poetry``.
-    6. **[NEW]** The README has been updated with a list of relevant packages in ``R`` and ``Python`` ecosystems.
-    7. **[NEW]** Citations have been included in the repository.
-    8. **[NEW]** A short guide on Poisson Kernel-based Distributions is included in User Guide.
-    9. **[NEW]** Included usage instructions for Dashboard Application under User Guide.
-    10. **[NEW]** All vignettes are now linked in README.
+
+1. **[NEW]** Code fixed to raise fine-grained exceptions instead of the base `Exception`.
+2. **[NEW]** ``__slots__`` are implemented for classes to reduce memory footprint.
+3. **[NEW]** All instance variables are now defined in the ``__init__`` method.
+4. **[NEW]** New CI checks for ``Ruff`` and ``Black`` are included.
+5. **[NEW]** The Development Guide has been updated with instructions on using ``Poetry``.
+6. **[NEW]** The README has been updated with a list of relevant packages in the ``R`` and ``Python`` ecosystems.
+7. **[NEW]** Citations have been included in the repository.
+8. **[NEW]** Short guides on:
+    - Poisson Kernel-based Distributions,
+    - Kernel-based quadratic distance (KBQD) Goodness-of-Fit tests,
+    - Selecting the value of the kernel tuning parameter (h), and
+    - Poisson kernel-based quadratic distance test of Uniformity on the sphere.
+   are included in the User Guide.
+9. **[NEW]** Included usage instructions for the Dashboard Application under the User Guide.
+10. **[NEW]** All vignettes are now linked in the README.
