@@ -19,26 +19,26 @@ def qq_plot(
 
     Parameters
     ----------
-        x : numpy.ndarray
-            The `x` parameter represents the data for which you want to
-            create a QQ plot. It can be a single variable or an array-like
-            object containing multiple variables
+    x : numpy.ndarray
+        The `x` parameter represents the data for which you want to
+        create a QQ plot. It can be a single variable or an array-like
+        object containing multiple variables
 
-        y : numpy.ndarray, optional
-            The parameter `y` is an optional argument that represents the second
-            sample for a two-sample QQ plot. If provided, the function will generate
-            a QQ plot comparing the two samples
+    y : numpy.ndarray, optional
+        The parameter `y` is an optional argument that represents the second
+        sample for a two-sample QQ plot. If provided, the function will generate
+        a QQ plot comparing the two samples
 
-        dist : str, optional
-            Supports all the scipy.stats.distributions. The `dist` parameter specifies
-            the distribution to compare the data against in the QQ plot. By default,
-            it is set to "norm" which represents the normal distribution. However, you can
-            specify a different distribution if you want to compare the data against
-            a different distribution. Defaults to "norm".
+    dist : str, optional
+        Supports all the scipy.stats.distributions. The `dist` parameter specifies
+        the distribution to compare the data against in the QQ plot. By default,
+        it is set to "norm" which represents the normal distribution. However, you can
+        specify a different distribution if you want to compare the data against
+        a different distribution. Defaults to "norm".
 
     Returns
     -------
-        Returns QQ plots.
+    Returns QQ plots.
 
     Examples
     --------
@@ -66,21 +66,21 @@ def sphere3d(
 
     Parameters
     ----------
-        x : numpy.ndarray, pandas.DataFrame
-            The parameter `x` represents the input data for the scatter plot.
-            It should be a 2D array-like object with shape (n_samples, 3),
-            where each row represents the coordinates of a point in
-            3D space.
+    x : numpy.ndarray, pandas.DataFrame
+        The parameter `x` represents the input data for the scatter plot.
+        It should be a 2D array-like object with shape (n_samples, 3),
+        where each row represents the coordinates of a point in
+        3D space.
 
-        y : numpy.ndarray, list, pandas.series, optional
-            The parameter `y` is an optional input that determines the color and
-            shape of each data point in the plot. If `y` is not provided, the
-            scatter plot will have the default marker symbol and color.
+    y : numpy.ndarray, list, pandas.series, optional
+        The parameter `y` is an optional input that determines the color and
+        shape of each data point in the plot. If `y` is not provided, the
+        scatter plot will have the default marker symbol and color.
 
 
     Returns
     -------
-        Returns a 3D plot of a sphere with data points plotted on it.
+    Returns a 3D plot of a sphere with data points plotted on it.
 
     Examples
     --------
@@ -173,21 +173,21 @@ def plot_clusters_2d(
 
     Parameters
     ----------
-        x : numpy.ndarray, pandas.DataFrame
-            The parameter `x` is a 2-dimensional array or matrix
-            containing the coordinates of the data points to be plotted.
-            Each row of `x` represents the coordinates of a single data point
-            in the 2-dimensional space.
+    x : numpy.ndarray, pandas.DataFrame
+        The parameter `x` is a 2-dimensional array or matrix
+        containing the coordinates of the data points to be plotted.
+        Each row of `x` represents the coordinates of a single data point
+        in the 2-dimensional space.
 
-        y : numpy.ndarray, pandas.DataFrame, optional
-            The parameter `y` is an optional array that represents the labels
-            or cluster assignments for each data point in `x`.
-            If `y` is provided, the data points will be colored according to their
-            labels or cluster assignments.
+    y : numpy.ndarray, pandas.DataFrame, optional
+        The parameter `y` is an optional array that represents the labels
+        or cluster assignments for each data point in `x`.
+        If `y` is provided, the data points will be colored according to their
+        labels or cluster assignments.
 
     Returns
     -------
-        A matplotlib figure object.
+    A matplotlib figure object.
 
     Examples
     --------
