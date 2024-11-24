@@ -4,7 +4,7 @@ Poisson Kernel based Clustering
 
 import importlib
 from collections import Counter
-from typing import Optional, Tuple, Union
+from typing import Optional, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -146,28 +146,28 @@ class PKBC:
     """
 
     __slots__ = (
-        "num_clust",
-        "max_iter",
-        "stopping_rule",
-        "init_method",
-        "num_init",
-        "tol",
-        "random_state",
-        "n_jobs",
+        "alpha_",
+        "cosine_wcss_",
         "dat",
         "dat_copy",
         "euclidean_wcss_",
-        "cosine_wcss_",
-        "post_probs_",
-        "loglik_",
-        "mu_",
-        "rho_",
-        "alpha_",
+        "init_method",
         "labels_",
-        "log_lik_vecs_",
-        "num_iter_per_runs_",
         "log_lik_vec",
+        "log_lik_vecs_",
+        "loglik_",
+        "max_iter",
+        "mu_",
+        "n_jobs",
+        "num_clust",
+        "num_init",
         "num_iter_per_run",
+        "num_iter_per_runs_",
+        "post_probs_",
+        "random_state",
+        "rho_",
+        "stopping_rule",
+        "tol",
     )
 
     def __init__(
@@ -425,7 +425,7 @@ class PKBC:
 
     def validation(
         self, y_true: Optional[np.ndarray] = None
-    ) -> Tuple[pd.DataFrame, plt.Figure]:
+    ) -> tuple[pd.DataFrame, plt.Figure]:
         """
         Computes validation metrics such as ARI, Macro Precision and Macro Recall when true labels are provided.
 
@@ -549,7 +549,7 @@ class PKBC:
 
     def predict(
         self, X: Union[np.ndarray, pd.DataFrame], num_clust: int
-    ) -> Tuple[np.ndarray, np.ndarray]:
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         Predict the cluster membership for each sample in X.
 

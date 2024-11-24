@@ -1,6 +1,6 @@
 import time
 from functools import wraps
-from typing import Any, Callable, Tuple, TypeVar, Union
+from typing import Any, Callable, TypeVar, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -115,7 +115,7 @@ def _qq_plot_onesample(
     return fig
 
 
-def _extract_3d(data: np.ndarray) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+def _extract_3d(data: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Extract the first three principal components of the data and normalize them.
 

@@ -112,20 +112,20 @@ class PoissonKernelTest:
     """
 
     __slots__ = (
-        "rho",
+        "execution_time",
+        "n_jobs",
         "num_iter",
         "quantile",
         "random_state",
-        "n_jobs",
-        "x",
+        "rho",
         "test_type_",
-        "execution_time",
-        "u_statistic_un_",
         "u_statistic_cv_",
         "u_statistic_h0_",
-        "v_statistic_vn_",
+        "u_statistic_un_",
         "v_statistic_cv_",
         "v_statistic_h0_",
+        "v_statistic_vn_",
+        "x",
     )
 
     def __init__(

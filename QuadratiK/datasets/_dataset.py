@@ -1,5 +1,5 @@
 from importlib import resources
-from typing import Tuple, Union
+from typing import Union
 
 import numpy as np
 import pandas as pd
@@ -11,11 +11,11 @@ def load_wireless_data(
     as_dataframe: bool = True,
     scaled: bool = False,
 ) -> Union[
-    Tuple[str, pd.DataFrame, pd.DataFrame],
-    Tuple[str, pd.DataFrame],
-    Tuple[str, np.ndarray],
-    Tuple[pd.DataFrame, pd.DataFrame],
-    Tuple[np.ndarray, np.ndarray],
+    tuple[str, pd.DataFrame, pd.DataFrame],
+    tuple[str, pd.DataFrame],
+    tuple[str, np.ndarray],
+    tuple[pd.DataFrame, pd.DataFrame],
+    tuple[np.ndarray, np.ndarray],
     pd.DataFrame,
     np.ndarray,
 ]:
@@ -197,11 +197,11 @@ def load_wisconsin_breast_cancer_data(
     as_dataframe: bool = True,
     scaled: bool = False,
 ) -> Union[
-    Tuple[str, pd.DataFrame, pd.DataFrame],
-    Tuple[str, pd.DataFrame],
-    Tuple[str, np.ndarray],
-    Tuple[pd.DataFrame, pd.DataFrame],
-    Tuple[np.ndarray, np.ndarray],
+    tuple[str, pd.DataFrame, pd.DataFrame],
+    tuple[str, pd.DataFrame],
+    tuple[str, np.ndarray],
+    tuple[pd.DataFrame, pd.DataFrame],
+    tuple[np.ndarray, np.ndarray],
     pd.DataFrame,
     np.ndarray,
 ]:
@@ -416,11 +416,11 @@ def load_wine_data(
     as_dataframe: bool = True,
     scaled: bool = False,
 ) -> Union[
-    Tuple[str, pd.DataFrame, pd.DataFrame],
-    Tuple[str, pd.DataFrame],
-    Tuple[str, np.ndarray],
-    Tuple[pd.DataFrame, pd.DataFrame],
-    Tuple[np.ndarray, np.ndarray],
+    tuple[str, pd.DataFrame, pd.DataFrame],
+    tuple[str, pd.DataFrame],
+    tuple[str, np.ndarray],
+    tuple[pd.DataFrame, pd.DataFrame],
+    tuple[np.ndarray, np.ndarray],
     pd.DataFrame,
     np.ndarray,
 ]:

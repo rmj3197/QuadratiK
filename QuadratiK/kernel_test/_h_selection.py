@@ -2,7 +2,7 @@
 Contains the tuning parameter selection algorithm
 """
 
-from typing import Optional, Tuple, Union
+from typing import Optional, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -427,7 +427,7 @@ def select_h(
     k_threshold: int = 10,
     power_plot: bool = False,
     random_state: Optional[int] = None,
-) -> Tuple[float, pd.DataFrame]:
+) -> tuple[float, pd.DataFrame]:
     """
     This function computes the kernel bandwidth of the Gaussian kernel
     for the one sample, two-sample and k-sample kernel-based quadratic

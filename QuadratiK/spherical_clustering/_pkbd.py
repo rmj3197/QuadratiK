@@ -3,7 +3,7 @@ The PKBD class provides methods for estimating the density and generating sample
 Poisson-kernel based distribution (PKBD).
 """
 
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 import numpy as np
 import pandas as pd
@@ -91,7 +91,7 @@ class PKBD:
     def rpkb(
         self,
         n: int,
-        mu: Union[np.ndarray, List[float]],
+        mu: Union[np.ndarray, list[float]],
         rho: float,
         method: str = "rejvmf",
         random_state: Optional[int] = None,

@@ -1,10 +1,10 @@
-from typing import Dict, Optional, Tuple
+from typing import Optional
 
 import numpy as np
 from sklearn.utils.validation import check_random_state
 
 
-def dof(d: int, rho: float) -> Dict[str, float]:
+def dof(d: int, rho: float) -> dict[str, float]:
     """
     Compute the Degrees of Freedom (DOF) of the Poisson Kernel given the
     dimension d and concentration parameter rho
@@ -31,7 +31,7 @@ def dof(d: int, rho: float) -> Dict[str, float]:
     return result
 
 
-def stat_poisson_unif(x_mat: np.ndarray, rho: float) -> Tuple[float, float]:
+def stat_poisson_unif(x_mat: np.ndarray, rho: float) -> tuple[float, float]:
     """
     Compute the Poisson kernel-based test for Uniformity
     given a sample of observations on the Sphere.

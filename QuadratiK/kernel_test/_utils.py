@@ -1,4 +1,4 @@
-from typing import List, Optional, Tuple, Union
+from typing import Optional, Union
 
 import numpy as np
 from sklearn.utils.validation import check_random_state
@@ -114,7 +114,7 @@ def param_centering(
     return k_center
 
 
-def dof_normality_test(sigma_h: np.ndarray, v: np.ndarray) -> Tuple[float, float]:
+def dof_normality_test(sigma_h: np.ndarray, v: np.ndarray) -> tuple[float, float]:
     """
     Compute the Degrees of Freedom (DOF) of the normal Kernel centered with
     respect to the standard normal distribution, given the dimension d and the
@@ -188,7 +188,7 @@ def variance_normality_test(sigma_h: np.ndarray, v: np.ndarray, n: int) -> float
     return var
 
 
-def variance_two_sample_test(k_cen: np.ndarray, n: int, m: int) -> Tuple[float, float]:
+def variance_two_sample_test(k_cen: np.ndarray, n: int, m: int) -> tuple[float, float]:
     """
     Exact variance of two-sample test. Compute the exact variance of kernel test for the
     two-sample problem under the null hypothesis that F=G.
@@ -244,8 +244,8 @@ def variance_two_sample_test(k_cen: np.ndarray, n: int, m: int) -> Tuple[float, 
 
 def variance_k_sample_test(
     k_cen: np.ndarray,
-    sizes: Union[List[int], np.ndarray],
-    cum_size: Union[List[int], np.ndarray],
+    sizes: Union[list[int], np.ndarray],
+    cum_size: Union[list[int], np.ndarray],
 ) -> float:
     """
     Compute the exact variance of kernel test for the k-sample problem under
