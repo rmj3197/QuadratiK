@@ -1,5 +1,5 @@
-QuadratiK Version 1.2.dev0
-==========================
+QuadratiK Version 1.1.2
+========================
 
 This is the current version under development. So far, this version includes:
 
