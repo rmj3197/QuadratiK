@@ -67,7 +67,7 @@ class PKBC:
         Determines random number generation for centroid initialization. Defaults to None.
 
     n_jobs : int
-        Used only for computing the WCSS efficiently.
+        Used only for computing the WCSS efficiently and parallelizing computations for multiple initializations.
         n_jobs specifies the maximum number of concurrently running workers.
         If 1 is given, no joblib parallelism is used at all, which is useful for debugging.
         For more information on joblib n_jobs refer to -
@@ -301,7 +301,9 @@ class PKBC:
                 num_var / 2
             )
 
-            for init in range(self.num_init):
+            def _single_init_run(
+                unique_data, generator, num_unique_obs, k, num_data, num_var, log_w_d
+            ):
                 alpha_current = np.full(k, 1 / k)
                 rho_current = np.full(k, 0.5)
 
@@ -388,13 +390,44 @@ class PKBC:
                     np.log(np.dot(np.exp(log_prob_mat), alpha_current))
                 )
 
+                return (
+                    log_lik_current,
+                    alpha_current,
+                    rho_current,
+                    mu_current,
+                    np.exp(log_norm_prob_mat_current),
+                    current_iter - 1,
+                )
+
+            results_single_init_run = Parallel(n_jobs=self.n_jobs)(
+                delayed(_single_init_run)(
+                    unique_data,
+                    generator,
+                    num_unique_obs,
+                    k,
+                    num_data,
+                    num_var,
+                    log_w_d,
+                )
+                for init in range(self.num_init)
+            )
+
+            for init, (
+                log_lik_current,
+                alpha_current,
+                rho_current,
+                mu_current,
+                norm_prob_mat_current,
+                num_iter,
+            ) in enumerate(results_single_init_run):
                 if log_lik_current > max(self.log_lik_vec):
                     alpha_best = alpha_current
                     rho_best = rho_current
                     mu_best = mu_current
-                    norm_prob_mat_best = np.exp(log_norm_prob_mat_current)
+                    norm_prob_mat_best = norm_prob_mat_current
+
                 self.log_lik_vec[init] = log_lik_current
-                self.num_iter_per_run[init] = current_iter - 1
+                self.num_iter_per_run[init] = num_iter
 
             memb_best = np.argmax(norm_prob_mat_best, axis=1)
 

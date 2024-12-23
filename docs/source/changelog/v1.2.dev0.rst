@@ -1,0 +1,6 @@
+QuadratiK Version 1.2.dev0
+===========================
+
+This is the current version under development. So far, this version includes:
+
+1. **[NEW]** Implemented ``joblib`` for parallel processing for multiple initializations in ``PKBC``.
