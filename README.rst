@@ -10,7 +10,7 @@ QuadratiK
      - **Release**
      - **Development**
    * - |License|_ |PyPI Python Version|_ |PyPI Downloads|_
-     - |pyOpenSci| |arXiv|_ |PyPI Version|_ |zenodo|_ |GitHub Actions|_ |Documentation Status|_
+     - |pyOpenSci| |arXiv|_ |PyPI Version|_ |zenodo| |GitHub Actions|_ |Documentation Status|_
      - |Codecov|_ |Ruff|_ |Black|_ |Codacy|_ |Codefactor|_ |Repo Status|_
 
 .. |pyOpenSci| image:: https://pyopensci.org/badges/peer-reviewed.svg
