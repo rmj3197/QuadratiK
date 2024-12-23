@@ -14,7 +14,7 @@ QuadratiK
      - |Codecov|_ |Ruff|_ |Black|_ |Codacy|_ |Codefactor|_ |Repo Status|_
 
 .. |pyOpenSci| image:: https://pyopensci.org/badges/peer-reviewed.svg
-   :target: https://github.com/pyOpenSci/software-review/issues/180
+   :target: https://github.com/pyOpenSci/software-submission/issues/180
    :alt: pyOpenSci Peer-Reviewed
 
 .. |arXiv| image:: https://img.shields.io/badge/doi-arXiv:2402.02290v2-green.svg
