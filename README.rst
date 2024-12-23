@@ -10,12 +10,16 @@ QuadratiK
      - **Release**
      - **Development**
    * - |License|_ |PyPI Python Version|_ |PyPI Downloads|_
-     - |pyOpenSci| |arXiv|_ |PyPI Version|_ |GitHub Actions|_ |Documentation Status|_
+     - |pyOpenSci| |arXiv|_ |PyPI Version|_ |zenodo|_ |GitHub Actions|_ |Documentation Status|_
      - |Codecov|_ |Ruff|_ |Black|_ |Codacy|_ |Codefactor|_ |Repo Status|_
 
 .. |pyOpenSci| image:: https://pyopensci.org/badges/peer-reviewed.svg
    :target: https://github.com/pyOpenSci/software-review/issues/180
    :alt: pyOpenSci Peer-Reviewed
+
+.. |zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.14546750.svg
+   :target: https://doi.org/10.5281/zenodo.14546750
+   :alt: Zenodo
 
 .. |arXiv| image:: https://img.shields.io/badge/doi-arXiv:2402.02290v2-green.svg
    :target: https://doi.org/10.48550/arXiv.2402.02290
