@@ -4,5 +4,4 @@ sphinx-autobuild>=2021.0
 sphinx-book-theme>=1.0
 nbsphinx>0.9
 ipykernel
-myst-nb
 git+https://github.com/rmj3197/QuadratiK.git
