@@ -36,7 +36,7 @@ extensions = [
     "myst_parser",
 ]
 
-nbsphinx_execute = "always"
+nbsphinx_execute = "auto"
 
 myst_enable_extensions = [
     "amsmath",
