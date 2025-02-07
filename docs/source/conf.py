@@ -31,7 +31,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.ifconfig",
     "sphinx.ext.githubpages",
-    "myst_nb",
+    "nbsphinx",
     "sphinx.ext.intersphinx",
     "myst_parser",
 ]
@@ -62,8 +62,6 @@ exclude_patterns = []
 html_theme = "sphinx_book_theme"
 html_static_path = ["_static"]
 html_css_files = ["css/custom.css"]
-# needed for plotly, see https://myst-nb.readthedocs.io/en/latest/render/interactive.html#plotly
-html_js_files = ["https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"]
 strip_signature_backslash = True
 
 # -- Options for Latex output -------------------------------------------------
