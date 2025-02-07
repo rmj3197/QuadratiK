@@ -59,7 +59,9 @@ st.write(
     "2. The file may contain a header (see image below for reference). If headers are present, check the box. The checkbox is selected by default."
 )
 st.write("3. Specify the separator or delimiter used; the default is a comma (,).")
-st.write("4. Once the data is uploaded, specify the values of bandwidth parameter, proportion of subsampling samples to be used, and number of iterations for critical value estimation. Default values are provided.")
+st.write(
+    "4. Once the data is uploaded, specify the values of bandwidth parameter, proportion of subsampling samples to be used, and number of iterations for critical value estimation. Default values are provided."
+)
 
 st.image(
     str(

@@ -66,7 +66,7 @@ with st.expander("Click to view example code in Python and R"):
     show(res_unif)
     """
     st.code(code_R, language="r")
-    
+
 st.subheader("Input Instructions", divider="grey")
 
 st.write("1. Upload the data file in .txt or .csv format.")
@@ -74,7 +74,9 @@ st.write(
     "2. The file may contain a header (see image below for reference). If headers are present, check the box. The checkbox is selected by default."
 )
 st.write("3. Specify the separator or delimiter used; the default is a comma (,).")
-st.write(r"4. Once the data is uploaded, specify the number of iterations for critical value estimation and concentration parameter ($\rho$). Default values are provided.")
+st.write(
+    r"4. Once the data is uploaded, specify the number of iterations for critical value estimation and concentration parameter ($\rho$). Default values are provided."
+)
 
 st.image(
     str(

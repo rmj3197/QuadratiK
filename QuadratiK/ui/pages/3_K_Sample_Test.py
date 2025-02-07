@@ -69,13 +69,21 @@ with st.expander("Click to view example code in Python and R"):
     st.code(code_R, language="r")
 
 st.subheader("Input Instructions", divider="grey")
-st.write("1. Upload the data file in .txt or .csv format for both the X and Y datasets.")
+st.write(
+    "1. Upload the data file in .txt or .csv format for both the X and Y datasets."
+)
 st.write(
     "2. The file may contain a header (see image below for reference). If headers are present, check the box. The checkbox is selected by default. Please ensure that both X and Y either contain headers or neither contain headers."
 )
-st.write("3. Specify the separator or delimiter used in both the X and Y datasets; the default is a comma (,).")
-st.write("4. Once the data is uploaded, specify the column in the data file that contains the labels.")
-st.write("5. Furthermore please specify the values of bandwidth parameter, proportion of subsampling samples to be used, and number of iterations for critical value estimation. Default values are provided.")
+st.write(
+    "3. Specify the separator or delimiter used in both the X and Y datasets; the default is a comma (,)."
+)
+st.write(
+    "4. Once the data is uploaded, specify the column in the data file that contains the labels."
+)
+st.write(
+    "5. Furthermore please specify the values of bandwidth parameter, proportion of subsampling samples to be used, and number of iterations for critical value estimation. Default values are provided."
+)
 
 st.image(
     str(
