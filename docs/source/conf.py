@@ -64,14 +64,6 @@ html_static_path = ["_static"]
 html_css_files = ["css/custom.css"]
 strip_signature_backslash = True
 
-nbsphinx_prolog = r"""
-.. raw:: html
-
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js'></script>
-    <script>require=requirejs;</script>
-
-
-"""
 
 # -- Options for Latex output -------------------------------------------------
 latex_elements = {
