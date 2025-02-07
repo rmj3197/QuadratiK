@@ -16,7 +16,7 @@ st.write(
     and K-sample kernel-based quadratic distance (KBQD) tests."
 )
 
-with st.expander("Click to view code"):
+with st.expander("Click to view example code in Python and R"):
     code_python = """
     from QuadratiK.kernel_test import select_h
     h_selected, all_values = select_h(x = x, y = y,alternative = 'skewness')

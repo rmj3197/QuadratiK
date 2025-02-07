@@ -20,24 +20,75 @@ def run_ksample_test(h_val, num_iter, b, X, y):
 st.title("K Sample Test")
 st.write("Performs the Nonparametric K-Sample Test")
 
-with st.expander("Click to view code"):
+with st.expander("Click to view example code in Python and R"):
     code_python = """
+    import numpy as np
+
+    np.random.seed(0)
     from QuadratiK.kernel_test import KernelTest
-    X,y = Read your data file here
-    k_sample_test = KernelTest(h = 0.5).kb_test(X,y)
-    k_sample_test.summary()
+
+    size = 200
+    eps = 1
+    x1 = np.random.multivariate_normal(
+        mean=[0, np.sqrt(3) * eps / 3], cov=np.eye(2), size=size
+    )
+    x2 = np.random.multivariate_normal(
+        mean=[-eps / 2, -np.sqrt(3) * eps / 6], cov=np.eye(2), size=size
+    )
+    x3 = np.random.multivariate_normal(
+        mean=[eps / 2, -np.sqrt(3) * eps / 6], cov=np.eye(2), size=size
+    )
+    # Merge the three samples into a single dataset
+    X_k = np.concatenate([x1, x2, x3])
+    # The memberships are needed for k-sample test
+    y_k = np.repeat(np.array([1, 2, 3]), size).reshape(-1, 1)
+
+    # performing the k-sample test
+    k_sample_test = KernelTest(h=1.5, method="subsampling", random_state=42).test(X_k, y_k)
+
+    # printing the summary for the k-sample test
+    print(k_sample_test.summary())
     """
     st.code(code_python, language="python")
 
     code_R = """
+    library(mvtnorm)
     library(QuadratiK)
-    X,y = Read your data file here
-    k_test <- kb.test(x=X, y=y, h=1.5)
-    summary(k_test)
+    library(ggplot2)
+    sizes <- rep(50,3)
+    eps <- 1
+    set.seed(2468)
+    x1 <- rmvnorm(sizes[1], mean = c(0,sqrt(3)*eps/3))
+    x2 <- rmvnorm(sizes[2], mean = c(-eps/2,-sqrt(3)*eps/6))
+    x3 <- rmvnorm(sizes[3], mean = c(eps/2,-sqrt(3)*eps/6))
+    x <- rbind(x1, x2, x3)
+    y <- as.factor(rep(c(1, 2, 3), times = sizes))
+    k_test <- kb.test(x = x, y = y, h = 2)
+    show(k_test)
     """
     st.code(code_R, language="r")
 
-delim = st.text_input("**Enter the delimiter**", " ")
+st.subheader("Input Instructions", divider="grey")
+st.write("1. Upload the data file in .txt or .csv format for both the X and Y datasets.")
+st.write(
+    "2. The file may contain a header (see image below for reference). If headers are present, check the box. The checkbox is selected by default. Please ensure that both X and Y either contain headers or neither contain headers."
+)
+st.write("3. Specify the separator or delimiter used in both the X and Y datasets; the default is a comma (,).")
+st.write("4. Once the data is uploaded, specify the column in the data file that contains the labels.")
+st.write("5. Furthermore please specify the values of bandwidth parameter, proportion of subsampling samples to be used, and number of iterations for critical value estimation. Default values are provided.")
+
+st.image(
+    str(
+        importlib.resources.files("QuadratiK.ui").joinpath(
+            "pages/assets/ksample_test_format.png"
+        )
+    ),
+    caption="Sample data format for k-sample test",
+    use_container_width=True,
+)
+
+
+delim = st.text_input("**Enter the delimiter**", ",")
 header_exist = st.checkbox(
     "**Select, if the header is present in the data file.**", value=True
 )
