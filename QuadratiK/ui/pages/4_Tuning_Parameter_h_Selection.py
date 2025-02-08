@@ -12,23 +12,73 @@ select_h = importlib.import_module("QuadratiK.kernel_test").select_h
 
 st.title("Tuning Parameter h selection")
 st.write(
-    "Computes the kernel bandwidth of the Gaussian kernel for the Two-sample\
+    "Computes the kernel bandwidth of the Gaussian kernel for the One-Sample, Two-sample\
     and K-sample kernel-based quadratic distance (KBQD) tests."
 )
 
 with st.expander("Click to view example code in Python and R"):
     code_python = """
+    import numpy as np
+    np.random.seed(0)
+    
+    from scipy.stats import skewnorm
+    
     from QuadratiK.kernel_test import select_h
-    h_selected, all_values = select_h(x = x, y = y,alternative = 'skewness')
+    
+    X_2 = np.random.multivariate_normal(mean=np.zeros(4), cov=np.eye(4), size=200)
+    Y_2 = skewnorm.rvs(
+    size=(200, 4),
+    loc=np.zeros(4),
+    scale=np.ones(4),
+    a=np.repeat(0.5, 4),
+    random_state=20,
+    )
+
+    # Perform the algorithm for selecting h
+    h_selected, all_powers, plot = select_h(
+        x=X_2, y=Y_2, alternative="location", power_plot=True
+    )
+    print(f"Selected h is: {h_selected}")
     """
     st.code(code_python, language="python")
 
     code_R = """
     library(QuadratiK)
-    h_k <- select_h(dat_x=dat_k, dat_y=y, alternative="skewness")
-    h_k$h_sel
+    # Select the value of h using the mid-power algorithm
+    # Create two random normal matrices with 100 elements each
+    x <- matrix(rnorm(100), ncol = 2)
+    y <- matrix(rnorm(100), ncol = 2)
+    # Perform h selection for location alternative
+    h_sel <- select_h(x, y, alternative = "location")
     """
     st.code(code_R, language="r")
+
+st.subheader("Input Instructions", divider="grey")
+st.write("1. Upload the data file in .txt or .csv format.")
+st.write(
+    "2. The file may contain a header (see image below for reference). If headers are present, check the box. The checkbox is selected by default."
+)
+st.write("3. Specify the separator or delimiter used; the default is a comma (,).")
+
+st.write(
+    """Once the data is uploaded, specify the column in the data file that contains the labels. Additionally, 
+    - For One-Sample test: All rows should have the same label
+    - For Two-Sample test: Use two distinct labels to identify the groups
+    - For K-Sample test: Use K distinct labels to identify the K groups"""
+)
+st.write(
+    "5. Furthermore please specify the values umber of iterations to be used for critical value estimation, proportion of subsampling samples to be used, and the alternative for computing the value of h. Default values are provided."
+)
+
+st.image(
+    str(
+        importlib.resources.files("QuadratiK.ui").joinpath(
+            "pages/assets/hselect_format.png"
+        )
+    ),
+    caption="Sample data format for tuning parameter selection.",
+    use_container_width=True,
+)
 
 delim = st.text_input("**Enter the delimiter**", ",")
 header_exist = st.checkbox(

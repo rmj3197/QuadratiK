@@ -32,11 +32,21 @@ st.write(
 
 with st.expander("Click to view code"):
     code_python = """
-    # In case you do not have the true labels, do not read y.
-    X,y = Read the data and the cluster label files. 
+    import warnings
 
+    from QuadratiK.datasets import load_wireless_data
     from QuadratiK.spherical_clustering import PKBC
-    cluster_fit = PKBC(num_clust = Input the number of clusters).fit(X)
+
+    warnings.filterwarnings("ignore")
+
+    X, y = load_wireless_data(return_X_y=True)
+    # number of clusters tried are from 2 to 10
+    pkbc = PKBC(num_clust=range(2, 11), random_state=42).fit(X)
+    
+    validation_metrics, elbow_plots = pkbc.validation(y_true=y)
+    
+    print(validation_metrics.round(2))
+    print(pkbc.summary())
     """
     st.code(code_python, language="python")
 
@@ -48,6 +58,30 @@ with st.expander("Click to view code"):
     res_validation <- validation(res_pk, true_label = labels)
     """
     st.code(code_R, language="r")
+
+st.subheader("Input Instructions", divider="grey")
+
+st.write("1. Upload the data file in .txt or .csv format.")
+st.write(
+    "2. The file may contain a header (see image below for reference). If headers are present, check the box. The checkbox is selected by default."
+)
+st.write("3. Specify the separator or delimiter used; the default is a comma (,).")
+st.write(
+    "4. If true labels for the data points are available, check the box and specify which column contains the labels."
+)
+st.write("5. Enter the desired number of clusters for the clustering (default is 2).")
+st.write(
+    "6. For the K-Sample test on identified clusters, specify the number of iterations for critical value estimation, tuning parameter h, and proportion of subsampling."
+)
+st.write(
+    "7. For visualization, you can generate elbow plots to help determine optimal number of clusters, as well as plot the identified clusters on a circle/sphere."
+)
+
+st.image(
+    str(importlib.resources.files("QuadratiK.ui").joinpath("pages/assets/pkbd.png")),
+    caption="Sample data format for normality test",
+    use_container_width=True,
+)
 
 head = st.checkbox("**Select, if the header is present in the data file.**", value=True)
 delim = st.text_input("**Enter the delimiter**", ",")
@@ -102,6 +136,7 @@ if data is not None:
                 st.error(f"An error occurred: {e}")
     else:
         x = copy.copy(data)
+        y = None
 
     try:
         with st.spinner("getting results ready..."):
@@ -222,22 +257,7 @@ if data is not None:
 
 st.header("Visualizations", divider="grey")
 
-st.subheader("Elbow Plot")
-
-with st.expander("Click to view code"):
-    elbow_code = """
-    import matplotlib.pyplot as plt
-    wcss_list = []
-    for clus in range(2,10):
-        cluster_fit = PKBC(num_clust=clus).fit(X)
-        wcss_list.append(cluster_fit.euclidean_wcss_)
-        
-    plt.plot(list(range(2,10)),wcss_list, "--o")
-    plt.xlabel("Number of Cluster")
-    plt.ylabel("Within Cluster Sum of Squares (WCSS)")
-    plt.title("Elbow Plot")
-    """
-    st.code(elbow_code, language="python")
+st.subheader("Elbow Plot", divider="grey")
 
 
 def get_wcss_euclid(x, k):
@@ -284,18 +304,8 @@ if data is not None:
             st.error(f"An error occurred: {e}")
 
 
-st.subheader("Data on Sphere")
-with st.expander("Click to view code"):
-    viz_code = """
-    from QuadratiK.tools import sphere3d
-    sphere3d(X,y)
+st.subheader("Data on Sphere", divider="grey")
 
-    # or in case the input data is 2d
-
-    from QuadratiK.tools import plot_clusters_2d
-    plot_clusters_2d(X,y)
-    """
-    st.code(viz_code, language="python")
 
 if data is not None:
     try:
