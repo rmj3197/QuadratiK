@@ -19,7 +19,6 @@ Dependencies
 QuadratiK requires the following (arranged alphabetically):
 
 - `matplotlib <https://matplotlib.org/>`_ (>=3.8.2)
-- `nest-asyncio <https://github.com/erdewit/nest_asyncio>`_ (>=1.5)
 - `numpy <https://numpy.org/>`_  (>= 1.26.2)
 - `pandas <https://pandas.pydata.org/docs/index.html>`_ (>= 2.1.3)
 - `plotly <https://plotly.com/python/>`_ (>=5.15.0)

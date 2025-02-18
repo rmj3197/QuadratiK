@@ -2,6 +2,7 @@
 Contains the tuning parameter selection algorithm
 """
 
+import sys
 from typing import Optional, Union
 
 import matplotlib.pyplot as plt
@@ -774,7 +775,10 @@ def select_h(
         plt.ylabel("Power")
         plt.title("h vs Power for different delta")
         plt.legend()
-        plt.close()
+        if "IPython" in sys.modules:
+            plt.close()
+        else:
+            plt.show()
         return (min_h, all_results, figure)
 
     return (min_h, all_results)
