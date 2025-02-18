@@ -5,6 +5,7 @@ of the fitted clustering model.
 """
 
 import unittest
+from unittest.mock import patch
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -15,7 +16,8 @@ from QuadratiK.spherical_clustering import PKBC, PKBD
 
 
 class TestPKBC(unittest.TestCase):
-    def test_pkbc(self):
+    @patch("matplotlib.pyplot.show")
+    def test_pkbc(self, mock_plt_show):
         pkbd = PKBD()
         x1 = pkbd.rpkb(100, np.array([1, 0, 0]), 0.8, "rejvmf", random_state=42)
         x2 = pkbd.rpkb(100, np.array([0, 1, 0]), 0.8, "rejacg", random_state=42)
