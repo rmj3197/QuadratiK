@@ -1,4 +1,3 @@
-import sys
 from typing import Optional, Union
 
 import matplotlib.pyplot as plt
@@ -225,8 +224,4 @@ def plot_clusters_2d(
     plt.plot(unit_circle_x, unit_circle_y, linestyle="dashed", color="red")
     plt.xlabel("Feature 1")
     plt.ylabel("Feature 2")
-    if "IPython" in sys.modules:
-        plt.close()
-    else:
-        plt.show()
     return fig

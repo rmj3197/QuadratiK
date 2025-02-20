@@ -1,4 +1,3 @@
-import sys
 import time
 from functools import wraps
 from typing import Any, Callable, TypeVar, Union
@@ -56,11 +55,6 @@ def _qq_plot_twosample(
         axes[col].set_ylabel("Q2")
         fig.suptitle("QQ Plots", fontsize=16)
     fig.subplots_adjust(hspace=0.5)
-
-    if "IPython" in sys.modules:
-        plt.close()
-    else:
-        plt.show()
     return fig
 
 
@@ -116,10 +110,6 @@ def _qq_plot_onesample(
         axes[col].set_ylabel("Sample Quantiles")
         fig.suptitle("QQ Plots", fontsize=16)
     fig.subplots_adjust(hspace=0.5)
-    if "IPython" in sys.modules:
-        plt.close()
-    else:
-        plt.show()
     return fig
 
 

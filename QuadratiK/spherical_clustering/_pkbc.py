@@ -3,7 +3,6 @@ Poisson Kernel based Clustering
 """
 
 import importlib
-import sys
 from collections import Counter
 from typing import Optional, Union
 
@@ -527,10 +526,6 @@ class PKBC:
         axs[1].set_ylabel("Within Cluster Sum of Squares (WCSS)")
         axs[1].set_title("Elbow Plot (Cosine)")
         plt.tight_layout()
-        if "IPython" in sys.modules:
-            plt.close()
-        else:
-            plt.show()
         return (validation_metrics_df, fig)
 
     def stats_clusters(self, num_clust: int) -> pd.DataFrame:
@@ -697,10 +692,6 @@ class PKBC:
                 axes[1].set_ylabel("Feature 2")
                 axes[1].set_title("Plot with True Labels")
                 plt.tight_layout()
-                if "IPython" in sys.modules:
-                    plt.close()
-                else:
-                    plt.show()
                 return fig
             else:
                 xx, yy, zz = extract3d(self.dat)
@@ -807,10 +798,6 @@ class PKBC:
                 ax.set_ylabel("Feature 2")
                 ax.set_title("Plot with Predicted Labels")
                 plt.tight_layout()
-                if "IPython" in sys.modules:
-                    plt.close()
-                else:
-                    plt.show()
                 return fig
             else:
                 xx, yy, zz = extract3d(self.dat)
