@@ -1,0 +1,12 @@
+QuadratiK Version 1.2.dev0
+===========================
+
+This version is currently under development.
+
+1. **[NEW]** Added support for Python 3.13.
+2. **[NEW]** Added sample of input format and instructions for using the dashboard application.
+3. **[NEW]** Changed behavior of plotting functions to return the figure object, helpful in non-interactive environments.
+4. **[NEW]** Updated Codecov workflow to test code on Python versions 3.9, 3.10, 3.11, 3.12, and 3.13 on Linux, MacOS, and Windows.
+5. **[NEW]** Updated the "Usage Examples" vignette with instructions on plotting the results when using terminal or python script.
+6. **[NEW]** Updated the "Usage Instructions for Dashboard Application" vignette to reflect the new changes.
+
