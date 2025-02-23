@@ -137,7 +137,7 @@ if (y_data) and (x_data) is not None:
         "Enter a value of number of iterations to be used for critical value estimation",
         value=500,
     )
-    h = st.number_input("Enter a value of tuning parameter h", value=1)
+    h = st.number_input("Enter a value of tuning parameter h", value=1.5)
     b = st.number_input(
         "Enter a value for the proportion of subsampling samples to be used", value=0.9
     )

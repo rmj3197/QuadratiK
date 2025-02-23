@@ -9,4 +9,4 @@ This version is currently under development.
 4. **[NEW]** Updated Codecov workflow to test code on Python versions 3.9, 3.10, 3.11, 3.12, and 3.13 on Linux, MacOS, and Windows.
 5. **[NEW]** Updated the "Usage Examples" vignette with instructions on plotting the results when using terminal or python script.
 6. **[NEW]** Updated the "Usage Instructions for Dashboard Application" vignette to reflect the new changes.
-
+7. **[NEW]** Changed dashboard application to use the `runpy` instead of `asyncio`.
