@@ -224,5 +224,4 @@ def plot_clusters_2d(
     plt.plot(unit_circle_x, unit_circle_y, linestyle="dashed", color="red")
     plt.xlabel("Feature 1")
     plt.ylabel("Feature 2")
-    plt.close()
     return fig

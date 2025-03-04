@@ -19,21 +19,59 @@ def run_normality_test(h_val, num_iter, b, x):
 st.title("Normality Test")
 st.write("Performs the Parametric Multivariate Normality Test.")
 
-with st.expander("Click to view code"):
+with st.expander("Click to view example code in Python and R"):
     code_python = """
+    # Example of performing the normality test using QuadratiK in Python
+    import numpy as np
+
+    np.random.seed(78990)
     from QuadratiK.kernel_test import KernelTest
-    X = Read your data file here
-    normality_test = KernelTest(h = 0.5, centering_type="param").test(X)
-    normality_test.summary()
+
+    # data generation
+    data_norm = np.random.multivariate_normal(mean=np.zeros(4), cov=np.eye(4), size=500)
+
+    # performing the normality test
+    normality_test = KernelTest(
+    h=0.4, num_iter=150, method="subsampling", random_state=42
+    ).test(data_norm)
+
+    # printing the summary for normality test
+    print(normality_test.summary())
     """
     st.code(code_python, language="python")
 
     code_R = """
+    # Example of performing the normality test using QuadratiK in R
     library(QuadratiK)
-    norm_test <- kb.test(x=dat_norm, h=h)
-    summary(norm_test)
+    
+    # random data generation
+    x <- matrix(rnorm(100,4), ncol = 2)
+    
+    # performing the normality test
+    kb.test(x, mu_hat = c(4,4), Sigma_hat = diag(2), h = 0.4)
     """
     st.code(code_R, language="r")
+
+st.subheader("Input Instructions", divider="grey")
+
+st.write("1. Upload the data file in .txt or .csv format.")
+st.write(
+    "2. The file may contain a header (see image below for reference). If headers are present, check the box. The checkbox is selected by default."
+)
+st.write("3. Specify the separator or delimiter used; the default is a comma (,).")
+st.write(
+    "4. Once the data is uploaded, specify the values of bandwidth parameter, proportion of subsampling samples to be used, and number of iterations for critical value estimation. Default values are provided."
+)
+
+st.image(
+    str(
+        importlib.resources.files("QuadratiK.ui").joinpath(
+            "pages/assets/normality_test_format.png"
+        )
+    ),
+    caption="Sample data format for normality test",
+    use_container_width=True,
+)
 
 delim = st.text_input("**Enter the delimiter**", ",")
 header_exist = st.checkbox(

@@ -3,6 +3,7 @@ Tests the tools module
 """
 
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
@@ -17,22 +18,26 @@ from QuadratiK.tools import (
 
 
 class TestTools(unittest.TestCase):
-    def test_stats(self):
+    @patch("matplotlib.pyplot.show")
+    def test_stats(self, mock_plt_show):
         X = np.random.randn(300, 2)
         Y = np.random.randn(300, 2)
         self.assertIsInstance(stats(X, Y), pd.DataFrame)
 
-    def test_sample_hypersphere(self):
+    @patch("matplotlib.pyplot.show")
+    def test_sample_hypersphere(self, mock_plt_show):
         with self.assertRaises(ValueError):
             sample_hypersphere(100, 3, [42])
 
-    def test_qq_plot(self):
+    @patch("matplotlib.pyplot.show")
+    def test_qq_plot(self, mock_plt_show):
         X = pd.DataFrame(np.random.randn(100, 2))
         Y = pd.DataFrame(np.random.randn(100, 2))
         self.assertIsNotNone(qq_plot(X))
         self.assertIsNotNone(qq_plot(X, Y))
 
-    def test_sphere_3d(self):
+    @patch("matplotlib.pyplot.show")
+    def test_sphere_3d(self, mock_plt_show):
         X = pd.DataFrame(np.random.randn(300, 3))
         y1 = pd.DataFrame(np.repeat(np.arange(1, 4), repeats=100))
         y2 = pd.DataFrame(np.repeat(np.arange(1, 4), repeats=100))[0]
@@ -44,7 +49,8 @@ class TestTools(unittest.TestCase):
         self.assertIsNotNone(sphere3d(X, y3))
         self.assertIsNotNone(sphere3d(X, y4))
 
-    def test_plot_clusters_2d(self):
+    @patch("matplotlib.pyplot.show")
+    def test_plot_clusters_2d(self, mock_plt_show):
         X = np.random.randn(300, 2)
         X = pd.DataFrame(X / np.linalg.norm(X, axis=1, keepdims=True))
         y1 = pd.DataFrame(np.repeat(np.arange(1, 4), repeats=100))

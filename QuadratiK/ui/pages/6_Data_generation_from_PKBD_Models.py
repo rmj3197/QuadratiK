@@ -17,26 +17,49 @@ pkbd = importlib.import_module("QuadratiK.spherical_clustering").PKBD
 st.title("Data generation from PKBD Models")
 st.write('Generates samples from the supported PKBD Models - "rejvmf" and "rejacg"')
 
-with st.expander("Click to view code"):
+with st.expander("Click to view example code in Python and R"):
     code_python = """
+    # Import the PKBD class from the QuadratiK.spherical_clustering module
     from QuadratiK.spherical_clustering import PKBD
-    rho = specify your rho value here
-    n_samples = specify the number of samples here
-    mu = specify a list of location parameters
-    data1 = PKBD().rpkb(n_samples,mu,rho,method = "rejvmf")
-    data2 = PKBD().rpkb(n_samples,mu,rho,method = "rejacg")
+    
+    # Create an instance of the PKBD class
+    pkbd = PKBD()
+    
+    # Generate samples using the "rejvmf" method
+    x_rejvmf = pkbd.rpkb(n = 1000, mu = [0, 1, 1], rho = 0.8, method = "rejvmf", random_state=42)
+    
+    # Generate samples using the "rejacg" method
+    x_rejacg = pkbd.rpkb(n = 1000, mu = [0, 1, 1], rho = 0.8, method = "rejacg", random_state=42)
     """
     st.code(code_python, language="python")
 
     code_R = """
-    library(QuadratiK)
-    rho = specify your rho value here
-    n_samples = specify the number of samples here
-    mu = specify a list of location parameters
-    dat1 <- rpkb(n_samples, rho=rho, mu=mu, method="rejvmf")$x
-    dat2 <- rpkb(n_samples, rho=rho, mu=mu, method="rejacg")$x
+    # Define the location parameter vector
+    mu <- c(0, 0, 1)
+    # Define the number of dimensions
+    d <- 3
+    # Define the number of samples to generate
+    n <- 1000
+    # Define the concentration parameter
+    rho <- 0.8
+
+    # Set the seed for reproducibility
+    set.seed(2468)
+    # Generate observations using the rejection algorithm with von-Mises 
+    # distribution envelopes
+    dat1 <- rpkb(n = n, rho = rho, mu = mu, method = "rejvmf")
+    # Generate observations using the rejection algorithm with angular central 
+    # Gaussian distribution envelopes
+    dat2 <- rpkb(n = n, rho = rho, mu = mu, method = "rejacg")
     """
     st.code(code_R, language="r")
+
+st.subheader("Input Instructions", divider="grey")
+
+st.write("1. Enter the total number of samples to be generated.")
+st.write(r"2. Enter the value of the concentration parameter ($\rho$).")
+st.write(r"3. Enter the location parameter ($\mu$) separated by space.")
+
 
 n_samples = int(
     st.number_input("Enter the total number of samples to be generated", value=100)

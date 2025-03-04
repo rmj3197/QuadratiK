@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import pandas as pd
@@ -7,7 +8,8 @@ from QuadratiK.kernel_test import select_h
 
 
 class TestSelectH(unittest.TestCase):
-    def test_select_h_one_sample_skewness(self):
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_one_sample_skewness(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(200)
         h_sel, all_powers, plot = select_h(
@@ -17,7 +19,8 @@ class TestSelectH(unittest.TestCase):
         self.assertIsInstance(all_powers, pd.DataFrame)
         self.assertIsNotNone(plot)
 
-    def test_select_h_one_sample_location(self):
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_one_sample_location(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(200, 1)
         h_sel, all_powers, plot = select_h(
@@ -27,7 +30,8 @@ class TestSelectH(unittest.TestCase):
         self.assertIsInstance(all_powers, pd.DataFrame)
         self.assertIsNotNone(plot)
 
-    def test_select_h_one_sample_scale(self):
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_one_sample_scale(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(200, 2)
         h_sel, all_powers, plot = select_h(
@@ -37,7 +41,8 @@ class TestSelectH(unittest.TestCase):
         self.assertIsInstance(all_powers, pd.DataFrame)
         self.assertIsNotNone(plot)
 
-    def test_select_h_two_sample_skewness(self):
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_two_sample_skewness(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(200, 2)
         np.random.seed(56)
@@ -49,7 +54,8 @@ class TestSelectH(unittest.TestCase):
         self.assertIsInstance(all_powers, pd.DataFrame)
         self.assertIsNotNone(plot)
 
-    def test_select_h_two_sample_location(self):
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_two_sample_location(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(200, 2)
         np.random.seed(56)
@@ -61,7 +67,8 @@ class TestSelectH(unittest.TestCase):
         self.assertIsInstance(all_powers, pd.DataFrame)
         self.assertIsNotNone(plot)
 
-    def test_select_h_two_sample_scale(self):
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_two_sample_scale(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(200, 2)
         np.random.seed(56)
@@ -73,7 +80,8 @@ class TestSelectH(unittest.TestCase):
         self.assertIsInstance(all_powers, pd.DataFrame)
         self.assertIsNotNone(plot)
 
-    def test_select_h_k_sample_location(self):
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_k_sample_location(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(100 * 3, 2)
         y = np.repeat(np.arange(1, 4), repeats=100)
@@ -84,7 +92,8 @@ class TestSelectH(unittest.TestCase):
         self.assertIsInstance(h_sel, (int, float))
         self.assertIsNotNone(plot)
 
-    def test_select_h_k_sample_skewness(self):
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_k_sample_skewness(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(100 * 3, 2)
         y = np.repeat(np.arange(1, 4), repeats=100)
@@ -95,7 +104,8 @@ class TestSelectH(unittest.TestCase):
         self.assertIsInstance(h_sel, (int, float))
         self.assertIsNotNone(plot)
 
-    def test_select_h_k_sample_scale(self):
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_k_sample_scale(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(100 * 3, 3)
         y = np.repeat(np.arange(1, 4), repeats=100)
@@ -106,7 +116,8 @@ class TestSelectH(unittest.TestCase):
         self.assertIsInstance(h_sel, (int, float))
         self.assertIsNotNone(plot)
 
-    def test_select_h_inputs(self):
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_inputs(self, mock_plt_show):
         x = pd.DataFrame(np.random.randn(100 * 3, 1))
         y = pd.DataFrame(np.repeat(np.arange(1, 4), repeats=100))
 

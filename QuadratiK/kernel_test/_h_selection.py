@@ -774,7 +774,6 @@ def select_h(
         plt.ylabel("Power")
         plt.title("h vs Power for different delta")
         plt.legend()
-        plt.close()
         return (min_h, all_results, figure)
 
     return (min_h, all_results)

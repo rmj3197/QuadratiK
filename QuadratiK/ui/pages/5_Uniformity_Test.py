@@ -23,24 +23,72 @@ st.write(
     spherical data using the Poisson kernel with concentration parameter rho ($\rho$)"
 )
 
-with st.expander("Click to view code"):
+with st.expander("Click to view example code in Python and R"):
     code_python = """
+    import numpy as np
+
+    np.random.seed(0)
     from QuadratiK.poisson_kernel_test import PoissonKernelTest
-    X = Read your data file here
-    unif_test = PoissonKernelTest(rho = 0.7).test(X)
-    unif_test.summary()
+
+    # data generation
+    z = np.random.normal(size=(200, 3))
+    data_unif = z / np.sqrt(np.sum(z**2, axis=1, keepdims=True))
+
+    # performing the uniformity test
+    unif_test = PoissonKernelTest(rho=0.7, random_state=42).test(data_unif)
+
+    # printing the summary for uniformity test
+    print(unif_test.summary())
     """
     st.code(code_python, language="python")
 
     code_R = """
+    # Load the QuadratiK library
     library(QuadratiK)
-    X = Read your data file here
-    res_unif <- pk.test(x=X, rho=rho)
-    summary(res_unif)
+    
+    # Set parameters for data generation
+    n <- 200
+    d <- 3
+    
+    # Generate random data on the sphere
+    set.seed(2468)
+    z <- matrix(rnorm(n * d), n, d)
+    dat_sphere <- z/sqrt(rowSums(z^2))
+    
+    # Set the concentration parameter rho
+    rho <- 0.7
+    
+    # Perform the uniformity test using the Poisson Kernel Test
+    set.seed(2468)
+    res_unif <- pk.test(x = dat_sphere, rho = rho)
+    
+    # Display the results of the uniformity test
+    show(res_unif)
     """
     st.code(code_R, language="r")
 
-delim = st.text_input("**Enter the delimiter**", " ")
+st.subheader("Input Instructions", divider="grey")
+
+st.write("1. Upload the data file in .txt or .csv format.")
+st.write(
+    "2. The file may contain a header (see image below for reference). If headers are present, check the box. The checkbox is selected by default."
+)
+st.write("3. Specify the separator or delimiter used; the default is a comma (,).")
+st.write(
+    r"4. Once the data is uploaded, specify the number of iterations for critical value estimation and concentration parameter ($\rho$). Default values are provided."
+)
+
+st.image(
+    str(
+        importlib.resources.files("QuadratiK.ui").joinpath(
+            "pages/assets/uniformity_test_format.png"
+        )
+    ),
+    caption="Sample data format for uniformity test",
+    use_container_width=True,
+)
+
+delim = st.text_input("**Enter the delimiter**", ",")
 header_exist = st.checkbox(
     "**Select, if the header is present in the data file.**", value=True
 )

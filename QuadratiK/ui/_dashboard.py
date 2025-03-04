@@ -1,24 +1,17 @@
 """
-Contains the UI class is a user interface class that runs a Streamlit
-dashboard using asyncio.
+Contains the UI class that runs a Streamlit dashboard.
 """
 
-import asyncio
+import runpy
 import sys
 from importlib import resources
-
-import nest_asyncio
-from streamlit.web import cli as stcli
-
-nest_asyncio.apply()
-
 
 DASHBOARD_MODULE = "QuadratiK.ui"
 
 
 class UI:
     """
-    The UI class is a user interface class that runs a Streamlit dashboard using asyncio.
+    The UI class runs a Streamlit dashboard.
 
     Examples
     ---------
@@ -29,9 +22,9 @@ class UI:
     def __init__(self) -> None:
         pass
 
-    async def main(self) -> None:
+    def run(self) -> None:
         """
-        The `main` function runs a Streamlit dashboard by executing a command-line command.
+        The function runs the Streamlit dashboard using runpy.
         """
         sys.argv = [
             "streamlit",
@@ -48,11 +41,10 @@ class UI:
             "--browser.gatherUsageStats",
             "false",
         ]
-        sys.exit(stcli.main())
-
-    def run(self) -> None:
-        """
-        The function runs the main function asynchronously using the asyncio library in Python.
-        """
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(self.main())
+        try:
+            runpy.run_module("streamlit", run_name="__main__")
+        except SystemExit as e:
+            if e.code == 0:
+                pass
+            else:
+                print(f"Dashboard exited with code {e.code}")

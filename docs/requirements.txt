@@ -1,7 +1,8 @@
-myst-parser>=0.16
-sphinx>=4.0
-sphinx-autobuild>=2021.0
-sphinx-book-theme>=1.0
-nbsphinx>0.9
+myst-parser
+sphinx
+sphinx-autobuild
+sphinx-book-theme
+nbsphinx
 ipykernel
-git+https://github.com/rmj3197/QuadratiK.git
+kaleido
+git+https://github.com/rmj3197/QuadratiK.git@dev-acm
