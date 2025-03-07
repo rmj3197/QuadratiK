@@ -5,4 +5,4 @@ sphinx-book-theme
 nbsphinx
 ipykernel
 kaleido
-git+https://github.com/rmj3197/QuadratiK.git@dev-acm
+git+https://github.com/rmj3197/QuadratiK.git@master
