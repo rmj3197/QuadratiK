@@ -1,6 +1,6 @@
 from importlib import import_module
 
-__version__ = "1.2.dev0"
+__version__ = "1.1.3"
 
 submodules = [
     "kernel_test",
