@@ -12,6 +12,7 @@ DASHBOARD_MODULE = "QuadratiK.ui"
 class UI:
     """
     The UI class runs a Streamlit dashboard.
+    Please see - https://quadratik.readthedocs.io/en/latest/user_guide/basic_usage.html#Initializing-the-Dashboard for more information.
 
     Examples
     ---------
