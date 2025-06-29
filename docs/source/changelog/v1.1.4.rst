@@ -1,0 +1,5 @@
+QuadratiK Version 1.1.4
+===========================
+
+1. **[FIX]** Updated computation for variance for K-Sample Test.
+2. **[FIX]** Use standard deviation instead of variance during tuning parameter selection (`select_h`).

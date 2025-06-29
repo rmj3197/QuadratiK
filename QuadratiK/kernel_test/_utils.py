@@ -284,7 +284,7 @@ def variance_k_sample_test(
         C1 += 2 * (ni_factor**2) * (k_ll**2).sum()
 
         for r in range(L + 1, k):
-            n_lr_factor = 1 / (sizes[L] ** 2)
+            n_lr_factor = 1 / (sizes[L] * sizes[r])
             k_lr = k_cen[
                 cum_size[L] : cum_size[L] + sizes[L],
                 cum_size[r] : cum_size[r] + sizes[r],

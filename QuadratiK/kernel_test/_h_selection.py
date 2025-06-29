@@ -593,7 +593,9 @@ def select_h(
                 )
 
         mean_dat = np.mean(x, axis=0)
-        s_dat = np.diag(np.cov(x, rowvar=False).reshape(x.shape[1], x.shape[1]))
+        s_dat = np.sqrt(
+            np.diag(np.cov(x, rowvar=False).reshape(x.shape[1], x.shape[1]))
+        )
         skew_data = skew(x)
         all_parameters = np.array(np.meshgrid(h_values, delta, rep_values)).T.reshape(
             -1, 3
@@ -652,8 +654,10 @@ def select_h(
                 )
 
         mean_dat = np.mean(pooled, axis=0)
-        s_dat = np.diag(
-            np.cov(pooled, rowvar=False).reshape(pooled.shape[1], pooled.shape[1])
+        s_dat = np.sqrt(
+            np.diag(
+                np.cov(pooled, rowvar=False).reshape(pooled.shape[1], pooled.shape[1])
+            )
         )
         skew_data = skew(pooled)
         all_parameters = np.array(np.meshgrid(h_values, delta, rep_values)).T.reshape(
@@ -710,7 +714,9 @@ def select_h(
                 )
 
         mean_dat = np.mean(x, axis=0)
-        s_dat = np.diag(np.cov(x, rowvar=False).reshape(x.shape[1], x.shape[1]))
+        s_dat = np.sqrt(
+            np.diag(np.cov(x, rowvar=False).reshape(x.shape[1], x.shape[1]))
+        )
         skew_data = skew(x)
 
         all_parameters = np.array(np.meshgrid(h_values, delta, rep_values)).T.reshape(
