@@ -432,8 +432,6 @@ def select_h(
     to the family of a specified alternative, for the chosen values
     of h_values and delta.
 
-    Please see :ref:`User Guide <hselect>` for more details.
-
     We consider target alternatives :math:`F_\delta(\hat{\mathbf{\mu}},
     \hat{\mathbf{\Sigma}}, \hat{\mathbf{\lambda}})`, where
     :math:`\hat{\mathbf{\mu}}, \hat{\mathbf{\Sigma}}` and
@@ -442,15 +440,14 @@ def select_h(
 
     The available `alternative` options are:
 
-    - **location** alternatives, :math:`F_\delta =
-    SN_d(\hat{\mu} + \delta, \hat{\Sigma}, \hat{\lambda})`, with
-    :math:`\delta = 0.2, 0.3, 0.4`;
-    - **scale** alternatives,
-    :math:`F_\delta = SN_d(\hat{\mu}, \hat{\Sigma} \cdot \delta, \hat{\lambda})`,
+    - **location** alternatives, :math:`F_\delta = SN_d(\hat{\mu} + \delta, \hat{\Sigma}, \hat{\lambda})`,
+    with :math:`\delta = 0.2, 0.3, 0.4`;
+    - **scale** alternatives, :math:`F_\delta = SN_d(\hat{\mu}, \hat{\Sigma} \cdot \delta, \hat{\lambda})`,
     with :math:`\delta = 1.1, 1.3, 1.5`;
-    - **skewness** alternatives,
-    :math:`F_\delta = SN_d(\hat{\mu}, \hat{\Sigma}, \hat{\lambda} + \delta)`,
+    - **skewness** alternatives, :math:`F_\delta = SN_d(\hat{\mu}, \hat{\Sigma}, \hat{\lambda} + \delta)`,
     with :math:`\delta = 0.2, 0.3, 0.6`.
+
+    Please see :ref:`User Guide <hselect>` for more details.
 
     Parameters
     ----------
