@@ -100,11 +100,11 @@ class PoissonKernelTest:
     >>> print(unif_test)
     ... PoissonKernelTest(
         Test Type=Poisson Kernel-based quadratic distance test of Uniformity on the Sphere,
-        Execution Time=3.3801472187042236 seconds,
-        U-Statistic=0.5977824645431915,
-        U-Statistic Critical Value=1.6128083124315886,
+        Execution Time=3.213366985321045 seconds,
+        U-Statistic=0.5977824645431883,
+        U-Statistic Critical Value=1.5965311416871995,
         U-Statistic Null Hypothesis Rejected=False,
-        V-Statistic=19.722614852087553,
+        V-Statistic=19.722614852087546,
         V-Statistic Critical Value=23.229486935225513,
         V-Statistic Null Hypothesis Rejected=False,
         Selected concentration parameter rho=0.7,

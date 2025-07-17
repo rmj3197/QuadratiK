@@ -2,9 +2,10 @@
 Critical value functions for Kernel Test
 """
 
-from typing import Optional
+from typing import Optional, Union
 
 import numpy as np
+from numpy.random import SeedSequence, default_rng
 from sklearn.utils.parallel import Parallel, delayed
 
 from ._utils import (
@@ -27,7 +28,7 @@ def cv_twosample(
     h: float,
     method: str,
     b: float = 0.9,
-    random_state: Optional[int] = None,
+    random_state: Optional[Union[int, np.random.Generator]] = None,
     n_jobs: int = 8,
 ):
     """
@@ -61,8 +62,8 @@ def cv_twosample(
         b : float, optional
             Subsampling block size (only used if method is subsampling).
 
-        random_state : int, None, optional.
-            Seed for random number generation. Defaults to None.
+        random_state : int, np.random.Generator, None, optional.
+            Seed or generator for random number generation. Defaults to None.
 
         n_jobs : int, optional
             n_jobs specifies the maximum number of concurrently
@@ -82,24 +83,33 @@ def cv_twosample(
         Quadratic Distances.” Manuscript, (Department of Biostatistics, University at Buffalo).
 
     """
+
+    if isinstance(random_state, np.random.Generator):
+        ss = SeedSequence(random_state.integers(2**32))
+    else:
+        ss = SeedSequence(random_state)
+
+    child_seeds = ss.spawn(num_iter)
+    generators = [default_rng(s) for s in child_seeds]
+
     if method == "bootstrap":
         results = Parallel(n_jobs=n_jobs)(
             delayed(bootstrap_helper_twosample)(
-                size_x, size_y, h, data_pool, i, random_state
+                size_x, size_y, h, data_pool, generators[i]
             )
             for i in range(num_iter)
         )
     elif method == "permutation":
         results = Parallel(n_jobs=n_jobs)(
             delayed(permutation_helper_twosample)(
-                size_x, size_y, h, data_pool, i, random_state
+                size_x, size_y, h, data_pool, generators[i]
             )
             for i in range(num_iter)
         )
     elif method == "subsampling":
         results = Parallel(n_jobs=n_jobs)(
             delayed(subsampling_helper_twosample)(
-                size_x, size_y, b, h, data_pool, i, random_state
+                size_x, size_y, b, h, data_pool, generators[i]
             )
             for i in range(num_iter)
         )
@@ -114,7 +124,7 @@ def cv_normality(
     sigma_hat: np.ndarray,
     num_iter: int = 500,
     quantile: float = 0.95,
-    random_state: Optional[int] = None,
+    random_state: Optional[Union[int, np.random.Generator]] = None,
     n_jobs: int = 8,
 ):
     """
@@ -149,8 +159,8 @@ def cv_normality(
         quantile : float, optional
             The quantile of the distribution used to select the critical value.
 
-        random_state : int, None, optional.
-            Seed for random number generation. Defaults to None.
+        random_state : int, np.random.Generator, None, optional.
+            Seed or generator for random number generation. Defaults to None.
 
         n_jobs : int, optional
             n_jobs specifies the maximum number of concurrently
@@ -164,8 +174,15 @@ def cv_normality(
         critical value : float
             Critical value for the specified dimension, size and quantile.
     """
+    if isinstance(random_state, np.random.Generator):
+        ss = SeedSequence(random_state.integers(2**32))
+    else:
+        ss = SeedSequence(random_state)
+    child_seeds = ss.spawn(num_iter)
+    generators = [default_rng(s) for s in child_seeds]
+
     results = Parallel(n_jobs=n_jobs)(
-        delayed(normal_cv_helper)(size, h, mu_hat, sigma_hat, i, random_state)
+        delayed(normal_cv_helper)(size, h, mu_hat, sigma_hat, generators[i])
         for i in range(num_iter)
     )
     return np.quantile(results, quantile, axis=0)
@@ -179,7 +196,7 @@ def cv_ksample(
     b: float = 0.9,
     quantile: float = 0.95,
     method: str = "subsampling",
-    random_state: Optional[int] = None,
+    random_state: Optional[Union[int, np.random.Generator]] = None,
     n_jobs: int = 8,
 ):
     """
@@ -210,8 +227,8 @@ def cv_ksample(
             The method to use for computing the critical value
             (one of "bootstrap", "permutation" or "subsampling").
 
-        random_state : int, None, optional.
-            Seed for random number generation. Defaults to None.
+        random_state : int, np.random.Generator, None, optional.
+            Seed or generator for random number generation. Defaults to None.
 
         n_jobs : int, optional
             n_jobs specifies the maximum number of concurrently
@@ -236,23 +253,30 @@ def cv_ksample(
     k = len(sizes)
     cum_size = np.insert(np.cumsum(sizes), 0, 0)
 
+    if isinstance(random_state, np.random.Generator):
+        ss = SeedSequence(random_state.integers(2**32))
+    else:
+        ss = SeedSequence(random_state)
+    child_seeds = ss.spawn(num_iter)
+    generators = [default_rng(s) for s in child_seeds]
+
     if method == "bootstrap":
         results = Parallel(n_jobs=n_jobs)(
             delayed(bootstrap_helper_ksample)(
-                x, y, k, h, sizes, cum_size, i, random_state
+                x, y, k, h, sizes, cum_size, generators[i]
             )
             for i in range(num_iter)
         )
     elif method == "subsampling":
         results = Parallel(n_jobs=n_jobs)(
             delayed(subsampling_helper_ksample)(
-                x, y, k, h, sizes, b, cum_size, i, random_state
+                x, y, k, h, sizes, b, cum_size, generators[i]
             )
             for i in range(num_iter)
         )
     elif method == "permutation":
         results = Parallel(n_jobs=n_jobs)(
-            delayed(permutation_helper_ksample)(x, y, n, h, i, random_state)
+            delayed(permutation_helper_ksample)(x, y, n, h, generators[i])
             for i in range(num_iter)
         )
 

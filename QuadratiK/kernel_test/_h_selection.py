@@ -7,6 +7,7 @@ from typing import Optional, Union
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from numpy.random import SeedSequence, default_rng
 from scipy.stats import skew, skewnorm
 from sklearn.utils.parallel import Parallel, delayed
 
@@ -26,7 +27,7 @@ def _objective_one_sample(
     rep_values: int,
     s_dat: np.ndarray,
     skew_data: np.ndarray,
-    random_state: Optional[int],
+    rng: np.random.Generator,
     n_jobs: int = 1,
 ):
     """
@@ -73,8 +74,8 @@ def _objective_one_sample(
         Skewness of the multivariate distribution to be used
         for determining the best h.
 
-    random_state : int, None, optional.
-        Seed for random number generation. Defaults to None.
+    rng : np.random.Generator
+        Random number generator.
 
     n_jobs : int, optional
         n_jobs specifies the maximum number of concurrently
@@ -102,14 +103,12 @@ def _objective_one_sample(
         skew_tilde = skew_data + dk
         s_tilde = s_dat
 
-    if isinstance(random_state, int):
-        random_state = random_state + int(rep_values)
     xnew = skewnorm.rvs(
         size=(n, len(mean_dat)),
         loc=mean_tilde,
         scale=s_tilde,
         a=skew_tilde,
-        random_state=random_state,
+        random_state=rng,
     )
 
     statistic = stat_normality_test(xnew, h, np.array([mean_dat]), np.diag(s_dat))
@@ -120,11 +119,11 @@ def _objective_one_sample(
         np.diag(s_dat),
         num_iter,
         quantile,
-        random_state=random_state,
+        random_state=rng,
         n_jobs=n_jobs,
     )
-    h0 = statistic < cv
-    return [rep_values, delta, h, h0[0]]
+    h0 = statistic[0] < cv
+    return [rep_values, delta, h, h0]
 
 
 def _objective_two_sample(
@@ -144,7 +143,7 @@ def _objective_two_sample(
     s_dat: np.ndarray,
     skew_data: np.ndarray,
     d: int,
-    random_state: Optional[int],
+    rng: np.random.Generator,
     n_jobs: int = 1,
 ):
     """
@@ -238,22 +237,19 @@ def _objective_two_sample(
         skew_tilde = skew_data + dk
         s_tilde = s_dat
 
-    if isinstance(random_state, (int, np.int_)):
-        random_state = random_state + int(rep_values)
-
     xnew = skewnorm.rvs(
         size=(n, len(mean_dat)),
         loc=mean_dat,
         scale=s_dat,
         a=skew_data,
-        random_state=np.random.default_rng(random_state),
+        random_state=rng,
     )
     ynew = skewnorm.rvs(
         size=(m, len(mean_dat)),
         loc=mean_tilde,
         scale=s_tilde,
         a=skew_tilde,
-        random_state=np.random.default_rng(random_state),
+        random_state=rng,
     )
 
     statistic = stat_two_sample(xnew, ynew, h, np.repeat(0, d), np.eye(d))
@@ -266,7 +262,7 @@ def _objective_two_sample(
         h,
         method,
         b,
-        random_state=random_state,
+        random_state=rng,
         n_jobs=n_jobs,
     )
     h0 = statistic[:2] < cv
@@ -288,7 +284,7 @@ def _objective_k_sample(
     rep_values: int,
     s_dat: np.ndarray,
     skew_data: np.ndarray,
-    random_state: Optional[int],
+    rng: np.random.Generator,
     n_jobs: int = 1,
 ):
     """
@@ -374,23 +370,20 @@ def _objective_k_sample(
         skew_tilde = skew_data + dk
         s_tilde = s_dat
 
-    if isinstance(random_state, (int, np.int_)):
-        random_state = random_state + int(rep_values)
-
     nk = round(n / k)
     xnew = skewnorm.rvs(
         size=(nk * (k - 1), len(mean_dat)),
         loc=mean_dat,
         scale=s_dat,
         a=skew_data,
-        random_state=random_state,
+        random_state=rng,
     )
     xk = skewnorm.rvs(
         size=(nk, len(mean_dat)),
         loc=mean_tilde,
         scale=s_tilde,
         a=skew_tilde,
-        random_state=random_state,
+        random_state=rng,
     )
 
     xnew = np.concatenate((xnew, xk), axis=0)
@@ -404,7 +397,7 @@ def _objective_k_sample(
         b,
         quantile,
         method,
-        random_state=random_state,
+        random_state=rng,
         n_jobs=n_jobs,
     )
     h0 = statistic[:2] < cv
@@ -528,7 +521,7 @@ def select_h(
     >>> h_selected, all_values, power_plot = select_h(
     ...    X, y, alternative='location', power_plot=True, random_state=42)
     >>> print("Selected h is: ", h_selected)
-    ... Selected h is:  1.2
+    ... Selected h is:  0.8
     """
     if not isinstance(random_state, (int, np.int_, type(None))):
         raise ValueError("Please specify a integer or None random_state")
@@ -601,9 +594,14 @@ def select_h(
             -1, 3
         )
 
+        ss = SeedSequence(random_state)
+        child_seeds = ss.spawn(all_parameters.shape[0])
+        generators = [default_rng(s) for s in child_seeds]
+
         all_results = {}
         for delta_val in delta:
-            parameters = all_parameters[all_parameters[:, 1] == delta_val]
+            matching_indices = np.where(all_parameters[:, 1] == delta_val)[0]
+            parameters = all_parameters[matching_indices]
             results = Parallel(n_jobs=n_jobs)(
                 delayed(_objective_one_sample)(
                     alternative,
@@ -617,10 +615,10 @@ def select_h(
                     param[2],
                     s_dat,
                     skew_data,
-                    random_state,
+                    generators[idx],
                     1,
                 )
-                for param in parameters
+                for idx, param in zip(matching_indices, parameters)
             )
             results = pd.DataFrame(results, columns=["rep", "delta", "h", "score"])
             results["score"] = 1 - results["score"]
@@ -664,9 +662,14 @@ def select_h(
             -1, 3
         )
 
+        ss = SeedSequence(random_state)
+        child_seeds = ss.spawn(all_parameters.shape[0])
+        generators = [default_rng(s) for s in child_seeds]
+
         all_results = {}
         for delta_val in delta:
-            parameters = all_parameters[all_parameters[:, 1] == delta_val]
+            matching_indices = np.where(all_parameters[:, 1] == delta_val)[0]
+            parameters = all_parameters[matching_indices]
             results = Parallel(n_jobs=n_jobs)(
                 delayed(_objective_two_sample)(
                     alternative,
@@ -685,10 +688,10 @@ def select_h(
                     s_dat,
                     skew_data,
                     d,
-                    random_state,
+                    generators[idx],
                     1,
                 )
-                for param in parameters
+                for idx, param in zip(matching_indices, parameters)
             )
             results = pd.DataFrame(results, columns=["rep", "delta", "h", "score"])
             results["score"] = 1 - results["score"]
@@ -723,9 +726,14 @@ def select_h(
             -1, 3
         )
 
+        ss = SeedSequence(random_state)
+        child_seeds = ss.spawn(all_parameters.shape[0])
+        generators = [default_rng(s) for s in child_seeds]
+
         all_results = {}
         for delta_val in delta:
-            parameters = all_parameters[all_parameters[:, 1] == delta_val]
+            matching_indices = np.where(all_parameters[:, 1] == delta_val)[0]
+            parameters = all_parameters[matching_indices]
             results = Parallel(n_jobs=n_jobs)(
                 delayed(_objective_k_sample)(
                     alternative,
@@ -742,10 +750,10 @@ def select_h(
                     param[2],
                     s_dat,
                     skew_data,
-                    random_state,
+                    generators[idx],
                     1,
                 )
-                for param in parameters
+                for idx, param in zip(matching_indices, parameters)
             )
 
             results_df = pd.DataFrame(results, columns=["rep", "delta", "h", "score"])

@@ -1,7 +1,4 @@
-from typing import Optional
-
 import numpy as np
-from sklearn.utils.validation import check_random_state
 
 
 def dof(d: int, rho: float) -> dict[str, float]:
@@ -58,9 +55,7 @@ def stat_poisson_unif(x_mat: np.ndarray, rho: float) -> tuple[float, float]:
     return (un, vn)
 
 
-def poisson_cv_helper(
-    size: int, d: int, rho: float, n_rep: int, random_state: Optional[int]
-) -> float:
+def poisson_cv_helper(size: int, d: int, rho: float, rng: np.random.Generator) -> float:
     """
     Generate a sample of observations on the Sphere and
     perform a Poisson kernel-based test for uniformity.
@@ -73,24 +68,16 @@ def poisson_cv_helper(
         The dimension of the observations.
     rho : float
         Concentration parameter of the Poisson kernel.
-
-    n_rep : int
-        The number of replication.
-
-    random_state : int, None.
-        Seed for random number generation.
+    rng : np.random.Generator
+        Random number generator.
 
     Returns
     -------
     Un : float
         The U-statistic for the generated random samples.
     """
-    if random_state is None:
-        generator = check_random_state(random_state)
-    elif isinstance(random_state, int):
-        generator = check_random_state(random_state + n_rep)
-
-    dat = generator.randn(size, d)
+    generator = rng
+    dat = generator.normal(size=(size, d))
     dat = dat / np.linalg.norm(dat, axis=1, keepdims=True)
     un = stat_poisson_unif(dat, rho)[0]
     return un

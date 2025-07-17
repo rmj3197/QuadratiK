@@ -6,6 +6,7 @@ on the centered poisson kernel tests
 from typing import Optional
 
 import numpy as np
+from numpy.random import SeedSequence, default_rng
 from sklearn.utils.parallel import Parallel, delayed
 
 from ._utils import poisson_cv_helper
@@ -62,8 +63,11 @@ def poisson_cv(
         Uniformity on the d-Dimensional Sphere.” Statistica Sinica. doi: doi:10.5705/ss.202022.0347.
     """
 
+    ss = SeedSequence(random_state)
+    child_seeds = ss.spawn(num_iter)
+    generators = [default_rng(s) for s in child_seeds]
+
     results = Parallel(n_jobs=n_jobs)(
-        delayed(poisson_cv_helper)(size, d, rho, i, random_state)
-        for i in range(num_iter)
+        delayed(poisson_cv_helper)(size, d, rho, generators[i]) for i in range(num_iter)
     )
     return np.quantile(results, quantile)

@@ -1,7 +1,6 @@
-from typing import Optional, Union
+from typing import Union
 
 import numpy as np
-from sklearn.utils.validation import check_random_state
 
 
 def compute_kernel_matrix(
@@ -468,8 +467,7 @@ def normal_cv_helper(
     h: float,
     mu_hat: np.ndarray,
     sigma_hat: np.ndarray,
-    n_rep: int,
-    random_state: Optional[int],
+    rng: np.random.Generator,
 ) -> np.ndarray:
     """
     Generate a sample from a multivariate normal distribution and perform a
@@ -491,11 +489,8 @@ def normal_cv_helper(
     sigma_hat : numpy.ndarray
         Covariance matrix of the reference distribution.
 
-    n_rep : int
-        The number of replication.
-
-    random_state : int, None.
-        Seed for random number generation.
+    rng : np.random.Generator
+        Random number generator.
 
     Returns
     -------
@@ -503,10 +498,7 @@ def normal_cv_helper(
         An array containing the test statistics from the kernel-based quadratic
         distance test for normality on the generated sample.
     """
-    if random_state is None:
-        generator = check_random_state(random_state)
-    elif isinstance(random_state, (int, np.int_)):
-        generator = check_random_state(random_state + n_rep)
+    generator = rng
 
     dat = generator.multivariate_normal(mu_hat.ravel(), sigma_hat, size)
     return stat_normality_test(dat, h, mu_hat, sigma_hat)[0]
@@ -517,8 +509,7 @@ def bootstrap_helper_twosample(
     size_y: int,
     h: float,
     data_pool: np.ndarray,
-    n_rep: int,
-    random_state: Optional[int],
+    rng: np.random.Generator,
 ) -> np.ndarray:
     """
     Helper function for CV estimation using bootstrap for
@@ -539,11 +530,8 @@ def bootstrap_helper_twosample(
     data_pool : numpy.ndarray
         Pooled data from both groups.
 
-    n_rep : int
-        The number of replication.
-
-    random_state : int, None.
-        Seed for random number generation.
+    rng : np.random.Generator
+        Random number generator.
 
     Returns
     -------
@@ -551,10 +539,8 @@ def bootstrap_helper_twosample(
         The result of the two-sample test using bootstrap
         resampling for the randomly generated data.
     """
-    if random_state is None:
-        generator = check_random_state(random_state)
-    elif isinstance(random_state, (int, np.int_)):
-        generator = check_random_state(random_state + n_rep)
+
+    generator = rng
 
     ind_x = generator.choice(np.arange(0, size_x + size_y, 1), size_x, replace=True)
     ind_y = generator.choice(np.arange(0, size_x + size_y, 1), size_y, replace=True)
@@ -576,8 +562,7 @@ def permutation_helper_twosample(
     size_y: int,
     h: float,
     data_pool: np.ndarray,
-    n_rep: int,
-    random_state: Optional[int],
+    rng: np.random.Generator,
 ) -> np.ndarray:
     """
     Helper function for CV estimation using permutation for
@@ -598,11 +583,8 @@ def permutation_helper_twosample(
     data_pool : numpy.ndarray
         Pooled data from both groups.
 
-    n_rep : int
-        The number of replication.
-
-    random_state : int, None.
-        Seed for random number generation.
+    rng : np.random.Generator
+        Random number generator.
 
     Returns
     -------
@@ -610,10 +592,7 @@ def permutation_helper_twosample(
         The result of the two-sample test using permutation
         resampling for the randomly generated data.
     """
-    if random_state is None:
-        generator = check_random_state(random_state)
-    elif isinstance(random_state, (int, np.int_)):
-        generator = check_random_state(random_state + n_rep)
+    generator = rng
 
     ind_x = generator.choice(np.arange(0, size_x + size_y, 1), size_x, replace=False)
     ind_y = np.setdiff1d(np.arange(0, size_x + size_y, 1), ind_x)
@@ -636,8 +615,7 @@ def subsampling_helper_twosample(
     b: float,
     h: float,
     data_pool: np.ndarray,
-    n_rep: int,
-    random_state: Optional[int],
+    rng: np.random.Generator,
 ) -> np.ndarray:
     """
     Helper function for CV estimation using subsampling for
@@ -661,11 +639,8 @@ def subsampling_helper_twosample(
     data_pool : numpy.ndarray
         Pooled data from both groups.
 
-    n_rep : int
-        The number of replication.
-
-    random_state : int, None.
-        Seed for random number generation.
+    rng : np.random.Generator
+        Random number generator.
 
     Returns
     -------
@@ -673,10 +648,7 @@ def subsampling_helper_twosample(
         The result of the two-sample test using subsampling
         resampling for the randomly generated data.
     """
-    if random_state is None:
-        generator = check_random_state(random_state)
-    elif isinstance(random_state, (int, np.int_)):
-        generator = check_random_state(random_state + n_rep)
+    generator = rng
 
     ind_x = generator.choice(np.arange(size_x), size=round(size_x * b), replace=False)
     ind_y = generator.choice(
@@ -704,8 +676,7 @@ def bootstrap_helper_ksample(
     h: float,
     sizes: np.ndarray,
     cum_size: np.ndarray,
-    n_rep: int,
-    random_state: Optional[int],
+    rng: np.random.Generator,
 ) -> np.ndarray:
     """
     Helper function for CV estimation using bootstrap for
@@ -732,11 +703,8 @@ def bootstrap_helper_ksample(
     cum_size : numpy.ndarray
         Array containing the cumulative sizes of each group in the pooled sample.
 
-    n_rep : int
-        The number of replication.
-
-    random_state : int, None.
-        Seed for random number generation.
+    rng : np.random.Generator
+        Random number generator.
 
     Returns
     -------
@@ -744,10 +712,7 @@ def bootstrap_helper_ksample(
         The result of the k-sample test using bootstrap resampling for
         the randomly generated data.
     """
-    if random_state is None:
-        generator = check_random_state(random_state)
-    elif isinstance(random_state, (int, np.int_)):
-        generator = check_random_state(random_state + n_rep)
+    generator = rng
 
     ind_k = np.concatenate(
         [
@@ -773,8 +738,7 @@ def subsampling_helper_ksample(
     sizes: np.ndarray,
     b: float,
     cum_size: np.ndarray,
-    n_rep: int,
-    random_state: Optional[int],
+    rng: np.random.Generator,
 ):
     """
     Helper function for CV estimation using subsampling for
@@ -805,11 +769,8 @@ def subsampling_helper_ksample(
     cum_size : numpy.ndarray
         Array containing the cumulative sizes of each group in the pooled sample.
 
-    n_rep : int
-        The number of replication.
-
-    random_state : int, None.
-        Seed for random number generation.
+    rng : np.random.Generator
+        Random number generator.
 
     Returns
     -------
@@ -817,10 +778,7 @@ def subsampling_helper_ksample(
         The result of the k-sample test using subsampling using the randomly
         generated data.
     """
-    if random_state is None:
-        generator = check_random_state(random_state)
-    elif isinstance(random_state, (int, np.int_)):
-        generator = check_random_state(random_state + n_rep)
+    generator = rng
 
     ind_k = np.concatenate(
         [
@@ -845,8 +803,7 @@ def permutation_helper_ksample(
     y: np.ndarray,
     n: int,
     h: float,
-    n_rep: int,
-    random_state: Optional[int],
+    rng: np.random.Generator,
 ):
     """
     Helper function for CV estimation using permutation for
@@ -867,11 +824,8 @@ def permutation_helper_ksample(
     h : float
         The bandwidth parameter for the kernel function in the k-sample test.
 
-    n_rep : int
-        The number of replication.
-
-    random_state : int, None.
-        Seed for random number generation.
+    rng : np.random.Generator
+        Random number generator.
 
     Returns
     ---------
@@ -879,10 +833,7 @@ def permutation_helper_ksample(
         The result of the k-sample test using permutation using the randomly
         generated data.
     """
-    if random_state is None:
-        generator = check_random_state(random_state)
-    elif isinstance(random_state, (int, np.int_)):
-        generator = check_random_state(random_state + n_rep)
+    generator = rng
 
     ind_k = generator.choice(np.arange(0, n), n, replace=False)
     ind_k = ind_k.astype(int)

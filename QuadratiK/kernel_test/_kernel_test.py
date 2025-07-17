@@ -153,12 +153,12 @@ class KernelTest:
     >>> print(normality_test)
     ... KernelTest(
         Test Type=Kernel-based quadratic distance Normality test,
-        Execution Time=3.198080062866211 seconds,
-        U-Statistic=-0.1145936604628874,
-        U-Statistic Critical Value=1.1593122985543514,
+        Execution Time=3.3077950477600098 seconds,
+        U-Statistic=-0.11459366046289172,
+        U-Statistic Critical Value=1.787267460871593,
         U-Statistic Null Hypothesis Rejected=False,
         U-Statistic Variance=1.108021332522181e-08,
-        V-Statistic=0.977955027161687,
+        V-Statistic=0.9779550271616868,
         V-Statistic Critical Value=42.460022848761945,
         V-Statistic Null Hypothesis Rejected=False,
         Selected tuning parameter h=0.4
@@ -176,13 +176,13 @@ class KernelTest:
     >>> print(two_sample_test)
     ... KernelTest(
         Test Type=Kernel-based quadratic distance two-sample test,
-        Execution Time=0.36570000648498535 seconds,
-        Dn-Statistic=5.061212999055004,
-        Dn-Statistic Critical Value=0.4901155246432661,
+        Execution Time=0.22908806800842285 seconds,
+        Dn-Statistic=5.0612129990550025,
+        Dn-Statistic Critical Value=0.6311271530521101,
         Dn-Statistic Null Hypothesis Rejected=True,
-        Dn-Statistic Variance=3.037711857184588e-10,
-        Trace-Statistic=15.751718163734266,
-        Trace-Statistic Critical Value=1.525782865913332,
+        Dn-Statistic Variance=3.0377118571845887e-10,
+        Trace-Statistic=15.751718163734267,
+        Trace-Statistic Critical Value=1.9647673822217038,
         Trace-Statistic Null Hypothesis Rejected=True,
         Trace-Statistic Variance=7.879780877050946e-12,
         Selected tuning parameter h=2,
