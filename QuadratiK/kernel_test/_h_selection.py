@@ -442,8 +442,10 @@ def select_h(
 
     - **location** alternatives, :math:`F_\delta = SN_d(\hat{\mu} + \delta, \hat{\Sigma}, \hat{\lambda})`,
     with :math:`\delta = 0.2, 0.3, 0.4`;
+
     - **scale** alternatives, :math:`F_\delta = SN_d(\hat{\mu}, \hat{\Sigma} \cdot \delta, \hat{\lambda})`,
     with :math:`\delta = 1.1, 1.3, 1.5`;
+
     - **skewness** alternatives, :math:`F_\delta = SN_d(\hat{\mu}, \hat{\Sigma}, \hat{\lambda} + \delta)`,
     with :math:`\delta = 0.2, 0.3, 0.6`.
 
