@@ -116,7 +116,7 @@ def _objective_one_sample(
         n,
         h,
         np.array([mean_dat]),
-        np.diag(s_dat),
+        np.diag(s_dat) ** 2,
         num_iter,
         quantile,
         random_state=rng,

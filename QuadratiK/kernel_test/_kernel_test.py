@@ -153,9 +153,9 @@ class KernelTest:
     >>> print(normality_test)
     ... KernelTest(
         Test Type=Kernel-based quadratic distance Normality test,
-        Execution Time=3.3077950477600098 seconds,
+        Execution Time=3.4337799549102783 seconds,
         U-Statistic=-0.11459366046289172,
-        U-Statistic Critical Value=1.787267460871593,
+        U-Statistic Critical Value=1.7841253047274597,
         U-Statistic Null Hypothesis Rejected=False,
         U-Statistic Variance=1.108021332522181e-08,
         V-Statistic=0.9779550271616868,

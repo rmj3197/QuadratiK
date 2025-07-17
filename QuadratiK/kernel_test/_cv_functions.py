@@ -138,9 +138,6 @@ def cv_normality(
 
     Parameters
     ----------
-        d : int
-            The dimension of generated samples.
-
         size : int
             The number of observations to be generated.
 

@@ -500,7 +500,11 @@ def normal_cv_helper(
     """
     generator = rng
 
-    dat = generator.multivariate_normal(mu_hat.ravel(), sigma_hat, size)
+    dat = (
+        generator.multivariate_normal(mu_hat.ravel(), sigma_hat, size)
+        .flatten("F")
+        .reshape((size, -1), order="C")
+    )
     return stat_normality_test(dat, h, mu_hat, sigma_hat)[0]
 
 
