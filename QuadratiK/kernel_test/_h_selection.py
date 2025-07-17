@@ -96,7 +96,7 @@ def _objective_one_sample(
         skew_tilde = skew_data
     elif alternative == "scale":
         mean_tilde = mean_dat
-        s_tilde = s_dat * dk
+        s_tilde = s_dat * np.sqrt(dk)
         skew_tilde = skew_data
     elif alternative == "skewness":
         mean_tilde = mean_dat
@@ -230,7 +230,7 @@ def _objective_two_sample(
         skew_tilde = skew_data
     elif alternative == "scale":
         mean_tilde = mean_dat
-        s_tilde = s_dat * dk
+        s_tilde = s_dat * np.sqrt(dk)
         skew_tilde = skew_data
     elif alternative == "skewness":
         mean_tilde = mean_dat
@@ -363,7 +363,7 @@ def _objective_k_sample(
         skew_tilde = skew_data
     elif alternative == "scale":
         mean_tilde = mean_dat
-        s_tilde = s_dat * dk
+        s_tilde = s_dat * np.sqrt(dk)
         skew_tilde = skew_data
     elif alternative == "skewness":
         mean_tilde = mean_dat
@@ -420,7 +420,7 @@ def select_h(
     k_threshold: int = 10,
     power_plot: bool = False,
     random_state: Optional[int] = None,
-) -> tuple[float, pd.DataFrame]:
+) -> Union[tuple[float, pd.DataFrame], tuple[float, pd.DataFrame, plt.Figure]]:
     """
     This function computes the kernel bandwidth of the Gaussian kernel
     for the one sample, two-sample and k-sample kernel-based quadratic
@@ -433,6 +433,24 @@ def select_h(
     of h_values and delta.
 
     Please see :ref:`User Guide <hselect>` for more details.
+
+    We consider target alternatives :math:`F_\delta(\hat{\mathbf{\mu}},
+    \hat{\mathbf{\Sigma}}, \hat{\mathbf{\lambda}})`, where
+    :math:`\hat{\mathbf{\mu}}, \hat{\mathbf{\Sigma}}` and
+    :math:`\hat{\mathbf{\lambda}}` indicate the location,
+    covariance, and skewness parameter estimates from the pooled sample.
+
+    The available `alternative` options are:
+
+    - **location** alternatives, :math:`F_\delta =
+    SN_d(\hat{\mu} + \delta, \hat{\Sigma}, \hat{\lambda})`, with
+    :math:`\delta = 0.2, 0.3, 0.4`;
+    - **scale** alternatives,
+    :math:`F_\delta = SN_d(\hat{\mu}, \hat{\Sigma} \cdot \delta, \hat{\lambda})`,
+    with :math:`\delta = 1.1, 1.3, 1.5`;
+    - **skewness** alternatives,
+    :math:`F_\delta = SN_d(\hat{\mu}, \hat{\Sigma}, \hat{\lambda} + \delta)`,
+    with :math:`\delta = 0.2, 0.3, 0.6`.
 
     Parameters
     ----------
