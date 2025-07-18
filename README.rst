@@ -274,19 +274,31 @@ Python Packages
 Citation
 ==========
 
-If you use this package, please consider citing it using the following entry:
+If you use this package, please consider citing it using the following entries:
 
 .. code-block:: tex
 
-    @misc{saraceno2024goodnessoffitclusteringsphericaldata,
-          title={Goodness-of-Fit and Clustering of Spherical Data: the QuadratiK package in R and Python}, 
-          author={Giovanni Saraceno and Marianthi Markatou and Raktim Mukhopadhyay and Mojgan Golzy},
-          year={2024},
-          eprint={2402.02290},
-          archivePrefix={arXiv},
-          primaryClass={stat.CO},
-          url={https://arxiv.org/abs/2402.02290}, 
-    }
+   @misc{saraceno2024goodnessoffitclusteringsphericaldata,
+         title={Goodness-of-Fit and Clustering of Spherical Data: the QuadratiK package in R and Python}, 
+         author={Giovanni Saraceno and Marianthi Markatou and Raktim Mukhopadhyay and Mojgan Golzy},
+         year={2024},
+         eprint={2402.02290},
+         archivePrefix={arXiv},
+         primaryClass={stat.CO},
+         url={https://arxiv.org/abs/2402.02290}, 
+   }
+
+.. code-block:: tex
+
+   @article{saraceno2025quadratik,
+         title={QuadratiK: A Python and R package for clustering on the sphere and goodness-of-fit tests},
+         author={Saraceno, Giovanni and Mukhopadhyay, Raktim and Markatou, Marianthi},
+         journal={SoftwareX},
+         volume={31},
+         pages={102155},
+         year={2025},
+         publisher={Elsevier}
+   }
 
 Funding Information
 =====================
