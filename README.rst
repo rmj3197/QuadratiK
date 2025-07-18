@@ -133,8 +133,8 @@ Usage Examples
 
 You can also execute the examples on Binder |Binder|. 
 
-.. |Binder| image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/rmj3197/QuadratiK/HEAD?labpath=doc%2Fsource%2Fuser_guide
+.. |Binder| image:: https://gesis.mybinder.org/badge_logo.svg
+   :target: https://gesis.mybinder.org/v2/gh/rmj3197/QuadratiK/HEAD?urlpath=%2Fdoc%2Ftree%2F%2Fdocs%2Fsource%2Fuser_guide
 
 Community
 ===========
