@@ -348,14 +348,14 @@ class PKBC:
                     for h in range(k):
                         sum_h_weight_mat = np.sum(np.exp(log_weight_mat[:, h]))
                         alpha_current_h = alpha_current[h]
-                        mu_denom_h = mu_denom[h]
+                        mu_denom_h = mu_denom[h].item()
                         rho_current[h] = root_scalar(
                             _root_func,
                             args=(
                                 num_data,
                                 alpha_current_h,
                                 num_var,
-                                mu_denom_h,
+                                float(mu_denom_h),
                                 sum_h_weight_mat,
                             ),
                             bracket=[0, 1],
@@ -604,14 +604,14 @@ class PKBC:
         for h in range(num_clust):
             sum_h_weight_mat = np.sum(np.exp(log_weight_mat[:, h]))
             alpha_current_h = alpha_current[h]
-            mu_denom_h = mu_denom[h]
+            mu_denom_h = mu_denom[h].item()
             self.rho_[num_clust][h] = root_scalar(
                 _root_func,
                 args=(
                     num_data,
                     alpha_current_h,
                     num_var,
-                    mu_denom_h,
+                    float(mu_denom_h),
                     sum_h_weight_mat,
                 ),
                 bracket=[0, 1],
