@@ -1,13 +1,14 @@
 name: Codecov Workflow
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   test:
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        python-version: [ '3.10', '3.11', '3.12', '3.13', '3.14' ]
+        os: [ windows-latest, ubuntu-latest, macos-latest ]
     runs-on: ${{ matrix.os }}
     name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
     steps:
