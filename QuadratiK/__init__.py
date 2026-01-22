@@ -1,6 +1,10 @@
 from importlib import import_module
+from importlib.metadata import PackageNotFoundError, version
 
-__version__ = "1.1.4"
+try:
+    __version__ = version("QuadratiK")
+except PackageNotFoundError:
+    __version__ = "unknown"
 
 submodules = [
     "kernel_test",

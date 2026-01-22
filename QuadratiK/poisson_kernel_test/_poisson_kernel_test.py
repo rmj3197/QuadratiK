@@ -192,16 +192,12 @@ class PoissonKernelTest:
             raise TypeError("x must be a numpy array or a pandas dataframe")
 
         if (self.quantile <= 0) or (self.quantile > 1):
-            raise ValueError(
-                "Quantile indicates the level used for the critical \
-                    value computation. It must be in (0,1]."
-            )
+            raise ValueError("Quantile indicates the level used for the critical \
+                    value computation. It must be in (0,1].")
 
         if not (isinstance(self.rho, (int, float)) and (0 < self.rho <= 1)):
-            raise ValueError(
-                "rho indicates the concentration parameter \
-                    of the Poisson kernel, it must be in (0,1)."
-            )
+            raise ValueError("rho indicates the concentration parameter \
+                    of the Poisson kernel, it must be in (0,1).")
 
         if not isinstance(self.random_state, (int, type(None))):
             raise ValueError("Please specify a integer or None random_state")

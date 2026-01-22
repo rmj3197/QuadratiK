@@ -59,7 +59,7 @@ body:
     description: |
       Please run the following and paste the output below.
       ```python
-      import QuadratiK; QuadratiK.__version__
+      import QuadratiK; print(QuadratiK.__version__)
       ```
   validations:
     required: true

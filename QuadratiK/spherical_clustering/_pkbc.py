@@ -291,11 +291,9 @@ class PKBC:
                 unique_data = np.unique(self.dat, axis=0)
                 num_unique_obs = unique_data.shape[0]
                 if num_unique_obs < k:
-                    raise ValueError(
-                        f"Only {num_unique_obs} 'unique observations.', \
+                    raise ValueError(f"Only {num_unique_obs} 'unique observations.', \
                         When init_method = {self.init_method}, \
-                            must have more than num_clust unique observations."
-                    )
+                            must have more than num_clust unique observations.")
             log_w_d = (num_var / 2) * (np.log(2) + np.log(np.pi)) - sp.gammaln(
                 num_var / 2
             )

@@ -361,10 +361,8 @@ class KernelTest:
 
         if self.b is not None:
             if not 0 < self.b <= 1:
-                raise ValueError(
-                    "b indicates the proportion used for the \
-                        subsamples in the subsampling algorithm. It must be in (0, 1]."
-                )
+                raise ValueError("b indicates the proportion used for the \
+                        subsamples in the subsampling algorithm. It must be in (0, 1].")
 
         valid_centering_type = ["param", "nonparam"]
         if self.centering_type not in valid_centering_type:

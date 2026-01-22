@@ -558,10 +558,8 @@ def select_h(
         elif isinstance(y, pd.DataFrame):
             y = y.values
         else:
-            raise TypeError(
-                "y must be a list, numpy.ndarray, \
-                    or a pandas DataFrame with one column (for k-sample case) or more"
-            )
+            raise TypeError("y must be a list, numpy.ndarray, \
+                    or a pandas DataFrame with one column (for k-sample case) or more")
     else:
         pass
 
@@ -595,10 +593,8 @@ def select_h(
             delta_dim = np.ones(d)
         else:
             if not isinstance(delta_dim, (int, float)) or len(delta_dim) != d:
-                raise ValueError(
-                    "delta_dim must be 1 or a numeric Array of \
-                        length equal to the number of columns of pooled."
-                )
+                raise ValueError("delta_dim must be 1 or a numeric Array of \
+                        length equal to the number of columns of pooled.")
 
         mean_dat = np.mean(x, axis=0)
         s_dat = np.sqrt(
@@ -661,10 +657,8 @@ def select_h(
             delta_dim = np.ones(d)
         else:
             if not isinstance(delta_dim, (int, float)) or len(delta_dim) != d:
-                raise ValueError(
-                    "delta_dim must be 1 or a numeric Array of \
-                        length equal to the number of columns of pooled."
-                )
+                raise ValueError("delta_dim must be 1 or a numeric Array of \
+                        length equal to the number of columns of pooled.")
 
         mean_dat = np.mean(pooled, axis=0)
         s_dat = np.sqrt(
@@ -726,10 +720,8 @@ def select_h(
             delta_dim = np.ones(d)
         else:
             if not isinstance(delta_dim, (int, float)) or len(delta_dim) != d:
-                raise ValueError(
-                    "delta_dim must be 1 or a numeric Array of \
-                        length equal to the number of columns of pooled."
-                )
+                raise ValueError("delta_dim must be 1 or a numeric Array of \
+                        length equal to the number of columns of pooled.")
 
         mean_dat = np.mean(x, axis=0)
         s_dat = np.sqrt(
