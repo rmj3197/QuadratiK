@@ -4,7 +4,10 @@ version = "1.1.5"
 description = "QuadratiK includes test for multivariate normality, test for uniformity on the Sphere, non-parametric two- and k-sample tests, random generation of points from the Poisson kernel-based density and clustering algorithm for spherical data."
 license = "GPL-3.0-only"
 authors = [
-    "Giovanni Saraceno, Marianthi Markatou, Raktim Mukhopadhyay, Mojgan Golzy <gsaracen@buffalo.edu, markatou@buffalo.edu, raktimmu@buffalo.edu, golzym@health.missouri.edu>",
+    "Giovanni Saraceno <gsaracen@buffalo.edu>",
+    "Marianthi Markatou <markatou@buffalo.edu>",
+    "Raktim Mukhopadhyay <raktimmu@buffalo.edu>",
+    "Mojgan Golzy <golzym@health.missouri.edu>",
 ]
 maintainers = ["Raktim Mukhopadhyay <raktimmu@buffalo.edu>"]
 readme = "README.rst"
