@@ -3,7 +3,6 @@ Poisson kernel-based quadratic distance test of Uniformity on the Sphere
 """
 
 import importlib
-from typing import Optional, Union
 
 import numpy as np
 import pandas as pd
@@ -133,7 +132,7 @@ class PoissonKernelTest:
         rho: float,
         num_iter: int = 300,
         quantile: float = 0.95,
-        random_state: Optional[int] = None,
+        random_state: int | None = None,
         n_jobs: int = 8,
     ) -> None:
         self.rho = rho
@@ -168,7 +167,7 @@ class PoissonKernelTest:
         )
 
     @time_decorator
-    def test(self, x: Union[np.ndarray, pd.DataFrame]) -> "PoissonKernelTest":
+    def test(self, x: np.ndarray | pd.DataFrame) -> "PoissonKernelTest":
         """
         Performs the Poisson kernel-based quadratic distance Goodness-of-fit tests for
         Uniformity for spherical data using the Poisson kernel with concentration parameter :math:`rho`.

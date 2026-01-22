@@ -1,5 +1,4 @@
 from importlib import resources
-from typing import Union
 
 import numpy as np
 import pandas as pd
@@ -10,15 +9,15 @@ def load_wireless_data(
     return_X_y: bool = False,
     as_dataframe: bool = True,
     scaled: bool = False,
-) -> Union[
-    tuple[str, pd.DataFrame, pd.DataFrame],
-    tuple[str, pd.DataFrame],
-    tuple[str, np.ndarray],
-    tuple[pd.DataFrame, pd.DataFrame],
-    tuple[np.ndarray, np.ndarray],
-    pd.DataFrame,
-    np.ndarray,
-]:
+) -> (
+    tuple[str, pd.DataFrame, pd.DataFrame]
+    | tuple[str, pd.DataFrame]
+    | tuple[str, np.ndarray]
+    | tuple[pd.DataFrame, pd.DataFrame]
+    | tuple[np.ndarray, np.ndarray]
+    | pd.DataFrame
+    | np.ndarray
+):
     """
     The wireless data frame has 2000 rows and 8 columns. The first 7 variables
     report the measurements of the Wi-Fi signal strength received from 7 Wi-Fi routers in an
@@ -196,15 +195,15 @@ def load_wisconsin_breast_cancer_data(
     return_X_y: bool = False,
     as_dataframe: bool = True,
     scaled: bool = False,
-) -> Union[
-    tuple[str, pd.DataFrame, pd.DataFrame],
-    tuple[str, pd.DataFrame],
-    tuple[str, np.ndarray],
-    tuple[pd.DataFrame, pd.DataFrame],
-    tuple[np.ndarray, np.ndarray],
-    pd.DataFrame,
-    np.ndarray,
-]:
+) -> (
+    tuple[str, pd.DataFrame, pd.DataFrame]
+    | tuple[str, pd.DataFrame]
+    | tuple[str, np.ndarray]
+    | tuple[pd.DataFrame, pd.DataFrame]
+    | tuple[np.ndarray, np.ndarray]
+    | pd.DataFrame
+    | np.ndarray
+):
     """
     The Wisconsin breast cancer dataset data frame has 569 rows and 31 columns. The first 30 variables
     report the features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass.
@@ -415,15 +414,15 @@ def load_wine_data(
     return_X_y: bool = False,
     as_dataframe: bool = True,
     scaled: bool = False,
-) -> Union[
-    tuple[str, pd.DataFrame, pd.DataFrame],
-    tuple[str, pd.DataFrame],
-    tuple[str, np.ndarray],
-    tuple[pd.DataFrame, pd.DataFrame],
-    tuple[np.ndarray, np.ndarray],
-    pd.DataFrame,
-    np.ndarray,
-]:
+) -> (
+    tuple[str, pd.DataFrame, pd.DataFrame]
+    | tuple[str, pd.DataFrame]
+    | tuple[str, np.ndarray]
+    | tuple[pd.DataFrame, pd.DataFrame]
+    | tuple[np.ndarray, np.ndarray]
+    | pd.DataFrame
+    | np.ndarray
+):
     """
     The wine data frame has 178 rows and 14 columns. The first 13 variables
     report 13 constituents found in each of the three types of wines.

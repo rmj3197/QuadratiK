@@ -1,5 +1,3 @@
-from typing import Union
-
 import numpy as np
 
 
@@ -243,8 +241,8 @@ def variance_two_sample_test(k_cen: np.ndarray, n: int, m: int) -> tuple[float, 
 
 def variance_k_sample_test(
     k_cen: np.ndarray,
-    sizes: Union[list[int], np.ndarray],
-    cum_size: Union[list[int], np.ndarray],
+    sizes: list[int] | np.ndarray,
+    cum_size: list[int] | np.ndarray,
 ) -> float:
     """
     Compute the exact variance of kernel test for the k-sample problem under

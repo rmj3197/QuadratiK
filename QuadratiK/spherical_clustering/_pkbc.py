@@ -4,7 +4,6 @@ Poisson Kernel based Clustering
 
 import importlib
 from collections import Counter
-from typing import Optional, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -178,7 +177,7 @@ class PKBC:
         init_method: str = "sampledata",
         num_init: int = 10,
         tol: float = 1e-7,
-        random_state: Optional[int] = None,
+        random_state: int | None = None,
         n_jobs: int = 4,
     ) -> None:
         self.num_clust = num_clust
@@ -205,7 +204,7 @@ class PKBC:
         self.log_lik_vec = None
         self.num_iter_per_run = None
 
-    def fit(self, dat: Union[np.ndarray, pd.DataFrame]) -> "PKBC":
+    def fit(self, dat: np.ndarray | pd.DataFrame) -> "PKBC":
         """
         Performs Poisson Kernel-based Clustering.
 
@@ -331,15 +330,14 @@ class PKBC:
                         - (num_var / 2) * log_prob_mat_denom
                     )
 
-                    prob_sum = np.tile(
-                        np.dot(np.exp(log_prob_mat), alpha_current).reshape(
-                            num_data, 1
-                        ),
-                        (1, k),
+                    log_prob_sum = sp.logsumexp(
+                        log_prob_mat + np.log(alpha_current.reshape(1, k)),
+                        axis=1,
+                        keepdims=True,
                     )
 
                     log_norm_prob_mat_current = (
-                        np.log(alpha_mat_current) + log_prob_mat - np.log(prob_sum)
+                        np.log(alpha_mat_current) + log_prob_mat - log_prob_sum
                     )
 
                     log_weight_mat = log_norm_prob_mat_current - log_prob_mat_denom
@@ -379,13 +377,18 @@ class PKBC:
                     if check_loglik:
                         log_lik_previous = log_lik_current
                         log_lik_current = np.sum(
-                            np.log(np.dot(np.exp(log_prob_mat), alpha_current))
+                            sp.logsumexp(
+                                log_prob_mat + np.log(alpha_current.reshape(1, -1)),
+                                axis=1,
+                            )
                         )
                         if np.abs(log_lik_previous - log_lik_current) < self.tol:
                             break
                     current_iter = current_iter + 1
                 log_lik_current = np.sum(
-                    np.log(np.dot(np.exp(log_prob_mat), alpha_current))
+                    sp.logsumexp(
+                        log_prob_mat + np.log(alpha_current.reshape(1, -1)), axis=1
+                    )
                 )
 
                 if log_lik_current > max(self.log_lik_vec):
@@ -424,7 +427,7 @@ class PKBC:
         return self
 
     def validation(
-        self, y_true: Optional[np.ndarray] = None
+        self, y_true: np.ndarray | None = None
     ) -> tuple[pd.DataFrame, plt.Figure]:
         """
         Computes validation metrics such as ARI, Macro Precision and Macro Recall when true labels are provided.
@@ -476,6 +479,7 @@ class PKBC:
         validation_metrics = {}
 
         for k in self.num_clust:
+            print("self.labels_[k]", self.labels_[k])
             avg_silhouette_score = silhouette_score(self.dat, self.labels_[k])
 
             if y_true is not None:
@@ -547,7 +551,7 @@ class PKBC:
         return summary_stats
 
     def predict(
-        self, X: Union[np.ndarray, pd.DataFrame], num_clust: int
+        self, X: np.ndarray | pd.DataFrame, num_clust: int
     ) -> tuple[np.ndarray, np.ndarray]:
         """
         Predict the cluster membership for each sample in X.
@@ -585,12 +589,15 @@ class PKBC:
             - log_w_d
             - (num_var / 2) * log_prob_mat_denom
         )
-        prob_sum = np.tile(
-            np.dot(np.exp(log_prob_mat), self.alpha_[num_clust]).reshape(num_data, 1),
-            (1, num_clust),
+
+        log_prob_sum = sp.logsumexp(
+            log_prob_mat + np.log(self.alpha_[num_clust].reshape(1, num_clust)),
+            axis=1,
+            keepdims=True,
         )
+
         log_norm_prob_mat_current = (
-            np.log(alpha_mat_current) + log_prob_mat - np.log(prob_sum)
+            np.log(alpha_mat_current) + log_prob_mat - log_prob_sum
         )
         log_weight_mat = log_norm_prob_mat_current - log_prob_mat_denom
         alpha_current = np.sum(np.exp(log_norm_prob_mat_current), axis=0) / num_data
@@ -620,8 +627,8 @@ class PKBC:
     def plot(
         self,
         num_clust: int,
-        y_true: Optional[Union[np.ndarray, list, pd.Series]] = None,
-    ) -> Union[plt.Figure, go.Figure]:
+        y_true: np.ndarray | list | pd.Series | None = None,
+    ) -> plt.Figure | go.Figure:
         """
         The method plot creates a 2D or 3D scatter plot with a circle or sphere
         as the surface and data points plotted on it.

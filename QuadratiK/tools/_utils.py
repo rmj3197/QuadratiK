@@ -1,6 +1,7 @@
 import time
+from collections.abc import Callable
 from functools import wraps
-from typing import Any, Callable, TypeVar, Union
+from typing import Any, TypeVar
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -13,7 +14,7 @@ plt.ioff()
 
 
 def _qq_plot_twosample(
-    sample1: Union[np.ndarray, pd.DataFrame], sample2: Union[np.ndarray, pd.DataFrame]
+    sample1: np.ndarray | pd.DataFrame, sample2: np.ndarray | pd.DataFrame
 ) -> plt.Figure:
     """
     Generate a Quantile-Quantile (QQ) plot for two samples.
@@ -59,7 +60,7 @@ def _qq_plot_twosample(
 
 
 def _qq_plot_onesample(
-    sample1: Union[np.ndarray, pd.DataFrame], dist: str = "norm"
+    sample1: np.ndarray | pd.DataFrame, dist: str = "norm"
 ) -> plt.Figure:
     """
     Generate a Quantile-Quantile (QQ) plot for a single sample against a specified distribution.

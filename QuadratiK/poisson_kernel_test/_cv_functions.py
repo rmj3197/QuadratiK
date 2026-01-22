@@ -3,8 +3,6 @@ Critical value for the uniformity test on the sphere based
 on the centered poisson kernel tests
 """
 
-from typing import Optional
-
 import numpy as np
 from numpy.random import SeedSequence, default_rng
 from sklearn.utils.parallel import Parallel, delayed
@@ -18,7 +16,7 @@ def poisson_cv(
     rho: float,
     num_iter: int,
     quantile: float,
-    random_state: Optional[int] = None,
+    random_state: int | None = None,
     n_jobs: int = 8,
 ) -> float:
     """

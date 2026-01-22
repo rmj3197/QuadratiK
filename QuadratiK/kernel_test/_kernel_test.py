@@ -3,7 +3,6 @@ Kernel-based quadratic distance Goodness-of-Fit tests
 """
 
 import importlib
-from typing import Optional, Union
 
 import numpy as np
 import pandas as pd
@@ -227,17 +226,17 @@ class KernelTest:
 
     def __init__(
         self,
-        h: Optional[float] = None,
+        h: float | None = None,
         method: str = "subsampling",
         num_iter: str = 150,
         b: float = 0.9,
         quantile: float = 0.95,
-        mu_hat: Optional[np.ndarray] = None,
-        sigma_hat: Optional[np.ndarray] = None,
+        mu_hat: np.ndarray | None = None,
+        sigma_hat: np.ndarray | None = None,
         centering_type: str = "nonparam",
-        alternative: Optional[str] = None,
+        alternative: str | None = None,
         k_threshold: int = 10,
-        random_state: Optional[int] = None,
+        random_state: int | None = None,
         n_jobs: int = 8,
     ) -> None:
         self.h = h
@@ -311,8 +310,8 @@ class KernelTest:
     @time_decorator
     def test(
         self,
-        x: Union[np.ndarray, pd.DataFrame],
-        y: Optional[Union[np.ndarray, pd.DataFrame]] = None,
+        x: np.ndarray | pd.DataFrame,
+        y: np.ndarray | pd.DataFrame | None = None,
     ) -> "KernelTest":
         """
         Function to perform the kernel-based quadratic distance tests using

@@ -165,4 +165,7 @@ build/
 .Rproj.user
 .Rhistory
 QuadratiK.Rproj
+.idea
+sample2.py
+sample.py
 

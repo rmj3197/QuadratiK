@@ -2,8 +2,6 @@
 Contains additional tools.
 """
 
-from typing import Optional, Union
-
 import numpy as np
 import pandas as pd
 from sklearn.utils.validation import check_random_state
@@ -12,8 +10,8 @@ from ._utils import _stats_helper
 
 
 def stats(
-    x: Union[np.ndarray, pd.DataFrame],
-    y: Optional[Union[np.ndarray, pd.DataFrame]] = None,
+    x: np.ndarray | pd.DataFrame,
+    y: np.ndarray | pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     """
     The stats function calculates statistics for one or multiple groups of data.
@@ -99,7 +97,7 @@ def stats(
 
 
 def sample_hypersphere(
-    npoints: int = 100, ndim: int = 3, random_state: Optional[int] = None
+    npoints: int = 100, ndim: int = 3, random_state: int | None = None
 ) -> np.ndarray:
     """
     Generate random samples from the hypersphere.

@@ -2,8 +2,6 @@
 Critical value functions for Kernel Test
 """
 
-from typing import Optional, Union
-
 import numpy as np
 from numpy.random import SeedSequence, default_rng
 from sklearn.utils.parallel import Parallel, delayed
@@ -28,7 +26,7 @@ def cv_twosample(
     h: float,
     method: str,
     b: float = 0.9,
-    random_state: Optional[Union[int, np.random.Generator]] = None,
+    random_state: int | np.random.Generator | None = None,
     n_jobs: int = 8,
 ):
     """
@@ -124,7 +122,7 @@ def cv_normality(
     sigma_hat: np.ndarray,
     num_iter: int = 500,
     quantile: float = 0.95,
-    random_state: Optional[Union[int, np.random.Generator]] = None,
+    random_state: int | np.random.Generator | None = None,
     n_jobs: int = 8,
 ):
     """
@@ -193,7 +191,7 @@ def cv_ksample(
     b: float = 0.9,
     quantile: float = 0.95,
     method: str = "subsampling",
-    random_state: Optional[Union[int, np.random.Generator]] = None,
+    random_state: int | np.random.Generator | None = None,
     n_jobs: int = 8,
 ):
     """

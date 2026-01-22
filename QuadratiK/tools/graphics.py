@@ -1,5 +1,3 @@
-from typing import Optional, Union
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -11,7 +9,7 @@ plt.ioff()
 
 
 def qq_plot(
-    x: np.ndarray, y: Optional[np.ndarray] = None, dist: str = "norm"
+    x: np.ndarray, y: np.ndarray | None = None, dist: str = "norm"
 ) -> plt.Figure:
     """
     The function qq_plot is used to create a quantile-quantile plot,
@@ -57,8 +55,8 @@ def qq_plot(
 
 
 def sphere3d(
-    x: Union[np.ndarray, pd.DataFrame],
-    y: Optional[Union[np.ndarray, list, pd.Series]] = None,
+    x: np.ndarray | pd.DataFrame,
+    y: np.ndarray | list | pd.Series | None = None,
 ) -> plt.Figure:
     """
     The function sphere3d creates a 3D scatter plot with a sphere
@@ -163,8 +161,8 @@ def sphere3d(
 
 
 def plot_clusters_2d(
-    x: Union[np.ndarray, pd.DataFrame],
-    y: Optional[Union[np.ndarray, pd.DataFrame]] = None,
+    x: np.ndarray | pd.DataFrame,
+    y: np.ndarray | pd.DataFrame | None = None,
 ) -> plt.Figure:
     """
     This function plots a 2D scatter plot of data points,

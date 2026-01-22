@@ -2,8 +2,6 @@
 Contains the tuning parameter selection algorithm
 """
 
-from typing import Optional, Union
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -18,7 +16,7 @@ from ._utils import stat_ksample, stat_normality_test, stat_two_sample
 def _objective_one_sample(
     alternative: str,
     delta: np.ndarray,
-    delta_dim: Union[np.ndarray, int],
+    delta_dim: np.ndarray | int,
     h: float,
     mean_dat: np.ndarray,
     n: int,
@@ -130,7 +128,7 @@ def _objective_two_sample(
     alternative: str,
     b: float,
     delta: np.ndarray,
-    delta_dim: Union[np.ndarray, int],
+    delta_dim: np.ndarray | int,
     h: float,
     m: int,
     mean_dat: np.ndarray,
@@ -274,7 +272,7 @@ def _objective_k_sample(
     num_iter: int,
     b: float,
     delta: np.ndarray,
-    delta_dim: Union[np.ndarray, int],
+    delta_dim: np.ndarray | int,
     h: float,
     k: int,
     mean_dat: np.ndarray,
@@ -405,22 +403,22 @@ def _objective_k_sample(
 
 
 def select_h(
-    x: Union[np.ndarray, pd.DataFrame],
-    y: Optional[Union[np.ndarray, pd.DataFrame]] = None,
+    x: np.ndarray | pd.DataFrame,
+    y: np.ndarray | pd.DataFrame | None = None,
     alternative: str = "location",
     method: str = "subsampling",
     b: float = 0.8,
     num_iter: int = 150,
-    delta_dim: Union[np.ndarray, int] = 1,
-    delta: Optional[np.ndarray] = None,
-    h_values: Optional[np.ndarray] = None,
+    delta_dim: np.ndarray | int = 1,
+    delta: np.ndarray | None = None,
+    h_values: np.ndarray | None = None,
     n_rep: int = 50,
     n_jobs: int = 8,
     quantile: float = 0.95,
     k_threshold: int = 10,
     power_plot: bool = False,
-    random_state: Optional[int] = None,
-) -> Union[tuple[float, pd.DataFrame], tuple[float, pd.DataFrame, plt.Figure]]:
+    random_state: int | None = None,
+) -> tuple[float, pd.DataFrame] | tuple[float, pd.DataFrame, plt.Figure]:
     """
     This function computes the kernel bandwidth of the Gaussian kernel
     for the one sample, two-sample and k-sample kernel-based quadratic
@@ -635,7 +633,7 @@ def select_h(
                     generators[idx],
                     1,
                 )
-                for idx, param in zip(matching_indices, parameters)
+                for idx, param in zip(matching_indices, parameters, strict=False)
             )
             results = pd.DataFrame(results, columns=["rep", "delta", "h", "score"])
             results["score"] = 1 - results["score"]
@@ -708,7 +706,7 @@ def select_h(
                     generators[idx],
                     1,
                 )
-                for idx, param in zip(matching_indices, parameters)
+                for idx, param in zip(matching_indices, parameters, strict=False)
             )
             results = pd.DataFrame(results, columns=["rep", "delta", "h", "score"])
             results["score"] = 1 - results["score"]
@@ -770,7 +768,7 @@ def select_h(
                     generators[idx],
                     1,
                 )
-                for idx, param in zip(matching_indices, parameters)
+                for idx, param in zip(matching_indices, parameters, strict=False)
             )
 
             results_df = pd.DataFrame(results, columns=["rep", "delta", "h", "score"])
