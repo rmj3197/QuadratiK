@@ -1,0 +1,10 @@
+QuadratiK Version 1.1.5
+=======================
+
+This version includes -
+    1. **[NEW]** Added spherical PCA functionality.
+    2. **[FIX]** Updated type hints to use Python 3.10+ union syntax.
+    3. **[FIX]** Fixed numerical precision issues with log and exp in clustering code (PKBC).
+    4. **[FIX]** Improved plotting for ``select_h`` function.
+
+

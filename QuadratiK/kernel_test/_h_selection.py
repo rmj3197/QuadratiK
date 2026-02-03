@@ -783,14 +783,25 @@ def select_h(
     if power_plot:
         groups = all_results.groupby("delta")
         figure = plt.figure(figsize=(8, 4))
-        for delta, group in groups:
-            plt.plot(
-                group["h"],
-                group["power"],
+        for delta_val, group in groups:
+            line = plt.plot(
+                group["h"].values,
+                group["power"].values,
                 marker="o",
                 linestyle="-",
-                label=f"delta={round(delta, 3)}",
+                label=f"delta={round(delta_val, 3)}",
             )
+
+            # Highlight the selected h for this delta if power >= 0.5
+            selected_for_delta = group[group["power"] >= 0.5]
+            if not selected_for_delta.empty:
+                h_star = selected_for_delta.iloc[0]["h"]
+                p_star = selected_for_delta.iloc[0]["power"]
+                plt.plot(
+                    h_star, p_star, marker="*", markersize=12, color=line[0].get_color()
+                )
+
+        plt.axhline(y=0.5, color="r", linestyle="--")
         plt.xlabel("h")
         plt.ylabel("Power")
         plt.title("h vs Power for different delta")
