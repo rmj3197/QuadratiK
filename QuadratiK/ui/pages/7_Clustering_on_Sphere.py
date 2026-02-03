@@ -80,7 +80,7 @@ st.write(
 st.image(
     str(importlib.resources.files("QuadratiK.ui").joinpath("pages/assets/pkbd.png")),
     caption="Sample data format for normality test",
-    use_container_width=True,
+    width="stretch",
 )
 
 head = st.checkbox("**Select, if the header is present in the data file.**", value=True)
@@ -320,6 +320,9 @@ if data is not None:
                 y1 = r * sin(phi) * sin(theta)
                 z1 = r * cos(phi)
                 xx, yy, zz = utils._extract_3d(x)
+                x_subset = np.column_stack((xx, yy, zz))
+                norms = np.linalg.norm(x_subset, axis=1, keepdims=True)
+                xx, yy, zz = (x_subset / norms).T
 
                 fig = make_subplots(
                     rows=1,
@@ -393,7 +396,7 @@ if data is not None:
                     ),
                 )
                 fig.update_layout(showlegend=False)
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width="stretch")
         else:
             fig1 = plt.figure(figsize=(8, 6))
             fig1 = circle2d(x, y_pred)

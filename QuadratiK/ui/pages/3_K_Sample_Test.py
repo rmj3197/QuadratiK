@@ -92,7 +92,7 @@ st.image(
         )
     ),
     caption="Sample data format for k-sample test",
-    use_container_width=True,
+    width="stretch",
 )
 
 

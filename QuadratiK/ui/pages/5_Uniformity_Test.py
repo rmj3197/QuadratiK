@@ -85,7 +85,7 @@ st.image(
         )
     ),
     caption="Sample data format for uniformity test",
-    use_container_width=True,
+    width="stretch",
 )
 
 delim = st.text_input("**Enter the delimiter**", ",")
@@ -177,7 +177,7 @@ with st.expander("Click to view code"):
 
 if data is not None:
     try:
-        st.pyplot(qq_plot(X, dist="uniform"), use_container_width=True)
+        st.pyplot(qq_plot(X, dist="uniform"), width="stretch")
     except Exception as e:
         st.error(f"An error occurred: {e}")
 

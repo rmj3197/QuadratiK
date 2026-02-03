@@ -70,7 +70,7 @@ st.image(
         )
     ),
     caption="Sample data format for normality test",
-    use_container_width=True,
+    width="stretch",
 )
 
 delim = st.text_input("**Enter the delimiter**", ",")
@@ -168,7 +168,7 @@ with st.expander("Click to view code"):
 
 if data is not None:
     try:
-        st.pyplot(qq_plot(x), use_container_width=True)
+        st.pyplot(qq_plot(x), width="stretch")
     except Exception as e:
         st.error(f"An error occurred: {e}")
 

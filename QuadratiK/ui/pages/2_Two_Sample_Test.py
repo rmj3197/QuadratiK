@@ -95,7 +95,7 @@ st.image(
         )
     ),
     caption="Sample data format for two sample test",
-    use_container_width=True,
+    width="stretch",
 )
 
 delim = st.text_input("**Enter the delimiter**", ",")
@@ -206,7 +206,7 @@ with st.expander("Click to view code"):
 
 if (y_data) and (x_data) is not None:
     try:
-        st.pyplot(qq_plot(X, Y), use_container_width=True)
+        st.pyplot(qq_plot(X, Y), width="stretch")
     except Exception as e:
         st.error(f"An error occurred: {e}")
 

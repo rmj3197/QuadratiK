@@ -1,4 +1,5 @@
 import time
+import warnings
 from collections.abc import Callable
 from functools import wraps
 from typing import Any, TypeVar
@@ -7,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy import stats
+from skfda.exploratory.stats import geometric_median
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
 
@@ -114,27 +116,111 @@ def _qq_plot_onesample(
     return fig
 
 
-def _extract_3d(data: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+def _spherical_pca(data: np.ndarray, scale: bool = False) -> dict:
     """
-    Extract the first three principal components of the data and normalize them.
+    Perform Spherical Principal Component Analysis (PCA). This is a Python
+    implementation of PcaLocantore, the spherical PCA implementation in the
+    R package rrcov.
 
     Parameters
     --------------
     data : numpy.ndarray
-        The input data.
+        The input data matrix of shape (n_samples, n_features).
+    scale : bool, optional
+        Whether to scale the data using the Median Absolute Deviation (MAD)
+        before processing. Default is False.
 
     Returns
     ---------
-    principal components : tuple
-        A tuple containing three arrays representing the first three principal components.
+    results : dict
+        A dictionary containing:
+        - 'scores': The principal component scores (centered data projected
+          onto the spherical PCA loadings), sorted by descending MAD.
+        - 'loadings': The principal component loadings (eigenvectors).
+        - 'eigenvalues': The estimated eigenvalues (squared MAD of projections).
+
+    See Also
+    --------------
+    PcaLocantore : Spherical PCA implementation in the R package rrcov.
+
+    https://search.r-project.org/CRAN/refmans/rrcov/html/PcaLocantore-class.html
+
+    sklearn.decomposition.PCA : Standard Principal Component Analysis.
+    """
+    if scale:
+        data = data / stats.median_abs_deviation(data, axis=0, scale="normal")
+
+    spatial_median = geometric_median(data)
+    centered_data = data - spatial_median
+    projected_data = centered_data / np.linalg.norm(
+        centered_data, axis=1, keepdims=True
+    )
+    pca = PCA()
+    pca.fit(projected_data)
+    loadings = pca.components_
+    scores1 = projected_data @ loadings.T
+    scores = centered_data @ loadings.T
+    sdev = stats.median_abs_deviation(scores1, axis=0, scale="normal")
+    orsdev = np.argsort(sdev)[::-1]
+    sdev = sdev[orsdev]
+    eigenvalues = sdev**2
+
+    scores = scores[:, orsdev]
+    loadings = loadings[orsdev, :]
+    eigenvalues = sdev**2
+    return {"scores": scores, "loadings": loadings, "eigenvalues": eigenvalues}
+
+
+def _extract_3d(
+    data: np.ndarray,
+    use_dimensionality_reduction: bool = True,
+    use_dimensionality_reduction_method: str = "spherical_pca",
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Extract the first three principal components or features of the data
+    for 3D visualization.
+
+    Parameters
+    --------------
+    data : numpy.ndarray
+        The input data matrix of shape (n_samples, n_features).
+    use_dimensionality_reduction : bool, optional
+        Whether to apply dimensionality reduction. If False, the first three
+        columns of the data are used. Default is True.
+    use_dimensionality_reduction_method : str, optional
+        The method to use for dimensionality reduction ('spherical_pca' or 'pca').
+        Default is 'spherical_pca'.
+
+    Returns
+    ---------
+    components : tuple[np.ndarray, np.ndarray, np.ndarray]
+        A tuple containing three arrays representing the first three
+        principal components or features.
 
     See Also
     --------------
     sklearn.decomposition.PCA : Principal Component Analysis.
+    _spherical_pca : Spherical Principal Component Analysis.
     """
-    pca = PCA(n_components=3)
-    data_pca = pca.fit_transform(data)[:, 0:3]
-    data_pca = data_pca / np.linalg.norm(data_pca, axis=1, keepdims=True)
+    if use_dimensionality_reduction:
+        if use_dimensionality_reduction_method == "spherical_pca":
+            res = _spherical_pca(data, scale=False)
+            data_pca = res["scores"][:, 0:3]
+        elif use_dimensionality_reduction_method == "pca":
+            pca = PCA(n_components=3)
+            data_pca = pca.fit_transform(data)
+        else:
+            raise ValueError(
+                f"Invalid dimensionality reduction method: {use_dimensionality_reduction_method}. "
+                "Supported methods are 'spherical_pca' and 'pca'."
+            )
+    else:
+        warnings.warn(
+            "use_dimensionality_reduction is False, using only first 3 cols",
+            stacklevel=2,
+        )
+        data_pca = data[:, 0:3]
+
     return (data_pca[:, 0], data_pca[:, 1], data_pca[:, 2])
 
 

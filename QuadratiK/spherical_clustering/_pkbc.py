@@ -477,7 +477,6 @@ class PKBC:
         validation_metrics = {}
 
         for k in self.num_clust:
-            print("self.labels_[k]", self.labels_[k])
             avg_silhouette_score = silhouette_score(self.dat, self.labels_[k])
 
             if y_true is not None:
@@ -700,6 +699,9 @@ class PKBC:
                 return fig
             else:
                 xx, yy, zz = extract3d(self.dat)
+                x_subset = np.column_stack((xx, yy, zz))
+                norms = np.linalg.norm(x_subset, axis=1, keepdims=True)
+                xx, yy, zz = (x_subset / norms).T
                 r = 1
                 pi = np.pi
                 cos = np.cos
@@ -806,6 +808,9 @@ class PKBC:
                 return fig
             else:
                 xx, yy, zz = extract3d(self.dat)
+                x_subset = np.column_stack((xx, yy, zz))
+                norms = np.linalg.norm(x_subset, axis=1, keepdims=True)
+                xx, yy, zz = (x_subset / norms).T
                 r = 1
                 pi = np.pi
                 cos = np.cos

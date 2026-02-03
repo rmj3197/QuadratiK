@@ -57,7 +57,9 @@ def qq_plot(
 def sphere3d(
     x: np.ndarray | pd.DataFrame,
     y: np.ndarray | list | pd.Series | None = None,
-) -> plt.Figure:
+    use_dimensionality_reduction: bool = True,
+    use_dimensionality_reduction_method: str = "spherical_pca",
+) -> go.Figure:
     """
     The function sphere3d creates a 3D scatter plot with a sphere
     as the surface and data points plotted on it.
@@ -75,10 +77,19 @@ def sphere3d(
         shape of each data point in the plot. If `y` is not provided, the
         scatter plot will have the default marker symbol and color.
 
+    use_dimensionality_reduction : bool, optional
+        If True, dimensionality reduction is applied to the input data `x`
+        to project it into 3D space. Defaults to True.
+
+    use_dimensionality_reduction_method : str, optional
+        The method used for dimensionality reduction. Currently supports
+        "spherical_pca" or "pca". Defaults to "spherical_pca".
 
     Returns
     -------
-    Returns a 3D plot of a sphere with data points plotted on it.
+    go.Figure
+        Returns a Plotly Figure object containing a 3D plot of a sphere
+        with data points plotted on it.
 
     Examples
     --------
@@ -108,7 +119,13 @@ def sphere3d(
     x1 = r * sin(phi) * cos(theta)
     y1 = r * sin(phi) * sin(theta)
     z1 = r * cos(phi)
-    xx, yy, zz = _extract_3d(x)
+
+    xx, yy, zz = _extract_3d(
+        x, use_dimensionality_reduction, use_dimensionality_reduction_method
+    )
+    x_subset = np.column_stack((xx, yy, zz))
+    norms = np.linalg.norm(x_subset, axis=1, keepdims=True)
+    xx, yy, zz = (x_subset / norms).T
 
     fig = go.Figure()
     fig.add_trace(

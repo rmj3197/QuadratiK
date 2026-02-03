@@ -77,7 +77,7 @@ st.image(
         )
     ),
     caption="Sample data format for tuning parameter selection.",
-    use_container_width=True,
+    width="stretch",
 )
 
 delim = st.text_input("**Enter the delimiter**", ",")
@@ -147,7 +147,7 @@ if data is not None:
                 key="download-h-select",
             )
 
-            st.pyplot(power_plot, use_container_width=True)
+            st.pyplot(power_plot, width="stretch")
             st.success("Done!")
         except Exception as e:
             st.error(f"An error occurred: {e}")
