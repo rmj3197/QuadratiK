@@ -419,7 +419,7 @@ def select_h(
     power_plot: bool = False,
     random_state: int | None = None,
 ) -> tuple[float, pd.DataFrame] | tuple[float, pd.DataFrame, plt.Figure]:
-    """
+    r"""
     This function computes the kernel bandwidth of the Gaussian kernel
     for the one sample, two-sample and k-sample kernel-based quadratic
     distance (KBQD) tests.
