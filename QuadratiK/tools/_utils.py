@@ -135,11 +135,11 @@ def _spherical_pca(data: np.ndarray, scale: bool = False) -> dict:
     results : dict
         A dictionary containing:
 
-        - 'scores': np.ndarray
+        - `scores` : numpy.ndarray
             The principal component scores (centered data projected onto the spherical PCA loadings).
-        - 'loadings': np.ndarray
+        - `loadings` : numpy.ndarray
             The principal component loadings (eigenvectors).
-        - 'eigenvalues': np.ndarray
+        - `eigenvalues` : numpy.ndarray
             The estimated eigenvalues (squared MAD of projections).
 
     See Also
@@ -148,6 +148,13 @@ def _spherical_pca(data: np.ndarray, scale: bool = False) -> dict:
     https://search.r-project.org/CRAN/refmans/rrcov/html/PcaLocantore-class.html
 
     sklearn.decomposition.PCA : Standard Principal Component Analysis.
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from QuadratiK.tools import spherical_pca
+    >>> data = np.random.multivariate_normal([0, 0], [[1, 0.5], [0.5, 1]], 100)
+    >>> results = spherical_pca(data)
     """
     if scale:
         data = data / stats.median_abs_deviation(data, axis=0, scale="normal")
