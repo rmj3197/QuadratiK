@@ -134,15 +134,17 @@ def _spherical_pca(data: np.ndarray, scale: bool = False) -> dict:
     ---------
     results : dict
         A dictionary containing:
-        - 'scores': The principal component scores (centered data projected
-          onto the spherical PCA loadings), sorted by descending MAD.
-        - 'loadings': The principal component loadings (eigenvectors).
-        - 'eigenvalues': The estimated eigenvalues (squared MAD of projections).
+
+        - 'scores': np.ndarray
+            The principal component scores (centered data projected onto the spherical PCA loadings).
+        - 'loadings': np.ndarray
+            The principal component loadings (eigenvectors).
+        - 'eigenvalues': np.ndarray
+            The estimated eigenvalues (squared MAD of projections).
 
     See Also
     --------------
     PcaLocantore : Spherical PCA implementation in the R package rrcov.
-
     https://search.r-project.org/CRAN/refmans/rrcov/html/PcaLocantore-class.html
 
     sklearn.decomposition.PCA : Standard Principal Component Analysis.

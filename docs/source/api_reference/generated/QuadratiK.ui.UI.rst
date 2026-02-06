@@ -71,8 +71,6 @@
     
     
     
-        UI.main
-    
     
     
         UI.run
@@ -82,10 +80,6 @@
 ----
 
 
-
-
-
-.. automethod:: UI.main
 
 
 

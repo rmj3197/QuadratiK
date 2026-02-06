@@ -85,6 +85,8 @@ Tools
    qq_plot
    sphere3d
    plot_clusters_2d
+   spherical_pca
+
    
 
 
