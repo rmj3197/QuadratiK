@@ -1,0 +1,13 @@
+QuadratiK Version 1.2.0
+=======================
+
+This version introduces significant API changes and improvements:
+
+    1. **[BREAKING]** ``mu`` and ``sigma`` parameters are now mandatory for the normality test in ``KernelTest`` and ``select_h``.
+    2. **[BREAKING]** Renamed ``mu_hat`` and ``sigma_hat`` to ``mu`` and ``sigma`` in ``KernelTest`` for consistency.
+    3. **[BREAKING]** Updated ``PoissonKernelTest`` terminology: ``Un`` and ``Vn`` statistics are now renamed to ``Tn`` and ``Sn`` respectively.
+    4. **[BREAKING]** Attributes in ``PoissonKernelTest`` have been renamed to match the new terminology (e.g., ``u_statistic_un_`` to ``u_statistic_tn_`` and ``v_statistic_vn_`` to ``v_statistic_sn_``).
+    5. **[BREAKING]** The ``skewness`` alternative is no longer supported for normality tests in ``select_h`` and ``KernelTest``.
+    6. **[NEW]** Converted many docstring examples to executable ``jupyter-execute`` blocks.
+    7. **[NEW]** Added ``jupyter-sphinx`` as a documentation dependency.
+    8. **[FIX]** Updated internal logic to require explicit reference distribution parameters (``mu``, ``sigma``) instead of estimating them from data during tests.

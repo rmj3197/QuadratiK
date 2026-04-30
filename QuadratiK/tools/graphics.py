@@ -46,7 +46,8 @@ def qq_plot(
         from QuadratiK.tools import qq_plot
         np.random.seed(42)
         X = np.random.randn(100,4)
-        qq_plot(X)
+        plots = qq_plot(X)
+        plots
     """
 
     if y is None:
@@ -218,7 +219,8 @@ def plot_clusters_2d(
         np.random.seed(42)
         X = np.random.randn(100,2)
         X = X/np.linalg.norm(X,axis = 1, keepdims=True)
-        plot_clusters_2d(X)
+        plots = plot_clusters_2d(X)
+        plots
     """
     if isinstance(x, pd.DataFrame):
         x = x.to_numpy()
