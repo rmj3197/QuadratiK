@@ -126,13 +126,13 @@ if data is not None:
                 "H0 is rejected (1 = True, 0 = False)",
             ]
             test_summary = {
-                "U-Statistic": [
-                    unif_test.u_statistic_un_,
+                "Tn-Statistic": [
+                    unif_test.u_statistic_tn_,
                     unif_test.u_statistic_cv_,
                     unif_test.u_statistic_h0_,
                 ],
-                "V-Statistic": [
-                    unif_test.v_statistic_vn_,
+                "Sn-Statistic": [
+                    unif_test.v_statistic_sn_,
                     unif_test.v_statistic_cv_,
                     unif_test.v_statistic_h0_,
                 ],

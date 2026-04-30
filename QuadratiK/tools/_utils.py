@@ -151,10 +151,14 @@ def _spherical_pca(data: np.ndarray, scale: bool = False) -> dict:
 
     Examples
     --------
-    >>> import numpy as np
-    >>> from QuadratiK.tools import spherical_pca
-    >>> data = np.random.multivariate_normal([0, 0], [[1, 0.5], [0.5, 1]], 100)
-    >>> results = spherical_pca(data)
+    .. jupyter-execute::
+
+        import numpy as np
+        from QuadratiK.tools import spherical_pca
+        data = np.random.multivariate_normal([0, 0], [[1, 0.5], [0.5, 1]], 100)
+        results = spherical_pca(data)
+        print("Keys:", results.keys())
+        print("Scores shape:", results['scores'].shape)
     """
     if scale:
         data = data / stats.median_abs_deviation(data, axis=0, scale="normal")

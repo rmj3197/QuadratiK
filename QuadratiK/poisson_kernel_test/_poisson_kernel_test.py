@@ -19,7 +19,7 @@ stats = importlib.import_module("QuadratiK.tools").stats
 
 
 class PoissonKernelTest:
-    """
+    r"""
     Class for Poisson kernel-based quadratic distance tests
     of Uniformity on the Sphere. More details can be found in the
     :ref:`User Guide <pktest>`.
@@ -31,7 +31,7 @@ class PoissonKernelTest:
         Poisson kernel function.
 
     num_iter : int, optional
-        Number of iterations for critical value estimation of U-statistic.
+        Number of iterations for critical value estimation of Tn-statistic.
 
     quantile : float, optional
         The quantile to use for critical value estimation.
@@ -48,37 +48,38 @@ class PoissonKernelTest:
 
     Attributes
     -----------
-    test_type\\_ : str
+    test_type\_ : str
         The type of test performed on the data.
 
     execution_time : float
         Time taken for the test method to execute.
 
-    u_statistic_h0\\_ : boolean
+    u_statistic_h0_ : boolean
         A logical value indicating whether or not the null hypothesis
-        is rejected according to Un.
+        is rejected according to Tn.
 
-    u_statistic_un\\_ : float
-        The value of the U-statistic.
+    u_statistic_tn_ : float
+        The value of the Tn-statistic.
 
-    u_statistic_cv\\_ : float
-        The empirical critical value for Un.
+    u_statistic_cv_ : float
+        The empirical critical value for Tn.
 
-    v_statistic_h0\\_ : boolean
+    v_statistic_h0_ : boolean
         A logical value indicating whether or not the null hypothesis is
-        rejected according to Vn.
+        rejected according to Sn.
 
-    v_statistic_vn\\_ : float
-        The value of the V-statistic.
+    v_statistic_sn_ : float
+        The value of the Sn-statistic.
 
-    v_statistic_cv\\_ : float
-        The critical value for Vn computed following the asymptotic distribution.
+    v_statistic_cv_ : float
+        The critical value for Sn computed following the asymptotic distribution.
+
 
     Note
     -----
-    A U-statistic is a type of statistic that is used to estimate a population parameter.
+    A Tn-statistic is a type of U-statistic that is used to estimate a population parameter.
     It is based on the idea of averaging over all possible distinct combinations of a fixed size from a sample.
-    A V-statistic considers all possible tuples of a certain size, not just distinct combinations and can be used in contexts
+    A Sn-statistic is a type of V-statistic that considers all possible tuples of a certain size, not just distinct combinations and can be used in contexts
     where unbiasedness is not required.
 
     References
@@ -88,26 +89,17 @@ class PoissonKernelTest:
 
     Examples
     ---------
-    >>> import numpy as np
-    >>> np.random.seed(0)
-    >>> from QuadratiK.poisson_kernel_test import PoissonKernelTest
-    >>> # data generation
-    >>> z = np.random.normal(size=(200, 3))
-    >>> data_unif = z / np.sqrt(np.sum(z**2, axis=1, keepdims=True))
-    >>> #performing the uniformity test
-    >>> unif_test = PoissonKernelTest(rho = 0.7, random_state=42).test(data_unif)
-    >>> print(unif_test)
-    ... PoissonKernelTest(
-        Test Type=Poisson Kernel-based quadratic distance test of Uniformity on the Sphere,
-        Execution Time=3.213366985321045 seconds,
-        U-Statistic=0.5977824645431883,
-        U-Statistic Critical Value=1.5965311416871995,
-        U-Statistic Null Hypothesis Rejected=False,
-        V-Statistic=19.722614852087546,
-        V-Statistic Critical Value=23.229486935225513,
-        V-Statistic Null Hypothesis Rejected=False,
-        Selected concentration parameter rho=0.7,
-        )
+    .. jupyter-execute::
+
+        import numpy as np
+        np.random.seed(0)
+        from QuadratiK.poisson_kernel_test import PoissonKernelTest
+        # data generation
+        z = np.random.normal(size=(200, 3))
+        data_unif = z / np.sqrt(np.sum(z**2, axis=1, keepdims=True))
+        #performing the uniformity test
+        unif_test = PoissonKernelTest(rho = 0.7, random_state=42).test(data_unif)
+        print(unif_test)
     """
 
     __slots__ = (
@@ -120,10 +112,10 @@ class PoissonKernelTest:
         "test_type_",
         "u_statistic_cv_",
         "u_statistic_h0_",
-        "u_statistic_un_",
+        "u_statistic_tn_",
         "v_statistic_cv_",
         "v_statistic_h0_",
-        "v_statistic_vn_",
+        "v_statistic_sn_",
         "x",
     )
 
@@ -144,10 +136,10 @@ class PoissonKernelTest:
         self.x = None
         self.test_type_ = None
         self.execution_time = None
-        self.u_statistic_un_ = None
+        self.u_statistic_tn_ = None
         self.u_statistic_cv_ = None
         self.u_statistic_h0_ = None
-        self.v_statistic_vn_ = None
+        self.v_statistic_sn_ = None
         self.v_statistic_cv_ = None
         self.v_statistic_h0_ = None
 
@@ -156,12 +148,12 @@ class PoissonKernelTest:
             f"{self.__class__.__name__}(\n"
             f"  Test Type={self.test_type_},\n"
             f"  Execution Time={self.execution_time} seconds,\n"
-            f"  U-Statistic={self.u_statistic_un_},\n"
-            f"  U-Statistic Critical Value={self.u_statistic_cv_},\n"
-            f"  U-Statistic Null Hypothesis Rejected={self.u_statistic_h0_},\n"
-            f"  V-Statistic={self.v_statistic_vn_},\n"
-            f"  V-Statistic Critical Value={self.v_statistic_cv_},\n"
-            f"  V-Statistic Null Hypothesis Rejected={self.v_statistic_h0_},\n"
+            f"  Tn-Statistic={self.u_statistic_tn_},\n"
+            f"  Tn-Statistic Critical Value={self.u_statistic_cv_},\n"
+            f"  Tn-Statistic Null Hypothesis Rejected={self.u_statistic_h0_},\n"
+            f"  Sn-Statistic={self.v_statistic_sn_},\n"
+            f"  Sn-Statistic Critical Value={self.v_statistic_cv_},\n"
+            f"  Sn-Statistic Null Hypothesis Rejected={self.v_statistic_h0_},\n"
             f"  Selected concentration parameter rho={self.rho},\n"
             f")"
         )
@@ -227,11 +219,11 @@ class PoissonKernelTest:
 
         self.test_type_ = method
         self.u_statistic_h0_ = (pk[0] / np.sqrt(var_un)) > cv_un
-        self.u_statistic_un_ = pk[0] / np.sqrt(var_un)
+        self.u_statistic_tn_ = pk[0] / np.sqrt(var_un)
         self.u_statistic_cv_ = cv_un
 
         self.v_statistic_h0_ = pk[1] > cv_vn
-        self.v_statistic_vn_ = pk[1]
+        self.v_statistic_sn_ = pk[1]
         self.v_statistic_cv_ = cv_vn
 
         return self
@@ -273,13 +265,13 @@ class PoissonKernelTest:
             "H0 is rejected (1 = True, 0 = False)",
         ]
         test_summary = {
-            "U-Statistic": [
-                self.u_statistic_un_,
+            "Tn-Statistic": [
+                self.u_statistic_tn_,
                 self.u_statistic_cv_,
                 self.u_statistic_h0_,
             ],
-            "V-Statistic": [
-                self.v_statistic_vn_,
+            "Sn-Statistic": [
+                self.v_statistic_sn_,
                 self.v_statistic_cv_,
                 self.v_statistic_h0_,
             ],

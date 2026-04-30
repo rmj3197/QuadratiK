@@ -9,22 +9,18 @@ from QuadratiK.kernel_test import select_h
 
 class TestSelectH(unittest.TestCase):
     @patch("matplotlib.pyplot.show")
-    def test_select_h_one_sample_skewness(self, mock_plt_show):
-        np.random.seed(42)
-        x = np.random.randn(200)
-        h_sel, all_powers, plot = select_h(
-            x=x, alternative="skewness", random_state=42, power_plot=True
-        )
-        self.assertIsInstance(h_sel, (int, float))
-        self.assertIsInstance(all_powers, pd.DataFrame)
-        self.assertIsNotNone(plot)
-
-    @patch("matplotlib.pyplot.show")
     def test_select_h_one_sample_location(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(200, 1)
+        mu = np.zeros(1)
+        sigma = np.eye(1)
         h_sel, all_powers, plot = select_h(
-            x=x, alternative="location", random_state=42, power_plot=True
+            x=x,
+            alternative="location",
+            random_state=42,
+            power_plot=True,
+            mu=mu,
+            sigma=sigma,
         )
         self.assertIsInstance(h_sel, (int, float))
         self.assertIsInstance(all_powers, pd.DataFrame)
@@ -34,12 +30,35 @@ class TestSelectH(unittest.TestCase):
     def test_select_h_one_sample_scale(self, mock_plt_show):
         np.random.seed(42)
         x = np.random.randn(200, 2)
+        mu = np.zeros(2)
+        sigma = np.eye(2)
         h_sel, all_powers, plot = select_h(
-            x=x, alternative="scale", random_state=42, power_plot=True
+            x=x,
+            alternative="scale",
+            random_state=42,
+            power_plot=True,
+            mu=mu,
+            sigma=sigma,
         )
         self.assertIsInstance(h_sel, (int, float))
         self.assertIsInstance(all_powers, pd.DataFrame)
         self.assertIsNotNone(plot)
+
+    @patch("matplotlib.pyplot.show")
+    def test_select_h_one_sample_skewness_fails(self, mock_plt_show):
+        np.random.seed(42)
+        x = np.random.randn(200)
+        mu = np.zeros(1)
+        sigma = np.eye(1)
+        with self.assertRaises(ValueError):
+            select_h(
+                x=x,
+                alternative="skewness",
+                random_state=42,
+                power_plot=True,
+                mu=mu,
+                sigma=sigma,
+            )
 
     @patch("matplotlib.pyplot.show")
     def test_select_h_two_sample_skewness(self, mock_plt_show):

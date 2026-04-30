@@ -46,6 +46,7 @@ sphinx = ">=4.0"
 sphinx-autobuild = ">=2021.0"
 sphinx-book-theme = ">=1.0"
 nbsphinx = ">0.9"
+jupyter-sphinx = "*"
 
 [tool.poetry.group.tests.dependencies]
 pytest = "^7.4.3"

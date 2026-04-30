@@ -40,11 +40,13 @@ def qq_plot(
 
     Examples
     --------
-    >>> import numpy as np
-    >>> from QuadratiK.tools import qq_plot
-    >>> np.random.seed(42)
-    >>> X = np.random.randn(100,4)
-    >>> qq_plot(X)
+    .. jupyter-execute::
+
+        import numpy as np
+        from QuadratiK.tools import qq_plot
+        np.random.seed(42)
+        X = np.random.randn(100,4)
+        qq_plot(X)
     """
 
     if y is None:
@@ -93,10 +95,13 @@ def sphere3d(
 
     Examples
     --------
-    >>> from QuadratiK.tools import sphere3d
-    >>> np.random.seed(42)
-    >>> X = np.random.randn(100,3)
-    >>> sphere3d(X)
+    .. jupyter-execute::
+
+        import numpy as np
+        from QuadratiK.tools import sphere3d
+        np.random.seed(42)
+        X = np.random.randn(100,3)
+        sphere3d(X)
     """
     if isinstance(x, pd.DataFrame):
         x = x.to_numpy()
@@ -206,12 +211,14 @@ def plot_clusters_2d(
 
     Examples
     --------
-    >>> import numpy as np
-    >>> from QuadratiK.tools import plot_clusters_2d
-    >>> np.random.seed(42)
-    >>> X = np.random.randn(100,2)
-    >>> X = X/np.linalg.norm(X,axis = 1, keepdims=True)
-    >>> plot_clusters_2d(X)
+    .. jupyter-execute::
+
+        import numpy as np
+        from QuadratiK.tools import plot_clusters_2d
+        np.random.seed(42)
+        X = np.random.randn(100,2)
+        X = X/np.linalg.norm(X,axis = 1, keepdims=True)
+        plot_clusters_2d(X)
     """
     if isinstance(x, pd.DataFrame):
         x = x.to_numpy()

@@ -3,6 +3,7 @@ sphinx
 sphinx-autobuild
 sphinx-book-theme
 nbsphinx
+jupyter-sphinx
 ipykernel
 kaleido
 git+https://github.com/rmj3197/QuadratiK.git@master

@@ -140,12 +140,12 @@ class PKBD:
 
         Examples
         --------
-        >>> from QuadratiK.spherical_clustering import PKBD
-        >>> pkbd_data = PKBD().rpkb(10,[0.5,0],0.5, "rejvmf", random_state= 42)
-        >>> dens_val  = PKBD().dpkb(pkbd_data, [0.5,0.5],0.5)
-        >>> print(dens_val)
-        ... [0.46827108 0.05479605 0.21163936 0.06195099 0.39567698 0.40473724
-        ...     0.26561508 0.36791766 0.09324676 0.46847274]
+        .. jupyter-execute::
+
+            from QuadratiK.spherical_clustering import PKBD
+            pkbd_data = PKBD().rpkb(10,[0.5,0],0.5, "rejvmf", random_state= 42)
+            dens_val  = PKBD().dpkb(pkbd_data, [0.5,0.5],0.5)
+            print(dens_val)
         """
 
         if (rho >= 1) or (rho < 0):

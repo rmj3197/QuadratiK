@@ -51,16 +51,20 @@ class KernelTest:
     quantile : float, optional
         The quantile to use for critical value estimation. Defaults to 0.95.
 
-    mu_hat : numpy.ndarray, optional
-        Mean vector for the reference distribution. Defaults to None.
+    mu : numpy.ndarray, optional
+        Mean vector for the reference distribution. Mandatory for the normality test
+        and for the two-sample test with parametric centering.
+        Defaults to None.
 
-    sigma_hat : numpy.ndarray, optional
-        Covariance matrix of the reference distribution. Defaults to None.
+    sigma : numpy.ndarray, optional
+        Covariance matrix of the reference distribution. Mandatory for the normality test
+        and for the two-sample test with parametric centering.
+        Defaults to None.
 
     alternative : str, optional
         String indicating the type of alternative to be used for calculating "h"
         by the tuning parameter selection algorithm when h is not provided.
-        Must be one of "mean", "variance" and "skewness". Defaults to 'None'
+        Must be one of "location", "scale" and "skewness". Defaults to 'None'
 
     k_threshold : int, optional
         Maximum number of groups allowed. Defaults to 10. Change in case of more than 10 groups.
@@ -142,51 +146,31 @@ class KernelTest:
 
     Examples
     --------
-    >>> import numpy as np
-    >>> np.random.seed(78990)
-    >>> from QuadratiK.kernel_test import KernelTest
-    >>> # data generation
-    >>> data_norm = np.random.multivariate_normal(mean = np.zeros(4), cov = np.eye(4),size = 500)
-    >>> # performing the normality test
-    >>> normality_test = KernelTest(h=0.4, num_iter=150, method= "subsampling", random_state=42).test(data_norm)
-    >>> print(normality_test)
-    ... KernelTest(
-        Test Type=Kernel-based quadratic distance Normality test,
-        Execution Time=3.4337799549102783 seconds,
-        U-Statistic=-0.11459366046289172,
-        U-Statistic Critical Value=1.7841253047274597,
-        U-Statistic Null Hypothesis Rejected=False,
-        U-Statistic Variance=1.108021332522181e-08,
-        V-Statistic=0.9779550271616868,
-        V-Statistic Critical Value=42.460022848761945,
-        V-Statistic Null Hypothesis Rejected=False,
-        Selected tuning parameter h=0.4
-        )
+    .. jupyter-execute::
 
-    >>> import numpy as np
-    >>> np.random.seed(0)
-    >>> from scipy.stats import skewnorm
-    >>> from QuadratiK.kernel_test import KernelTest
-    >>> # data generation
-    >>> X_2 = np.random.multivariate_normal(mean = np.zeros(4), cov = np.eye(4), size=200)
-    >>> Y_2 = skewnorm.rvs(size=(200, 4),loc=np.zeros(4), scale=np.ones(4),a=np.repeat(0.5,4), random_state=20)
-    >>> # performing the two sample test
-    >>> two_sample_test = KernelTest(h = 2,num_iter = 150, random_state=42).test(X_2,Y_2)
-    >>> print(two_sample_test)
-    ... KernelTest(
-        Test Type=Kernel-based quadratic distance two-sample test,
-        Execution Time=0.22908806800842285 seconds,
-        Dn-Statistic=5.0612129990550025,
-        Dn-Statistic Critical Value=0.6311271530521101,
-        Dn-Statistic Null Hypothesis Rejected=True,
-        Dn-Statistic Variance=3.0377118571845887e-10,
-        Trace-Statistic=15.751718163734267,
-        Trace-Statistic Critical Value=1.9647673822217038,
-        Trace-Statistic Null Hypothesis Rejected=True,
-        Trace-Statistic Variance=7.879780877050946e-12,
-        Selected tuning parameter h=2,
-        Critical Value Method=subsampling
-        )
+        import numpy as np
+        np.random.seed(78990)
+        from QuadratiK.kernel_test import KernelTest
+        # data generation
+        data_norm = np.random.multivariate_normal(mean = np.zeros(4), cov = np.eye(4),size = 500)
+        # performing the normality test
+        mu = np.zeros(4)
+        sigma = np.eye(4)
+        normality_test = KernelTest(h=0.4, num_iter=150, method= "subsampling", mu=mu, sigma=sigma, random_state=42).test(data_norm)
+        print(normality_test)
+
+    .. jupyter-execute::
+
+        import numpy as np
+        np.random.seed(0)
+        from scipy.stats import skewnorm
+        from QuadratiK.kernel_test import KernelTest
+        # data generation
+        X_2 = np.random.multivariate_normal(mean = np.zeros(4), cov = np.eye(4), size=200)
+        Y_2 = skewnorm.rvs(size=(200, 4),loc=np.zeros(4), scale=np.ones(4),a=np.repeat(0.5,4), random_state=20)
+        # performing the two sample test
+        two_sample_test = KernelTest(h = 2,num_iter = 150, random_state=42).test(X_2,Y_2)
+        print(two_sample_test)
     """
 
     __slots__ = (
@@ -201,12 +185,12 @@ class KernelTest:
         "h",
         "k_threshold",
         "method",
-        "mu_hat",
+        "mu",
         "n_jobs",
         "num_iter",
         "quantile",
         "random_state",
-        "sigma_hat",
+        "sigma",
         "test_type_",
         "trace_cv_",
         "trace_h0_rejected_",
@@ -231,8 +215,8 @@ class KernelTest:
         num_iter: str = 150,
         b: float = 0.9,
         quantile: float = 0.95,
-        mu_hat: np.ndarray | None = None,
-        sigma_hat: np.ndarray | None = None,
+        mu: np.ndarray | None = None,
+        sigma: np.ndarray | None = None,
         centering_type: str = "nonparam",
         alternative: str | None = None,
         k_threshold: int = 10,
@@ -244,8 +228,8 @@ class KernelTest:
         self.num_iter = num_iter
         self.b = b
         self.quantile = quantile
-        self.mu_hat = mu_hat
-        self.sigma_hat = sigma_hat
+        self.mu = mu
+        self.sigma = sigma
         self.centering_type = centering_type
         self.alternative = alternative
         self.k_threshold = k_threshold
@@ -381,8 +365,25 @@ class KernelTest:
 
         size_x, k = self.x.shape
 
+        if self.mu is not None:
+            if isinstance(self.mu, (list, np.ndarray, pd.Series)):
+                self.mu = np.array(self.mu)
+                if self.mu.ndim == 1:
+                    self.mu = self.mu.reshape(1, -1)
+            elif isinstance(self.mu, pd.DataFrame):
+                self.mu = self.mu.to_numpy()
+
         if self.y is None:
+            if self.mu is None or self.sigma is None:
+                raise ValueError(
+                    "mu and sigma must be provided for the normality test."
+                )
+
             if self.h is None:
+                if self.alternative == "skewness":
+                    raise ValueError(
+                        "Skewness alternative is not supported for the normality test."
+                    )
                 self.h = select_h(
                     self.x,
                     y=None,
@@ -390,34 +391,30 @@ class KernelTest:
                     num_iter=self.num_iter,
                     quantile=self.quantile,
                     n_jobs=self.n_jobs,
+                    mu=self.mu,
+                    sigma=self.sigma,
                 )[0]
 
-            if self.mu_hat is None:
-                self.mu_hat = np.zeros(k).reshape(1, -1)
-            else:
-                self.x = self.x - self.mu_hat
-                self.mu_hat = np.zeros(k)
+            self.x = self.x - self.mu
+            self.mu = np.zeros(k).reshape(1, -1)
 
-            if self.sigma_hat is None:
-                self.sigma_hat = np.eye(k)
-
-            statistic = stat_normality_test(self.x, self.h, self.mu_hat, self.sigma_hat)
+            statistic = stat_normality_test(self.x, self.h, self.mu, self.sigma)
 
             sigma_h = (self.h**2) * np.eye(k)
 
-            var_un = variance_normality_test(sigma_h, self.sigma_hat, size_x)
+            var_un = variance_normality_test(sigma_h, self.sigma, size_x)
             cv_un = cv_normality(
                 size_x,
                 self.h,
-                self.mu_hat,
-                self.sigma_hat,
+                self.mu,
+                self.sigma,
                 self.num_iter,
                 self.quantile,
                 self.random_state,
                 self.n_jobs,
             ) / np.sqrt(var_un)
 
-            dof, coeff = dof_normality_test(sigma_h, self.sigma_hat)
+            dof, coeff = dof_normality_test(sigma_h, self.sigma)
             qu_q = chi2.ppf(self.quantile, dof)
             cv_vn = coeff * qu_q
 
@@ -458,14 +455,13 @@ class KernelTest:
                     )[0]
 
                 if self.centering_type == "param":
-                    # Compute the estimates of mean and covariance from the data
-                    if self.mu_hat is None:
-                        self.mu_hat = np.mean(data_pool, axis=0, keepdims=True)
-                    if self.sigma_hat is None:
-                        self.sigma_hat = np.cov(data_pool, rowvar=False)
+                    if self.mu is None or self.sigma is None:
+                        raise ValueError(
+                            "mu and sigma must be provided for the two-sample test with parametric centering."
+                        )
 
                     statistic = stat_two_sample(
-                        self.x, self.y, self.h, self.mu_hat, self.sigma_hat, "param"
+                        self.x, self.y, self.h, self.mu, self.sigma, "param"
                     )
 
                 elif self.centering_type == "nonparam":

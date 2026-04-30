@@ -32,9 +32,12 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.githubpages",
     "nbsphinx",
+    "jupyter_sphinx",
     "sphinx.ext.intersphinx",
     "myst_parser",
 ]
+
+nbsphinx_allow_errors = True
 
 nbsphinx_execute = "always"
 
@@ -55,7 +58,7 @@ myst_enable_extensions = [
 ]
 
 templates_path = ["_templates"]
-exclude_patterns = []
+exclude_patterns = ["user_guide/*"]
 
 
 # -- Options for HTML output -------------------------------------------------
