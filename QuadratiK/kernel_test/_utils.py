@@ -21,6 +21,8 @@ def compute_kernel_matrix(
     kernel matrix : numpy.ndarray
         The Gaussian kernel matrix between the observations of X and Y.
     """
+    x_mat = np.atleast_2d(x_mat)
+    y_mat = np.atleast_2d(y_mat)
     k = x_mat.shape[1]
     cov_h_inv = np.linalg.inv(cov_h)
     cov_h_det = np.linalg.det(cov_h) ** (-0.5)

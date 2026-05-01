@@ -117,15 +117,15 @@ def _objective_one_sample(
         random_state=rng,
     )
 
-    xnew_centered = xnew - mu
-    mu_centered = np.zeros(len(mean_dat)).reshape(1, -1)
+    xnew = xnew - mean_dat
+    mean_dat = np.zeros(len(mean_dat)).reshape(1, -1)
 
-    statistic = stat_normality_test(xnew_centered, h, mu_centered, sigma)
+    statistic = stat_normality_test(xnew, h, mean_dat, np.diag(s_dat))
     cv = cv_normality(
         n,
         h,
-        mu_centered,
-        sigma,
+        mean_dat,
+        np.diag(s_dat**2),
         num_iter,
         quantile,
         random_state=rng,
@@ -628,6 +628,11 @@ def select_h(
 
         if mu is None or sigma is None:
             raise ValueError("mu and sigma must be provided for the normality test.")
+
+        mu = np.atleast_2d(mu)
+        if mu.shape[0] > mu.shape[1] and mu.shape[1] == 1:
+            mu = mu.T
+        sigma = np.atleast_2d(sigma)
 
         mean_dat = mu.flatten()
         s_dat = np.sqrt(np.diag(sigma))
