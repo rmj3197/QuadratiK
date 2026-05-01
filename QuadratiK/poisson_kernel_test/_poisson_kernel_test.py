@@ -19,8 +19,7 @@ stats = importlib.import_module("QuadratiK.tools").stats
 
 
 class PoissonKernelTest:
-    r"""
-    Class for Poisson kernel-based quadratic distance tests
+    r"""Class for Poisson kernel-based quadratic distance tests
     of Uniformity on the Sphere. More details can be found in the
     :ref:`User Guide <pktest>`.
 
