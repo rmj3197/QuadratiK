@@ -2,7 +2,6 @@ QuadratiK Version 1.2.0
 =======================
 
 This version introduces significant API changes and improvements:
-
     1. **[BREAKING]** ``mu`` and ``sigma`` parameters are now mandatory for the normality test in ``KernelTest`` and ``select_h``.
     2. **[BREAKING]** Renamed ``mu_hat`` and ``sigma_hat`` to ``mu`` and ``sigma`` in ``KernelTest`` for consistency.
     3. **[BREAKING]** Updated ``PoissonKernelTest`` terminology: ``Un`` and ``Vn`` statistics are now renamed to ``Tn`` and ``Sn`` respectively.
