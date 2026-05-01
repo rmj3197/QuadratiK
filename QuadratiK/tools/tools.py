@@ -32,18 +32,13 @@ def stats(
 
     Examples
     --------
-    >>> import numpy as np
-    >>> from QuadratiK.tools import stats
-    >>> np.random.seed(42)
-    >>> X = np.random.randn(100,4)
-    >>> stats(X)
-    ...           Feature 0  Feature 1  Feature 2  Feature 3
-        Mean     -0.009811   0.033746   0.022496   0.043764
-        Std Dev   0.868065   0.952234   1.044014   0.982240
-        Median   -0.000248  -0.024646   0.068665   0.075219
-        IQR       1.244319   1.111478   1.318245   1.506492
-        Min      -2.025143  -1.959670  -3.241267  -1.987569
-        Max       2.314659   3.852731   2.189803   2.720169
+    .. jupyter-execute::
+
+        import numpy as np
+        from QuadratiK.tools import stats
+        np.random.seed(42)
+        X = np.random.randn(100,4)
+        print(stats(X))
     """
 
     x_stats = _stats_helper(x)
@@ -123,10 +118,10 @@ def sample_hypersphere(
 
     Examples
     ---------
-    >>> from QuadratiK.tools import sample_hypersphere
-    >>> sample_hypersphere(100,3,random_state = 42)
-    ... array([[ 0.60000205, -0.1670153 ,  0.78237039],
-    ...        [ 0.97717133, -0.15023209, -0.15022156], ........
+    .. jupyter-execute::
+
+        from QuadratiK.tools import sample_hypersphere
+        print(sample_hypersphere(5, 3, random_state = 42))
     """
     if not isinstance(random_state, (int, type(None))):
         raise ValueError("Please specify a integer or None random_state")

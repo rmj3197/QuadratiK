@@ -16,8 +16,10 @@ class UI:
 
     Examples
     ---------
-        >>> from QuadratiK.ui import UI
-        >>> UI().run()
+    .. code-block:: python
+
+        from QuadratiK.ui import UI
+        UI().run()
     """
 
     def __init__(self) -> None:

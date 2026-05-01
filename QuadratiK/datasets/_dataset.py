@@ -127,8 +127,11 @@ def load_wireless_data(
 
     Examples
     --------
-    >>> from QuadratiK.datasets import load_wireless_data
-    >>> X, y = load_wireless_data(return_X_y=True)
+    .. jupyter-execute::
+
+        from QuadratiK.datasets import load_wireless_data
+        X, y = load_wireless_data(return_X_y=True)
+        print(X.head())
     """
 
     data = np.loadtxt(
@@ -312,8 +315,11 @@ def load_wisconsin_breast_cancer_data(
 
     Examples
     --------
-    >>> from QuadratiK.datasets import load_wisconsin_breast_cancer_data
-    >>> X, y = load_wisconsin_breast_cancer_data(return_X_y=True)
+    .. jupyter-execute::
+
+        from QuadratiK.datasets import load_wisconsin_breast_cancer_data
+        X, y = load_wisconsin_breast_cancer_data(return_X_y=True)
+        print(X.head())
     """
 
     data = np.loadtxt(
@@ -528,8 +534,11 @@ def load_wine_data(
 
     Examples
     --------
-    >>> from QuadratiK.datasets import load_wine_data
-    >>> X, y = load_wine_data(return_X_y=True)
+    .. jupyter-execute::
+
+        from QuadratiK.datasets import load_wine_data
+        X, y = load_wine_data(return_X_y=True)
+        print(X.head())
     """
 
     data = np.loadtxt(

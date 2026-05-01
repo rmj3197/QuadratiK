@@ -21,9 +21,15 @@ class TestKernelTest(unittest.TestCase):
 
     def test_normality(self):
         x = np.random.randn(100, 2)
+        mu = np.zeros(2)
+        sigma = np.eye(2)
         dataframe_x = pd.DataFrame(x)
-        normality_test_numpy = KernelTest(h=0.5, random_state=42).test(x)
-        normality_test_dataframe = KernelTest(h=0.5, random_state=42).test(dataframe_x)
+        normality_test_numpy = KernelTest(
+            h=0.5, mu=mu, sigma=sigma, random_state=42
+        ).test(x)
+        normality_test_dataframe = KernelTest(
+            h=0.5, mu=mu, sigma=sigma, random_state=42
+        ).test(dataframe_x)
         self.assertFalse(normality_test_numpy.un_h0_rejected_)
         self.assertTrue(
             isinstance(normality_test_numpy.un_test_statistic_, (int, float))
@@ -44,12 +50,28 @@ class TestKernelTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             KernelTest(h=0.5, random_state=42, centering_type="not supported").test(x)
 
-        x_1d = np.random.randn(100 * 3)
+        x_1d = np.random.randn(100)
+        mu_1d = np.array([0])
+        sigma_1d = np.array([[1]])
         normality_test_1d = KernelTest(
-            method="subsampling", b=0.5, random_state=42, alternative="scale"
+            method="subsampling",
+            b=0.5,
+            random_state=42,
+            alternative="scale",
+            mu=mu_1d,
+            sigma=sigma_1d,
         ).test(x_1d)
         self.assertFalse(normality_test_1d.un_h0_rejected_)
         self.assertTrue(isinstance(normality_test_1d.un_test_statistic_, (int, float)))
+
+        with self.assertRaises(ValueError):
+            KernelTest(
+                h=None,
+                alternative="skewness",
+                mu=mu_1d,
+                sigma=sigma_1d,
+                random_state=42,
+            ).test(x_1d)
 
     def test_twosample(self):
         x = np.random.randn(100, 2)
@@ -75,12 +97,16 @@ class TestKernelTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             KernelTest(h=1.5, method="subsampling", b=0.5, random_state=42).test(x, y_1)
 
+        mu = np.zeros(2)
+        sigma = np.eye(2)
         two_sample_test_h_selection = KernelTest(
             h=None,
             alternative="location",
             method="subsampling",
             b=0.5,
             centering_type="param",
+            mu=mu,
+            sigma=sigma,
             random_state=42,
         ).test(x, y)
         self.assertTrue(np.all(two_sample_test_h_selection.dn_h0_rejected_))

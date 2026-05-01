@@ -137,11 +137,14 @@ class PKBC:
 
     Examples
     ---------
-    >>> from QuadratiK.datasets import load_wireless_data
-    >>> from QuadratiK.spherical_clustering import PKBC
-    >>> from sklearn.preprocessing import LabelEncoder
-    >>> X, y = load_wireless_data(return_X_y=True)
-    >>> cluster_fit = PKBC(num_clust=4, random_state=42).fit(X)
+    .. jupyter-execute::
+
+        from QuadratiK.datasets import load_wireless_data
+        from QuadratiK.spherical_clustering import PKBC
+        from sklearn.preprocessing import LabelEncoder
+        X, y = load_wireless_data(return_X_y=True)
+        cluster_fit = PKBC(num_clust=4, random_state=42).fit(X)
+        print(cluster_fit)
     """
 
     __slots__ = (

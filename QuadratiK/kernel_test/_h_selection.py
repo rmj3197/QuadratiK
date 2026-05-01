@@ -27,6 +27,8 @@ def _objective_one_sample(
     skew_data: np.ndarray,
     rng: np.random.Generator,
     n_jobs: int = 1,
+    mu: np.ndarray | None = None,
+    sigma: np.ndarray | None = None,
 ):
     """
     Objective function using using the best
@@ -82,6 +84,12 @@ def _objective_one_sample(
         information on joblib n_jobs refer to -
         https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html.
 
+    mu : numpy.ndarray, optional
+        Mean vector for the reference distribution. Mandatory for the normality test.
+
+    sigma : numpy.ndarray, optional
+        Covariance matrix of the reference distribution. Mandatory for the normality test.
+
     Returns
     -------
     List containing rep_values, delta, h and boolean
@@ -109,12 +117,15 @@ def _objective_one_sample(
         random_state=rng,
     )
 
-    statistic = stat_normality_test(xnew, h, np.array([mean_dat]), np.diag(s_dat))
+    xnew_centered = xnew - mu
+    mu_centered = np.zeros(len(mean_dat)).reshape(1, -1)
+
+    statistic = stat_normality_test(xnew_centered, h, mu_centered, sigma)
     cv = cv_normality(
         n,
         h,
-        np.array([mean_dat]),
-        np.diag(s_dat) ** 2,
+        mu_centered,
+        sigma,
         num_iter,
         quantile,
         random_state=rng,
@@ -418,6 +429,8 @@ def select_h(
     k_threshold: int = 10,
     power_plot: bool = False,
     random_state: int | None = None,
+    mu: np.ndarray | None = None,
+    sigma: np.ndarray | None = None,
 ) -> tuple[float, pd.DataFrame] | tuple[float, pd.DataFrame, plt.Figure]:
     r"""
     This function computes the kernel bandwidth of the Gaussian kernel
@@ -445,7 +458,7 @@ def select_h(
     with :math:`\delta = 1.1, 1.3, 1.5`;
 
     - **skewness** alternatives, :math:`F_\delta = SN_d(\hat{\mu}, \hat{\Sigma}, \hat{\lambda} + \delta)`,
-    with :math:`\delta = 0.2, 0.3, 0.6`.
+    with :math:`\delta = 0.2, 0.3, 0.6`. Note: Skewness is not available for the normality test.
 
     Please see :ref:`User Guide <hselect>` for more details.
 
@@ -512,6 +525,14 @@ def select_h(
     random_state : int, None, optional.
         Seed for random number generation. Defaults to None.
 
+    mu : numpy.ndarray, optional
+        Mean vector for the reference distribution. Mandatory for the normality test.
+        Defaults to None.
+
+    sigma : numpy.ndarray, optional
+        Covariance matrix of the reference distribution. Mandatory for the normality test.
+        Defaults to None.
+
     Returns
     -------
     h : float
@@ -527,16 +548,17 @@ def select_h(
 
     Examples
     --------
-    >>> import numpy as np
-    >>> from QuadratiK.kernel_test import select_h
-    >>> np.random.seed(42)
-    >>> X = np.random.randn(200, 2)
-    >>> np.random.seed(42)
-    >>> y = np.random.randint(0, 2, 200)
-    >>> h_selected, all_values, power_plot = select_h(
-    ...    X, y, alternative='location', power_plot=True, random_state=42)
-    >>> print("Selected h is: ", h_selected)
-    ... Selected h is:  0.8
+    .. jupyter-execute::
+
+        import numpy as np
+        from QuadratiK.kernel_test import select_h
+        np.random.seed(42)
+        X = np.random.randn(200, 2)
+        np.random.seed(42)
+        y = np.random.randint(0, 2, 200)
+        h_selected, all_values, power_plot = select_h(
+            X, y, alternative='location', power_plot=True, random_state=42)
+        print("Selected h is: ", h_selected)
     """
     if not isinstance(random_state, (int, np.int_, type(None))):
         raise ValueError("Please specify a integer or None random_state")
@@ -588,19 +610,28 @@ def select_h(
     k = len(sizes)
 
     if k <= 1:
+        if alternative == "skewness":
+            raise ValueError(
+                "Skewness alternative is not supported for the normality test."
+            )
+
         n, d = x.shape
         if isinstance(delta_dim, (int, float)):
             delta_dim = np.ones(d)
         else:
-            if not isinstance(delta_dim, (int, float)) or len(delta_dim) != d:
+            if (
+                not isinstance(delta_dim, (int, float, np.ndarray))
+                or len(delta_dim) != d
+            ):
                 raise ValueError("delta_dim must be 1 or a numeric Array of \
                         length equal to the number of columns of pooled.")
 
-        mean_dat = np.mean(x, axis=0)
-        s_dat = np.sqrt(
-            np.diag(np.cov(x, rowvar=False).reshape(x.shape[1], x.shape[1]))
-        )
-        skew_data = skew(x)
+        if mu is None or sigma is None:
+            raise ValueError("mu and sigma must be provided for the normality test.")
+
+        mean_dat = mu.flatten()
+        s_dat = np.sqrt(np.diag(sigma))
+        skew_data = np.zeros(d)
         all_parameters = np.array(np.meshgrid(h_values, delta, rep_values)).T.reshape(
             -1, 3
         )
@@ -628,6 +659,8 @@ def select_h(
                     skew_data,
                     generators[idx],
                     1,
+                    mu,
+                    sigma,
                 )
                 for idx, param in zip(matching_indices, parameters, strict=False)
             )

@@ -32,9 +32,12 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.githubpages",
     "nbsphinx",
+    "jupyter_sphinx",
     "sphinx.ext.intersphinx",
     "myst_parser",
 ]
+
+nbsphinx_allow_errors = True
 
 nbsphinx_execute = "always"
 
