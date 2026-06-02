@@ -49,7 +49,7 @@ nbsphinx = ">0.9"
 jupyter-sphinx = "*"
 
 [tool.poetry.group.tests.dependencies]
-pytest = "^7.4.3"
+pytest = "^9.0.3"
 pytest-cov = "^4.1.0"
 
 [tool.poetry.urls]
