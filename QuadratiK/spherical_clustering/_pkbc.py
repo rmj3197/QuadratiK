@@ -741,12 +741,12 @@ class PKBC:
                         y=yy,
                         z=zz,
                         mode="markers",
-                        marker=dict(
-                            size=5,
-                            color=self.labels_[num_clust],
-                            colorscale="turbo",
-                            showscale=False,
-                        ),
+                        marker={
+                            "size": 5,
+                            "color": self.labels_[num_clust],
+                            "colorscale": "turbo",
+                            "showscale": False,
+                        },
                     ),
                     row=1,
                     col=1,
@@ -770,24 +770,24 @@ class PKBC:
                         y=yy,
                         z=zz,
                         mode="markers",
-                        marker=dict(
-                            size=5,
-                            color=y_true,
-                            colorscale="cividis",
-                            showscale=False,
-                        ),
+                        marker={
+                            "size": 5,
+                            "color": y_true,
+                            "colorscale": "cividis",
+                            "showscale": False,
+                        },
                     ),
                     row=1,
                     col=2,
                 )
                 fig.update_layout(
                     title="",
-                    scene=dict(
-                        xaxis=dict(range=[-1, 1]),
-                        yaxis=dict(range=[-1, 1]),
-                        zaxis=dict(range=[-1, 1]),
-                        aspectmode="data",
-                    ),
+                    scene={
+                        "xaxis": {"range": [-1, 1]},
+                        "yaxis": {"range": [-1, 1]},
+                        "zaxis": {"range": [-1, 1]},
+                        "aspectmode": "data",
+                    },
                     showlegend=False,
                 )
                 return fig
@@ -850,24 +850,24 @@ class PKBC:
                         y=yy,
                         z=zz,
                         mode="markers",
-                        marker=dict(
-                            size=5,
-                            color=self.labels_[num_clust],
-                            colorscale="turbo",
-                            showscale=False,
-                        ),
+                        marker={
+                            "size": 5,
+                            "color": self.labels_[num_clust],
+                            "colorscale": "turbo",
+                            "showscale": False,
+                        },
                     ),
                     row=1,
                     col=1,
                 )
                 fig.update_layout(
                     title="",
-                    scene=dict(
-                        xaxis=dict(range=[-1, 1]),
-                        yaxis=dict(range=[-1, 1]),
-                        zaxis=dict(range=[-1, 1]),
-                        aspectmode="data",
-                    ),
+                    scene={
+                        "xaxis": {"range": [-1, 1]},
+                        "yaxis": {"range": [-1, 1]},
+                        "zaxis": {"range": [-1, 1]},
+                        "aspectmode": "data",
+                    },
                     showlegend=False,
                 )
                 return fig

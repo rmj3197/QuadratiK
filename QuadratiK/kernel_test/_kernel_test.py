@@ -343,22 +343,20 @@ class KernelTest:
                 "method must be one of 'bootstrap', 'permutation', or 'subsampling'"
             )
 
-        if self.b is not None:
-            if not 0 < self.b <= 1:
-                raise ValueError("b indicates the proportion used for the \
+        if self.b is not None and not 0 < self.b <= 1:
+            raise ValueError("b indicates the proportion used for the \
                         subsamples in the subsampling algorithm. It must be in (0, 1].")
 
         valid_centering_type = ["param", "nonparam"]
         if self.centering_type not in valid_centering_type:
             raise ValueError("centering must be chosen between 'param' and 'nonparam'")
 
-        if self.h is None:
-            if self.alternative is None:
-                raise ValueError(
-                    "You have not specified a value of h. "
-                    "Please specify a alternative from 'location', 'scale' or 'skewness' "
-                    "for the tuning parameter selection algorithm to run"
-                )
+        if self.h is None and self.alternative is None:
+            raise ValueError(
+                "You have not specified a value of h. "
+                "Please specify a alternative from 'location', 'scale' or 'skewness' "
+                "for the tuning parameter selection algorithm to run"
+            )
 
         if not isinstance(self.random_state, (int, type(None))):
             raise ValueError("Please specify a integer or None random_state")

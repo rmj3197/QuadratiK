@@ -151,7 +151,7 @@ def sphere3d(
                 y=yy,
                 z=zz,
                 mode="markers",
-                marker=dict(size=5, colorscale="turbo", showscale=False),
+                marker={"size": 5, "colorscale": "turbo", "showscale": False},
             )
         )
     else:
@@ -161,23 +161,23 @@ def sphere3d(
                 y=yy,
                 z=zz,
                 mode="markers",
-                marker=dict(
-                    size=5,
-                    color=y,
-                    colorscale="turbo",
-                    showscale=False,
-                ),
+                marker={
+                    "size": 5,
+                    "color": y,
+                    "colorscale": "turbo",
+                    "showscale": False,
+                },
             )
         )
 
     fig.update_layout(
         title="",
-        scene=dict(
-            xaxis=dict(range=[-1, 1]),
-            yaxis=dict(range=[-1, 1]),
-            zaxis=dict(range=[-1, 1]),
-            aspectmode="data",
-        ),
+        scene={
+            "xaxis": {"range": [-1, 1]},
+            "yaxis": {"range": [-1, 1]},
+            "zaxis": {"range": [-1, 1]},
+            "aspectmode": "data",
+        },
     )
     fig.update_layout(showlegend=False)
     return fig

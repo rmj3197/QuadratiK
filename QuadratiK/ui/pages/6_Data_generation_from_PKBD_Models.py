@@ -159,7 +159,7 @@ elif len(mu_list) == 3:
             y=yy1,
             z=zz1,
             mode="markers",
-            marker=dict(size=5, color="red", showscale=False),
+            marker={"size": 5, "color": "red", "showscale": False},
             name="rejvmf",
         ),
         row=1,
@@ -171,7 +171,7 @@ elif len(mu_list) == 3:
             y=yy2,
             z=zz2,
             mode="markers",
-            marker=dict(size=5, color="blue", showscale=False),
+            marker={"size": 5, "color": "blue", "showscale": False},
             name="rejacg",
         ),
         row=1,
@@ -180,12 +180,12 @@ elif len(mu_list) == 3:
 
     fig.update_layout(
         title="",
-        scene=dict(
-            xaxis=dict(range=[-1, 1]),
-            yaxis=dict(range=[-1, 1]),
-            zaxis=dict(range=[-1, 1]),
-            aspectmode="data",
-        ),
+        scene={
+            "xaxis": {"range": [-1, 1]},
+            "yaxis": {"range": [-1, 1]},
+            "zaxis": {"range": [-1, 1]},
+            "aspectmode": "data",
+        },
     )
     fig.update_layout(showlegend=True)
     st.plotly_chart(fig, width="stretch")
