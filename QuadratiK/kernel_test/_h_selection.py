@@ -561,7 +561,7 @@ def select_h(
         print("Selected h is: ", h_selected)
     """
     if not isinstance(random_state, (int, np.int_, type(None))):
-        raise ValueError("Please specify a integer or None random_state")
+        raise TypeError("Please specify a integer or None random_state")
 
     if isinstance(x, np.ndarray):
         if x.ndim == 1:

@@ -359,7 +359,7 @@ class KernelTest:
             )
 
         if not isinstance(self.random_state, (int, type(None))):
-            raise ValueError("Please specify a integer or None random_state")
+            raise TypeError("Please specify a integer or None random_state")
 
         size_x, k = self.x.shape
 

@@ -29,7 +29,7 @@ class TestUniformityTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             PoissonKernelTest(rho=0.8, quantile=2).test(x_sp)
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             PoissonKernelTest(rho=0.8, random_state=[42]).test(x_sp)
 
         with self.assertRaises(ValueError):

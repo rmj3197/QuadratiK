@@ -191,7 +191,7 @@ class PoissonKernelTest:
                     of the Poisson kernel, it must be in (0,1).")
 
         if not isinstance(self.random_state, (int, type(None))):
-            raise ValueError("Please specify a integer or None random_state")
+            raise TypeError("Please specify a integer or None random_state")
 
         method = (
             "Poisson Kernel-based quadratic distance test of Uniformity on the Sphere"

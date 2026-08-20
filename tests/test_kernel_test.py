@@ -145,7 +145,7 @@ class TestKernelTest(unittest.TestCase):
             KernelTest(h=1.5, method="subsampling", b=0.5, random_state=42).test(
                 x, y_diff_len
             )
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             KernelTest(h=1.5, method="subsampling", b=0.5, random_state=[42]).test(
                 x_1d, y
             )

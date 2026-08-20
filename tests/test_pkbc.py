@@ -87,7 +87,7 @@ class TestPKBC(unittest.TestCase):
         with self.assertRaises(ValueError):
             PKBC(num_clust=3, num_init=-1).fit(data)
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             PKBC(num_clust=3, random_state=[42]).fit(data)
 
         with self.assertRaises(ValueError):

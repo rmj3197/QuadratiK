@@ -165,7 +165,7 @@ class PKBD:
             raise ValueError("Unknown method")
 
         if not isinstance(random_state, (int, type(None))):
-            raise ValueError("Please specify a integer or None random_state")
+            raise TypeError("Please specify a integer or None random_state")
 
         mu = mu / np.linalg.norm(mu)
         p = len(mu)

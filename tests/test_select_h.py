@@ -140,7 +140,7 @@ class TestSelectH(unittest.TestCase):
         x = pd.DataFrame(np.random.randn(100 * 3, 1))
         y = pd.DataFrame(np.repeat(np.arange(1, 4), repeats=100))
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             select_h(x=x, y=y, alternative="scale", random_state=[42], power_plot=True)
 
         with self.assertRaises(TypeError):

@@ -124,7 +124,7 @@ def sample_hypersphere(
         print(sample_hypersphere(5, 3, random_state = 42))
     """
     if not isinstance(random_state, (int, type(None))):
-        raise ValueError("Please specify a integer or None random_state")
+        raise TypeError("Please specify a integer or None random_state")
 
     generator = check_random_state(random_state)
     dat = generator.randn(npoints, ndim)

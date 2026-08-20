@@ -259,7 +259,7 @@ class PKBC:
         if self.num_init < 1:
             raise ValueError("Input parameter numInit must be greater than 0")
         if not isinstance(self.random_state, (int, type(None))):
-            raise ValueError("Please specify a integer or None random_state")
+            raise TypeError("Please specify a integer or None random_state")
 
         generator = check_random_state(self.random_state)
 

@@ -32,7 +32,7 @@ class TestPKBD(unittest.TestCase):
         with self.assertRaises(ValueError):
             pkbd.rpkb(100, np.array([1, 0, 0]), 0.1, "some method", random_state=42)
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             pkbd.rpkb(100, np.array([1, 0, 0]), 0.1, "rejvmf", random_state=[42])
 
         with self.assertRaises(NotImplementedError):

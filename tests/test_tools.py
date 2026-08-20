@@ -26,7 +26,7 @@ class TestTools(unittest.TestCase):
 
     @patch("matplotlib.pyplot.show")
     def test_sample_hypersphere(self, mock_plt_show):
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             sample_hypersphere(100, 3, [42])
 
     @patch("matplotlib.pyplot.show")
