@@ -69,3 +69,10 @@ extend-select = [
     "RUF", # Ruff-specific
     "UP", # pyupgrade
 ]
+ignore = [
+    "N999", # Invalid module name (QuadratiK uses mixed-case package name)
+    "TRY004", # Prefer TypeError exception for invalid type (ValueError is used for random_state across API and unit tests)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"QuadratiK/ui/**" = ["BLE001"] # Allow catching generic Exception in Streamlit UI pages

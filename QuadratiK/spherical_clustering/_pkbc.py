@@ -239,11 +239,12 @@ class PKBC:
         elif isinstance(self.num_clust, range):
             self.num_clust = list(self.num_clust)
 
-        elif isinstance(self.num_clust, (list, np.ndarray)):
-            if not all(isinstance(x, int) and x > 1 for x in self.num_clust):
-                raise TypeError(
-                    "Input parameter num_clust must a list or np.ndarray where each element be greater than 1"
-                )
+        elif isinstance(self.num_clust, (list, np.ndarray)) and not all(
+            isinstance(x, int) and x > 1 for x in self.num_clust
+        ):
+            raise TypeError(
+                "Input parameter num_clust must a list or np.ndarray where each element be greater than 1"
+            )
 
         if self.max_iter < 1:
             raise ValueError("Input parameter maxIter must be greater than 0")

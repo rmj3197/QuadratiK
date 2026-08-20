@@ -352,7 +352,10 @@ if data is not None:
                         z=zz,
                         mode="markers",
                         marker={
-                            "size": 5, "color": y_pred, "colorscale": "turbo", "showscale": False
+                            "size": 5,
+                            "color": y_pred,
+                            "colorscale": "turbo",
+                            "showscale": False,
                         },
                     ),
                     row=1,
@@ -379,7 +382,10 @@ if data is not None:
                             z=zz,
                             mode="markers",
                             marker={
-                                "size": 5, "color": y, "colorscale": "cividis", "showscale": False
+                                "size": 5,
+                                "color": y,
+                                "colorscale": "cividis",
+                                "showscale": False,
                             },
                         ),
                         row=1,

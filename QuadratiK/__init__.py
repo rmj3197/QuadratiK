@@ -6,14 +6,14 @@ try:
 except PackageNotFoundError:
     __version__ = "unknown"
 
-submodules = [
+__all__ = [
     "kernel_test",
     "poisson_kernel_test",
     "spherical_clustering",
     "tools",
     "ui",
 ]
-__all__ = submodules
+submodules = __all__
 
 
 def __dir__():
